@@ -23,8 +23,8 @@ class LoginController {
 	}
 	
 	def attemptLogin(){		
-		if (params.number != null) {
-			String phoneNumber = params.number.toString().trim()
+		if (params.number != null && isNumeric(params.number.toString())) {
+			String phoneNumber = "+1" + params.number.toString().trim()
 			
 			if (numberExist(phoneNumber)) {	
 				User user = User.findByPhoneNumber(phoneNumber)
@@ -51,8 +51,7 @@ class LoginController {
 						}
 						sendValidationCode(phoneNumber, code)
 						session["sentValidCode"] = "True"
-					}
-					
+					}			
 					render(view:"VarifyNumber", model:["phoneNumber": phoneNumber, "status": "init"])	
 				}				
 			} else {	
@@ -188,6 +187,10 @@ class LoginController {
 			randomNumberString = randomNumberString + number		
 		}	
 		return randomNumberString
+	}
+	
+	public boolean isNumeric(String s) {
+		return s.matches("[-+]?\\d*\\.?\\d+");
 	}
 	
 }

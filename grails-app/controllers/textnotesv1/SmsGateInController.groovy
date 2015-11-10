@@ -5,6 +5,8 @@ import com.twilio.sdk.verbs.TwiMLException;
 import com.twilio.sdk.verbs.Message;
 import com.twilio.sdk.verbs.Media;
 
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.Map;
 import java.util.HashMap;
  
@@ -65,7 +67,8 @@ class SmsGateInController {
 		User user = User.findByPhoneNumber(phoneNumber);
 		if (user == null) {
 			userID = createPartialAccount(phoneNumber);
-			String welcomeMessage = "TxtWolf: Wolf! Welcome to TxtWolf! Login to TxtWolf.com or text me 'my messages' to retrieve your notes. Go to TxtWolf.com for more awesome features."
+			String welcomeMessage = "Wolf! Welcome to TxtWolf! Login to TxtWolf.com or text me \"my messages\" to" +
+									"retrieve your notes. Go to TxtWolf.com to learn more about my awesome features."
 			smsGateOut.sendMessage(phoneNumber, welcomeMessage)
 		} else {
 			userID = user.userID
@@ -81,13 +84,13 @@ class SmsGateInController {
 		String text = message.toString().toLowerCase().trim()
 		switch (text) {
 			case "my messages":	 
-					returnMessages();
+					returnMessages(message, userID, phoneNumber);
 					 break;
 			case "my text":     
-					 returnMessages();
+					returnMessages(message, userID, phoneNumber);
 					 break;
 			case "my notes":     
-					returnMessages();
+					returnMessages(message, userID, phoneNumber);
 					 break;
 			case "my appointments":
 					returnAppointments()
@@ -117,14 +120,37 @@ class SmsGateInController {
 		message.message = text.toString().trim()
 		message.deleted = false
 		message.date = new Date()
-		message.messageType = 'Message'
+		message.messageType = 'Note'
 		
 		message.save(flush:true)
 	
 	}
 	
-	def returnMessages() {
+	def returnMessages(text, userID, phoneNumber) {
+		User user = User.findByUserID(userID)	
+		if (user != null) {
+		def messages = new ArrayList<Messages>()
 		
+		messages = Messages.executeQuery("FROM Messages as m WHERE m.userID = ? AND m.deleted = false ORDER BY date DESC", [userID], [max: 10])
+		
+		String allMessages = "Wolf! I fetched some notes! \n"
+		for (Messages message : messages) {
+			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+			String formatedDate = df.format(message.date).toString();
+			allMessages = allMessages + formatedDate + ": " + message.message + " \n "
+		}
+		
+		allMessages = allMessages + "Go to TxtWolf.com to view more."
+		
+		
+		if (messages.isEmpty()) {
+			allMessages = "TxtWolf: You need to send us notes before we can fetch them!"		
+		}
+		
+		smsGateOut.sendMessage(phoneNumber, allMessages)
+		} else {
+			// Nothing user does not exist and has never sent a note
+		}	
 	}
 	
 	def returnAppointments() {
