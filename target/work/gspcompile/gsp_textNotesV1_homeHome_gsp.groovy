@@ -39,30 +39,32 @@ createTagBody(1, {->
 printHtmlPart(9)
 expressionOut.print(createLink(controller: 'Login', action: 'login'))
 printHtmlPart(10)
-invokeTag('javascript','g',116,['src':("jquery.min.js")],-1)
+expressionOut.print(createLink(controller: 'Login', action: 'joinBeta'))
 printHtmlPart(11)
-invokeTag('javascript','g',117,['src':("jquery.scrollex.min.js")],-1)
+invokeTag('javascript','g',115,['src':("jquery.min.js")],-1)
 printHtmlPart(12)
-invokeTag('javascript','g',118,['src':("jquery.scrolly.min.js")],-1)
-printHtmlPart(12)
-invokeTag('javascript','g',119,['src':("skel.min.js")],-1)
-printHtmlPart(12)
-invokeTag('javascript','g',120,['src':("util.js")],-1)
+invokeTag('javascript','g',116,['src':("jquery.scrollex.min.js")],-1)
 printHtmlPart(13)
-invokeTag('javascript','g',121,['src':("main.js")],-1)
+invokeTag('javascript','g',117,['src':("jquery.scrolly.min.js")],-1)
+printHtmlPart(13)
+invokeTag('javascript','g',118,['src':("skel.min.js")],-1)
+printHtmlPart(13)
+invokeTag('javascript','g',119,['src':("util.js")],-1)
 printHtmlPart(14)
-invokeTag('javascript','g',122,['src':("ie/respond.min.js")],-1)
+invokeTag('javascript','g',120,['src':("main.js")],-1)
 printHtmlPart(15)
-})
-invokeTag('captureBody','sitemesh',123,['class':("landing")],1)
+invokeTag('javascript','g',121,['src':("ie/respond.min.js")],-1)
 printHtmlPart(16)
+})
+invokeTag('captureBody','sitemesh',122,['class':("landing")],1)
+printHtmlPart(17)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1446852680158L
+public static final long LAST_MODIFIED = 1447391713038L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

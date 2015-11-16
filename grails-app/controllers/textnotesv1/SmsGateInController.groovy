@@ -67,7 +67,7 @@ class SmsGateInController {
 		User user = User.findByPhoneNumber(phoneNumber);
 		if (user == null) {
 			userID = createPartialAccount(phoneNumber);
-			String welcomeMessage = "Wolf! Welcome to TxtWolf! Login to TxtWolf.com or text me \"my messages\" to" +
+			String welcomeMessage = "Wolf! Welcome to TxtWolf! Login to TxtWolf.com or text me \"my notes\" to" +
 									"retrieve your notes. Go to TxtWolf.com to learn more about my awesome features."
 			smsGateOut.sendMessage(phoneNumber, welcomeMessage)
 		} else {

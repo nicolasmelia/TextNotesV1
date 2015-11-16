@@ -37,14 +37,15 @@
 				<!-- Banner -->
 					<section id="banner">
 						<div class="inner">
-							<h2>#3305408023</h2>
+							<h2>#3303675213</h2>
 							<p>Text Anything <i>(Free),</i><br />
-							Well keep it safe. <br /> 
+							We'll keep it safe. <br /> 
 							Notes, Thoughts, Reminders
-
 							</p>
 							<ul class="actions">
 								<li><a href="${createLink(controller: 'Login', action: 'login')}" class="button special">Login/SignUp</a></li>
+								<li><a href="${createLink(controller: 'Login', action: 'joinBeta')}" class="button fit">Join Beta</a></li>						
+
 							</ul>
 						</div>
 						<a href="#one" class="more scrolly">Learn More</a>
@@ -61,22 +62,20 @@
 							<ul class="features">
 								<li class="icon fa-paw">
 									<h3>Platform Free</h3>
-									<p>TextWolf <b>does not</b> require an app or an account. It is as <b>free</b> as the independence it brings you.
- 									Actually, you can use me right now. Send me a thought. - <span class = "fa fa-paw"></span>
+									<p>TextWolf <b>does not</b> require an account, an app or the internet. Actually, you can use me right now. Send me a thought.
 									</p>
 								</li>
 								<li class="icon fa-sticky-note-o">
 									<h3>Notes/Images</h3>
-									<p>Ill keep your notes and thoughts safe and cozy. Login to view your notes or text me <i>"My notes"</i> and ill fetch them for you right away!</p>
+									<p>I'll keep your notes, images, and <i>reminders</i> safe. Login to view your notes or text me <i>"My notes"</i> and i'll fetch them for you.</p>
 								</li>
 								<li class="icon fa-bell-o">
 									<h3>Reminders</h3>
-									<p>TxtWolf recognizes dates in many ways, including relative dates (the day before next thursday at 3).
- 						 			Text a note with a date and i'll send you a reminder.</p>
+									<p>I recognizes dates in many ways, including relative dates (tomorrow at 7pm). Text a note with a date and i'll send you a reminder.</p>
 								</li>
 								<li class="icon  fa-lightbulb-o">
 									<h3>Train me!</h3>
-									<p>Login to set recurring reminders so you don't miss a workout or a favorite show. I can also send reminders to your friends! Oh, and don't forget to invite me! </p>
+									<p>Login to set <b>recurring</b> reminders so you don't miss an event or a favorite show. I can also send reminders to friends. </p>
 								</li>
 	
 							</ul>
@@ -87,7 +86,7 @@
 					<section id="cta" class="wrapper style4">
 						<div class="inner">
 							<header>
-								<h2>My Commands</h2>
+								<h2>I'm too easy.</h2>
 								<p>I offer many text commands that simplify your interaction with me. Don't hesitate to check them out. </p>
 							</header>
 							<ul class="actions vertical">

@@ -61,7 +61,8 @@ environments {
 	production {
 		dataSource {
 			pooled = true
-			dbCreate = "create-drop"
+				//dbCreate = "create-drop"
+				dbCreate = "update"		
 				url = "jdbc:mysql://txtwolf.c6wbbmnsfi3b.us-west-2.rds.amazonaws.com:3306/txtwolf"
 				driverClassName = "com.mysql.jdbc.Driver"
 				dialect = org.hibernate.dialect.MySQL5InnoDBDialect

@@ -12,12 +12,27 @@
 
 /* CUSTOM NICK MELIA */
 	.alert {
-	border-radius: 4px;
-   padding: 5px;  
-   color: #a94442; 
-   background-color: #f2dede; 
-   border: solid 1px #ebccd1;		
+	   border-radius: 4px;
+	   padding: 5px;  
+	   color: #a94442; 
+	   background-color: #f2dede; 
+	   border: solid 1px #ebccd1;		
 	}
+	
+	.info {
+	   border-radius: 4px;
+	   padding: 5px;  
+	   color: #31708f; 
+	   background-color: #d9edf7; 
+	   border: solid 1px #bce8f1;		
+	}
+	
+	.tblRow:hover {
+	  background-color: #F2FCFF!important;
+	  cursor: pointer;
+	}
+		
+	
 
 /* CUSTOM NICK MELIA */
 

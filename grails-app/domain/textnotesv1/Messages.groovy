@@ -15,6 +15,7 @@ class Messages {
 
 	static constraints = {
 		image(nullable:true, maxSize: 1024 * 1024 * 5 /* 5MB */)
+		message(maxSize: 2000) // Max from sms service is 1600
 	}
 
 }

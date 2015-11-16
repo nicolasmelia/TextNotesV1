@@ -31,11 +31,12 @@ class LoginController {
 				
 				// Create the users session
 				session["userID"] = user.userID	
-				session["number"] = params.number.toString().trim()
+				session["phoneNumber"] = params.number.toString().trim()
 				
 				if (user.validated) {
 					if (user.banned == false) {
 						// User is valid, next step is the password form
+						
 						render(view:"password", model:["phoneNumber":user.phoneNumber, "status": "init"])
 					} else {
 						render "This account has been locked ("+ phoneNumber +"). Contact customer serivce at service@TxtWolf.com for information."
@@ -46,6 +47,8 @@ class LoginController {
 						String code
 						if (user.validationCode.toString().equals("None")) {
 							code = generateRandomCode()
+							user.validationCode = code
+							user.save(flush:true)
 						} else {
 							code = user.validationCode
 						}
@@ -79,7 +82,7 @@ class LoginController {
 				
 				// Create the users session
 				session["userID"] = newUser.userID
-				session["number"] = phoneNumber
+				session["phoneNumber"] = phoneNumber
 				newUser.save(flush:true)
 								
 				render(view:"VarifyNumber", model:["phoneNumber": phoneNumber, "status": "init"])	
@@ -144,6 +147,10 @@ class LoginController {
 			return false	
 		}	
 	}
+	
+	 def joinBeta() {	 
+		 render(view:"JoinBeta")
+	 }
 	
 	// ********** Login steps **********
 	def numberExist(number) {
