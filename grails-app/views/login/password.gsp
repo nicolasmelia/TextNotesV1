@@ -87,10 +87,11 @@
 						<g:actionSubmit id = "submitBtn" onclick="return validateForm()" value="Login"
 							action="password" style="margin-top: 15px; width: 100%" />
 
-						<div class="6u$ 12u$(small)" style="margin-top: 10px;">
-							<input type="checkbox" id="rememberCheck" name="remeberCheck"
-								checked> <label for="demo-human">Remember Me</label>
-						</div>
+										<div class="6u$ 12u$(small)" style = "margin-top: 10px;" >
+												<input type="checkbox" id="demo-human" name="remeberMe" checked>
+												<label for="demo-human">Remember Me</label>
+											</div>
+
 
 						<a style="">I forgot my password :(</a>
 					</g:form>

@@ -31,5 +31,16 @@ class DashboardController {
 		
 	}
 	
+	def deleteNote() {
+		Messages message = Messages.findByMessageID(params.messageID)
+		if (message.userID.toString().equals(session["userID"])) {
+			message.deleted = true
+			message.save(flush:true)
+			render("True")
+		} else {
+			render("False")		
+		}	
+	}
+	
 	
 }

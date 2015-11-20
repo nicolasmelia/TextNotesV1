@@ -44,8 +44,6 @@
 							</p>
 							<ul class="actions">
 								<li><a href="${createLink(controller: 'Login', action: 'login')}" class="button special">Login/SignUp</a></li>
-								<li><a href="${createLink(controller: 'Login', action: 'joinBeta')}" class="button fit">Join Beta</a></li>						
-
 							</ul>
 						</div>
 						<a href="#one" class="more scrolly">Learn More</a>

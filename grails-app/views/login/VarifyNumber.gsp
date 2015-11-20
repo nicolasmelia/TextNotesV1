@@ -117,8 +117,8 @@
 							onClick="resendValidationCode('${createLink(controller: 'Login', action: 'resendValidationCode')}')"
 							style="margin-top: 15px; width: 100%" class="button fit">Resend Code</a>
 
-						<div class="6u$ 12u$(small)" style="margin-top: 10px;">
-							<input type="checkbox" id="demo-human" name="demo-human" checked>
+						<div class="6u$ 12u$(small)" style = "margin-top: 10px;" >
+							<input type="checkbox" id="demo-human" name="remeberMe" checked>
 							<label for="demo-human">Remember Me</label>
 						</div>
 

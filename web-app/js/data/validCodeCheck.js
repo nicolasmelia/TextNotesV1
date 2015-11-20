@@ -1,4 +1,5 @@
-// Check if user has entered a valid code before full validation on server:: NOT USED.. YET.
+	
+	// Check if user has entered a valid code before full validation on server:: NOT USED.. YET.
 	var codeSent = false;
 	function checkCode(url, code) {	
 		try {
@@ -47,3 +48,14 @@
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

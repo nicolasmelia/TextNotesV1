@@ -28,11 +28,41 @@
 	}
 	
 	.tblRow:hover {
-	  background-color: #F2FCFF!important;
+	  background-color: #fafeff!important;
 	  cursor: pointer;
 	}
-		
 	
+	.optionSelector {
+		cursor: pointer; 
+		height: 24px;  
+		border-bottom: solid 2px #c1c1c1; 
+		margin: 0px 4px 10px 0px; 
+		display: inline-block; 
+	}
+		
+	.optionSelector:hover {
+		cursor: pointer; 
+		height: 24px; 
+		border-bottom: solid 2px #3cc8f6;
+		margin: 0px 4px 10px 0px;
+		display: inline-block; 
+	}
+	
+	.optionSelectorSelected {
+		cursor: pointer; 
+		height: 24px; 
+		border-bottom: solid 2px #3cc8f6;
+		margin: 0px 4px 10px 0px;
+		display: inline-block; 
+	}
+	
+	.remndHover:hover {
+		  background-color: #FFFFB0!important;
+	}
+	
+	
+	
+		
 
 /* CUSTOM NICK MELIA */
 
