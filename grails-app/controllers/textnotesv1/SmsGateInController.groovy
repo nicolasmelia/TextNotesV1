@@ -20,6 +20,9 @@ import java.util.List;
 import org.apache.http.NameValuePair
 import org.apache.http.message.BasicNameValuePair
 
+import com.joestelmach.natty.*;
+
+
 import smsGate.smsGateOut
 
 class SmsGateInController {
@@ -119,11 +122,56 @@ class SmsGateInController {
 		message.messageID = halfUUID
 		message.message = text.toString().trim()
 		message.deleted = false
-		message.date = new Date()
-		message.messageType = 'Note'
+				
+		try {
+			// Parse message date
+			String rfcDate = params.DateSent
+			String pattern = "EEE, dd MMM yyyy HH:mm:ss Z";
+			SimpleDateFormat format = new SimpleDateFormat(pattern);
+			message.date = format.parse(rfcDate);	
+		} catch(Exception ex) {
+			message.date = new Date()
+		}
 		
+		if (proccessDates(message.message, message.messageID)){
+			message.messageType = 'Appointment'		
+		} else {
+			message.messageType = 'Note'
+		}
+				
 		message.save(flush:true)
 	
+	}
+	
+	def proccessDates(message, messageID) {
+		boolean appt = false
+		try {
+			List<Date> dates = new Parser().parse(message.toString()).get(0).getDates();
+			if (!dates.isEmpty()) {
+				Appointment appointment = new Appointment()			
+				appointment.date = dates.get(0)
+				appointment.messageID = messageID.toString()
+				
+				// Create a UUID and cut it in half
+				String uniqueID = UUID.randomUUID().toString().replace("-", "");
+				int midpoint = uniqueID.length() / 2;
+				String halfUUID = uniqueID.substring(0, midpoint)
+				
+				appointment.appointmentID = halfUUID
+				appointment.notifed = false
+				appointment.message = message.toString()
+				appointment.save(flush:true)
+				appt = true	
+				
+			} else {
+				appt = false
+			}
+			
+		} catch(Exception ex) {
+			appt = false
+		}
+
+		return appt	
 	}
 	
 	def returnMessages(text, userID, phoneNumber) {
