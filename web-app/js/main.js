@@ -1,25 +1,23 @@
 /*
-	Spectral by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Frequency by Pixelarity
+	pixelarity.com @pixelarity
+	License: pixelarity.com/license
 */
 
 (function($) {
 
-	skel
-		.breakpoints({
-			xlarge:	'(max-width: 1680px)',
-			large:	'(max-width: 1280px)',
-			medium:	'(max-width: 980px)',
-			small:	'(max-width: 736px)',
-			xsmall:	'(max-width: 480px)'
-		});
+	skel.breakpoints({
+		xlarge: '(max-width: 1680px)',
+		large: '(max-width: 1280px)',
+		medium: '(max-width: 980px)',
+		small: '(max-width: 736px)',
+		xsmall: '(max-width: 480px)'
+	});
 
 	$(function() {
 
 		var	$window = $(window),
 			$body = $('body'),
-			$wrapper = $('#page-wrapper'),
 			$banner = $('#banner'),
 			$header = $('#header');
 
@@ -27,22 +25,12 @@
 			$body.addClass('is-loading');
 
 			$window.on('load', function() {
-				window.setTimeout(function() {
-					$body.removeClass('is-loading');
-				}, 100);
+				$body.removeClass('is-loading');
 			});
 
-		// Mobile?
+		// Touch mode.
 			if (skel.vars.mobile)
-				$body.addClass('is-mobile');
-			else
-				skel
-					.on('-medium !medium', function() {
-						$body.removeClass('is-mobile');
-					})
-					.on('+medium', function() {
-						$body.addClass('is-mobile');
-					});
+				$body.addClass('is-touch');
 
 		// Fix: Placeholder polyfill.
 			$('form').placeholder();
@@ -55,45 +43,79 @@
 				);
 			});
 
-		// Scrolly.
-			$('.scrolly')
-				.scrolly({
-					speed: 1500,
-					offset: $header.outerHeight()
-				});
-
-		// Menu.
-			$('#menu')
-				.append('<a href="#menu" class="close"></a>')
-				.appendTo($body)
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'right',
-					target: $body,
-					visibleClass: 'is-menu-visible'
-				});
+		// Scrolly links.
+			$('.scrolly').scrolly();
 
 		// Header.
-			if (skel.vars.IEVersion < 9)
-				$header.removeClass('alt');
+		// If the header is using "alt" styling and #banner is present, use scrollwatch
+		// to revert it back to normal styling once the user scrolls past the banner.
+			if ($header.hasClass('alt')
+			&&	$banner.length > 0) {
 
-			if ($banner.length > 0
-			&&	$header.hasClass('alt')) {
+				$window.on('load', function() {
 
-				$window.on('resize', function() { $window.trigger('scroll'); });
+					$banner.scrollwatch({
+						delay:		0,
+						range:		0.98,
+						anchor:		'top',
+						on:			function() { $header.addClass('alt reveal'); },
+						off:		function() { $header.removeClass('alt'); }
+					});
 
-				$banner.scrollex({
-					bottom:		$header.outerHeight() + 1,
-					terminate:	function() { $header.removeClass('alt'); },
-					enter:		function() { $header.addClass('alt'); },
-					leave:		function() { $header.removeClass('alt'); }
+					skel.on('change', function() {
+
+						if (skel.breakpoint('medium').active)
+							$banner.scrollwatchSuspend();
+						else
+							$banner.scrollwatchResume();
+
+					});
+
 				});
 
 			}
+
+		// Dropdowns.
+			$('#nav > ul').dropotron({
+				alignment: 'right',
+				hideDelay: 400
+			});
+
+		// Off-Canvas Navigation.
+
+			// Title Bar.
+				$(
+					'<div id="titleBar">' +
+						'<a href="#navPanel" class="toggle"></a>' +
+						'<span class="title">' + $('#logo').html() + '</span>' +
+					'</div>'
+				)
+					.appendTo($body);
+
+			// Navigation Panel.
+				$(
+					'<div id="navPanel">' +
+						'<nav>' +
+							$('#nav').navList() +
+						'</nav>' +
+					'</div>'
+				)
+					.appendTo($body)
+					.panel({
+						delay: 500,
+						hideOnClick: true,
+						hideOnSwipe: true,
+						resetScroll: true,
+						resetForms: true,
+						side: 'left',
+						target: $body,
+						visibleClass: 'navPanel-visible'
+					});
+
+			// Fix: Remove transitions on WP<10 (poor/buggy performance).
+				if (skel.vars.os == 'wp' && skel.vars.osVersion < 10)
+					$('#navPanel')
+						.css('transition', 'none');
 
 	});
 

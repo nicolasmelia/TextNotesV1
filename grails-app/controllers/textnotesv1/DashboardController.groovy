@@ -10,7 +10,7 @@ class DashboardController {
 		User user = User.findByUserID(session["userID"])
 		String phoneNumber = session["phoneNumber"]
 		
-		if (params.requestType == null)  params.requestType = "Notes"
+		if (params.requestType == null)  params.requestType = "All"
 		
 		def messages = getUserContent(user.userID, params.requestType)
 		
@@ -22,6 +22,9 @@ class DashboardController {
 		//ArrayList<Messages> messages =  new ArrayList<Messages>()
 		def messages		
 		switch (requestType) {
+			case "All":
+				messages = Messages.executeQuery("FROM Messages m WHERE m.userID = ? AND m.deleted = false ORDER BY date DESC)", [userID], [max: 15])
+				break;
 			case "Notes":
 				messages = Messages.executeQuery("FROM Messages m WHERE m.userID = ? AND m.messageType = ? AND m.deleted = false ORDER BY date DESC)", [userID, "Note"], [max: 15])
 				break;

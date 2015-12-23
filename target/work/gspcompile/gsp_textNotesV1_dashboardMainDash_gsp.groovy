@@ -49,8 +49,8 @@ expressionOut.print(phoneNumber)
 printHtmlPart(13)
 if(true && (messages)) {
 printHtmlPart(14)
-for( _it1347456723 in (messages) ) {
-changeItVariable(_it1347456723)
+for( _it1869873220 in (messages) ) {
+changeItVariable(_it1869873220)
 printHtmlPart(15)
 expressionOut.print(it.messageID)
 printHtmlPart(16)
@@ -74,49 +74,58 @@ expressionOut.print(it.messageID)
 printHtmlPart(19)
 expressionOut.print(it.message)
 printHtmlPart(22)
-expressionOut.print(it.messageID)
+if(true && (it.messageType == 'Appointment')) {
 printHtmlPart(23)
-}
+expressionOut.print(it.messageID)
 printHtmlPart(24)
 }
 else {
+printHtmlPart(23)
+expressionOut.print(it.messageID)
 printHtmlPart(25)
 }
 printHtmlPart(26)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'deleteNote'))
+}
 printHtmlPart(27)
-invokeTag('javascript','g',205,['src':("jquery.min.js")],-1)
+}
+else {
 printHtmlPart(28)
-invokeTag('javascript','g',206,['src':("jquery.scrollex.min.js")],-1)
+}
 printHtmlPart(29)
-invokeTag('javascript','g',207,['src':("jquery.scrolly.min.js")],-1)
-printHtmlPart(29)
-invokeTag('javascript','g',208,['src':("skel.min.js")],-1)
-printHtmlPart(29)
-invokeTag('javascript','g',209,['src':("util.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'deleteNote'))
 printHtmlPart(30)
-invokeTag('javascript','g',210,['src':("main.js")],-1)
-printHtmlPart(30)
-invokeTag('javascript','g',211,['src':("formValidation/validation.js")],-1)
-printHtmlPart(30)
-invokeTag('javascript','g',212,['src':("remodal/remodal.min.js")],-1)
-printHtmlPart(30)
-invokeTag('javascript','g',213,['src':("remodal/remodalControls.js")],-1)
-printHtmlPart(30)
-invokeTag('javascript','g',214,['src':("jquery.dropdown.min.js")],-1)
+invokeTag('javascript','g',210,['src':("jquery.min.js")],-1)
 printHtmlPart(31)
-invokeTag('javascript','g',217,['src':("ie/respond.min.js")],-1)
+invokeTag('javascript','g',211,['src':("jquery.scrollex.min.js")],-1)
 printHtmlPart(32)
-})
-invokeTag('captureBody','sitemesh',236,[:],1)
+invokeTag('javascript','g',212,['src':("jquery.scrolly.min.js")],-1)
+printHtmlPart(32)
+invokeTag('javascript','g',213,['src':("skel.min.js")],-1)
+printHtmlPart(32)
+invokeTag('javascript','g',214,['src':("util.js")],-1)
 printHtmlPart(33)
+invokeTag('javascript','g',215,['src':("main.js")],-1)
+printHtmlPart(33)
+invokeTag('javascript','g',216,['src':("formValidation/validation.js")],-1)
+printHtmlPart(33)
+invokeTag('javascript','g',217,['src':("remodal/remodal.min.js")],-1)
+printHtmlPart(33)
+invokeTag('javascript','g',218,['src':("remodal/remodalControls.js")],-1)
+printHtmlPart(33)
+invokeTag('javascript','g',219,['src':("jquery.dropdown.min.js")],-1)
+printHtmlPart(34)
+invokeTag('javascript','g',222,['src':("ie/respond.min.js")],-1)
+printHtmlPart(35)
+})
+invokeTag('captureBody','sitemesh',241,[:],1)
+printHtmlPart(36)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1447993119157L
+public static final long LAST_MODIFIED = 1448242824345L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

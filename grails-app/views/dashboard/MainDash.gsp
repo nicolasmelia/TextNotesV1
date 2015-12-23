@@ -113,8 +113,13 @@
 														<td  onClick = 'openNote("${it.messageID}", "${it.message}", "<g:formatDate format='MM/dd/yyyy hh:mm a' date='${it.date}'/>")'   style = "width:140px!important; max-height: 70px; " id = "ntdDATE${it.messageID}"><g:formatDate format="MM-dd-yyyy" date="${it.date}"/></td>
 														<td  onClick = 'openNote("${it.messageID}", "${it.message}", "<g:formatDate format='MM/dd/yyyy hh:mm a' date='${it.date}'/>")'  id = "ntdNOTE${it.messageID}">${it.message}</td>
 														
-														<td align="center" valign="center" class = "remndHover" onclick = "ass()" id = "ntdRMDR${it.messageID}" style = "width:40px!important; "><span class = "fa fa-plus-square-o addRemind"></span></td>
-
+														<g:if test="${it.messageType == 'Appointment'}">
+															<td align="center" valign="center" class = "remndHover" onclick = "ass()" id = "ntdRMDR${it.messageID}" style = "width:40px!important; background-color:#FFFFEB; "><span class = "fa fa-check-circle-o addRemind"></span></td>
+														</g:if>	
+														<g:else>
+															<td align="center" valign="center" class = "remndHover" onclick = "ass()" id = "ntdRMDR${it.messageID}" style = "width:40px!important; "><span class = "fa fa-plus-square-o addRemind"></span></td>
+														</g:else>	
+														
 													</tr>
 												</g:each>
 											</g:if>
@@ -122,7 +127,7 @@
 													<tr>
 														<td>Woof!</td>
 														<td>Looks like you dont have any notes. Text me to use me.</td>
-														<td></td>
+														<td><span class = "fa fa-hourglass-half"></span></td>
 													</tr>
 											</g:else>
 

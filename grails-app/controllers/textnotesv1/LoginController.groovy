@@ -5,11 +5,15 @@ import smsGate.smsGateOut
 class LoginController {
 
     def index() { 		
-		render(view:"Login")
+		render(view:"Login", model:["error":"none"])
 	}
 	
 	def login() {
-		render(view:"Login")
+		render(view:"Login", model:["error":"none"])
+	}
+	
+	def newAccount(){
+		render(view:"CreateAccount")
 	}
 	
 	def logout() {
@@ -17,120 +21,51 @@ class LoginController {
 		redirect(controller: "Home", action: "home")		
 	}
 	
-	
-	def varify(){
-		render(view:"VarifyNumber")	
-	}
-	
+
 	def attemptLogin(){		
-		if (params.number != null && isNumeric(params.number.toString())) {
-			String phoneNumber = "+1" + params.number.toString().trim()
-			
-			if (numberExist(phoneNumber)) {	
-				User user = User.findByPhoneNumber(phoneNumber)
+		User user = User.findByEmail(params.email.toString().toLowerCase().trim())
+		def error = "none";
+		if (user != null) {
+			if (user.password.equals(params.password.toString().trim())){
+				 render "Success"		
+			} else {
+				render "Fail"
+			}
+		} else {
+			error = "That email address does not exist. Please try again."
+			render(view:"Login", model:["error":error])
+		}
+		
+	}
+
+	
+	def createAccount() {
+				User user = new User()
+				user.password = params.passwordone.toString().trim()
+				user.username = ""
+				user.email = params.email.toString().toLowerCase().trim()
+				user.accountType = "Full"
+				user.banned = false
+				user.lastLogin =  new Date()
 				
-				// Create the users session
-				session["userID"] = user.userID	
-				session["phoneNumber"] = params.number.toString().trim()
+				user.firstName = params.firstname
+				user.lastName = params.lastname
 				
-				if (user.validated) {
-					if (user.banned == false) {
-						// User is valid, next step is the password form
-						
-						render(view:"password", model:["phoneNumber":user.phoneNumber, "status": "init"])
-					} else {
-						render "This account has been locked ("+ phoneNumber +"). Contact customer serivce at service@TxtWolf.com for information."
-					}
-				} else {
-					// SEMIACCOUNT! User not validated but has entered their number before, show account creation form
-					if (session["sentValidCode"] == null) {
-						String code
-						if (user.validationCode.toString().equals("None")) {
-							code = generateRandomCode()
-							user.validationCode = code
-							user.save(flush:true)
-						} else {
-							code = user.validationCode
-						}
-						sendValidationCode(phoneNumber, code)
-						session["sentValidCode"] = "True"
-					}			
-					render(view:"VarifyNumber", model:["phoneNumber": phoneNumber, "status": "init"])	
-				}				
-			} else {	
-				// ****** FIRST TIME USER CREATE A partialAccount ******
-				// Send user a validation code
-				String code = sendValidationCode(phoneNumber, generateRandomCode())
-				session["sentValidCode"] = "True"
-				
-				//  Create a new user and save their validation code
-				User newUser = new User()
-				newUser.phoneNumber = phoneNumber
-				newUser.validationCode = code
-				newUser.accountType = "partialAccount"
-				newUser.validated = false
-				
-				newUser.allowedTxt = 10
-				newUser.sentTxt = 0
-						
 				// Create a UUID and cut it in half
 				String uniqueID = UUID.randomUUID().toString().replace("-", "");
 				int midpoint = uniqueID.length() / 2;
 				String halfUUID = uniqueID.substring(0, midpoint)
 				
-				newUser.userID = halfUUID	
-				
-				// Create the users session
-				session["userID"] = newUser.userID
-				session["phoneNumber"] = phoneNumber
-				newUser.save(flush:true)
-								
-				render(view:"VarifyNumber", model:["phoneNumber": phoneNumber, "status": "init"])	
-			}
-		} else {
-			render("Number not found in request.")
-		}
-	}
-
-	def password() {
-		if (session["userID"]) {
-			User user = User.findByUserID(session["userID"])
-			if (params.password.toString().equals(user.password)) {
-				// Correct password
-				user.lastLogin = new Date()
-				redirect(controller: "Dashboard", action: "openDashboard")			
-			} else {
-				// Wrong password
-				render(view:"password", model:["phoneNumber":user.phoneNumber, "status": "wrongPassword"])
-			}
-		} else {
-			redirect(action: "login")		
-		}		
-	}
-	
-	def createAccount() {
-		if (session["userID"]) {
-			User user = User.findByUserID(session["userID"])
-			if (compareValidationCode(params.code)) {
-				user.password = params.password.toString().trim()
-				user.username = ""
-				user.email = params.email.toString().trim()
-				user.accountType = "Full"
-				user.banned = false
-				user.lastLogin =  new Date()
+				user.userID = halfUUID
 				
 				user.allowedTxt = 10
 				user.sentTxt = 0
 				
 				user.validated = true
 				user.save(flush:true)
-				render "created"
-			} else {
-				render(view:"VarifyNumber", model:["phoneNumber": user.phoneNumber, "status": "wrongPassword"])	
-			}		
-		} else {
-			redirect(action: "login")		
-		}	
+				session["userID"] = user.userID
+				
+				render "created"	
 	}
 	
 	def compareValidationCode(code) {

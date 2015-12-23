@@ -1,157 +1,226 @@
 <!DOCTYPE HTML>
 <!--
-	Spectral by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Frequency by Pixelarity
+	pixelarity.com @pixelarity
+	License: pixelarity.com/license
 -->
 <html>
 	<head>
-		<title>Spectral by HTML5 UP</title>
+		<title>Untitled</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='main.boot.css'/>">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		
 		<!--[if lte IE 8]><g:javascript src="ie/html5shiv.js" /><![endif]-->
-		<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='mainBoot.css'/>">
-		
-		<!--Modal CSS-->	
-		<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='remodal/remodal.css'/>">
-		<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='remodal/remodal-default-theme.css'/>">
-		
 		<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='ie8.css'/>"><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='ie9.css'/>"><![endif]-->
 	</head>
+	
 	<body>
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
-
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="index.html">Spectral</a></h1>
-						<nav id="nav">
+		<!-- Header -->
+			<header id="header">
+				<h1 id="logo"><a href="index.html">TxtWolf</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li>
+							<a href="#">Layouts</a>
 							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="generic.html">Generic</a></li>
-											<li><a href="elements.html">Elements</a></li>
-											<li><a href="#">Sign Up</a></li>
-											<li><a href="#">Log In</a></li>
-										</ul>
-									</div>
+								<li><a href="left-sidebar.html">Left Sidebar</a></li>
+								<li><a href="right-sidebar.html">Right Sidebar</a></li>
+								<li><a href="no-sidebar.html">No Sidebar</a></li>
+								<li>
+									<a href="#">Submenu</a>
+									<ul>
+										<li><a href="#">Option 1</a></li>
+										<li><a href="#">Option 2</a></li>
+										<li><a href="#">Option 3</a></li>
+										<li><a href="#">Option 4</a></li>
+									</ul>
 								</li>
 							</ul>
-						</nav>
-					</header>
+						</li>
+						<li><a href="elements.html">Elements</a></li>
+						<li><a href="#" class="button alt">Sign Up</a></li>
+					</ul>
+				</nav>
+			</header>
 
-				<!-- Main -->
-					<article id="main">
-
-						<section class="wrapper style5">
-
-							<div class="inner" style = "max-width: 400px;">
-								<h2  style = "text-align: center;" class="form-signin-heading">Sign into <b>TxtWolf</b></h2>
-								<span style = "width: 100%; font-size: 150px; text-align: center; margin-top: -10px; " class = "fa fa-mobile"></span>
-
-								  	<g:form class="form-signin" controller="Login" action="attemptLogin" enctype="multipart/form-data" >
-								  
-									<label  style = "width: 100%; text-align:center;" for="inputEmail" class="sr-only">Your Phone Number</label>
-									<input name = "number" onkeypress="return isNumberKey(event)"  type="text" id="inputPhoneNum" class="form-control" placeholder="Phone Number"  autofocus>
-									
-									<div class = "alert" id = "errorList" style = "margin-top: 10px; display: none; " ></div>
-									<g:actionSubmit  id = "submitBtn" onclick="return validateForm()" value = "Next"  action = "attemptLogin" style = "margin-top: 15px; width: 100%"/>
-									
-							</g:form>
-
-							</div>
-
+		<!-- Main -->
+			<section id="main" class="wrapper style1">
+				<div class="container box big bordered">
+					<header class="major special" style = "padding: 0px;" >
+						<h2>Login to TxtWolf</h2>
+						<br>
+						<p> Welcome back. Enter your credentials below to get started.</p>
 							
-						<div style = "max-width: 600px; margin: auto;">
-									<h4>First Time?</h4>
-									<p>With <b>TxtWolf</b> you sign in with your phone number. No need to create an account. 
-									When you log in for the first time you will be asked to varify your phone number (only have to do this once) and then create
-									an awesome password so your notes stay safe and cozy.  - <span class = "fa fa-paw"></span></p>
-								</div>						
-						</section>
-					</article>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<ul class="icons">
-							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-							<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-						</ul>
-						<ul class="copyright">
-							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</footer>
-
-			</div>	
-			
-				<div class="remodal" data-remodal-id="loadingModal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
-  				<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
-				  <div>
-				    <h2 id="modal1Title" style = "color: #414141;" >Validating Number...</h2>
-				    <p id="modal1Desc">				    
-                        <span style = "color: #61B7FE; font-size: 70px;" class="fa fa-spinner fa-pulse"></span>
-                        <p id = "loadingText" style = "margin: auto; width: 80%;"></p>
-				    </p>
-				  </div>
-				  <br>
-				</div>
-
-				<!-- Scripts -->
-			   <g:javascript src="jquery.min.js" />  
-			   <g:javascript src="jquery.scrollex.min.js" />  
-		       <g:javascript src="jquery.scrolly.min.js" />  
-		       <g:javascript src="skel.min.js" />  
-		       <g:javascript src="util.js" /> 
-		       <g:javascript src="main.js" /> 
-		       <g:javascript src="formValidation/validation.js" /> 
-		       <g:javascript src="remodal/remodal.min.js" /> 
-		       <g:javascript src="remodal/remodalControls.js" /> 
-		       
-		       <!--[if lte IE 8]><g:javascript src="ie/respond.min.js" /><![endif]-->
-
-				<script>
-
-				var errors = [];
-				function validateForm() {
-				var hasErrors = false;
-				var number = $("#inputPhoneNum").val();
-				$("#errorList").css("display", "none");
-				errors = [];
-
-					if (number == "" || number.length < 7) {
-						hasErrors = true;
-						errors.push("Number too short. :(");
-					} 
+						<g:if test="${error != 'none'}">
+							<div class="alert" id="errorList" style="margin: 10px auto 0px auto; display: block; max-width: 450px; ">${error}</div>
+						</g:if>
+						<g:else>
+							<div class="alert" id="errorList" style="margin: 10px auto 0px auto; display: none; max-width: 450px; "></div>						
+						</g:else>
+								
+								
+					</header>
 					
-					if (number.length > 15) {
-						hasErrors = true;
-						errors.push("Number too long. 15 digit max. :(");
-					} 
+					<!-- Form -->
+						<section>
 
-					if (hasErrors) {
-						$("#errorList").html("");
-						for (i = 0; i < errors.length; i++) { 
-							$("#errorList").append("*" + errors[i] + "<br/>");		
-						}								
-						$("#errorList").slideDown("800");
-						return false;
-					} else {
-					// Validate success
-						return true; 
-					}	
+								
+							<g:form class="form-signin" controller="Login" action="attemptLogin" enctype="multipart/form-data" >
+							
+
+								<div style = " display: block; margin: auto; max-width: 400px; ">
+		
+							
+								<input type="email" name="email" id="email" value="" placeholder="Email" /> <br>
+								<input type="password" name="password" id="password" value="" placeholder="Password" />		
+								
+									<div class="6u 12u$(small)" style = "margin-top: 15px;" >
+										<input type="checkbox" id="copy" name="copy">
+										<label for="copy">Remember Me</label>
+									</div>
+										
+										<div class="12u$">
+										<ul class="actions">
+											<li  style = "width: 100%;">
+											<g:actionSubmit  class="special" id = "submitBtn" onclick="return validateForm()" value = "Login"  action = "attemptLogin" style = "width: 100%"/>	
+											</li>											
+											<a  style = "display:block; margin-top: 4px;" href = "#">I forgot my password</a>
+										</ul>
+									</div>
+
+								
+								</div>
+
+						</g:form>
+						
+						</section>
+
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+					<div class="row 200% uniform">
+						<section class="4u 12u$(medium) 12u$(xsmall) footer-info">
+							<h2>Ipsum dolor sed consequat</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta molestiae eius dolorem quod deserunt esse libero, dolorum temporibus, aliquid nemo vitae sit enim quas ipsam dicta et veritatis excepturi suscipit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio incidunt, tempora quasi, impedit laudantium totam.</p>
+							<ul class="actions">
+								<li><a href="#" class="button alt">Learn more</a></li>
+							</ul>
+						</section>
+						<section class="4u 6u(medium) 12u$(xsmall)">
+							<h3>Recent News</h3>
+							<ul class="updates">
+								<li>
+									<p><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum tenetur sequi eos porro minima laborum!</a></p>
+									<span class="timestamp">Posted 2 hours ago</span>
+								</li>
+								<li>
+									<p><a href="#">Perferendis deserunt, iure ipsum animi quidem molestiae esse quisquam rerum quas placeat.</a></p>
+									<span class="timestamp">Posted 6 hours ago</span>
+								</li>
+								<li>
+									<p><a href="#">Ex est veniam, ratione voluptas quidem eveniet accusantium impedit explicabo error, commodi.</a></p>
+									<span class="timestamp">Posted 8 hours ago</span>
+								</li>
+							</ul>
+						</section>
+						<section class="4u$ 6u$(medium) 12u$(xsmall)">
+							<h3>Contact Us</h3>
+							<ul class="labeled-icons">
+								<li>
+									<h4 class="icon fa-home"><span class="label">Address</span></h4>
+									1234 Somewhere Road #5403<br />
+									Nashville, TN 00000
+								</li>
+								<li>
+									<h4 class="icon fa-phone"><span class="label">Phone</span></h4>
+									(000) 555-0000 x12345
+								</li>
+								<li>
+									<h4 class="icon fa-envelope"><span class="label">Email</span></h4>
+									<a href="#">hello@untitled.tld</a>
+								</li>
+								<li>
+									<h4 class="icon fa-facebook"><span class="label">Facebook</span></h4>
+									<a href="#">facebook.com/untitled-tld</a>
+								</li>
+								<li>
+									<h4 class="icon fa-twitter"><span class="label">Twitter</span></h4>
+									<a href="#">twitter.com/untitled-tld</a>
+								</li>
+							</ul>
+						</section>
+					</div>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. All rights reserved.
+				</div>
+			</div>
+
+			<!-- Scripts -->
+			<g:javascript src="jquery.min.js" />  
+			<g:javascript src="jquery.dropotron.min.js" /> 	
+			<g:javascript src="jquery.scrollgress.min.js" />  
+			<g:javascript src="skel.min.js" />  
+			<g:javascript src="util.js" /> 
+			<g:javascript src="main.js" /> 
+			<g:javascript src="jquery.scrolly.min.js" /> 
+			<!--[if lte IE 8]><g:javascript src="ie/respond.min.js" /><![endif]-->
+			
+			<script>
+
+			// When the form is submitted disable the resend button
+			$('form').submit(function() {
+				$("#codeResendBtn").prop("disabled",true);		
+			});
+		
+			var errors = [];
+			function validateForm() {
+			var hasErrors = false;
+			var email = $("#email").val();			
+			var password = $("#password").val();
+			
+			$("#errorList").css("display", "none");
+			errors = [];
+
+				try {
+					// Email regex for validation
+				    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+					if (re.test(email) == false) {
+						hasErrors = true;
+						errors.push("Please enter a valid email. ");
+					} 
+				}
+				catch(err) {
+					// Do nothing
 				}
 
+				if (password.length < 6) {
+					hasErrors = true;
+					errors.push("Password must be atleast 6 characters. ");
+				} 
 
-
-				</script>
+				if (hasErrors) {
+					$("#errorList").html("");
+					for (i = 0; i < errors.length; i++) { 
+						$("#errorList").append("*" + errors[i] + "<br/>");		
+					}								
+					$("#errorList").slideDown("800");
+					return false;
+				} else {
+				// Validate success
+					return true; 
+				}	
+			}			
+	
+					
+			</script>
 
 	</body>
 </html>

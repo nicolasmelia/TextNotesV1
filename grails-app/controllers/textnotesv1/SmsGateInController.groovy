@@ -32,12 +32,14 @@ class SmsGateInController {
 	}
 	
 	
-	def gateIn(){
+	def gateIn(){	
 		String from = params.From.toString()
 		String body = params.Body.toString().trim()
+		String messageSid = params.MessageSid.toString() // Twilio message sid
+		
 		
 		if (from != null && body != null){
-			proccessRequest(from, body)
+			proccessRequest(from, body, messageSid)
 			render(status:204)
 		} else {
 			render(status:404)
@@ -65,7 +67,7 @@ class SmsGateInController {
 		render(text: twiml.toXML(), contentType: "application/xml", encoding: "UTF-8")
 	}
 	
-	def proccessRequest(phoneNumber, message) {
+	def proccessRequest(phoneNumber, message, messageSid) {
 		String userID = ""
 		User user = User.findByPhoneNumber(phoneNumber);
 		if (user == null) {
@@ -78,12 +80,12 @@ class SmsGateInController {
 			// User exist
 		}
 		
-		proccessMessage(message, userID, phoneNumber)
+		proccessMessage(message, userID, phoneNumber, messageSid)
 		
 	}
 	
 	
-	def proccessMessage(message, userID, phoneNumber) {
+	def proccessMessage(message, userID, phoneNumber, messageSid) {
 		String text = message.toString().toLowerCase().trim()
 		switch (text) {
 			case "my messages":	 
@@ -102,36 +104,28 @@ class SmsGateInController {
 					returnAppointments()
 					break
 			default:
-					processMessage(message, userID, phoneNumber)
+					processMessage(message, userID, phoneNumber, messageSid)
 					break;
 		}
 		
 	}
 	
-	def processMessage(text, userID, phoneNumber) {
+	def processMessage(text, userID, phoneNumber, messageSid) {
 		User user = User.findByUserID(userID.toString())
 		Messages message = new Messages()
 		message.userID = userID
 		message.phoneNumber = phoneNumber
 		
 		// Create a UUID and cut it in half
-		String uniqueID = UUID.randomUUID().toString().replace("-", "");
-		int midpoint = uniqueID.length() / 2;
-		String halfUUID = uniqueID.substring(0, midpoint)
+		//String uniqueID = UUID.randomUUID().toString().replace("-", "");
+		//int midpoint = uniqueID.length() / 2;
+		//String halfUUID = uniqueID.substring(0, midpoint)
 		
-		message.messageID = halfUUID
+		message.messageID = messageSid
 		message.message = text.toString().trim()
 		message.deleted = false
 				
-		try {
-			// Parse message date
-			String rfcDate = params.DateSent
-			String pattern = "EEE, dd MMM yyyy HH:mm:ss Z";
-			SimpleDateFormat format = new SimpleDateFormat(pattern);
-			message.date = format.parse(rfcDate);	
-		} catch(Exception ex) {
-			message.date = new Date()
-		}
+		message.date = new Date()
 		
 		if (proccessDates(message.message, message.messageID)){
 			message.messageType = 'Appointment'		

@@ -12,6 +12,10 @@ class User {
 	Date lastLogin
 	String accountType
 	
+	String firstName
+	String lastName
+	String businessName
+	
 	Date dateTxt
 	int allowedTxt
 	int sentTxt // Resets on a new day
@@ -31,6 +35,10 @@ class User {
 		lastLogin(nullable:true)
 		accountType(nullable:true)
 		banned(nullable:true)
+		
+		firstName(nullable:true)
+		lastName(nullable:true)
+		businessName(nullable:true)
 		
 		allowedTxt(nullable:true)
 		sentTxt(nullable:true)
