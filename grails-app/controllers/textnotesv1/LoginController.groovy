@@ -5,15 +5,15 @@ import smsGate.smsGateOut
 class LoginController {
 
     def index() { 		
-		render(view:"Login", model:["error":"none"])
+		render(view:"Login")
 	}
 	
 	def login() {
-		render(view:"Login", model:["error":"none"])
+		render(view:"Login")
 	}
 	
 	def newAccount(){
-		render(view:"CreateAccount")
+		render(view:"CreateAccount")	
 	}
 	
 	def logout() {
@@ -22,17 +22,19 @@ class LoginController {
 	}
 	
 
-	def attemptLogin(){		
+	def attemptLogin(){
 		User user = User.findByEmail(params.email.toString().toLowerCase().trim())
 		def error = "none";
 		if (user != null) {
 			if (user.password.equals(params.password.toString().trim())){
-				 render "Success"		
+				session["userID"] = user.userID // Create the session
+				redirect(controller: "Dashboard", action: "dashboard")			
 			} else {
-				render "Fail"
+				error = "*Incorrect email or password. Please try again."
+				render(view:"Login", model:["error":error])
 			}
 		} else {
-			error = "That email address does not exist. Please try again."
+			error = "*That email address does not exist. Please try again."
 			render(view:"Login", model:["error":error])
 		}
 		
@@ -40,6 +42,9 @@ class LoginController {
 
 	
 	def createAccount() {
+		User testUser = User.findByEmail(params.email.toString().toLowerCase().trim())
+		def error = ""
+		if (testUser == null && params.email != null) {
 				User user = new User()
 				user.password = params.passwordone.toString().trim()
 				user.username = ""
@@ -63,64 +68,20 @@ class LoginController {
 				
 				user.validated = true
 				user.save(flush:true)
-				session["userID"] = user.userID
-				
-				render "created"	
-	}
-	
-	def compareValidationCode(code) {
-		// Render result to ajax request
-		if (session["userID"]) {
-			User user = User.findByUserID(session["userID"])	
-			if (user.validationCode.equals(code.toString().trim())) {
-				return true
-			} else {
-				return false
-			}	
+				session["userID"] = user.userID			
+				render "created"
+					
+		} else if (testUser != null) {
+			// user exist, display an error that the account did not create 
+			error = "*That email already exist in our system. Go to our login page to login."
+			render(view:"CreateAccount", model:["error":error])	
 		} else {
-			// user does not exist - wtf hackers?
-			return false	
-		}	
+			render(view:"CreateAccount")		
+		}
 	}
-	
-	 def joinBeta() {	 
-		 render(view:"JoinBeta")
-	 }
 	
 	// ********** Login steps **********
-	def numberExist(number) {
-		// Checks if phone number exist in database and tied to user
-		String phoneNumber = number.toString().trim()
-		User user = User.findByPhoneNumber(phoneNumber)	
-		if (user != null) {
-			return true
-		} else {		
-			return false
-		}
-	}
-	
-	def sendValidationCode(number, code){
-		// Sends validation code to number defined. 
-		// Function also Returns code sent to number
-		String message = "Your validation code sent from TxtWolf: " + code
-		smsGateOut.sendMessage(number, message)	
-		return code
-	}
-	
-	def resendValidationCode() {
-		// Ajax request
-		if (session["userID"]) {
-			User user = User.findByUserID(session["userID"])
-			if (user != null) {
-				sendValidationCode(user.phoneNumber, user.validationCode)
-			}
-			render "True"
-		}  else {
-			render "False"
-			
-		}
-	}
-	
+
 	def generateRandomCode() {
 		// Generates the six digit random validation code
 		int[] randomNumbers = new Random().ints(1, 9).distinct().limit(6).toArray();	

@@ -6,15 +6,16 @@ class DashboardController {
 	
 	
 	
-	def openDashboard() {
-		User user = User.findByUserID(session["userID"])
-		String phoneNumber = session["phoneNumber"]
+	def dashboard() {
+	//	User user = User.findByUserID(session["userID"])
+	//	String phoneNumber = session["phoneNumber"]
 		
-		if (params.requestType == null)  params.requestType = "All"
+	//	if (params.requestType == null)  params.requestType = "All"
 		
-		def messages = getUserContent(user.userID, params.requestType)
+		//def messages = getUserContent(user.userID, params.requestType)
 		
-		render(view:"MainDash", model: ["phoneNumber" : phoneNumber, "messages" : messages])
+		//render(view:"dashboard_home", model: ["phoneNumber" : phoneNumber, "messages" : messages])
+		render(view:"dashboard_home")
 		
 	}
 	

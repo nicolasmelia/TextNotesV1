@@ -54,7 +54,14 @@
 						<h2>Create an Account</h2>
 						<br>
 						<p> Welcome. Create a <b>free</b> account below to get started!</p>
-								<div class="alert" id="errorList" style="margin: 10px auto 0px auto; text-align: left; display: none; max-width: 500px; "></div>
+						
+						<g:if test="${error}">
+							<div class="alert" id="errorList" style="margin: 10px auto 0px auto; display: block; max-width: 450px; ">${error}</div>
+						</g:if>
+						<g:else>
+							<div class="alert" id="errorList" style="margin: 10px auto 0px auto; display: none; max-width: 450px; "></div>						
+						</g:else>	
+										
 					</header>
 					
 					<!-- Form -->
@@ -185,7 +192,7 @@
 
 			// When the form is submitted disable the resend button
 			$('form').submit(function() {
-				$("#codeResendBtn").prop("disabled",true);		
+				$("#submitBtn").prop("disabled",true);		
 			});
 		
 			var errors = [];
@@ -234,6 +241,21 @@
 					errors.push("Please enter a password in both password fields.");
 				}
 
+				if (firstname.length < 1) {
+					hasErrors = true;
+					errors.push("Please enter a valid first name.");
+				} 	
+
+				if (lastname.length < 1) {
+					hasErrors = true;
+					errors.push("Please enter a valid last name.");
+				} 	
+
+				if (companyname.length < 1) {
+					hasErrors = true;
+					errors.push("Please enter a valid company name.");
+				} 	
+		
 				if (hasErrors) {
 					$("#errorList").html("");
 					for (i = 0; i < errors.length; i++) { 

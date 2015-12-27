@@ -51,11 +51,12 @@
 			<section id="main" class="wrapper style1">
 				<div class="container box big bordered">
 					<header class="major special" style = "padding: 0px;" >
+					
 						<h2>Login to TxtWolf</h2>
 						<br>
 						<p> Welcome back. Enter your credentials below to get started.</p>
 							
-						<g:if test="${error != 'none'}">
+						<g:if test="${error}">
 							<div class="alert" id="errorList" style="margin: 10px auto 0px auto; display: block; max-width: 450px; ">${error}</div>
 						</g:if>
 						<g:else>
@@ -177,7 +178,7 @@
 
 			// When the form is submitted disable the resend button
 			$('form').submit(function() {
-				$("#codeResendBtn").prop("disabled",true);		
+				$("#submitBtn").prop("disabled",true);		
 			});
 		
 			var errors = [];
