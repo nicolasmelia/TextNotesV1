@@ -1,3 +1,4 @@
+@import url("font-awesome.min.css");
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:300,600,700,300italic,600italic,700italic");
 
 /*
@@ -1634,7 +1635,7 @@
 	}
 
 	a {
-		color: #fd647a;
+		color: #605ca8;
 		text-decoration: underline;
 	}
 
@@ -1854,8 +1855,8 @@
 		input[type="email"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: #fd647a;
-			box-shadow: 0 0 0 1px #fd647a;
+			border-color: #605ca8;
+			box-shadow: 0 0 0 1px #605ca8;
 		}
 
 	.select-wrapper {
@@ -1964,8 +1965,8 @@
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
-			border-color: #fd647a;
-			box-shadow: 0 0 0 1px #fd647a;
+			border-color: #605ca8;
+			box-shadow: 0 0 0 1px #605ca8;
 		}
 
 	input[type="radio"] + label:before {
@@ -2024,7 +2025,7 @@
 		}
 
 		.box.bordered:before {
-			background: linear-gradient(to right, #fd647a 50%, #00b49e 50%);
+			background: linear-gradient(to right, #605ca8 50%, #56b6da 50%);
 		}
 
 		.box.bordered:after {
@@ -2032,11 +2033,11 @@
 		}
 
 		.box.style1:after {
-			background-color: #fd647a;
+			background-color: #605ca8;
 		}
 
 		.box.style2:after {
-			background-color: #00b49e;
+			background-color: #56b6da;
 		}
 
 		.box.style3:after {
@@ -2103,11 +2104,11 @@
 		}
 
 		.icon.style1 {
-			color: #fd647a;
+			color: #605ca8;
 		}
 
 		.icon.style2 {
-			color: #00b49e;
+			color: #56b6da;
 		}
 
 		.icon.style3 {
@@ -2311,19 +2312,19 @@
 					}
 
 				ul.counters li.style1 strong {
-					background-color: #fd647a;
+					background-color: #605ca8;
 				}
 
 					ul.counters li.style1 strong:after {
-						border-top-color: #fd647a;
+						border-top-color: #605ca8;
 					}
 
 				ul.counters li.style2 strong {
-					background-color: #00b49e;
+					background-color: #56b6da;
 				}
 
 					ul.counters li.style2 strong:after {
-						border-top-color: #00b49e;
+						border-top-color: #56b6da;
 					}
 
 				ul.counters li.style3 strong {
@@ -2631,7 +2632,7 @@
 		input[type="reset"].special,
 		input[type="button"].special,
 		.button.special {
-			background-color: #fd647a;
+			background-color: #605ca8;
 			color: #ffffff !important;
 		}
 
@@ -2639,14 +2640,14 @@
 			input[type="reset"].special:hover,
 			input[type="button"].special:hover,
 			.button.special:hover {
-				background-color: #fd7d90;
+				background-color: #7d7aaf;
 			}
 
 			input[type="submit"].special:active,
 			input[type="reset"].special:active,
 			input[type="button"].special:active,
 			.button.special:active {
-				background-color: #fd4b64;
+				background-color: #4841c3;
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,

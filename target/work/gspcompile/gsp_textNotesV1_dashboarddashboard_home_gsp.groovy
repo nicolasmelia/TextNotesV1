@@ -16,7 +16,7 @@ createTagBody(1, {->
 printHtmlPart(1)
 invokeTag('captureMeta','sitemesh',8,['gsp_sm_xmlClosingForEmptyTag':(""),'charset':("utf-8")],-1)
 printHtmlPart(1)
-invokeTag('captureMeta','sitemesh',9,['gsp_sm_xmlClosingForEmptyTag':(""),'http-equiv':("X-UA-Compatible"),'content':("IE=edge")],-1)
+invokeTag('captureMeta','sitemesh',9,['gsp_sm_xmlClosingForEmptyTag':(""),'http-equiv':("X-UA-Compatible"),'fcontent':("IE=edge")],-1)
 printHtmlPart(1)
 createTagBody(2, {->
 createClosureForHtmlPart(2, 3)
@@ -37,26 +37,32 @@ invokeTag('captureHead','sitemesh',39,[:],1)
 printHtmlPart(8)
 createTagBody(1, {->
 printHtmlPart(9)
-expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.jpg'))
+expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(10)
-invokeTag('javascript','g',368,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(11)
-invokeTag('javascript','g',371,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(12)
-invokeTag('javascript','g',374,['src':("dashboard/app.min.js")],-1)
+expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(13)
-invokeTag('javascript','g',376,['src':("dashboard/plugins/fastclick.min.js")],-1)
+invokeTag('javascript','g',368,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(14)
+invokeTag('javascript','g',371,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(15)
+invokeTag('javascript','g',374,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(16)
+invokeTag('javascript','g',376,['src':("dashboard/plugins/fastclick.min.js")],-1)
+printHtmlPart(17)
 })
 invokeTag('captureBody','sitemesh',381,['class':("hold-transition skin-purple sidebar-mini")],1)
-printHtmlPart(15)
+printHtmlPart(18)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1451184822212L
+public static final long LAST_MODIFIED = 1451185389759L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

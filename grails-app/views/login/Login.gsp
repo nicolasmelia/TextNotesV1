@@ -80,8 +80,8 @@
 								<input type="password" name="password" id="password" value="" placeholder="Password" />		
 								
 									<div class="6u 12u$(small)" style = "margin-top: 15px;" >
-										<input type="checkbox" id="copy" name="copy">
-										<label for="copy">Remember Me</label>
+										<input type="checkbox" id="rememberme" name="rememberme">
+										<label for="rememberme">Remember Me</label>
 									</div>
 										
 										<div class="12u$">

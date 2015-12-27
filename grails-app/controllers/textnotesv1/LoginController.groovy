@@ -5,11 +5,16 @@ import smsGate.smsGateOut
 class LoginController {
 
     def index() { 		
-		render(view:"Login")
+		login()
 	}
 	
 	def login() {
-		render(view:"Login")
+		if (request.getCookie('user')) {
+			session["userID"] = request.getCookie('user') // Create the session
+			redirect(controller: "Dashboard", action: "dashboard")
+		} else {
+			render(view:"Login")	
+		}	
 	}
 	
 	def newAccount(){
@@ -18,6 +23,7 @@ class LoginController {
 	
 	def logout() {
 		session.invalidate()
+		response.deleteCookie('user')
 		redirect(controller: "Home", action: "home")		
 	}
 	
@@ -26,9 +32,13 @@ class LoginController {
 		User user = User.findByEmail(params.email.toString().toLowerCase().trim())
 		def error = "none";
 		if (user != null) {
-			if (user.password.equals(params.password.toString().trim())){
+			if (user.password.equals(params.password.toString().trim())){				
+				if (params.rememberme) {
+					// Create a cookie for the user
+					response.setCookie('user', user.userID.toString(), 604800) // 1 week	
+				}					
 				session["userID"] = user.userID // Create the session
-				redirect(controller: "Dashboard", action: "dashboard")			
+				redirect(controller: "Dashboard", action: "dashboard")						
 			} else {
 				error = "*Incorrect email or password. Please try again."
 				render(view:"Login", model:["error":error])
