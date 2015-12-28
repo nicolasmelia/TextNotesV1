@@ -8,13 +8,16 @@ class LoginController {
 		login()
 	}
 	
-	def login() {
+	def login() {		
 		if (request.getCookie('user')) {
+			createSession(request.getCookie('user').toString())
 			session["userID"] = request.getCookie('user') // Create the session
 			redirect(controller: "Dashboard", action: "dashboard")
+		} else if (session["userID"]) {
+			redirect(controller: "Dashboard", action: "dashboard")
 		} else {
-			render(view:"Login")	
-		}	
+			render(view:"Login")
+		}
 	}
 	
 	def newAccount(){
@@ -26,7 +29,6 @@ class LoginController {
 		response.deleteCookie('user')
 		redirect(controller: "Home", action: "home")		
 	}
-	
 
 	def attemptLogin(){
 		User user = User.findByEmail(params.email.toString().toLowerCase().trim())
@@ -36,9 +38,16 @@ class LoginController {
 				if (params.rememberme) {
 					// Create a cookie for the user
 					response.setCookie('user', user.userID.toString(), 604800) // 1 week	
-				}					
-				session["userID"] = user.userID // Create the session
-				redirect(controller: "Dashboard", action: "dashboard")						
+				}	
+											
+				createSession(user.userID) // Create the session	
+				
+				// Set the last login date
+				user.lastLogin = new Date()
+				user.save(flush:true)
+				
+				redirect(controller: "Dashboard", action: "dashboard")		
+								
 			} else {
 				error = "*Incorrect email or password. Please try again."
 				render(view:"Login", model:["error":error])
@@ -62,6 +71,7 @@ class LoginController {
 				user.accountType = "Full"
 				user.banned = false
 				user.lastLogin =  new Date()
+				user.signUpDate = new Date()
 				
 				user.firstName = params.firstname
 				user.lastName = params.lastname
@@ -78,8 +88,14 @@ class LoginController {
 				
 				user.validated = true
 				user.save(flush:true)
-				session["userID"] = user.userID			
-				render "created"
+
+				if (params.rememberme) {
+					// Create a cookie for the user
+					response.setCookie('user', user.userID.toString(), 604800) // 1 week
+				}
+				
+				createSession(user.userID) // Create the session
+				redirect(controller: "Dashboard", action: "dashboard")
 					
 		} else if (testUser != null) {
 			// user exist, display an error that the account did not create 
@@ -92,6 +108,22 @@ class LoginController {
 	
 	// ********** Login steps **********
 
+	
+	def createSession(String userID) {
+		// Creates a session if one does not exist
+		if (!session["userID"]) {
+			User user = User.findByUserID(userID)
+			session["userID"] = user.userID
+			session["firstName"] = user.firstName
+			session["lastName"] = user.lastName
+			session["signUpDate"] = user.signUpDate
+			
+			return true
+		} else {
+			return false
+		}	
+	}
+	
 	def generateRandomCode() {
 		// Generates the six digit random validation code
 		int[] randomNumbers = new Random().ints(1, 9).distinct().limit(6).toArray();	

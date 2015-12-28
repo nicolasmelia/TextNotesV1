@@ -2,21 +2,18 @@ package textnotesv1
 
 class DashboardController {
 
-    def index() { }
-	
-	
+    def index() { 
+		dashboard()
+	}
 	
 	def dashboard() {
-	//	User user = User.findByUserID(session["userID"])
-	//	String phoneNumber = session["phoneNumber"]
-		
-	//	if (params.requestType == null)  params.requestType = "All"
-		
-		//def messages = getUserContent(user.userID, params.requestType)
-		
-		//render(view:"dashboard_home", model: ["phoneNumber" : phoneNumber, "messages" : messages])
-		render(view:"dashboard_home")
-		
+		if (session["userID"]) {
+			//render(view:"dashboard_home", model: ["phoneNumber" : phoneNumber, "messages" : messages])
+			render(view:"dashboard_home")	
+		} else {
+			// Cookie not found on client 
+			render("Your browser has disabled cookies. Please allow cookies to use TxtWolf correctly.")	
+		}
 	}
 	
 	def getUserContent(String userID, String requestType) {
@@ -30,9 +27,7 @@ class DashboardController {
 				messages = Messages.executeQuery("FROM Messages m WHERE m.userID = ? AND m.messageType = ? AND m.deleted = false ORDER BY date DESC)", [userID, "Note"], [max: 15])
 				break;
 		}
-
-		return messages
-		
+		return messages	
 	}
 	
 	def deleteNote() {
@@ -46,5 +41,17 @@ class DashboardController {
 		}	
 	}
 	
+	def createSession(String userID) {
+		// Creates a session if one does not exist
+		if (!session["userID"]) {
+			User user = User.findByUserID = userID
+			session["userID"] = user.userID
+			session["firstName"] = user.firstName
+			session["lastName"] = user.lastName
+			return true
+		} else {
+			return false
+		}	
+	}
 	
 }

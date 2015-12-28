@@ -9,6 +9,7 @@ class User {
 	String authCode
 	String userID
 	String phoneNumber
+	Date signUpDate
 	Date lastLogin
 	String accountType
 	
@@ -35,6 +36,7 @@ class User {
 		lastLogin(nullable:true)
 		accountType(nullable:true)
 		banned(nullable:true)
+		signUpDate(nullable:true)
 		
 		firstName(nullable:true)
 		lastName(nullable:true)
