@@ -253,21 +253,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="header">Tools</li>
             <!-- Optionally, you can add icons to the links -->
             
+            
             <li class="active">
+              <a href="#"><i class="fa fa-link"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="#">Contacts</a></li>      
+                <li><a href="#">Add Contact</a></li>                
+              </ul>
+            </li>
+            
+            
+            
+            <li class="treeview">
               <a href="#"><i class="fa fa-link"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="#">To Contact</a></li>      
                 <li><a href="#">To Group</a></li>        
                 <li><a href="#">Mass Text</a></li>                                 
-              </ul>
-            </li>
-            
-            
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="#">Contacts</a></li>      
-                <li><a href="#">Add Contact</a></li>                
               </ul>
             </li>
             
@@ -291,21 +293,86 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Page Header
-            <small>Optional description</small>
+            Contacts
+            <small>Full contact list</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Address Book</a></li>
+            <li class="active">Contacts</li>
           </ol>
         </section>
 
         <!-- Main content -->
-        <section class="content">
+  <section class="content">
+          <div class="row">
+            <div class="col-xs-12">       
+              <div class="box">
+                <div class="box-header">
+                  
+                  
+                <div class="input-group margin" style = "width: 250px; margin: 10px 0px 0px 0px;">
+                    <input placeholder="Name, address..." type="text" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-info btn-flat" type="button">Search</button>
+                    </span>
+                  </div><!-- /input-group -->
+                  
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="example1" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Number</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Trident</td>
+                        <td>Internet
+                          Explorer 4.0</td>
+                        <td>Win 95+</td>
+                        <td><button OnClick = "test('ass')" data-toggle="modal" data-target="#myModal" class="btn btn-block btn-info">Open</button></td>
+                      </tr>
+                     
+                      <tr>
+                        <td>Other browsers</td>
+                        <td>All others</td>
+                        <td>-</td>
+                        <td><button OnClick = "test('tits')"  data-toggle="modal" data-target="#myModal" class="btn btn-block btn-info">Open</button></td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
 
-          <!-- Your Page Content Here -->
-
+                    </tfoot>
+                  </table>
+                </div><!-- /.box-body -->
+                
+                        <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
+	                          <button  type="button" class="btn btn-default">Back</button>
+	                          <button  type="button" class="btn btn-default">Next</button>
+	                          
+                        </div>
+                        
+                   <p style = "float: right; text-align: right; margin: 15px; display: inline-block;" >
+                   
+                   
+                   <medium>Showing 1-20/3000</medium>
+                   
+                   
+                   </p>
+                
+                
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
         </section><!-- /.content -->
+        
+        
+        
+        
       </div><!-- /.content-wrapper -->
 
       <!-- Main Footer -->
@@ -398,5 +465,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
+         
+            <div class="modal" id="myModal" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id = "modalHeading" class="modal-title">Modal Default</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+         
   </body>
+  
+  <script>
+
+  function test(number) {
+	  $("#modalHeading").text(number);
+	}
+
+
+  </script>
+  
+  
 </html>

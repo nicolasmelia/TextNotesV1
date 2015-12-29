@@ -41,28 +41,44 @@ expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'
 printHtmlPart(10)
 expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(11)
-expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
+expressionOut.print(session.firstName)
 printHtmlPart(12)
-expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
+expressionOut.print(session.lastName)
 printHtmlPart(13)
-invokeTag('javascript','g',368,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(14)
-invokeTag('javascript','g',371,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+expressionOut.print(session.firstName)
+printHtmlPart(12)
+expressionOut.print(session.lastName)
 printHtmlPart(15)
-invokeTag('javascript','g',374,['src':("dashboard/app.min.js")],-1)
+invokeTag('formatDate','g',188,['format':("yyyy"),'date':(session.signUpDate)],-1)
 printHtmlPart(16)
-invokeTag('javascript','g',376,['src':("dashboard/plugins/fastclick.min.js")],-1)
+expressionOut.print(createLink(controller: 'login', action: 'logout'))
 printHtmlPart(17)
-})
-invokeTag('captureBody','sitemesh',381,['class':("hold-transition skin-purple sidebar-mini")],1)
+expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(18)
+expressionOut.print(session.firstName)
+printHtmlPart(12)
+expressionOut.print(session.lastName)
+printHtmlPart(19)
+invokeTag('javascript','g',438,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(20)
+invokeTag('javascript','g',441,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(21)
+invokeTag('javascript','g',444,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(22)
+invokeTag('javascript','g',446,['src':("dashboard/plugins/fastclick.min.js")],-1)
+printHtmlPart(23)
+})
+invokeTag('captureBody','sitemesh',451,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(24)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1451185389759L
+public static final long LAST_MODIFIED = 1451348850237L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
