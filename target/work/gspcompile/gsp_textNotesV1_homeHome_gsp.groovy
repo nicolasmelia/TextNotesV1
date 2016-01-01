@@ -35,32 +35,49 @@ invokeTag('captureHead','sitemesh',17,[:],1)
 printHtmlPart(7)
 createTagBody(1, {->
 printHtmlPart(8)
-invokeTag('javascript','g',254,['src':("jquery.min.js")],-1)
+expressionOut.print(createLink(controller: 'blog'))
 printHtmlPart(9)
-invokeTag('javascript','g',255,['src':("jquery.dropotron.min.js")],-1)
+expressionOut.print(createLink(controller: 'login'))
 printHtmlPart(10)
-invokeTag('javascript','g',256,['src':("jquery.scrollgress.min.js")],-1)
-printHtmlPart(9)
-invokeTag('javascript','g',257,['src':("skel.min.js")],-1)
-printHtmlPart(9)
-invokeTag('javascript','g',258,['src':("util.js")],-1)
+if(true && (session.userID)) {
 printHtmlPart(11)
-invokeTag('javascript','g',259,['src':("main.js")],-1)
-printHtmlPart(11)
-invokeTag('javascript','g',260,['src':("jquery.scrolly.min.js")],-1)
+expressionOut.print(createLink(controller: 'login'))
 printHtmlPart(12)
-invokeTag('javascript','g',261,['src':("ie/respond.min.js")],-1)
+}
+else {
+printHtmlPart(11)
+expressionOut.print(createLink(controller: 'login', action: 'logout'))
+printHtmlPart(12)
+}
 printHtmlPart(13)
-})
-invokeTag('captureBody','sitemesh',263,['class':("landing")],1)
+expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
 printHtmlPart(14)
+invokeTag('javascript','g',247,['src':("jquery.min.js")],-1)
+printHtmlPart(15)
+invokeTag('javascript','g',248,['src':("jquery.dropotron.min.js")],-1)
+printHtmlPart(16)
+invokeTag('javascript','g',249,['src':("jquery.scrollgress.min.js")],-1)
+printHtmlPart(15)
+invokeTag('javascript','g',250,['src':("skel.min.js")],-1)
+printHtmlPart(15)
+invokeTag('javascript','g',251,['src':("util.js")],-1)
+printHtmlPart(17)
+invokeTag('javascript','g',252,['src':("main.js")],-1)
+printHtmlPart(17)
+invokeTag('javascript','g',253,['src':("jquery.scrolly.min.js")],-1)
+printHtmlPart(18)
+invokeTag('javascript','g',254,['src':("ie/respond.min.js")],-1)
+printHtmlPart(19)
+})
+invokeTag('captureBody','sitemesh',256,['class':("landing")],1)
+printHtmlPart(20)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1450842439374L
+public static final long LAST_MODIFIED = 1451617366531L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

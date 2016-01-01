@@ -23,6 +23,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='dashboard/AdminLTE.min.css'/>">
     
+    <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='dashboard/CustomCSS.css'/>">
+    
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
@@ -37,26 +39,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <!--
-  BODY TAG OPTIONS:
-  =================
-  Apply one or more of the following classes to get the
-  desired effect
-  |---------------------------------------------------------|
-  | SKINS         | skin-blue                               |
-  |               | skin-black                              |
-  |               | skin-purple                             |
-  |               | skin-yellow                             |
-  |               | skin-red                                |
-  |               | skin-green                              |
-  |---------------------------------------------------------|
-  |LAYOUT OPTIONS | fixed                                   |
-  |               | layout-boxed                            |
-  |               | layout-top-nav                          |
-  |               | sidebar-collapse                        |
-  |               | sidebar-mini                            |
-  |---------------------------------------------------------|
-  -->
+
+<!-- begin olark code -->
+<script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
+f[z]=function(){
+(a.s=a.s||[]).push(arguments)};var a=f[z]._={
+},q=c.methods.length;while(q--){(function(n){f[z][n]=function(){
+f[z]("call",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={
+0:+new Date};a.P=function(u){
+a.p[u]=new Date-a.p[0]};function s(){
+a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent("on"+r,s);var ld=function(){function p(hd){
+hd="head";return["<",hd,"></",hd,"><",i,' onl' + 'oad="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='",l,"//",a.l,"'",'"',"></",i,">"].join("")}var i="body",m=d[i];if(!m){
+return setTimeout(ld,100)}a.P(1);var j="appendChild",h="createElement",k="src",n=d[h]("div"),v=n[j](d[h](z)),b=d[h]("iframe"),g="document",e="domain",o;n.style.display="none";m.insertBefore(n,m.firstChild).id=z;b.frameBorder="0";b.id=z+"-loader";if(/MSIE[ ]+6/.test(navigator.userAgent)){
+b.src="javascript:false"}b.allowTransparency="true";v[j](b);try{
+b.contentWindow[g].open()}catch(w){
+c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{
+var t=b.contentWindow[g];t.write(p());t.close()}catch(x){
+b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({
+loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
+/* custom configuration goes here (www.olark.com/documentation) */
+olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://www.olark.com/site/6667-512-10-8779/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
+<!-- end olark code -->
+
+
   <body class="hold-transition skin-purple sidebar-mini">
     <div class="wrapper">
 
@@ -85,10 +90,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Menu toggle button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
-                  <span class="label label-success">4</span>
+                  <span class="label label-success">0</span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">You have 4 messages</li>
+                  <li class="header">You have 0 messages</li>
                   <li>
                     <!-- inner menu: contains the messages -->
                     <ul class="menu">
@@ -118,10 +123,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Menu toggle button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">10</span>
+                  <span class="label label-warning">0</span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">You have 10 notifications</li>
+                  <li class="header">You have 0 notifications</li>
                   <li>
                     <!-- Inner Menu: contains the notifications -->
                     <ul class="menu">
@@ -134,42 +139,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </li>
                   <li class="footer"><a href="#">View all</a></li>
                 </ul>
-              </li>
-              <!-- Tasks Menu -->
-              <li class="dropdown tasks-menu">
-                <!-- Menu Toggle Button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-flag-o"></i>
-                  <span class="label label-danger">9</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">You have 9 tasks</li>
-                  <li>
-                    <!-- Inner menu: contains the tasks -->
-                    <ul class="menu">
-                      <li><!-- Task item -->
-                        <a href="#">
-                          <!-- Task title and progress text -->
-                          <h3>
-                            Design some buttons
-                            <small class="pull-right">20%</small>
-                          </h3>
-                          <!-- The progress bar -->
-                          <div class="progress xs">
-                            <!-- Change the css width attribute to simulate progress -->
-                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                              <span class="sr-only">20% Complete</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li><!-- end task item -->
-                    </ul>
-                  </li>
-                  <li class="footer">
-                    <a href="#">View all tasks</a>
-                  </li>
-                </ul>
-              </li>
+              </li>   
+
               <!-- User Account Menu -->
               <li class="dropdown user user-menu">
                 <!-- Menu Toggle Button -->
@@ -240,7 +211,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- search form (Optional) -->
           <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search...">
+              <input type="text" name="q" class="form-control" placeholder="Search Contacts...">
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
@@ -255,34 +226,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
             
             <li class="active">
-              <a href="#"><i class="fa fa-link"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Contacts</a></li>      
+                <li><a href="#">Contacts</a></li> 
+                <li><a href="#">Groups</a></li>                
                 <li><a href="#">Add Contact</a></li>                
               </ul>
             </li>
-            
-            
-            
+
             <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">To Contact</a></li>      
+                <li><a href="#">To Contact/s</a></li>      
                 <li><a href="#">To Group</a></li>        
                 <li><a href="#">Mass Text</a></li>                                 
               </ul>
             </li>
-            
-
-            
+       
              <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Promotions</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-ticket"></i> <span>Promotions</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="#">View Promotions</a></li>
+                <li><a href="#">Validate Promo Code</a></li>       
                 <li><a href="#">Create Promotion</a></li>
               </ul>
             </li>
-            <li class="treeview"><a href="#"><i class="fa fa-link"></i> <span>Validate Promo Code</span></a></li>
+       
+            <li class="treeview">
+              <a href="#"><i class="fa fa-paw"></i><span>TxtWolf</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="${createLink(controller: 'Home')}">Home Page</a></li>      
+                <li><a href="#">Blogs</a></li>        
+                <li><a href="#">Help</a></li>                                      
+              </ul>
+            </li>
+            
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -315,7 +293,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <span class="input-group-btn">
                       <button class="btn btn-info btn-flat" type="button">Search</button>
                     </span>
-                  </div><!-- /input-group -->
+                  </div><!-- /input-group -->             
                   
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -325,23 +303,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <th>Name</th>
                         <th>Number</th>
                         <th>Address</th>
-                        <th>Actions</th>
+                        <th>Subbed</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 4.0</td>
-                        <td>Win 95+</td>
-                        <td><button OnClick = "test('ass')" data-toggle="modal" data-target="#myModal" class="btn btn-block btn-info">Open</button></td>
-                      </tr>
-                     
-                      <tr>
-                        <td>Other browsers</td>
-                        <td>All others</td>
+                      <tr OnClick = "test('tits')"  data-toggle="modal" data-target="#myModal" class = "pointer" >
+                        <td><a href = "#"><b>Nicolas Melia</b></a></td>
+                        <td>- </td>
                         <td>-</td>
-                        <td><button OnClick = "test('tits')"  data-toggle="modal" data-target="#myModal" class="btn btn-block btn-info">Open</button></td>
+                        <td>Yes</td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -357,11 +327,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         
                    <p style = "float: right; text-align: right; margin: 15px; display: inline-block;" >
-                   
-                   
+                  
                    <medium>Showing 1-20/3000</medium>
-                   
-                   
+  
                    </p>
                 
                 
@@ -369,9 +337,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
-        
-        
-        
         
       </div><!-- /.content-wrapper -->
 
@@ -460,7 +425,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE App -->
     <g:javascript src="dashboard/app.min.js" /> 
     
-    <g:javascript src="dashboard/plugins/fastclick.min.js" />  
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
@@ -474,11 +438,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <h4 id = "modalHeading" class="modal-title">Modal Default</h4>
                   </div>
                   <div class="modal-body">
-                    <p>One fine body&hellip;</p>
+                  
+ 				 <a class="btn btn-app" style = "margin-bottom:0px;" >
+                    <i class="fa fa-comment"></i> Send Text
+                  </a>
+                  <a class="btn btn-app" style = "margin-bottom:0px;">
+                    <i class="fa fa-users"></i> Add to Group
+                  </a>
+                  <a class="btn btn-app" style = "margin-bottom:0px;">
+                    <i class="fa fa-edit"></i> Edit
+                  </a>
+                    
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->

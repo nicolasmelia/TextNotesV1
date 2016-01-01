@@ -46,26 +46,24 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 				<h1 id="logo"><a href="index.html">TxtWolf LLC</a></h1>
 				<nav id="nav">
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li>
-							<a href="#">Pricing</a>
-							<ul>
-								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<li><a href="right-sidebar.html">Right Sidebar</a></li>
-								<li><a href="no-sidebar.html">No Sidebar</a></li>
-								<li>
-									<a href="#">Submenu</a>
-									<ul>
-										<li><a href="#">Option 1</a></li>
-										<li><a href="#">Option 2</a></li>
-										<li><a href="#">Option 3</a></li>
-										<li><a href="#">Option 4</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li><a href="elements.html">Login</a></li>
-						<li><a href="#" class="button alt">Sign Up</a></li>
+						<li><a href="${createLink(controller: 'blog')}">Blog</a></li>			
+						<li><a href="index.html">Pricing</a></li>
+						
+						<g:if test="${session.userID}">
+							<li><a href="${createLink(controller: 'Dashboard')}">Dashboard</a></li>				
+						</g:if>
+						<g:else>
+							<li><a href="${createLink(controller: 'login')}">Login</a></li>
+						</g:else>
+						
+						<g:if test="${session.userID}">
+							<li><a href="${createLink(controller: 'Login', action: 'logout')}" class="button alt">Sign Out</a></li>
+						</g:if>
+						<g:else>
+							<li><a href="${createLink(controller: 'login', action: 'newAccount')}" class="button alt">Sign Up</a></li>
+						</g:else>
+								
+						
 					</ul>
 				</nav>
 			</header>

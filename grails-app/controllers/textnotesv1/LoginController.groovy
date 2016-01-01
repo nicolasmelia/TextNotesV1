@@ -9,12 +9,11 @@ class LoginController {
 	}
 	
 	def login() {		
-		if (request.getCookie('user')) {
+		if (request.getCookie('user') && !session["userID"]) {
 			createSession(request.getCookie('user').toString())
-			session["userID"] = request.getCookie('user') // Create the session
-			redirect(controller: "Dashboard", action: "dashboard")
+			redirect(controller: "Dashboard")
 		} else if (session["userID"]) {
-			redirect(controller: "Dashboard", action: "dashboard")
+			redirect(controller: "Dashboard")
 		} else {
 			render(view:"Login")
 		}
@@ -27,7 +26,7 @@ class LoginController {
 	def logout() {
 		session.invalidate()
 		response.deleteCookie('user')
-		redirect(controller: "Home", action: "home")		
+		redirect(controller: "Home")		
 	}
 
 	def attemptLogin(){
@@ -55,11 +54,9 @@ class LoginController {
 		} else {
 			error = "*That email address does not exist. Please try again."
 			render(view:"Login", model:["error":error])
-		}
-		
+		}	
 	}
 
-	
 	def createAccount() {
 		User testUser = User.findByEmail(params.email.toString().toLowerCase().trim())
 		def error = ""
@@ -116,8 +113,7 @@ class LoginController {
 			session["userID"] = user.userID
 			session["firstName"] = user.firstName
 			session["lastName"] = user.lastName
-			session["signUpDate"] = user.signUpDate
-			
+			session["signUpDate"] = user.signUpDate			
 			return true
 		} else {
 			return false
