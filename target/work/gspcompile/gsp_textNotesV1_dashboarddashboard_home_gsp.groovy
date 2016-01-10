@@ -53,34 +53,36 @@ expressionOut.print(session.firstName)
 printHtmlPart(13)
 expressionOut.print(session.lastName)
 printHtmlPart(16)
-invokeTag('formatDate','g',156,['format':("yyyy"),'date':(session.signUpDate)],-1)
+invokeTag('formatDate','g',137,['format':("yyyy"),'date':(session.signUpDate)],-1)
 printHtmlPart(17)
-expressionOut.print(createLink(controller: 'login', action: 'logout'))
+expressionOut.print(createLink(controller: 'Home'))
 printHtmlPart(18)
-expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
+expressionOut.print(createLink(controller: 'login', action: 'logout'))
 printHtmlPart(19)
+expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
+printHtmlPart(20)
 expressionOut.print(session.firstName)
 printHtmlPart(13)
 expressionOut.print(session.lastName)
-printHtmlPart(20)
-invokeTag('javascript','g',414,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(21)
-invokeTag('javascript','g',417,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
 printHtmlPart(22)
-invokeTag('javascript','g',420,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',390,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(23)
-invokeTag('javascript','g',422,['src':("dashboard/plugins/fastclick.min.js")],-1)
+invokeTag('javascript','g',393,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(24)
-})
-invokeTag('captureBody','sitemesh',456,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('javascript','g',396,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(25)
+})
+invokeTag('captureBody','sitemesh',431,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(26)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1451616373654L
+public static final long LAST_MODIFIED = 1452303018817L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

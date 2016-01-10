@@ -6,13 +6,26 @@ class DashboardController {
 		dashboard()
 	}
 	
-	def dashboard() {
-		if (session["userID"]) {
-			//render(view:"dashboard_home", model: ["phoneNumber" : phoneNumber, "messages" : messages])
+	def dashboard() {	
+		if (request.getCookie('user') && !session["userID"]) {
+			createSession(request.getCookie('user').toString())
+			render(view:"dashboard_home")	
+		} else if (session["userID"]) {
 			render(view:"dashboard_home")	
 		} else {
-			// Cookie not found on client 
-			render("Your browser has disabled cookies. Please allow cookies to use TxtWolf correctly.")	
+			redirect(controller: "Login")
+		}
+	}
+	
+	
+	def sendTxt() {
+		if (request.getCookie('user') && !session["userID"]) {
+			createSession(request.getCookie('user').toString())
+			render(view:"dashboard_SendTxt")
+		} else if (session["userID"]) {
+			render(view:"dashboard_SendTxt")
+		} else {
+			redirect(controller: "Login")
 		}
 	}
 	
