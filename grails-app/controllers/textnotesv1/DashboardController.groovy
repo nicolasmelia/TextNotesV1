@@ -29,6 +29,10 @@ class DashboardController {
 		}
 	}
 	
+	def proccessTxtSend() {
+		render params.tags
+	}
+	
 	def getUserContent(String userID, String requestType) {
 		//ArrayList<Messages> messages =  new ArrayList<Messages>()
 		def messages		

@@ -261,7 +261,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="mailbox.html" class="btn btn-primary btn-block margin-bottom">Address Book</a>
               <div class="box box-solid">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Add Contacts</h3>
+                  <h3 class="box-title">Add Recipients</h3>
                   <div class="box-tools">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                   </div>
@@ -292,16 +292,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="col-md-9">
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Compose New Message</h3>
+                  <h3 class="box-title">Compose Text</h3>
                 </div><!-- /.box-header -->
+                
+		       <g:form id = "txtForm" class="form-signin" controller="Dashboard" action="proccessTxtSend" enctype="multipart/form-data" >
+
                 <div class="box-body">
-		                
+		             
                   <div class="form-group">
-                    <p style = "margin: 0px;"  class="help-block">To:</p>        
-		            <input id = "tags"   name = "tags" class="form-control"  type="text" data-role="tagsinput" />
-		          </div>
-		         		         
-		          <hr>
+                    <input type="hidden" name="allTags" value="">
+		            <input id = "tags"   name = "tags" placeholder = "Recipients" class="form-control"  type="text" data-role="tagsinput" />
+		          </div>		              
 		          
                   <div class="form-group">
                     <input id = "subject" class="form-control" placeholder="Subject: Not Required">
@@ -313,14 +314,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <p style = "margin: 0px;" id = 'charCount' class="help-block">0/260 characters</p>
                   </div>
                 </div><!-- /.box-body -->
+                
+                <!-- hidden to hide ro send via modal! --> 
+               <button style = "display:none;"   class=" btn btn-primary" id = "submitBtn" value = "Send"  action = "proccessTxtSend"/></button>	
+                
+               </g:form>
+                
+                
                 <div class="box-footer">
                   <div class="pull-right">
-                    <button class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
+                  
+                    <button onClick = "openPreview()" data-toggle="modal" data-target="#previewModal"  type="button" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
+           
                   </div>
                   <button class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
                 </div><!-- /.box-footer -->
+       
+                
+                
+                
+             
+                
               </div><!-- /. box -->
+              						
+              
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
@@ -402,12 +419,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div><!-- ./wrapper -->
     
     
+    		<!-- addNumberModal --> 
                 <div class="modal" id="addNumberModal" role="dialog" data-backdrop="static">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 id = "modalHeading" class="modal-title">Phone Number</h4>
+                    <h4 id = "modalHeading" class="modal-title">Add Phone Number</h4>
                   </div>
                   <div class="modal-body">
                   
@@ -436,6 +454,65 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->  
+            
+            
+          
+                
+            <!-- DRAFT MODAL --> 
+        <div class="modal" id="previewModal" role="dialog" data-backdrop="static">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id = "modalHeading" class="modal-title">Message Overview</h4>
+                  </div>
+                  <div class="modal-body">
+                  
+                  <div id = "draftModalAlert"  style = "display: none;"  class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-exclamation-circle"></i>Fix needed</h4>
+                    <p id = "draftModalAlertText"></p>
+                  </div>
+	
+ 					
+ 				 <div class="box box-solid">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Preview</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+
+                  <span id = "preMessageSubject">No Subject</span>
+                  <p id = "preMessageBody"> THIS IS A TEST</p>
+                  
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+              
+ 					
+ 				<div class="box box-solid">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Details</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+              
+                Recipients Attached: <span>234</span> <br>
+				Current Balance: <span>300/500 </span><br>
+                New Balance: <span>434/500 </span>
+                
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+
+                  </div>
+                  <div class="modal-footer">
+                    <button onClick = "submitForm()" type="button" class="btn btn-primary pull-left" >SEND</button>
+                    <button onClick = "clearWarnings()"  type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->            
+            
+            
+            
      
   </body>
 
@@ -500,14 +577,48 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			    }
 			  },
 				    
-		itemValue: 'value',					  
+		itemValue: 'value',	
+		itemText: 'text',							  
 		trimValue: true,
 	  	freeInput: false
 	  	
 	});
+
+
+	// When the form is submitted disable the resend button
+	$('form').submit(function() {
+		$("#submitBtn").prop("disabled",true);		
+	});
+
+	function submitForm(){
+		$('#submitBtn').click()
+	}
 	
-	$( document ).ready(function() {
-	// Nothing for now	
+	function validateForm(){
+		return true;
+	}
+
+	function openPreview() {
+
+
+
+		if ($("#compose-textarea").val().length > 0) {
+			$("#preMessageBody").text($("#compose-textarea").val());
+		} else {
+			$("#preMessageBody").html("No Message <b>(REQUIRED)</b>");
+		}
+
+		if ($("#subject").val().length > 0) {
+			$("#preMessageSubject").text($("#subject").val());
+		} else {
+			$("#preMessageSubject").html("No Subject");		
+		}
+		
+	}
+
+	// Dont allow form submit with ENTER key
+	$(document).on("keypress", "form", function(event) { 
+	    return event.keyCode != 13;
 	});
 
 
@@ -520,9 +631,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		// Number set from addNumber modal for custom numbers not in address book.
 		if (validateAddNumber()) {
 			var number = $('#customNumber').val();
-			$('#tags').tagsinput('add', { "value": number , "text": 'N:' + number, "optionType": "custom"});	
+			$('#tags').tagsinput('add', { "value":  'N:' + number , "text": number, "optionType": "custom"});	
 			$('#customNumber').val(""); // Clear the input field
 			$('#addNumberModal').modal("hide");
+			removeToPlaceHolder();
+			$("#txtForm").submit();
+			 
 		}
 	}
 
@@ -544,6 +658,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       var sub = $("#subject").val().length;
       var count = sub + cs;
       $('#charCount').text(count + '/260 characters');
+      $( "#txtForm" ).submit();
   }
 
   // Form Validation
@@ -571,6 +686,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   function clearWarnings() {
 	  	// Clear all warnings
 		$("#addNumberModalAlert").css("display","none");
+  }
+
+  function removeToPlaceHolder() {
+	  $("input[placeholder~='Recipients']").attr('placeholder','');
   }
 
 
