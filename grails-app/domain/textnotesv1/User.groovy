@@ -5,25 +5,19 @@ class User {
 	String username
 	String password
 	String email
-	String validationCode
-	String authCode
 	String userID
 	String phoneNumber
 	Date signUpDate
-	Date lastLogin
-	String accountType
+	Date lastLoginDate
 	
+	// Personal Information
 	String firstName
 	String lastName
 	String businessName
+
+	String validationCode
+	boolean validated 
 	
-	Date dateTxt
-	int allowedTxt
-	int sentTxt // Resets on a new day
-	int totaltxt // total amount of text we recieved from the user
-	
-	
-	boolean validated // Has this number been validated
 	boolean banned
 	
     static constraints = {
@@ -31,10 +25,8 @@ class User {
 		password(nullable:true)		
 		username(nullable:true)		
 		phoneNumber(nullable:true)
-		authCode(nullable:true)
 		validationCode(nullable:true)
-		lastLogin(nullable:true)
-		accountType(nullable:true)
+		lastLoginDate(nullable:true)
 		banned(nullable:true)
 		signUpDate(nullable:true)
 		
@@ -42,10 +34,6 @@ class User {
 		lastName(nullable:true)
 		businessName(nullable:true)
 		
-		allowedTxt(nullable:true)
-		sentTxt(nullable:true)
 		banned(nullable:true)
-		dateTxt(nullable:true)
-		totaltxt(nullable:true)
     }
 }

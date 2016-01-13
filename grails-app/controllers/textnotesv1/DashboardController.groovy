@@ -9,24 +9,35 @@ class DashboardController {
 	def dashboard() {	
 		if (request.getCookie('user') && !session["userID"]) {
 			createSession(request.getCookie('user').toString())
-			render(view:"dashboard_home")	
-		} else if (session["userID"]) {
-			render(view:"dashboard_home")	
+		}
+				
+		 if (session["userID"]) {
+			 
+			 // Pull latest account information
+			 UserAccountInfo accountInfo = UserAccountInfo.findByUserID(session["userID"])	 
+			 render(view:"dashboard_home",  model: [accountInfo: accountInfo])
+			 
 		} else {
 			redirect(controller: "Login")
 		}
+		
 	}
 	
 	
 	def sendTxt() {
-		if (request.getCookie('user') && !session["userID"]) {
+		if (request.getCookie('user')) {
 			createSession(request.getCookie('user').toString())
-			render(view:"dashboard_SendTxt")
-		} else if (session["userID"]) {
-			render(view:"dashboard_SendTxt")
-		} else {
-			redirect(controller: "Login")
 		}
+			
+			if (session["userID"]) {
+				
+				// Pull latest account information
+				UserAccountInfo accountInfo = UserAccountInfo.findByUserID(session["userID"])
+				render(view:"dashboard_SendTxt", model: [accountInfo: accountInfo])
+				
+		   } else {
+			   redirect(controller: "Login")
+		   }		
 	}
 	
 	def proccessTxtSend() {
@@ -38,17 +49,17 @@ class DashboardController {
 		def messages		
 		switch (requestType) {
 			case "All":
-				messages = Messages.executeQuery("FROM Messages m WHERE m.userID = ? AND m.deleted = false ORDER BY date DESC)", [userID], [max: 15])
+				messages = MessageIn.executeQuery("FROM Messages m WHERE m.userID = ? AND m.deleted = false ORDER BY date DESC)", [userID], [max: 15])
 				break;
 			case "Notes":
-				messages = Messages.executeQuery("FROM Messages m WHERE m.userID = ? AND m.messageType = ? AND m.deleted = false ORDER BY date DESC)", [userID, "Note"], [max: 15])
+				messages = MessageIn.executeQuery("FROM Messages m WHERE m.userID = ? AND m.messageType = ? AND m.deleted = false ORDER BY date DESC)", [userID, "Note"], [max: 15])
 				break;
 		}
 		return messages	
 	}
 	
 	def deleteNote() {
-		Messages message = Messages.findByMessageID(params.messageID)
+		MessageIn message = MessageIn.findByMessageID(params.messageID)
 		if (message.userID.toString().equals(session["userID"])) {
 			message.deleted = true
 			message.save(flush:true)

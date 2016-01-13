@@ -1,5 +1,6 @@
 package textnotesv1
 
+import java.text.SimpleDateFormat
 import smsGate.smsGateOut
 
 class LoginController {
@@ -65,9 +66,8 @@ class LoginController {
 				user.password = params.passwordone.toString().trim()
 				user.username = ""
 				user.email = params.email.toString().toLowerCase().trim()
-				user.accountType = "Full"
 				user.banned = false
-				user.lastLogin =  new Date()
+				user.lastLoginDate =  new Date()
 				user.signUpDate = new Date()
 				
 				user.firstName = params.firstname
@@ -80,16 +80,39 @@ class LoginController {
 				
 				user.userID = halfUUID
 				
-				user.allowedTxt = 10
-				user.sentTxt = 0
-				
 				user.validated = true
 				user.save(flush:true)
+				
+				// create account info and set 14 day free trial
+				UserAccountInfo account = new UserAccountInfo()
+				account.userID = user.userID
+				account.accountType = "Trial"
+				account.monthlyTextBalance = 500
+				account.remainingMonthlyTextBalance = 500
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				String minDate = "11/10/1989";
+				
+				account.SubscriptionEff = sdf.parse(minDate);
+				account.SubscriptionExp = sdf.parse(minDate);
+				
+				
+				// Set trial date to 14 days in the future
+				Calendar c = Calendar.getInstance();
+				c.setTime(new Date()); // Now use today date.
+				c.add(Calendar.DATE, 14); // Adding 5 days
+				//String output = sdf.format(c.getTime());
+				
+				account.trialDateExp = c.getTime()
+				account.save(flush:true)
 
 				if (params.rememberme) {
 					// Create a cookie for the user
 					response.setCookie('user', user.userID.toString(), 604800) // 1 week
 				}
+				
+				
+				
 				
 				createSession(user.userID) // Create the session
 				redirect(controller: "Dashboard", action: "dashboard")

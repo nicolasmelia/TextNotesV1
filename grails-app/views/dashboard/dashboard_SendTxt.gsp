@@ -308,7 +308,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <input id = "subject" class="form-control" placeholder="Subject: Not Required">
                   </div>
                   <div class="form-group">
-                    <textarea id="compose-textarea" class="form-control" style="height: 185px"></textarea>
+                    <textarea id="compose-textarea" class="form-control" style="height: 150px"></textarea>
                   </div>
                   <div class="form-group">
                     <p style = "margin: 0px;" id = 'charCount' class="help-block">0/260 characters</p>
@@ -430,7 +430,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <div class="modal-body">
                   
                   <div id = "addNumberModalAlert"  style = "display: none;"  class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h4><i class="icon fa fa-exclamation-circle"></i>Fix needed</h4>
                     <p id = "addNumberModalAlertText"></p>
                   </div>
@@ -468,10 +467,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </div>
                   <div class="modal-body">
                   
-                  <div id = "draftModalAlert"  style = "display: none;"  class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <div id = "PreviewModalAlert"  style = "display: none;"  class="alert alert-danger alert-dismissable">
                     <h4><i class="icon fa fa-exclamation-circle"></i>Fix needed</h4>
-                    <p id = "draftModalAlertText"></p>
+                    <p id = "previewModalAlertText"></p>
                   </div>
 	
  					
@@ -482,7 +480,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="box-body">
 
                   <span id = "preMessageSubject">No Subject</span>
-                  <p id = "preMessageBody"> THIS IS A TEST</p>
+                  <p id = "preMessageBody"> No Message</p>
                   
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
@@ -494,9 +492,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- /.box-header -->
                 <div class="box-body">
               
-                Recipients Attached: <span>234</span> <br>
-				Current Balance: <span>300/500 </span><br>
-                New Balance: <span>434/500 </span>
+              	<g:each in="${accountInfo}">
+                Recipients Attached: <span id = "attachedRecipientsCount" >0</span> <br>
+				Remaining Text Balance: <span>${it.remainingMonthlyTextBalance}/${it.monthlyTextBalance}</span><br>
+				Scheduled Send Time: <span id = "ScheduledSendTime" ><b>Now</b></span>
+                </g:each>
                 
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
@@ -559,6 +559,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- FastClick -->
     <g:javascript src="dashboard/plugins/fastclick/fastclick.min.js" /> 
    
+     <!-- JQUERY UI -->
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
   
   <script>
@@ -591,7 +594,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	});
 
 	function submitForm(){
-		$('#submitBtn').click()
+		if (!errors.length) {
+			$('#submitBtn').click()
+		} else {
+			$("#PreviewModalAlert").css("display","block");
+		    $("#PreviewModalAlert").effect("bounce", { times:3 }, 400);
+		}
 	}
 	
 	function validateForm(){
@@ -599,21 +607,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	}
 
 	function openPreview() {
-
-
-
+		validateMainForm();
 		if ($("#compose-textarea").val().length > 0) {
 			$("#preMessageBody").text($("#compose-textarea").val());
 		} else {
-			$("#preMessageBody").html("No Message <b>(REQUIRED)</b>");
+			$("#preMessageBody").html("No Message (REQUIRED)");
 		}
 
 		if ($("#subject").val().length > 0) {
 			$("#preMessageSubject").text($("#subject").val());
 		} else {
 			$("#preMessageSubject").html("No Subject");		
-		}
-		
+		}	
 	}
 
 	// Dont allow form submit with ENTER key
@@ -662,6 +667,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   }
 
   // Form Validation
+    var errors = [];
   
   function validateAddNumber() {
 	  var error = false;
@@ -682,6 +688,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		}
 			
   }
+
+  
+  function validateMainForm() {		  
+	  var error = false;
+	  var number = $('#customNumber').val();
+
+	  	//Clear old values
+	  	errors = [];
+		$("#previewModalAlertText").html("");  
+		
+	  	if ($("#compose-textarea").val() < 10) {
+			error = true;
+			errors.push("Please enter a valid or longer message.");			
+	  	}
+	  	
+		if (!$("#tags").val()) {
+			error = true;
+			errors.push("Please add atleast (1) recipient.");						
+		}
+
+		if (error){
+			for (i = 0; i < errors.length; i++) { 
+				$("#previewModalAlertText").append("*" + errors[i] + "<br/>");		
+			}			
+			$("#PreviewModalAlert").css("display","block");
+			return false;
+		} else {
+			$("#PreviewModalAlert").css("display","none");		
+			return true;
+		}
+			
+  }
+
+  
 
   function clearWarnings() {
 	  	// Clear all warnings

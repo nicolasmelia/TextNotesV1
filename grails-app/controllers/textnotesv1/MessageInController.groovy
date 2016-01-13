@@ -1,5 +1,5 @@
 package textnotesv1
 
-class MessagesController {
+class MessageInController {
 	static scaffold = true	
 }
