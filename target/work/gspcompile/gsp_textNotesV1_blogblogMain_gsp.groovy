@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_textNotesV1_homeHome_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/home/Home.gsp" }
+class gsp_textNotesV1_blogblogMain_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/blog/blogMain.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()
@@ -35,7 +35,7 @@ invokeTag('captureHead','sitemesh',17,[:],1)
 printHtmlPart(7)
 createTagBody(1, {->
 printHtmlPart(8)
-expressionOut.print(createLink(controller: 'Blog'))
+expressionOut.print(createLink(controller: 'blog'))
 printHtmlPart(9)
 if(true && (session.userID)) {
 printHtmlPart(10)
@@ -59,24 +59,24 @@ expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
 printHtmlPart(15)
 }
 printHtmlPart(16)
-invokeTag('javascript','g',250,['src':("jquery.min.js")],-1)
+invokeTag('javascript','g',191,['src':("jquery.min.js")],-1)
 printHtmlPart(17)
-invokeTag('javascript','g',251,['src':("jquery.dropotron.min.js")],-1)
+invokeTag('javascript','g',192,['src':("jquery.dropotron.min.js")],-1)
 printHtmlPart(18)
-invokeTag('javascript','g',252,['src':("jquery.scrollgress.min.js")],-1)
+invokeTag('javascript','g',193,['src':("jquery.scrollgress.min.js")],-1)
 printHtmlPart(17)
-invokeTag('javascript','g',253,['src':("skel.min.js")],-1)
+invokeTag('javascript','g',194,['src':("skel.min.js")],-1)
 printHtmlPart(17)
-invokeTag('javascript','g',254,['src':("util.js")],-1)
+invokeTag('javascript','g',195,['src':("util.js")],-1)
 printHtmlPart(19)
-invokeTag('javascript','g',255,['src':("main.js")],-1)
+invokeTag('javascript','g',196,['src':("main.js")],-1)
 printHtmlPart(19)
-invokeTag('javascript','g',256,['src':("jquery.scrolly.min.js")],-1)
+invokeTag('javascript','g',197,['src':("jquery.scrolly.min.js")],-1)
 printHtmlPart(20)
-invokeTag('javascript','g',257,['src':("ie/respond.min.js")],-1)
+invokeTag('javascript','g',198,['src':("ie/respond.min.js")],-1)
 printHtmlPart(21)
 })
-invokeTag('captureBody','sitemesh',259,['class':("landing")],1)
+invokeTag('captureBody','sitemesh',200,[:],1)
 printHtmlPart(22)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -84,7 +84,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1452736831900L
+public static final long LAST_MODIFIED = 1452736796054L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

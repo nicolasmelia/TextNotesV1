@@ -46,7 +46,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 				<h1 id="logo"><a href="index.html">TxtWolf LLC</a></h1>
 				<nav id="nav">
 					<ul>
-						<li><a href="${createLink(controller: 'blog')}">Blog</a></li>			
+						<li><a href="${createLink(controller: 'Blog')}">Blog</a></li>			
 						<li><a href="index.html">Pricing</a></li>
 						
 						<g:if test="${session.userID}">
@@ -61,9 +61,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 						</g:if>
 						<g:else>
 							<li><a href="${createLink(controller: 'login', action: 'newAccount')}" class="button alt">Sign Up</a></li>
-						</g:else>
-								
-						
+						</g:else>						
 					</ul>
 				</nav>
 			</header>
