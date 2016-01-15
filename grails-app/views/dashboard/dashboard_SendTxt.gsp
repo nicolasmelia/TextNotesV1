@@ -295,7 +295,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <h3 class="box-title">Compose Text</h3>
                 </div><!-- /.box-header -->
                 
-		       <g:form id = "txtForm" class="form-signin" controller="Dashboard" action="proccessTxtSend" enctype="multipart/form-data" >
+		       <g:form id = "txtForm" class="form-signin" controller="SmsGateOut" action="messageOut" enctype="multipart/form-data" >
 
                 <div class="box-body">
 		             
@@ -305,10 +305,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		          </div>		              
 		          
                   <div class="form-group">
-                    <input id = "subject" class="form-control" placeholder="Subject: Not Required">
+                    <input id = "subject" name = "subject"  class="form-control" placeholder="Subject: Not Required">
                   </div>
                   <div class="form-group">
-                    <textarea id="compose-textarea" class="form-control" style="height: 150px"></textarea>
+                    <textarea id="compose-textarea" name = "body" class="form-control" style="height: 150px"></textarea>
                   </div>
                   <div class="form-group">
                     <p style = "margin: 0px;" id = 'charCount' class="help-block">0/260 characters</p>
@@ -316,11 +316,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- /.box-body -->
                 
                 <!-- hidden to hide ro send via modal! --> 
-               <button style = "display:none;"   class=" btn btn-primary" id = "submitBtn" value = "Send"  action = "proccessTxtSend"/></button>	
+               <button style = "display:none;"   class=" btn btn-primary" id = "submitBtn" value = "Send"  action = "messageOut"/></button>	
                 
                </g:form>
-                
-                
+ 
                 <div class="box-footer">
                   <div class="pull-right">
                   
@@ -328,12 +327,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
            
                   </div>
                   <button class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
-                </div><!-- /.box-footer -->
-       
-                
-                
-                
-             
+                </div><!-- /.box-footer -->   
                 
               </div><!-- /. box -->
               						
@@ -639,9 +633,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$('#tags').tagsinput('add', { "value":  'N:' + number , "text": number, "optionType": "custom"});	
 			$('#customNumber').val(""); // Clear the input field
 			$('#addNumberModal').modal("hide");
-			removeToPlaceHolder();
-			$("#txtForm").submit();
-			 
+			removeToPlaceHolder();			 
 		}
 	}
 
