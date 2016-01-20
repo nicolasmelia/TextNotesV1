@@ -29,17 +29,30 @@ class SmsGateOutController {
 	}
 	
 	def messageOut(){
-		String message = params.subject + "<br>" + params.body
+		String message
+		boolean success = false;
+		if (params.subject != null) {
+			message = params.subject + "\n" + params.body		
+		} else {
+			message = params.body	
+		}
+		
 		ArrayList<String> tags = params.tags.toString().split(",")	
 		for (String tag : tags)	 {
 			String contactType = tag.split(":")[0]
 			switch (contactType) {
 				case "N":  // Single number	
-					sendMessage(tag.split(":")[1], message)
+					success = sendMessage(tag.split(":")[1], message)
 					break;
 				default: 
 					break;
 			}	
+		}
+		
+		if (success) {
+			redirect(controller: "Dashboard", action: "confirmation")
+		} else {
+			render "ERROR"
 		}
 	}
 	
@@ -66,9 +79,7 @@ class SmsGateOutController {
 			return true // Success
 		} catch (Exception ex) {
 			return false
-		}
-		
-		render "SUCCESS"
+		}		
 	}
 	
 	def testMessage() {

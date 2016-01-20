@@ -7,9 +7,6 @@ class DashboardController {
 	}
 	
 	def dashboard() {	
-		if (request.getCookie('user') && !session["userID"]) {
-			createSession(request.getCookie('user').toString())
-		}
 				
 		 if (session["userID"]) {
 			 
@@ -18,16 +15,13 @@ class DashboardController {
 			 render(view:"dashboard_home",  model: [accountInfo: accountInfo])
 			 
 		} else {
-			redirect(controller: "Login")
+			redirect(controller: "Home")
 		}
 		
 	}
 	
 	
 	def sendTxt() {
-		if (request.getCookie('user')) {
-			createSession(request.getCookie('user').toString())
-		}
 			
 			if (session["userID"]) {
 				
@@ -36,8 +30,58 @@ class DashboardController {
 				render(view:"dashboard_SendTxt", model: [accountInfo: accountInfo])
 				
 		   } else {
-			   redirect(controller: "Login")
+			   redirect(controller: "Home")
 		   }		
+	}
+	
+	def newContact() {
+			if (session["userID"]) {
+				
+				// Pull latest account information
+				UserAccountInfo accountInfo = UserAccountInfo.findByUserID(session["userID"])
+				render(view:"dashboard_addContact", model: [accountInfo: accountInfo])
+				
+		   } else {
+			   redirect(controller: "Home")
+		   }
+	}
+
+	
+	def addNewContact() {	
+		Contact contact = new Contact()
+		contact.firstName = params.firstName	
+		contact.lastName = params.lastName
+		contact.phoneNumber = params.phoneNumber
+		
+		contact.city = params.city
+		contact.state = params.state
+		contact.zip = params.zip
+		
+		contact.addDate = new Date()
+		
+		// Create a UUID and cut it in half
+		String uniqueID = UUID.randomUUID().toString().replace("-", "");
+		int midpoint = uniqueID.length() / 2;
+		String halfUUID = uniqueID.substring(0, midpoint)
+				
+		contact.contactID = halfUUID
+	
+		
+		contact.save(flush:true)		
+	}
+	
+	
+	def confirmation() {
+						
+		 if (session["userID"]) {
+			 
+			 // Pull latest account information
+			 UserAccountInfo accountInfo = UserAccountInfo.findByUserID(session["userID"])	 
+			 render(view:"dashboard_confirmation",  model: [accountInfo: accountInfo])
+			 
+		} else {
+			redirect(controller: "Home")
+		}
 	}
 	
 	def proccessTxtSend() {

@@ -208,7 +208,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="treeview-menu">
                 <li><a href="#">Contacts</a></li> 
                 <li><a href="#">Groups</a></li>                
-                <li><a href="#">New Contact</a></li>    
+                <li><a href="${createLink(controller: 'Dashboard', action: 'newContact')}">New Contact</a></li>    
               </ul>
             </li>
 
@@ -258,14 +258,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="box">
                 <div class="box-header">
                   
-                  
+                 
                 <div class="input-group margin" style = "width: 250px; margin: 10px 0px 0px 0px;">
                     <input placeholder="Name, address..." type="text" class="form-control">
                     <span class="input-group-btn">
-                      <button class="btn btn-info btn-flat" type="button">Search</button>
-                    </span>
-                  </div><!-- /input-group -->             
-                  
+                      <button class="btn btn-info btn-flat" type="button">Search</button>                      
+                    </span>                    
+                  </div><!-- /input-group -->   
+                                    
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example1" class="table table-bordered table-hover">

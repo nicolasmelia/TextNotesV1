@@ -308,7 +308,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <input id = "subject" name = "subject"  class="form-control" placeholder="Subject: Not Required">
                   </div>
                   <div class="form-group">
-                    <textarea id="compose-textarea" name = "body" class="form-control" style="height: 150px"></textarea>
+                    <textarea placeholder="Message"  id="compose-textarea" name = "body" class="form-control" style="height: 150px"></textarea>
                   </div>
                   <div class="form-group">
                     <p style = "margin: 0px;" id = 'charCount' class="help-block">0/260 characters</p>
@@ -435,7 +435,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <div class="input-group-addon">
                         <i class="fa fa-phone"></i>
                       </div>
-                      <input id = "customNumber" type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                      <input placeholder="Required" id = "customNumber" type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
 
@@ -507,6 +507,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
             
             
+            
+                 <!-- DRAFT MODAL --> 
+        <div class="modal" id="loadingModal" role="dialog" data-backdrop="static">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 id = "modalHeading" class="modal-title">Sending...</h4>
+                  </div>
+                  <div class="modal-body">              
+                  <div id = "PreviewModalAlert"  style = "display: none;"  class="alert alert-danger alert-dismissable">
+                    <h4><i class="icon fa fa-exclamation-circle"></i>Fix needed</h4>
+                    <p id = "previewModalAlertText"></p>
+                  </div> 
+					<div style = "width: 100%; margin-top: 15px; text-align: center;" >
+						<i style = "font-size: 55px; color: #605ca8;" class="fa fa-spinner fa-pulse"></i>
+					</div>				
+ 				<p style = " margin-top: 20px; width: 100%; font-size: 16px; text-align: center; ">
+ 				 Our pigeons are delievering your messages! please hold tight...
+ 				</p>
+                  </div>
+                  <div style = "text-align: left;" class="modal-footer">
+                  Messages proccessed by TxtWolf.
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->       
+            
+     
      
   </body>
 
@@ -584,12 +612,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 	// When the form is submitted disable the resend button
 	$('form').submit(function() {
-		$("#submitBtn").prop("disabled",true);		
+		$('#loadingModal').modal('show');	
+		$('#previewModal').modal('hide');	
+		
+		$("#submitBtn").prop("disabled",true);	
 	});
 
 	function submitForm(){
 		if (!errors.length) {
 			$('#submitBtn').click()
+			
 		} else {
 			$("#PreviewModalAlert").css("display","block");
 		    $("#PreviewModalAlert").effect("bounce", { times:3 }, 400);

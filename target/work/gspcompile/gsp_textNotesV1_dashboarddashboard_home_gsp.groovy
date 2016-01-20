@@ -65,24 +65,26 @@ expressionOut.print(session.firstName)
 printHtmlPart(13)
 expressionOut.print(session.lastName)
 printHtmlPart(21)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
 printHtmlPart(22)
-invokeTag('javascript','g',390,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
 printHtmlPart(23)
-invokeTag('javascript','g',393,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+invokeTag('javascript','g',390,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(24)
-invokeTag('javascript','g',396,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',393,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(25)
+invokeTag('javascript','g',396,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(26)
 })
 invokeTag('captureBody','sitemesh',431,['class':("hold-transition skin-purple sidebar-mini")],1)
-printHtmlPart(26)
+printHtmlPart(27)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1452303018817L
+public static final long LAST_MODIFIED = 1453252979213L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

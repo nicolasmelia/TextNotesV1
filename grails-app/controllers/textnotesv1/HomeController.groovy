@@ -18,11 +18,15 @@ class HomeController {
 		// Creates a session if one does not exist
 		if (!session["userID"]) {
 			User user = User.findByUserID(userID)
-			session["userID"] = user.userID
-			session["firstName"] = user.firstName
-			session["lastName"] = user.lastName
-			session["signUpDate"] = user.signUpDate
-			return true
+			if (user != null) { // User may have been deleted
+				session["userID"] = user.userID
+				session["firstName"] = user.firstName
+				session["lastName"] = user.lastName
+				session["signUpDate"] = user.signUpDate
+				return true
+			} else {
+				return false
+			}
 		} else {
 			return false
 		}
