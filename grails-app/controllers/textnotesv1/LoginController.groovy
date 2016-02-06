@@ -43,7 +43,7 @@ class LoginController {
 				createSession(user.userID) // Create the session	
 				
 				// Set the last login date
-				user.lastLogin = new Date()
+				user.lastLoginDate = new Date()
 				user.save(flush:true)
 				
 				redirect(controller: "Dashboard", action: "dashboard")		

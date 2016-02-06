@@ -69,22 +69,67 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
 printHtmlPart(22)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
 printHtmlPart(23)
-invokeTag('javascript','g',390,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+if(true && (!testContact)) {
 printHtmlPart(24)
-invokeTag('javascript','g',393,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+}
 printHtmlPart(25)
-invokeTag('javascript','g',396,['src':("dashboard/app.min.js")],-1)
+if(true && (contacts)) {
 printHtmlPart(26)
-})
-invokeTag('captureBody','sitemesh',431,['class':("hold-transition skin-purple sidebar-mini")],1)
+for( _it342834466 in (contacts) ) {
+changeItVariable(_it342834466)
 printHtmlPart(27)
+expressionOut.print(it.firstName)
+printHtmlPart(13)
+expressionOut.print(it.lastName)
+printHtmlPart(28)
+expressionOut.print(it.firstName)
+printHtmlPart(13)
+expressionOut.print(it.lastName)
+printHtmlPart(29)
+expressionOut.print(it.phoneNumber)
+printHtmlPart(30)
+if(true && (it.city)) {
+printHtmlPart(31)
+expressionOut.print(it.city,)
+printHtmlPart(32)
+expressionOut.print(it.state)
+printHtmlPart(33)
+}
+else {
+printHtmlPart(34)
+}
+printHtmlPart(35)
+}
+printHtmlPart(36)
+}
+else {
+printHtmlPart(37)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
+printHtmlPart(38)
+}
+printHtmlPart(39)
+createClosureForHtmlPart(40, 2)
+invokeTag('link','g',345,['action':("dashboard"),'params':([offset: offset, up: 'false']),'type':("button"),'class':("btn btn-default")],2)
+printHtmlPart(41)
+createClosureForHtmlPart(42, 2)
+invokeTag('link','g',346,['action':("dashboard"),'params':([offset: offset, up: 'true']),'type':("button"),'class':("btn btn-default")],2)
+printHtmlPart(43)
+invokeTag('javascript','g',440,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(44)
+invokeTag('javascript','g',443,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(45)
+invokeTag('javascript','g',446,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(46)
+})
+invokeTag('captureBody','sitemesh',481,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(47)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1453252979213L
+public static final long LAST_MODIFIED = 1454551459424L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

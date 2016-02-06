@@ -251,8 +251,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </ol>
         </section>
 
+
         <!-- Main content -->
   <section class="content">
+          
+      <g:if test="${clientCount > 0}">	
+         <div class="callout callout-info" style="margin-bottom: 10px!important;">
+            <h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
+            This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
+        </div>
+        
+        </g:if>
+                
           <div class="row">
             <div class="col-xs-12">       
               <div class="box">
@@ -273,18 +283,51 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <tr>
                         <th>Name</th>
                         <th>Number</th>
-                        <th>Address</th>
+                        <th>Location</th>
                         <th>Subbed</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr OnClick = "test('tits')"  data-toggle="modal" data-target="#myModal" class = "pointer" >
-                        <td><a href = "#"><b>Nicolas Melia</b></a></td>
-                        <td>- </td>
-                        <td>-</td>
+
+				 <g:if test="${contacts}">	
+				 			
+                    <g:each in="${contacts}">
+                    
+                      <tr OnClick = "test('${it.firstName} ${it.lastName}')"  data-toggle="modal" data-target="#myModal" class = "pointer" >
+                        <td><a href = "#"><b>${it.firstName} ${it.lastName}</b></a></td>
+                        <td>${it.phoneNumber}</td>
+                        
+                        <g:if test="${it.city}">
+							<td>${it.city,}, ${it.state}</td>
+						</g:if>
+						<g:else>
+							<td>None</td>						
+						</g:else>
+
                         <td>Yes</td>
                       </tr>
+                      
+					</g:each>
+					
+                 </g:if>
+                 
+                 <g:else>
+                 
+                      <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'newContact')}';"  class = "pointer" >
+                        <td><a href = "#"><b>Add a contact!</b></a></td>
+                        <td>-</td>
+						<td>-</td>
+                        <td>-</td>
+                      </tr>
+                 
+                 </g:else>
+                    
+
+                      
                     </tbody>
+                    
+                    
+                    
                     <tfoot>
 
                     </tfoot>
@@ -292,8 +335,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- /.box-body -->
                 
                         <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
-	                          <button  type="button" class="btn btn-default">Back</button>
-	                          <button  type="button" class="btn btn-default">Next</button>	                          
+	                        <g:link  action="dashboard"  params="[offset: offset, up: 'false']"  type="button" class="btn btn-default">Back</g:link>
+                        	<g:link  action="dashboard"  params="[offset: offset, up: 'true']"  type="button" class="btn btn-default">Next</g:link>
                         </div>
                         
                    <p style = "float: right; text-align: right; margin: 15px; display: inline-block;" >

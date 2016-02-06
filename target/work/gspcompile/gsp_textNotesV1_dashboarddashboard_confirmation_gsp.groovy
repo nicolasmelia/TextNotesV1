@@ -67,26 +67,44 @@ expressionOut.print(session.lastName)
 printHtmlPart(21)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
 printHtmlPart(22)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
+if(true && (conType == 'Text')) {
 printHtmlPart(23)
-expressionOut.print(createLink(controller: 'Dashboard'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
 printHtmlPart(24)
-invokeTag('javascript','g',359,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(25)
-invokeTag('javascript','g',362,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+}
+else if(true && (conType == 'AddContact')) {
 printHtmlPart(26)
-invokeTag('javascript','g',365,['src':("dashboard/app.min.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
+printHtmlPart(24)
+expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(27)
-})
-invokeTag('captureBody','sitemesh',400,['class':("hold-transition skin-purple sidebar-mini")],1)
+}
+else if(true && (conType == 'FAILEDAddContact')) {
 printHtmlPart(28)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
+printHtmlPart(24)
+expressionOut.print(createLink(controller: 'Dashboard'))
+printHtmlPart(27)
+}
+printHtmlPart(29)
+invokeTag('javascript','g',421,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(30)
+invokeTag('javascript','g',424,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(31)
+invokeTag('javascript','g',427,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(32)
+})
+invokeTag('captureBody','sitemesh',462,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(33)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1453056897903L
+public static final long LAST_MODIFIED = 1453600719710L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -8,6 +8,8 @@ class Contact {
 	String state
 	String phoneNumber
 	String contactID
+	String userID
+	
 	Date addDate
 	
     static constraints = {

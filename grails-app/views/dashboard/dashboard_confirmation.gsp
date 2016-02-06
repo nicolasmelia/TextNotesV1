@@ -254,6 +254,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
   <section class="content">
 
+
+<g:if test="${conType == 'Text'}">
+
 			<!-- MESSAGE SENT SUCCESS -->
             <div class="box box-info">
               <div class="box-header with-border">
@@ -274,6 +277,65 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div><!-- /.box-body -->
             </div><!-- /.box -->
             <!-- MESSAGE SENT SUCCESS -->
+         
+</g:if>
+
+<g:elseif test="${conType == 'AddContact'}" >
+
+			<!-- Contact added SUCCESS -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                  <i class="fa fa-warning"></i>
+                <h3 class="box-title">Success!</h3>
+              </div>
+              <div class="box-body">   
+            <div class="callout callout-info" style = "margin: 0px;" >
+              <h4>Contact Added (11/10/1989)</h4>
+              <p>Youre message has been successfully sent to (0) recipients. To view more detailed information about this message click "details" below.</p>
+            </div>
+            
+            <div style = "margin: 10px 0px 5px 0px;" >
+            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn   btn-default">New Message</a>
+	            <a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Details</a>
+            </div>
+
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+			<!-- Contact added SUCCESS -->
+            
+            
+</g:elseif>
+
+<g:elseif test="${conType == 'FAILEDAddContact'}" >
+
+			<!-- Contact added SUCCESS -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                  <i class="fa fa-warning"></i>
+                <h3 class="box-title">FAILED!</h3>
+              </div>
+              <div class="box-body">   
+            <div class="callout callout-warning" style = "margin: 0px;" >
+              <h4>Contact Already Exist (11/10/1989)</h4>
+              <p>Youre message has been successfully sent to (0) recipients. To view more detailed information about this message click "details" below.</p>
+            </div>
+            
+            <div style = "margin: 10px 0px 5px 0px;" >
+            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn   btn-default">New Message</a>
+	            <a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Details</a>
+            </div>
+
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+			<!-- Contact added SUCCESS -->
+            
+            
+</g:elseif>
+            
+            
+            
+            
+            
            
         </section><!-- /.content -->
         

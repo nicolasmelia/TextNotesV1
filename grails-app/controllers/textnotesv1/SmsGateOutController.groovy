@@ -50,7 +50,7 @@ class SmsGateOutController {
 		}
 		
 		if (success) {
-			redirect(controller: "Dashboard", action: "confirmation")
+			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "Text"])
 		} else {
 			render "ERROR"
 		}
