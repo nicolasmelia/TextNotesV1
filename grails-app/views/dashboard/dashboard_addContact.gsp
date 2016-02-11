@@ -310,7 +310,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="address" placeholder="Not Required">
+                        <input name = 'address' type="text" class="form-control" id="address" placeholder="Not Required">
                       </div>
                     </div>
                   
@@ -564,7 +564,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			error = true;
 			errors.push("Please enter a valid last name.");			
 	  	}
-	  	
+
+	  	if (address.length > 0 || city.length > 0 || state.length > 0 || zip.length > 0) {
+		  	if (!address.length > 0 && !city.length > 0 && !state.length > 0 && !zip.length > 0) {
+				errors.push("If you are entering an adress you must enter all address fields.");			
+		  	}		  	
+		 }
+	  		  	
 		if (error){
 			for (i = 0; i < errors.length; i++) { 
 				$("#ModalAlertText").append("*" + errors[i] + "<br/>");		

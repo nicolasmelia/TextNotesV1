@@ -44,11 +44,17 @@ class SmsGateOutController {
 				case "N":  // Single number	
 					success = sendMessage(tag.split(":")[1], message)
 					break;
+				case "ID":
+					String clientID = tag.split(":")[1]
+					Contact contact = Contact.findByContactID(clientID)
+					success = sendMessage(contact.phoneNumber, message)				
+					break;
 				default: 
 					break;
-			}	
+			}				
 		}
 		
+			
 		if (success) {
 			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "Text"])
 		} else {
@@ -56,12 +62,13 @@ class SmsGateOutController {
 		}
 	}
 	
-	
 	def sendMessage(String number, String message) {
 		/* Find your sid and token at twilio.com/user/account */
 		String ACCOUNT_SID = "AC37b4c98359cd408db79405a07a46cb65";
 		String AUTH_TOKEN = "7d7d0d2d95fa8d535ab844ef1f081ec2"
 		String fromNumber = "3303675213"
+		
+		// Clean up the phone number
 		String toNumber = number.replaceAll("[^0-9]", "");
 	
 		TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);

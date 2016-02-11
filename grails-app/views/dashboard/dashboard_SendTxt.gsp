@@ -268,7 +268,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <div class="box-body no-padding">
                   <ul class="nav nav-pills nav-stacked">
-                    <li><a OnClick = "test('tits')"  data-toggle="modal" data-target="#myModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Contact </a></li>
+                    <li><a OnClick = "test('tits')"  data-toggle="modal" data-target="#addContactModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Contact </a></li>
                     <li><a OnClick = "test('tits')"  data-toggle="modal" data-target="#myModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Group</a></li>
                     <li><a data-toggle="modal" data-target="#addNumberModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Number </a></li>   
                   </ul>
@@ -298,6 +298,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		       <g:form id = "txtForm" class="form-signin" controller="SmsGateOut" action="messageOut" enctype="multipart/form-data" >
 
                 <div class="box-body">
+		             
+		           <!-- If added client is coming from the address book feel these values-->
+		          <input type="hidden" id="preClientName" value="${preClientName}">
+		          <input type="hidden" id="preClientID" value="${preClientID}">
+		             
 		             
                   <div class="form-group">
                     <input type="hidden" name="allTags" value="">
@@ -465,8 +470,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <h4><i class="icon fa fa-exclamation-circle"></i>Fix needed</h4>
                     <p id = "previewModalAlertText"></p>
                   </div>
-	
- 					
+					
  				 <div class="box box-solid">
                 <div class="box-header with-border">
                   <h3 class="box-title">Preview</h3>
@@ -505,9 +509,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->            
             
-            
-            
-            
+   
                  <!-- DRAFT MODAL --> 
         <div class="modal" id="loadingModal" role="dialog" data-backdrop="static">
               <div class="modal-dialog">
@@ -534,7 +536,59 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->       
             
-     
+            
+                 <!-- DRAFT MODAL --> 
+        <div class="modal" id="addContactModal" role="dialog" data-backdrop="static">
+              <div class="modal-dialog">
+                <div class="modal-content">
+ 
+ 				<div class="box-body">
+			
+ 				 <div class="box-header with-border" style = "padding-left: 0px;" >
+                  <h3 class="box-title">Add Contact -</h3>
+                </div><!-- /.box-header -->
+                 
+                <div class="input-group margin" style = "width: 100%; margin: 0px 10px 10px 0px;">
+                                 
+                    <input id = "searchInput"  placeholder="Name, address..." type="text" class="form-control">
+                    <span class="input-group-btn">
+                      <button id = "searchContactBtn" onClick = "search('${createLink(controller: 'Dashboard', action: 'searchContact')}')" class="btn btn-info btn-flat" type="button">Search</button>                      
+                    </span>                    
+                  </div><!-- /input-group -->   
+ 				
+                  <table id="example1" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Number</th>
+                        <th>Location</th>
+                      </tr>
+                    </thead>
+                    <tbody id = "contactTable">
+                       
+                      <tr  class = "pointer" >
+                        <td><a href = "#"><b>Please enter a search.</b></a></td>
+                        <td>-</td>
+						<td>-</td>
+                        <td>-</td>
+                      </tr>
+                   
+                    </tbody>
+
+                    <tfoot>
+
+                    </tfoot>
+                  </table>
+                </div><!-- /.box-body -->
+
+
+                  <div class="modal-footer">
+                    <button onClick = "clearWarnings()"  type="button" class="btn btn-default pull-left" data-dismiss="modal" >Close</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->     
+      
      
   </body>
 
@@ -554,6 +608,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <g:javascript src="dashboard/plugins/select2/select2.full.min.js" /> 
     
     <g:javascript src="tagsinput/dist/bootstrap-tagsinput.min.js"/>
+    
+    <g:javascript src="dataAccess.js" /> 
     
       
     <!-- InputMask -->    
@@ -588,13 +644,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   <script>
 
+
+$( document ).ready(function() {
+	addCustomNumberPrePick();
+});
+
   // initialize datamask for inputs
   $("[data-mask]").inputmask();
 
 	$('#tags').tagsinput({
 		 tagClass: function(item) {
 			    switch (item.optionType) {
-			      case 'Europe'   : return 'label label-info';
+			      case 'prePick'   : return 'label label-info';
 			      case 'America'  : return 'label label-important';
 			      case 'custom': return 'label label-success';
 			      case 'Africa'   : return 'badge badge-inverse';
@@ -608,7 +669,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	  	freeInput: false
 	  	
 	});
-
+	
+	// on search box enter
+	$("#searchInput").keypress(function(event) {
+	    if (event.which == 13) {
+	   	 $( "#searchContactBtn" ).trigger( "click" );
+	    }
+	});
+	
+	$('#searchInput').on('input', function() {
+    	$( "#searchContactBtn" ).trigger( "click" );
+	});
 
 	// When the form is submitted disable the resend button
 	$('form').submit(function() {
@@ -667,6 +738,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$('#addNumberModal').modal("hide");
 			removeToPlaceHolder();			 
 		}
+	}
+
+	  // ******* CUSTOM NUMBER MODAL ******* 
+	function addCustomNumberPrePick() {
+		// Number set from addNumber modal for custom numbers not in address book.	
+			var name = $('#preClientName').val();
+			var clientID = $('#preClientID').val();
+			if (name != "NONE") {
+				$('#tags').tagsinput('add', { "value":  'ID:' + clientID , "text": name, "optionType": "prePick"});	
+				$('#customNumber').val(""); // Clear the input field
+				$('#addNumberModal').modal("hide");
+				removeToPlaceHolder();	
+				return true;
+			} else {
+				return false;
+			}		 
 	}
 
   	// Set focus to number input
@@ -755,6 +842,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   function removeToPlaceHolder() {
 	  $("input[placeholder~='Recipients']").attr('placeholder','');
   }
+  
+
 
 
   </script>

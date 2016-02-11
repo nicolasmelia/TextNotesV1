@@ -69,67 +69,83 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
 printHtmlPart(22)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
 printHtmlPart(23)
-if(true && (!testContact)) {
+if(true && (clientCount > 0)) {
 printHtmlPart(24)
 }
 printHtmlPart(25)
 if(true && (contacts)) {
 printHtmlPart(26)
-for( _it342834466 in (contacts) ) {
-changeItVariable(_it342834466)
+for( _it1440325059 in (contacts) ) {
+changeItVariable(_it1440325059)
 printHtmlPart(27)
 expressionOut.print(it.firstName)
 printHtmlPart(13)
 expressionOut.print(it.lastName)
 printHtmlPart(28)
+expressionOut.print(it.contactID)
+printHtmlPart(29)
 expressionOut.print(it.firstName)
 printHtmlPart(13)
 expressionOut.print(it.lastName)
-printHtmlPart(29)
-expressionOut.print(it.phoneNumber)
 printHtmlPart(30)
-if(true && (it.city)) {
+expressionOut.print(it.phoneNumber)
 printHtmlPart(31)
-expressionOut.print(it.city,)
+if(true && (it.city)) {
 printHtmlPart(32)
-expressionOut.print(it.state)
+expressionOut.print(it.city,)
 printHtmlPart(33)
-}
-else {
+expressionOut.print(it.state)
 printHtmlPart(34)
 }
+else {
 printHtmlPart(35)
 }
 printHtmlPart(36)
 }
-else {
 printHtmlPart(37)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
-printHtmlPart(38)
 }
+else {
+printHtmlPart(38)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
 printHtmlPart(39)
-createClosureForHtmlPart(40, 2)
-invokeTag('link','g',345,['action':("dashboard"),'params':([offset: offset, up: 'false']),'type':("button"),'class':("btn btn-default")],2)
-printHtmlPart(41)
-createClosureForHtmlPart(42, 2)
-invokeTag('link','g',346,['action':("dashboard"),'params':([offset: offset, up: 'true']),'type':("button"),'class':("btn btn-default")],2)
-printHtmlPart(43)
-invokeTag('javascript','g',440,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+}
+printHtmlPart(40)
+createClosureForHtmlPart(41, 2)
+invokeTag('link','g',338,['action':("dashboard"),'params':([offset: offset, up: 'false']),'type':("button"),'class':("btn btn-default")],2)
+printHtmlPart(42)
+createClosureForHtmlPart(43, 2)
+invokeTag('link','g',339,['action':("dashboard"),'params':([offset: offset, up: 'true']),'type':("button"),'class':("btn btn-default")],2)
 printHtmlPart(44)
-invokeTag('javascript','g',443,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+invokeTag('javascript','g',433,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(45)
-invokeTag('javascript','g',446,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',436,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(46)
-})
-invokeTag('captureBody','sitemesh',481,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('javascript','g',439,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(47)
+for( _it1377456236 in (contacts) ) {
+changeItVariable(_it1377456236)
+printHtmlPart(48)
+expressionOut.print(it.contactID)
+printHtmlPart(49)
+expressionOut.print(it.firstName)
+printHtmlPart(13)
+expressionOut.print(it.lastName)
+printHtmlPart(50)
+createClosureForHtmlPart(51, 3)
+invokeTag('link','g',458,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("sendTxt"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],3)
+printHtmlPart(52)
+}
+printHtmlPart(53)
+})
+invokeTag('captureBody','sitemesh',478,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(54)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1454551459424L
+public static final long LAST_MODIFIED = 1454887419910L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -1,6 +1,7 @@
 package textnotesv1
 
 class Contact {
+	
 	String firstName
 	String lastName
 	String zip
@@ -9,6 +10,9 @@ class Contact {
 	String phoneNumber
 	String contactID
 	String userID
+	String address
+	String aptNo
+	boolean subbed
 	
 	Date addDate
 	
@@ -16,6 +20,9 @@ class Contact {
 		zip(nullable:true)
 		city(nullable:true)
 		state(nullable:true)
+		address(nullable:true)
+		aptNo(nullable:true)
 		phoneNumber(nullable:true)	
+		subbed(nullable:true)		
     }
 }

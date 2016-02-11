@@ -258,7 +258,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <g:if test="${clientCount > 0}">	
          <div class="callout callout-info" style="margin-bottom: 10px!important;">
             <h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
-            This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
+            Get started by adding clients below!
         </div>
         
         </g:if>
@@ -293,7 +293,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				 			
                     <g:each in="${contacts}">
                     
-                      <tr OnClick = "test('${it.firstName} ${it.lastName}')"  data-toggle="modal" data-target="#myModal" class = "pointer" >
+                      <tr OnClick = "test('${it.firstName} ${it.lastName}')"  data-toggle="modal" data-target="#myModal${it.contactID}" class = "pointer" >
                         <td><a href = "#"><b>${it.firstName} ${it.lastName}</b></a></td>
                         <td>${it.phoneNumber}</td>
                         
@@ -442,23 +442,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
+          <g:each in="${contacts}">
          
-            <div class="modal" id="myModal" role="dialog">
+            <div class="modal" id="myModal${it.contactID}" role="dialog">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 id = "modalHeading" class="modal-title">Modal Default</h4>
+                    <h4 id = "modalHeading" class="modal-title">Select an option: <b>${it.firstName} ${it.lastName}</b></h4>
                   </div>
-                  <div class="modal-body">
+                  <div class="modal-body" style = "padding-top: 0px;" >
+                                    
+                  <g:link  style = "margin-bottom:0px; margin-top: 15px; "  action="sendTxt"  params="[contactID: it.contactID]"  type="button" class="btn btn-app"  >            
+                 	<i class="fa fa-envelope-o"></i>Send Text
+                  </g:link>
                   
- 				 <a class="btn btn-app" style = "margin-bottom:0px;" >
-                    <i class="fa fa-comment"></i> Send Text
+ 				 <a href = "" >
                   </a>
-                  <a class="btn btn-app" style = "margin-bottom:0px;">
+                  <a class="btn btn-app" style = "margin-bottom:0px; margin-top: 15px;">
                     <i class="fa fa-users"></i> Add to Group
                   </a>
-                  <a class="btn btn-app" style = "margin-bottom:0px;">
+                  <a class="btn btn-app" style = "margin-bottom:0px; margin-top: 15px;">
                     <i class="fa fa-edit"></i> Edit
                   </a>
                     
@@ -469,14 +473,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-
+		</g:each>
          
   </body>
   
   <script>
 
   function test(number) {
-	  $("#modalHeading").text(number);
+	  return true;
 	}
 
 

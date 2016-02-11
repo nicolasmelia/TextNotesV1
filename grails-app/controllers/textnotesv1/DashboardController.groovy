@@ -1,5 +1,7 @@
 package textnotesv1
 
+import grails.converters.JSON
+
 class DashboardController {
 
     def index() { 
@@ -36,12 +38,25 @@ class DashboardController {
 	
 	
 	def sendTxt() {	
-			if (session["userID"]) {				
-				render(view:"dashboard_SendTxt", model: [accountInfo: getUserAccountInfo()])
+			if (session["userID"]) {	
+				
+				// Check is a preuser was added from address book					
+				String preContactName = "NONE"
+				String preContactID = "NONE"
+				if (params.contactID) {
+					Contact contact = Contact.findByContactID(params.contactID)
+					preContactName = contact.firstName + " " + contact.lastName
+					preContactID = contact.contactID					
+				}
+								
+				render(view:"dashboard_SendTxt", model: [accountInfo: getUserAccountInfo(), preClientName: preContactName, preClientID: preContactID ])
+			
 		   } else {
 			   redirect(controller: "Home")
 		   }		
 	}
+	
+
 	
 	def newContact() {
 			if (session["userID"]) {
@@ -65,6 +80,8 @@ class DashboardController {
 			contact.city = params.city.toString().trim()
 			contact.state = params.state.toString().trim()
 			contact.zip = params.zip.toString().trim()
+			contact.address = params.address.toString().trim()
+			contact.subbed = false
 			
 			contact.addDate = new Date()
 			
@@ -91,6 +108,26 @@ class DashboardController {
 					 [session.userID], [max: 10, offset: offset])
 		
 		return contacts
+	}
+	
+	def searchContact() {
+		String searchString = params.searchString	
+		ArrayList contacts = new ArrayList<Contact>()
+		if (params.searchString) {
+			 contacts.add(Contact.findAllByFirstNameLike("%" + searchString + "%"))
+			 contacts.add(Contact.findAllByZipLike("%" + searchString + "%"))			 
+		} else {
+		
+		}
+		
+		//ArrayList foundContacts = new ArrayList<Contact>()
+		print contacts as JSON	
+		if (contacts.isEmpty()) {
+			render "NONE"
+		} else {
+			render contacts as JSON	
+		}
+		
 	}
 	
 	
