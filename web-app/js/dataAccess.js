@@ -8,7 +8,8 @@
 		
 	function searchContact(searchString, url) {
 		var serverResult = "";
-				allowUserNameCheck = false;
+		var clientCount = 0;
+		allowUserNameCheck = false;
 				// to checkUserName
 				
 			if (!searchHault) {
@@ -25,19 +26,33 @@
 					  if (serverResult != null) {
 						  if (serverResult != "NONE" && $("#searchInput").val() != "") {					  
 							  $.each(serverResult[0], function(idx, obj) {
-								  $('#contactTable').append("<tr class = 'pointer' >" +
-								  		"<td>" + obj.firstName + " " + obj.lastName + "</td>" +
-								  		"<td>" + obj.phoneNumber + "</td>" +
-								  		"<td>" + obj.city + ", " + obj.state +  ", " + obj.zip + "</td>" +
-								  		"</tr>");													
+								  clientCount = clientCount + 1;
+								  if (clientCount < 16) {
+									  $('#contactTable').append("<tr class = 'pointer' >" +
+									  		"<td>" + obj.firstName + " " + obj.lastName + "</td>" +
+									  		"<td>" + obj.phoneNumber + "</td>" +
+									  		"<td>" + obj.city + ", " + obj.state +  ", " + obj.zip + "</td>" +
+									  		"</tr>");	
+								  } else {
+									  $("#resultOver").css("display","block");								  
+								  }
+								  
 								});	  
+							  
+							  if (clientCount < 16) {							  
+								  $("#resultOver").css("display","none");								  
+							  }
+							  
 						  } else {
 							  // No result
 							  $('#contactTable').append("<tr class = 'pointer' >" +
 								  		"<td>No Results for " + searchString + " </td>" +
 								  		"<td>-</td>" +
 								  		"<td>-</td>" +
-								  		"</tr>");					  
+								  		"</tr>");	
+							  
+							  $("#resultOver").css("display","none");								  
+
 						  }
 					  }
 				  });

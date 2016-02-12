@@ -579,6 +579,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     </tfoot>
                   </table>
+                  
+                  <div id = "resultOver"  style = "display: none; margin-top: 10px;"  class="alert alert-info alert-dismissable">
+                    <h4><i class="icon fa fa-exclamation-circle"></i>Top 15 results displayed.</h4>
+                    <p id = "previewModalAlertText">Too many results, please narrow down your search.</p>
+                  </div> 
+                  
+                  
                 </div><!-- /.box-body -->
 
 
