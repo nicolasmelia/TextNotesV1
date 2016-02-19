@@ -11,8 +11,11 @@ class LoginController {
 	
 	def login() {		
 		if (request.getCookie('user') && !session["userID"]) {
-			createSession(request.getCookie('user').toString())
-			redirect(controller: "Dashboard")
+			if (createSession(request.getCookie('user').toString())) {
+				redirect(controller: "Dashboard")		
+			} else {
+				logout()
+			}
 		} else if (session["userID"]) {
 			redirect(controller: "Dashboard")
 		} else {
@@ -110,10 +113,7 @@ class LoginController {
 					// Create a cookie for the user
 					response.setCookie('user', user.userID.toString(), 604800) // 1 week
 				}
-				
-				
-				
-				
+					
 				createSession(user.userID) // Create the session
 				redirect(controller: "Dashboard", action: "dashboard")
 					
@@ -133,11 +133,16 @@ class LoginController {
 		// Creates a session if one does not exist
 		if (!session["userID"]) {
 			User user = User.findByUserID(userID)
-			session["userID"] = user.userID
-			session["firstName"] = user.firstName
-			session["lastName"] = user.lastName
-			session["signUpDate"] = user.signUpDate			
-			return true
+			if (user) {
+				session["userID"] = user.userID
+				session["firstName"] = user.firstName
+				session["lastName"] = user.lastName
+				session["signUpDate"] = user.signUpDate	
+				return true
+			} else {
+				// User has been deleted and a cookie still exist...
+				return false		
+			}		
 		} else {
 			return false
 		}	

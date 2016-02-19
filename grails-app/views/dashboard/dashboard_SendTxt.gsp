@@ -268,8 +268,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <div class="box-body no-padding">
                   <ul class="nav nav-pills nav-stacked">
-                    <li><a OnClick = "test('tits')"  data-toggle="modal" data-target="#addContactModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Contact </a></li>
-                    <li><a OnClick = "test('tits')"  data-toggle="modal" data-target="#myModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Group</a></li>
+                    <li><a data-toggle="modal" data-target="#addContactModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Contact </a></li>
+                    <li><a data-toggle="modal" data-target="#myModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Group</a></li>
                     <li><a data-toggle="modal" data-target="#addNumberModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Number </a></li>   
                   </ul>
                 </div><!-- /.box-body -->
@@ -452,10 +452,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->  
-            
-            
-          
-                
+                    
             <!-- DRAFT MODAL --> 
         <div class="modal" id="previewModal" role="dialog" data-backdrop="static">
               <div class="modal-dialog">
@@ -538,7 +535,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
             
                  <!-- DRAFT MODAL --> 
-        <div class="modal" id="addContactModal" role="dialog" data-backdrop="static">
+        <div class="modal" id="addContactModal" role="dialog">
               <div class="modal-dialog">
                 <div class="modal-content">
  
@@ -552,7 +549,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                  
                     <input id = "searchInput"  placeholder="Name, address..." type="text" class="form-control">
                     <span class="input-group-btn">
-                      <button id = "searchContactBtn" onClick = "search('${createLink(controller: 'Dashboard', action: 'searchContact')}')" class="btn btn-info btn-flat" type="button">Search</button>                      
+                      <button id = "searchContactBtn" onClick = "search('${createLink(controller: 'Dashboard', action: 'searchContactAjax')}')" class="btn btn-info btn-flat" type="button">Search</button>                      
                     </span>                    
                   </div><!-- /input-group -->   
  				
@@ -567,10 +564,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <tbody id = "contactTable">
                        
                       <tr  class = "pointer" >
-                        <td><a href = "#"><b>Please enter a search.</b></a></td>
+                        <td>Please enter a search.</td>
                         <td>-</td>
 						<td>-</td>
-                        <td>-</td>
                       </tr>
                    
                     </tbody>
@@ -662,7 +658,7 @@ $( document ).ready(function() {
 	$('#tags').tagsinput({
 		 tagClass: function(item) {
 			    switch (item.optionType) {
-			      case 'prePick'   : return 'label label-info';
+			      case 'Pick'   : return 'label label-info';
 			      case 'America'  : return 'label label-important';
 			      case 'custom': return 'label label-success';
 			      case 'Africa'   : return 'badge badge-inverse';
@@ -698,8 +694,7 @@ $( document ).ready(function() {
 
 	function submitForm(){
 		if (!errors.length) {
-			$('#submitBtn').click()
-			
+			$('#submitBtn').click()			
 		} else {
 			$("#PreviewModalAlert").css("display","block");
 		    $("#PreviewModalAlert").effect("bounce", { times:3 }, 400);
@@ -731,9 +726,6 @@ $( document ).ready(function() {
 	});
 
 
-  function test(number) {
-	  $("#modalHeading").text(number);
-	}
 
   // ******* CUSTOM NUMBER MODAL ******* 
 	function addCustomNumber() {
@@ -753,10 +745,21 @@ $( document ).ready(function() {
 			var name = $('#preClientName').val();
 			var clientID = $('#preClientID').val();
 			if (name != "NONE") {
-				$('#tags').tagsinput('add', { "value":  'ID:' + clientID , "text": name, "optionType": "prePick"});	
-				$('#customNumber').val(""); // Clear the input field
-				$('#addNumberModal').modal("hide");
+				$('#tags').tagsinput('add', { "value":  'ID:' + clientID , "text": name, "optionType": "Pick"});	
 				removeToPlaceHolder();	
+				return true;
+			} else {
+				return false;
+			}		 
+	}
+	
+		  // ******* CUSTOM NUMBER MODAL ******* 
+	function addNumberPick(name, clientID) {
+		// Number set from addNumber modal for custom numbers not in address book.	
+			if (name != "NONE") {
+				$('#tags').tagsinput('add', { "value":  'ID:' + clientID , "text": name, "optionType": "Pick"});	
+				removeToPlaceHolder();	
+				$('#addContactModal').modal("hide");
 				return true;
 			} else {
 				return false;

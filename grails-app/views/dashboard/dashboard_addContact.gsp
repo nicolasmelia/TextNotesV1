@@ -567,7 +567,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 	  	if (address.length > 0 || city.length > 0 || state.length > 0 || zip.length > 0) {
 		  	if (!address.length > 0 && !city.length > 0 && !state.length > 0 && !zip.length > 0) {
-				errors.push("If you are entering an adress you must enter all address fields.");			
+				errors.push("If you are including an address you must enter all required address fields.");			
 		  	}		  	
 		 }
 	  		  	

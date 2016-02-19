@@ -4,6 +4,7 @@ class Contact {
 	
 	String firstName
 	String lastName
+	String fullName
 	String zip
 	String city
 	String state

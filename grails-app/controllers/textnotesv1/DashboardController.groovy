@@ -23,9 +23,19 @@ class DashboardController {
 		
 		// check to see if contacts exist
 		int clientCount = Contact.countByUserID(session.userID)
+		
+		// Get searchInfo if any
+		String searchQuery
+		if (!params.searchQuery) {
+			searchQuery = "NONE"	
+		} else {
+			searchQuery = params.searchQuery
+		}
+		
+		print getContactList(offset, params.up, searchQuery)
 
 		if (session["userID"]) {		
-			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, contacts: getContactList(offset, params.up)])		 
+			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, contacts: getContactList(offset, params.up, searchQuery)])		 
 		} else {
 			redirect(controller: "Home")
 		}
@@ -75,6 +85,7 @@ class DashboardController {
 			Contact contact = new Contact()
 			contact.firstName = params.firstName.toString().trim()
 			contact.lastName = params.lastName.toString().trim()
+			contact.fullName = contact.firstName + " " + contact.lastName
 			contact.phoneNumber = params.phoneNumber.toString().trim()
 			
 			contact.city = params.city.toString().trim()
@@ -102,32 +113,54 @@ class DashboardController {
 		
 	}
 	
-	def getContactList(offset, up){
-
-		def contacts =  Contact.findAll("from Contact as c where c.userID=? order by c.firstName",
+	def getContactList(offset, up, search){
+		def contacts
+		if (search == 'NONE') {
+			contacts =  Contact.findAll("from Contact as c where c.userID=? order by c.firstName",
 					 [session.userID], [max: 10, offset: offset])
+		} else {
+			contacts = searchContact(search)
+		}
 		
 		return contacts
 	}
 	
-	def searchContact() {
-		String searchString = params.searchString	
-		ArrayList contacts = new ArrayList<Contact>()
-		if (params.searchString) {
-			 contacts.add(Contact.findAllByFirstNameLike("%" + searchString + "%"))
-			 contacts.add(Contact.findAllByZipLike("%" + searchString + "%"))			 
+	def searchContactAjax() {	
+		String searchString = params.searchString
+		ArrayList con = new ArrayList<Contact>()
+		if (searchString) {
+			con.add(Contact.findAll("from Contact as c where c.fullName like ?" +
+				 	 "or c.firstName like ? or c.lastName like ? order by c.firstName", ["%" + searchString + "%", "%" + searchString + "%", "%" + searchString + "%"], [max: 10]))		 
+		
+
+			 
+		} else {
+		
+		}	
+		
+			if (con.size == 0) {
+				render "NONE"
+			} else {
+				render con as JSON	
+			}
+	}
+	
+	def searchContact(searchQuery) {
+
+		def contacts
+		if (searchQuery != "NONE") {
+			 contacts = Contact.findAll("from Contact as c where c.fullName like ?" +
+				 	 "or c.firstName like ? or c.lastName like ? order by c.firstName", ["%" + searchQuery + "%", "%" + searchQuery + "%", "%" + searchQuery + "%"], [max: 10])			 
 		} else {
 		
 		}
-		
-		//ArrayList foundContacts = new ArrayList<Contact>()
-		print contacts as JSON	
-		if (contacts.isEmpty()) {
-			render "NONE"
+
+		if (contacts.isEmpty() || contacts.size() == 0) {
+			return "NONE"
 		} else {
-			render contacts as JSON	
+			return contacts
 		}
-		
+
 	}
 	
 	

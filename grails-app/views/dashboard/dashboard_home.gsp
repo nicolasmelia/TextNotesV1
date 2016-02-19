@@ -268,13 +268,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="box">
                 <div class="box-header">
                   
+                 <g:form id = "searchForm" controller="Dashboard" action="dashboard" enctype="multipart/form-data" >
                  
                 <div class="input-group margin" style = "width: 250px; margin: 10px 0px 0px 0px;">
-                    <input placeholder="Name, address..." type="text" class="form-control">
+                   
+                
+                    <input name = "searchQuery" placeholder="Name, address..." type="text" class="form-control">
                     <span class="input-group-btn">
-                      <button class="btn btn-info btn-flat" type="button">Search</button>                      
-                    </span>                    
+                      <g:actionSubmit  action="dashboard" class="btn btn-info btn-flat" type="button" value = "Search"></g:actionSubmit>             
+                    </span>   
+                                     
                   </div><!-- /input-group -->   
+              </g:form>
+                      
                                     
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -290,24 +296,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <tbody>
 
 				 <g:if test="${contacts}">	
-				 			
-                    <g:each in="${contacts}">
-                    
-                      <tr OnClick = "test('${it.firstName} ${it.lastName}')"  data-toggle="modal" data-target="#myModal${it.contactID}" class = "pointer" >
-                        <td><a href = "#"><b>${it.firstName} ${it.lastName}</b></a></td>
-                        <td>${it.phoneNumber}</td>
-                        
-                        <g:if test="${it.city}">
-							<td>${it.city,}, ${it.state}</td>
-						</g:if>
-						<g:else>
-							<td>None</td>						
-						</g:else>
-
-                        <td>Yes</td>
+				 
+				 	<g:if test="${contacts != 'NONE'}">						 			
+	                    <g:each in="${contacts}">
+	                    
+	                      <tr OnClick = "test('${it.firstName} ${it.lastName}')"  data-toggle="modal" data-target="#myModal" class = "pointer" >
+	                        <td><a href = "#"><b>${it.firstName} ${it.lastName}</b></a></td>
+	                        <td>${it.phoneNumber}</td>
+	                        
+	                        <g:if test="${it.city}">
+								<td>${it.city,}, ${it.state}</td>
+							</g:if>
+							<g:else>
+								<td>None</td>						
+							</g:else>
+	
+	                        <td>Yes</td>
+	                      </tr>
+	                      
+						</g:each>
+					</g:if>
+					<g:else>
+                 
+                      <tr  class = "pointer" >
+                        <td><b>No Results, Try another search.</b></td>
+                        <td>-</td>
+						<td>-</td>
+                        <td>-</td>
                       </tr>
-                      
-					</g:each>
+                 
+					</g:else>
 					
                  </g:if>
                  
@@ -426,25 +444,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
            immediately after the control sidebar -->
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
+    
 
-    <!-- REQUIRED JS SCRIPTS -->
-
-    <!-- jQuery 2.1.4 -->
-    <g:javascript src="dashboard/plugins/jQuery/jQuery-2.1.4.min.js" /> 
-    
-    <!-- Bootstrap 3.3.5 -->
-    <g:javascript src="dashboard/bootstrap/js/bootstrap.min.js" /> 
-    
-    <!-- AdminLTE App -->
-    <g:javascript src="dashboard/app.min.js" /> 
-    
-    <!-- Optionally, you can add Slimscroll and FastClick plugins.
-         Both of these plugins are recommended to enhance the
-         user experience. Slimscroll is required when using the
-         fixed layout. -->
+      <g:if test="${contacts && contacts != 'NONE'}">						 			      
           <g:each in="${contacts}">
          
-            <div class="modal" id="myModal${it.contactID}" role="dialog">
+            <div class="modal" id="myModal" role="dialog">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -474,6 +479,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
 		</g:each>
+		
+		</g:if>
+     <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <g:javascript src="dashboard/plugins/jQuery/jQuery-2.1.4.min.js" /> 
+    
+    <!-- Bootstrap 3.3.5 -->
+    <g:javascript src="dashboard/bootstrap/js/bootstrap.min.js" /> 
+    
+    <!-- AdminLTE App -->
+    <g:javascript src="dashboard/app.min.js" /> 
+    
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+         Both of these plugins are recommended to enhance the
+         user experience. Slimscroll is required when using the
+         fixed layout. -->
+         
          
   </body>
   
