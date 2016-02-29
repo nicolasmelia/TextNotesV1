@@ -25,17 +25,17 @@ class DashboardController {
 		int clientCount = Contact.countByUserID(session.userID)
 		
 		// Get searchInfo if any
-		String searchQuery
-		if (!params.searchQuery) {
-			searchQuery = "NONE"	
-		} else {
-			searchQuery = params.searchQuery
+		def searchQuery
+		if (!params.searchQuery && !params.searchQueryHidden) {
+			searchQuery = null
+		} else if (params.searchQueryHidden) {
+			searchQuery = params.searchQueryHidden	
+		} else if (params.searchQuery) {
+			searchQuery = params.searchQuery	
 		}
 		
-		print getContactList(offset, params.up, searchQuery)
-
 		if (session["userID"]) {		
-			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, contacts: getContactList(offset, params.up, searchQuery)])		 
+			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, contacts: getContactList(offset, searchQuery)])		 
 		} else {
 			redirect(controller: "Home")
 		}
@@ -105,7 +105,8 @@ class DashboardController {
 			contact.userID = session["userID"]
 			
 			contact.save(flush:true)	
-			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContact"])			
+
+			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContact", name: contact.fullName.toString(), number: contact.phoneNumber.toString()])			
 		} else {
 			// User exist with the same number and name under this usersID
 			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "FAILEDAddContact"])		
@@ -113,27 +114,28 @@ class DashboardController {
 		
 	}
 	
-	def getContactList(offset, up, search){
+	def getContactList(offset, search){
 		def contacts
-		if (search == 'NONE') {
+		if (search == null) {
 			contacts =  Contact.findAll("from Contact as c where c.userID=? order by c.firstName",
 					 [session.userID], [max: 10, offset: offset])
 		} else {
-			contacts = searchContact(search)
+			contacts = searchContact(search, offset)
 		}
 		
-		return contacts
+		if (contacts.size > 0) {
+			return contacts
+		} else {
+			return "NONE"
+		}
 	}
 	
 	def searchContactAjax() {	
 		String searchString = params.searchString
 		ArrayList con = new ArrayList<Contact>()
-		if (searchString) {
+		if (params.searchString && !searchString.equals("") && !searchString.equals(" ") && searchString != "NONE") {			
 			con.add(Contact.findAll("from Contact as c where c.fullName like ?" +
-				 	 "or c.firstName like ? or c.lastName like ? order by c.firstName", ["%" + searchString + "%", "%" + searchString + "%", "%" + searchString + "%"], [max: 10]))		 
-		
-
-			 
+				 	 "or c.firstName like ? or c.lastName like ? order by c.firstName", ["%" + searchString + "%", "%" + searchString + "%", "%" + searchString + "%"], [max: 10]))		 		 
 		} else {
 		
 		}	
@@ -145,22 +147,16 @@ class DashboardController {
 			}
 	}
 	
-	def searchContact(searchQuery) {
-
+	def searchContact(searchString, offset) {
 		def contacts
-		if (searchQuery != "NONE") {
+		if (!searchString.equals("") && !searchString.equals(" ") && searchString != "NONE") {			
 			 contacts = Contact.findAll("from Contact as c where c.fullName like ?" +
-				 	 "or c.firstName like ? or c.lastName like ? order by c.firstName", ["%" + searchQuery + "%", "%" + searchQuery + "%", "%" + searchQuery + "%"], [max: 10])			 
+				 	 "or c.firstName like ? or c.lastName like ? order by c.firstName", ["%" + searchString + "%", "%" + searchString + "%", "%" + searchString + "%"], [max: 10, offset: offset])			 
 		} else {
 		
 		}
-
-		if (contacts.isEmpty() || contacts.size() == 0) {
-			return "NONE"
-		} else {
-			return contacts
-		}
-
+		
+		return contacts
 	}
 	
 	

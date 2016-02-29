@@ -202,31 +202,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="header">Tools</li>
             <!-- Optionally, you can add icons to the links -->
             
-            
+             
             <li class="active">
               <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Contacts</a></li> 
-                <li><a href="#">Groups</a></li>                
-                <li><a href="#">New Contact</a></li>    
+                <li><a href="${createLink(controller: 'Dashboard', action: 'dashboard')}">Contacts</a></li> 
+                <li><a href="${createLink(controller: 'Dashboard', action: 'groups')}">Groups</a></li>                
+                <li><a class = "fa fa-plus" href="${createLink(controller: 'Dashboard', action: 'newContact')}"> New Contact</a></li>    
               </ul>
             </li>
 
-       
              <li class="treeview">
               <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}">Compose Text</a></li>
-                <li><a href="#">Scheduled Text</a></li>       
+                <li><a href="${createLink(controller: 'Dashboard', action: 'secheduledTxt')}">Secheduled Text</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'txtHostory')}">History</a></li>       
               </ul>
             </li>
        
              <li class="treeview">
               <a href="#"><i class="fa fa-ticket"></i> <span>Promotions</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">View Promotions</a></li>
-                <li><a href="#">Validate Promo Code</a></li>       
-                <li><a href="#">Create Promotion</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'ViewPromos')}">View Promotions</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'validatePromo')}">Validate Promo Code</a></li>       
+                <li><a href="${createLink(controller: 'Dashboard', action: 'createPromo')}">Create Promotion</a></li>
               </ul>
             </li>
        
@@ -255,22 +255,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <section class="content">
 
 
-<g:if test="${conType == 'Text'}">
+<g:if test="${params.conType == 'Text'}">
 
 			<!-- MESSAGE SENT SUCCESS -->
             <div class="box box-info">
               <div class="box-header with-border">
-                  <i class="fa fa-warning"></i>
+                  <i class="fa fa-bell-o"></i>
                 <h3 class="box-title">Success!</h3>
               </div>
               <div class="box-body">   
             <div class="callout callout-info" style = "margin: 0px;" >
-              <h4>Message sent (11/10/1989)</h4>
-              <p>Youre message has been successfully sent to (0) recipients. To view more detailed information about this message click "details" below.</p>
+              <h4>Message sent</h4>
+              <p>Your message has been successfully sent to <b>${params.totalRecp}</b> recipient(s). View detailed information about this message by clicking "Details" below.</p>
             </div>
             
             <div style = "margin: 10px 0px 5px 0px;" >
-            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn   btn-default">New Message</a>
+                <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn   btn-default">Address Book</a>
 	            <a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Details</a>
             </div>
 
@@ -279,24 +279,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- MESSAGE SENT SUCCESS -->
          
 </g:if>
-
+    
 <g:elseif test="${conType == 'AddContact'}" >
 
 			<!-- Contact added SUCCESS -->
             <div class="box box-info">
               <div class="box-header with-border">
-                  <i class="fa fa-warning"></i>
+                  <i class="fa fa-bell-o"></i>
                 <h3 class="box-title">Success!</h3>
               </div>
               <div class="box-body">   
             <div class="callout callout-info" style = "margin: 0px;" >
-              <h4>Contact Added (11/10/1989)</h4>
-              <p>Youre message has been successfully sent to (0) recipients. To view more detailed information about this message click "details" below.</p>
+              <h4>Contact Added</h4>
+              <p>
+				${params.name} has been successfully added to your address book.	
+              </p>
             </div>
             
             <div style = "margin: 10px 0px 5px 0px;" >
-            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn   btn-default">New Message</a>
-	            <a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Details</a>
+                <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Address Book</a>
+            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn btn-default">New Message</a>
             </div>
 
               </div><!-- /.box-body -->
@@ -308,7 +310,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <g:elseif test="${conType == 'FAILEDAddContact'}" >
 
-			<!-- Contact added SUCCESS -->
+			<!-- Contact added FAILED -->
             <div class="box box-info">
               <div class="box-header with-border">
                   <i class="fa fa-warning"></i>
@@ -316,8 +318,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div>
               <div class="box-body">   
             <div class="callout callout-warning" style = "margin: 0px;" >
-              <h4>Contact Already Exist (11/10/1989)</h4>
-              <p>Youre message has been successfully sent to (0) recipients. To view more detailed information about this message click "details" below.</p>
+              <h4>Contact Already Exist</h4>
+              <p>
+              	It looks like this contact already exist in your address book.
+              </p>
             </div>
             
             <div style = "margin: 10px 0px 5px 0px;" >
@@ -328,12 +332,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div><!-- /.box-body -->
             </div><!-- /.box -->
 			<!-- Contact added SUCCESS -->
+			
+			</g:elseif>
+			
             
+		<g:elseif test="${conType == 'FAILEDtext'}" >
+		            
+			<!-- Text sent FAILED -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                  <i class="fa fa-warning"></i>
+                <h3 class="box-title">FAILED!</h3>
+              </div>
+              <div class="box-body">   
+            <div class="callout callout-warning" style = "margin: 0px;" >
+              <h4>Message failed.</h4>
+              <p>
+              	Your message has failed to send to all recipients. Please go back and try again. If this error does not get resolved please contact support at Support@TxtWolf.com
+              </p>
+            </div>
             
-</g:elseif>
-            
-            
-            
+            <div style = "margin: 10px 0px 5px 0px;" >
+            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn   btn-default">New Message</a>
+	            <a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Details</a>
+            </div>
+
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+			<!-- Contact added SUCCESS -->    
+		            
+		</g:elseif>
+		            
+		            
+		            
             
             
            

@@ -207,34 +207,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="header">Tools</li>
             <!-- Optionally, you can add icons to the links -->
             
-            
+                    
             <li class="active">
               <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Contacts</a></li> 
-                <li><a href="#">Groups</a></li>                
-                <li><a href="#">New Contact</a></li>    
+                <li><a href="${createLink(controller: 'Dashboard', action: 'dashboard')}">Contacts</a></li> 
+                <li><a href="${createLink(controller: 'Dashboard', action: 'groups')}">Groups</a></li>                
+                <li><a class = "fa fa-plus" href="${createLink(controller: 'Dashboard', action: 'newContact')}"> New Contact</a></li>    
               </ul>
             </li>
 
-       
              <li class="treeview">
               <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}">Compose Text</a></li>
-                <li><a href="#">Scheduled Text</a></li>       
+                <li><a href="${createLink(controller: 'Dashboard', action: 'secheduledTxt')}">Secheduled Text</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'txtHostory')}">History</a></li>       
               </ul>
             </li>
        
              <li class="treeview">
               <a href="#"><i class="fa fa-ticket"></i> <span>Promotions</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">View Promotions</a></li>
-                <li><a href="#">Validate Promo Code</a></li>       
-                <li><a href="#">Create Promotion</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'ViewPromos')}">View Promotions</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'validatePromo')}">Validate Promo Code</a></li>       
+                <li><a href="${createLink(controller: 'Dashboard', action: 'createPromo')}">Create Promotion</a></li>
               </ul>
             </li>
-       
 
             
           </ul><!-- /.sidebar-menu -->
@@ -317,11 +316,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">City</label>
                       <div class="col-sm-10">
-                        <input name = "city"  type="text" class="form-control" placeholder="Not Required">
+                        <input name = "city"  id = "city" type="text" class="form-control" placeholder="Not Required">
                       </div>
                     </div>
-
-                  
+       
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">State</label>
                       <div class="col-sm-10">
@@ -329,16 +327,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       </div>
                     </div>
                     
-                    
-                  
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Zip</label>
                       <div class="col-sm-10">
                         <input name = "zip"  type="text" class="form-control" id="zip" placeholder="Not Required">
                       </div>
                     </div>
-
-
                     
                   </div><!-- /.box-body -->
                   <div class="box-footer">
@@ -351,14 +345,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 
                </g:form>
                 
-                
-                
-                
               </div><!-- /.box -->
-       
-       
-       
-       
+         
   </section><!-- /.content -->
         
       </div><!-- /.content-wrapper -->
@@ -566,11 +554,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	  	}
 
 	  	if (address.length > 0 || city.length > 0 || state.length > 0 || zip.length > 0) {
-		  	if (!address.length > 0 && !city.length > 0 && !state.length > 0 && !zip.length > 0) {
-				errors.push("If you are including an address you must enter all required address fields.");			
+		  	alert(address.length);
+		  	if (address.length == 0 || city.length == 0 || state.length == 0 || zip.length == 0) {	
+				error = true;		  	
+				errors.push("If you are including an address you must enter <b>all</b> address fields.");			
 		  	}		  	
 		 }
-	  		  	
+
 		if (error){
 			for (i = 0; i < errors.length; i++) { 
 				$("#ModalAlertText").append("*" + errors[i] + "<br/>");		

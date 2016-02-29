@@ -42,12 +42,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <body class="hold-transition skin-purple sidebar-mini">
     <div class="wrapper">
+    
 
       <!-- Main Header -->
       <header class="main-header">
+      
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a  href="${createLink(controller: 'Dashboard', action: 'dashboard')}"  class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>W</b>olf</span>
           <!-- logo for regular state and mobile devices -->
@@ -185,53 +187,51 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="#"><i class="fa fa-circle text-success"></i> Active</a>
             </div>
           </div>
-
+          
           <!-- search form (Optional) -->
-          <form action="#" method="get" class="sidebar-form">
+           <g:form   controller="Dashboard" action="dashboard" enctype="multipart/form-data" class="sidebar-form">           
             <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search Contacts...">
+              <input type="text" name = "searchQuery"  class="form-control" placeholder="Search Contacts...">
               <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+              <button action="dashboard" name="search" id="search-btn" class="btn btn-flat" ><i class="fa fa-search"></i></button>
               </span>
             </div>
-          </form>
+            </g:form> 
+   
           <!-- /.search form -->
 
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
             <li class="header">Tools</li>
             <!-- Optionally, you can add icons to the links -->
-            
-            
+             
             <li class="active">
               <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Contacts</a></li> 
-                <li><a href="#">Groups</a></li>                
-                <li><a href="${createLink(controller: 'Dashboard', action: 'newContact')}">New Contact</a></li>    
+                <li><a href="${createLink(controller: 'Dashboard', action: 'dashboard')}">Contacts</a></li> 
+                <li><a href="${createLink(controller: 'Dashboard', action: 'groups')}">Groups</a></li>                
+                <li><a class = "fa fa-plus" href="${createLink(controller: 'Dashboard', action: 'newContact')}"> New Contact</a></li>    
               </ul>
             </li>
 
-       
              <li class="treeview">
               <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}">Compose Text</a></li>
-                <li><a href="#">Scheduled Text</a></li>       
+                <li><a href="${createLink(controller: 'Dashboard', action: 'secheduledTxt')}">Secheduled Text</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'txtHostory')}">History</a></li>       
               </ul>
             </li>
        
              <li class="treeview">
               <a href="#"><i class="fa fa-ticket"></i> <span>Promotions</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">View Promotions</a></li>
-                <li><a href="#">Validate Promo Code</a></li>       
-                <li><a href="#">Create Promotion</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'ViewPromos')}">View Promotions</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'validatePromo')}">Validate Promo Code</a></li>       
+                <li><a href="${createLink(controller: 'Dashboard', action: 'createPromo')}">Create Promotion</a></li>
               </ul>
             </li>
-       
 
-            
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -262,26 +262,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         
         </g:if>
-                
+        
+        
+         <input  id = 'searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
+        
+                    
           <div class="row">
             <div class="col-xs-12">       
               <div class="box">
-                <div class="box-header">
-                  
+                <div class="box-header">      
                  <g:form id = "searchForm" controller="Dashboard" action="dashboard" enctype="multipart/form-data" >
-                 
                 <div class="input-group margin" style = "width: 250px; margin: 10px 0px 0px 0px;">
-                   
                 
-                    <input name = "searchQuery" placeholder="Name, address..." type="text" class="form-control">
+                    <input id = "seachQueryInput" name = "searchQuery" placeholder="Name, address..." type="text" class="form-control">
                     <span class="input-group-btn">
                       <g:actionSubmit  action="dashboard" class="btn btn-info btn-flat" type="button" value = "Search"></g:actionSubmit>             
                     </span>   
                                      
                   </div><!-- /input-group -->   
               </g:form>
-                      
-                                    
+                       
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example1" class="table table-bordered table-hover">
@@ -295,7 +295,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </thead>
                     <tbody>
 
-				 <g:if test="${contacts}">	
+				 <g:if test="${contacts || offset > 0}">	
 				 
 				 	<g:if test="${contacts != 'NONE'}">						 			
 	                    <g:each in="${contacts}">
@@ -353,8 +353,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- /.box-body -->
                 
                         <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
-	                        <g:link  action="dashboard"  params="[offset: offset, up: 'false']"  type="button" class="btn btn-default">Back</g:link>
-                        	<g:link  action="dashboard"  params="[offset: offset, up: 'true']"  type="button" class="btn btn-default">Next</g:link>
+	                        <g:link  action="dashboard"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
+                        	<g:link  action="dashboard"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
                         </div>
                         
                    <p style = "float: right; text-align: right; margin: 15px; display: inline-block;" >
@@ -364,10 +364,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                    </p>
                 
                 
-              </div><!-- /.box -->
+              </div> <!-- /.box -->
             </div><!-- /.col -->
           </div><!-- /.row -->
-        </section><!-- /.content -->
+        </section> 
         
       </div><!-- /.content-wrapper -->
 
@@ -501,6 +501,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </body>
   
   <script>
+
+
+  
+
+  $( document ).ready(function() {
+	  if($("#searchQueryHiddenField").val() != "") {
+		$("#seachQueryInput").val($("#searchQueryHiddenField").val().toString());
+		}
+	});
 
   function test(number) {
 	  return true;

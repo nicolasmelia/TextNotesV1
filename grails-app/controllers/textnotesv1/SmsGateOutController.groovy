@@ -56,9 +56,9 @@ class SmsGateOutController {
 		
 			
 		if (success) {
-			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "Text"])
+			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "Text", totalRecp: tags.size.toString()])
 		} else {
-			render "ERROR"
+			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "FAILEDtext"])
 		}
 	}
 	
