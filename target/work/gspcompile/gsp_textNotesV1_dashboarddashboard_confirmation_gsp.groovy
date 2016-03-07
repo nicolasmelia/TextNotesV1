@@ -65,46 +65,73 @@ expressionOut.print(session.firstName)
 printHtmlPart(13)
 expressionOut.print(session.lastName)
 printHtmlPart(21)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
 printHtmlPart(22)
-if(true && (conType == 'Text')) {
+expressionOut.print(createLink(controller: 'Dashboard', action: 'groups'))
 printHtmlPart(23)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
 printHtmlPart(24)
-expressionOut.print(createLink(controller: 'Dashboard'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
 printHtmlPart(25)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'secheduledTxt'))
+printHtmlPart(26)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'txtHostory'))
+printHtmlPart(27)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'ViewPromos'))
+printHtmlPart(28)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'validatePromo'))
+printHtmlPart(29)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'createPromo'))
+printHtmlPart(30)
+if(true && (params.conType == 'Text')) {
+printHtmlPart(31)
+expressionOut.print(params.totalRecp)
+printHtmlPart(32)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
+printHtmlPart(33)
+expressionOut.print(createLink(controller: 'Dashboard'))
+printHtmlPart(34)
 }
 else if(true && (conType == 'AddContact')) {
-printHtmlPart(26)
+printHtmlPart(35)
+expressionOut.print(params.name)
+printHtmlPart(36)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
+printHtmlPart(37)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
-printHtmlPart(24)
-expressionOut.print(createLink(controller: 'Dashboard'))
-printHtmlPart(27)
+printHtmlPart(38)
 }
 else if(true && (conType == 'FAILEDAddContact')) {
-printHtmlPart(28)
+printHtmlPart(39)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
-printHtmlPart(24)
+printHtmlPart(40)
 expressionOut.print(createLink(controller: 'Dashboard'))
-printHtmlPart(27)
+printHtmlPart(41)
 }
-printHtmlPart(29)
-invokeTag('javascript','g',421,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
-printHtmlPart(30)
-invokeTag('javascript','g',424,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
-printHtmlPart(31)
-invokeTag('javascript','g',427,['src':("dashboard/app.min.js")],-1)
-printHtmlPart(32)
+else if(true && (conType == 'FAILEDtext')) {
+printHtmlPart(42)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
+printHtmlPart(40)
+expressionOut.print(createLink(controller: 'Dashboard'))
+printHtmlPart(43)
+}
+printHtmlPart(44)
+invokeTag('javascript','g',452,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(45)
+invokeTag('javascript','g',455,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(46)
+invokeTag('javascript','g',458,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(47)
 })
-invokeTag('captureBody','sitemesh',462,['class':("hold-transition skin-purple sidebar-mini")],1)
-printHtmlPart(33)
+invokeTag('captureBody','sitemesh',493,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(48)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1453600719710L
+public static final long LAST_MODIFIED = 1456712623148L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

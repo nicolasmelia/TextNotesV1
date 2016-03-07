@@ -75,6 +75,47 @@ class DashboardController {
 			   redirect(controller: "Home")
 		   }
 	}
+	
+	
+	def editContact() {
+			if (session["userID"]) {
+				
+				if (!params.firstName) {
+					Contact contact = Contact.findByContactID(params.contactID)
+					if (contact) {   
+						print  contact.firstName
+						render(view:"dashboard_editContact", model: [accountInfo: getUserAccountInfo(), contact: contact])
+					} else {
+						render "uh oh and error"
+					}					
+				} else {
+					// Edit the contact 
+					Contact contact = Contact.findByContactID(params.contactID)
+					contact.firstName = params.firstName.toString().trim()
+					contact.lastName = params.lastName.toString().trim()
+					contact.fullName = contact.firstName + " " + contact.lastName
+					contact.phoneNumber = params.phoneNumber.toString().trim()
+					
+					contact.city = params.city.toString().trim()
+					contact.state = params.state.toString().trim()
+					contact.zip = params.zip.toString().trim()
+					contact.address = params.address.toString().trim()
+
+					contact.userID = session["userID"]
+					
+					contact.save(flush:true)
+					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContact", name: contact.fullName.toString(), number: contact.phoneNumber.toString()])
+					
+				
+				}
+				
+				
+				
+				
+		   } else {
+			   redirect(controller: "Home")
+		   }
+	}
 
 	
 	def addNewContact() {	
@@ -166,6 +207,18 @@ class DashboardController {
 		} else {
 			redirect(controller: "Home")
 		}
+	}
+	
+	def details() {
+		if (session["userID"]) {
+			if (params.conType == "Contact") {
+			render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), conType:  params.conType])
+			}
+			
+			
+	   } else {
+		   redirect(controller: "Home")
+	   }	
 	}
 	
 	def proccessTxtSend() {

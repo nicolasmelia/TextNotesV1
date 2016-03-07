@@ -467,10 +467,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <a class="btn btn-app" style = "margin-bottom:0px; margin-top: 15px;">
                     <i class="fa fa-users"></i> Add to Group
                   </a>
-                  <a class="btn btn-app" style = "margin-bottom:0px; margin-top: 15px;">
-                    <i class="fa fa-edit"></i> Edit
-                  </a>
-                    
+                  <g:link  style = "margin-bottom:0px; margin-top: 15px; "  action="editContact"  params="[contactID: it.contactID]"  type="button" class="btn btn-app"  >            
+                    <i class="fa fa-edit"></i> Edit Contact
+                  </g:link>
+                  
+                   <g:link  style = "margin-bottom:0px; margin-top: 15px; "  action="details"  params="[contactID: it.contactID, conType: 'Contact']"  type="button" class="btn btn-app"  >            
+                    <i class="fa fa-user"></i> Contact Details
+                  </g:link>
+                  
+                 
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>

@@ -65,24 +65,40 @@ expressionOut.print(session.firstName)
 printHtmlPart(13)
 expressionOut.print(session.lastName)
 printHtmlPart(21)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
 printHtmlPart(22)
-invokeTag('javascript','g',340,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'groups'))
 printHtmlPart(23)
-invokeTag('javascript','g',343,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
 printHtmlPart(24)
-invokeTag('javascript','g',346,['src':("dashboard/app.min.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
 printHtmlPart(25)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'secheduledTxt'))
+printHtmlPart(26)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'txtHostory'))
+printHtmlPart(27)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'ViewPromos'))
+printHtmlPart(28)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'validatePromo'))
+printHtmlPart(29)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'createPromo'))
+printHtmlPart(30)
+invokeTag('javascript','g',340,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(31)
+invokeTag('javascript','g',343,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(32)
+invokeTag('javascript','g',346,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(33)
 })
 invokeTag('captureBody','sitemesh',381,['class':("hold-transition skin-purple sidebar-mini")],1)
-printHtmlPart(26)
+printHtmlPart(34)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1453072518816L
+public static final long LAST_MODIFIED = 1456685032099L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
