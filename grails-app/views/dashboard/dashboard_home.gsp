@@ -300,7 +300,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				 	<g:if test="${contacts != 'NONE'}">						 			
 	                    <g:each in="${contacts}">
 	                    
-	                      <tr OnClick = "test('${it.firstName} ${it.lastName}')"  data-toggle="modal" data-target="#myModal" class = "pointer" >
+	                      <tr OnClick = "test('${it.firstName} ${it.lastName}')"  data-toggle="modal" data-target="#myModal${it.contactID}" class = "pointer" >
 	                        <td><a href = "#"><b>${it.firstName} ${it.lastName}</b></a></td>
 	                        <td>${it.phoneNumber}</td>
 	                        
@@ -449,7 +449,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <g:if test="${contacts && contacts != 'NONE'}">						 			      
           <g:each in="${contacts}">
          
-            <div class="modal" id="myModal" role="dialog">
+            <div class="modal" id="myModal${it.contactID}" role="dialog">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">

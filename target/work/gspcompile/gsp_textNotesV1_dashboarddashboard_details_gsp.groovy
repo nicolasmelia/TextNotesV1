@@ -85,53 +85,30 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'createPromo'))
 printHtmlPart(30)
 expressionOut.print(conType)
 printHtmlPart(31)
-if(true && (params.conType == 'Text')) {
+if(true && (conType == 'Contact')) {
 printHtmlPart(32)
-expressionOut.print(params.totalRecp)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
 printHtmlPart(33)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
 printHtmlPart(34)
-expressionOut.print(createLink(controller: 'Dashboard'))
+}
 printHtmlPart(35)
-}
-else if(true && (conType == 'Contact')) {
+invokeTag('javascript','g',377,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(36)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
+invokeTag('javascript','g',380,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(37)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
+invokeTag('javascript','g',383,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(38)
-}
-else if(true && (conType == 'FAILEDAddContact')) {
-printHtmlPart(39)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
-printHtmlPart(40)
-expressionOut.print(createLink(controller: 'Dashboard'))
-printHtmlPart(41)
-}
-else if(true && (conType == 'FAILEDtext')) {
-printHtmlPart(42)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
-printHtmlPart(40)
-expressionOut.print(createLink(controller: 'Dashboard'))
-printHtmlPart(43)
-}
-printHtmlPart(44)
-invokeTag('javascript','g',454,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
-printHtmlPart(45)
-invokeTag('javascript','g',457,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
-printHtmlPart(46)
-invokeTag('javascript','g',460,['src':("dashboard/app.min.js")],-1)
-printHtmlPart(47)
 })
-invokeTag('captureBody','sitemesh',495,['class':("hold-transition skin-purple sidebar-mini")],1)
-printHtmlPart(48)
+invokeTag('captureBody','sitemesh',418,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(39)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1457312158368L
+public static final long LAST_MODIFIED = 1457324860645L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

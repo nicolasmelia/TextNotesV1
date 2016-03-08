@@ -105,8 +105,8 @@ if(true && (contacts || offset > 0)) {
 printHtmlPart(40)
 if(true && (contacts != 'NONE')) {
 printHtmlPart(41)
-for( _it1775658917 in (contacts) ) {
-changeItVariable(_it1775658917)
+for( _it68808938 in (contacts) ) {
+changeItVariable(_it68808938)
 printHtmlPart(42)
 expressionOut.print(it.firstName)
 printHtmlPart(14)
@@ -151,8 +151,8 @@ invokeTag('link','g',357,['action':("dashboard"),'params':([offset: offset, up: 
 printHtmlPart(60)
 if(true && (contacts && contacts != 'NONE')) {
 printHtmlPart(61)
-for( _it2145942542 in (contacts) ) {
-changeItVariable(_it2145942542)
+for( _it47479558 in (contacts) ) {
+changeItVariable(_it47479558)
 printHtmlPart(62)
 expressionOut.print(it.firstName)
 printHtmlPart(14)
@@ -165,20 +165,20 @@ createClosureForHtmlPart(66, 4)
 invokeTag('link','g',472,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("editContact"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(67)
 createClosureForHtmlPart(68, 4)
-invokeTag('link','g',476,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("dashboard_details"),'params':([contactID: it.contactID, conType: 'Contact']),'type':("button"),'class':("btn btn-app")],4)
+invokeTag('link','g',476,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("details"),'params':([contactID: it.contactID, conType: 'Contact']),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(69)
 }
 printHtmlPart(70)
 }
 printHtmlPart(71)
-invokeTag('javascript','g',497,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+invokeTag('javascript','g',492,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(72)
-invokeTag('javascript','g',500,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+invokeTag('javascript','g',495,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(73)
-invokeTag('javascript','g',503,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',498,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(74)
 })
-invokeTag('captureBody','sitemesh',511,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('captureBody','sitemesh',506,['class':("hold-transition skin-purple sidebar-mini")],1)
 printHtmlPart(75)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -186,7 +186,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1457312200638L
+public static final long LAST_MODIFIED = 1457324953045L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

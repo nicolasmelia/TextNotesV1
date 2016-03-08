@@ -211,11 +211,10 @@ class DashboardController {
 	
 	def details() {
 		if (session["userID"]) {
-			if (params.conType == "Contact") {
-			render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), conType:  params.conType])
-			}
-			
-			
+			if (params.conType == "Contact") {		
+				Contact contact = Contact.findByContactID(params.contactID)
+				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), contact: contact, conType:  params.conType])
+			}	
 	   } else {
 		   redirect(controller: "Home")
 	   }	

@@ -268,16 +268,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   
 			<g:if test="${conType == 'Contact'}" >
 	              <div class="box-body">   
-	              <h4>Contact Added</h4>
+	              <h4>${contact.fullName}</h4>
 	              <p>
-					Recipients Attached: <span id = "attachedRecipientsCount" >0</span> <br>
+					Phone Number: <span id = "attachedRecipientsCount" >${contact.phoneNumber}</span> <br>
 					Remaining Text Balance: <span>TEST</span><br>
 					Scheduled Send Time: <span id = "ScheduledSendTime" ><b>Now</b></span>
 	              </p>
 	            
 	            <div style = "margin: 10px 0px 5px 0px;" >
-	                <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Address Book</a>
-	            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn btn-default">New Message</a>
+	            
+                  <g:link  class="btn btn-default"  action="sendTxt"  params="[contactID: contact.contactID]"  type="button"  >            
+                 	<i class="fa fa-envelope-o"></i> Send Text
+                  </g:link>       
+                            
+                  <g:link class="btn btn-default" action="editContact"  params="[contactID: contact.contactID]"  type="button"  >            
+                    Edit Contact
+                  </g:link>
+                  
+
+                                    	                
 	            </div>
 	
 	              </div><!-- /.box-body -->                      
