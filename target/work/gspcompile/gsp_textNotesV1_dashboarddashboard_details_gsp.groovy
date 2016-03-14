@@ -87,28 +87,34 @@ expressionOut.print(conType)
 printHtmlPart(31)
 if(true && (conType == 'Contact')) {
 printHtmlPart(32)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
+expressionOut.print(contact.fullName)
 printHtmlPart(33)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
+expressionOut.print(contact.phoneNumber)
 printHtmlPart(34)
-}
-printHtmlPart(35)
-invokeTag('javascript','g',377,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+createClosureForHtmlPart(35, 3)
+invokeTag('link','g',282,['class':("btn btn-default"),'action':("sendTxt"),'params':([contactID: contact.contactID]),'type':("button")],3)
 printHtmlPart(36)
-invokeTag('javascript','g',380,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
-printHtmlPart(37)
-invokeTag('javascript','g',383,['src':("dashboard/app.min.js")],-1)
+createClosureForHtmlPart(37, 3)
+invokeTag('link','g',286,['class':("btn btn-default"),'action':("editContact"),'params':([contactID: contact.contactID]),'type':("button")],3)
 printHtmlPart(38)
-})
-invokeTag('captureBody','sitemesh',418,['class':("hold-transition skin-purple sidebar-mini")],1)
+}
 printHtmlPart(39)
+invokeTag('javascript','g',386,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(40)
+invokeTag('javascript','g',389,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(41)
+invokeTag('javascript','g',392,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(42)
+})
+invokeTag('captureBody','sitemesh',427,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(43)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1457324860645L
+public static final long LAST_MODIFIED = 1457405463100L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

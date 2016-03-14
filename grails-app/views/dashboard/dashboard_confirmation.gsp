@@ -255,7 +255,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <section class="content">
 
 
-<g:if test="${params.conType == 'Text'}">
+<g:if test="${params.conType == 'Message'}">
 
 			<!-- MESSAGE SENT SUCCESS -->
             <div class="box box-info">
@@ -271,7 +271,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
             <div style = "margin: 10px 0px 5px 0px;" >
                 <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn   btn-default">Address Book</a>
-	            <a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Details</a>
+	            <g:link  class="btn btn-default" action="details"  params="[conType: 'Message', messageID: params.messageID]"  type="button"  >            
+                    Details
+                  </g:link>
             </div>
 
               </div><!-- /.box-body -->
@@ -290,15 +292,61 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div>
               <div class="box-body">   
             <div class="callout callout-info" style = "margin: 0px;" >
-              <h4>Contact Added</h4>
+              <h4>Contact added</h4>
               <p>
-				${params.name} has been successfully added to your address book.	
+				${params.name} has been successfully added to your address book. Click "Details" to view detailed information on your new contact.	
               </p>
             </div>
             
             <div style = "margin: 10px 0px 5px 0px;" >
                 <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Address Book</a>
-            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn btn-default">New Message</a>
+            	
+            	<g:link  class="btn btn-default" action="details"  params="[contactID: params.contactID, conType: 'Contact']"  type="button"  >            
+                    Details
+                  </g:link>
+    	
+                  <g:link class="btn btn-default"   action="sendTxt"  params="[contactID: params.contactID]"  type="button"   >            
+                 	Send Text
+                  </g:link>
+    	
+            </div>
+
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+			<!-- Contact added SUCCESS -->
+            
+            
+</g:elseif>
+
+
+    
+<g:elseif test="${conType == 'editContact'}" >
+
+			<!-- Contact added SUCCESS -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                  <i class="fa fa-bell-o"></i>
+                <h3 class="box-title">Success!</h3>
+              </div>
+              <div class="box-body">   
+            <div class="callout callout-info" style = "margin: 0px;" >
+              <h4>Contact edit saved</h4>
+              <p>
+				${params.name} has been successfully edited. Click "Details" to view detailed information on this contact.	
+              </p>
+            </div>
+            
+            <div style = "margin: 10px 0px 5px 0px;" >
+                <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Address Book</a>
+            	
+            	<g:link  class="btn btn-default" action="details"  params="[contactID: params.contactID, conType: 'Contact']"  type="button"  >            
+                    Details
+                  </g:link>
+    	
+                  <g:link class="btn btn-default"   action="sendTxt"  params="[contactID: params.contactID]"  type="button"   >            
+                 	Send Text
+                  </g:link>
+    	
             </div>
 
               </div><!-- /.box-body -->
@@ -320,13 +368,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="callout callout-warning" style = "margin: 0px;" >
               <h4>Contact Already Exist</h4>
               <p>
-              	It looks like this contact already exist in your address book.
+              	It looks like this contact already exist in your address book. Please go back or view your adress book for more information.
               </p>
             </div>
             
             <div style = "margin: 10px 0px 5px 0px;" >
-            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn   btn-default">New Message</a>
-	            <a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Details</a>
+                <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Address Book</a>
             </div>
 
               </div><!-- /.box-body -->

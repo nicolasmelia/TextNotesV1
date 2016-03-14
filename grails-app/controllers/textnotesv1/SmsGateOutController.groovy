@@ -8,7 +8,6 @@ import com.twilio.sdk.verbs.Media;
 import java.util.Map;
 import java.util.HashMap;
  
-
 import com.twilio.sdk.resource.factory.MessageFactory
 import com.twilio.sdk.resource.instance.Account;
 import com.twilio.sdk.TwilioRestClient;
@@ -29,36 +28,44 @@ class SmsGateOutController {
 	}
 	
 	def messageOut(){
-		String message
-		boolean success = false;
-		if (params.subject != null) {
-			message = params.subject + "\n" + params.body		
-		} else {
-			message = params.body	
-		}
 		
-		ArrayList<String> tags = params.tags.toString().split(",")	
-		for (String tag : tags)	 {
-			String contactType = tag.split(":")[0]
-			switch (contactType) {
-				case "N":  // Single number	
-					success = sendMessage(tag.split(":")[1], message)
-					break;
-				case "ID":
-					String clientID = tag.split(":")[1]
-					Contact contact = Contact.findByContactID(clientID)
-					success = sendMessage(contact.phoneNumber, message)				
-					break;
-				default: 
-					break;
-			}				
-		}
-		
+		if (session["userID"]) {
+			String message = "NO BODY"
+			String title = "NO TITLE"
+			boolean success = false;
+			if (params.subject != null) {
+				title = params.subject
+				message = params.subject + "\n" + params.body		
+			} else {
+				message = params.body	
+			}
 			
-		if (success) {
-			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "Text", totalRecp: tags.size.toString()])
+			ArrayList<String> tags = params.tags.toString().split(",")	
+			for (String tag : tags)	 {
+				String contactType = tag.split(":")[0]
+				switch (contactType) {
+					case "N":  // Single number	
+						success = sendMessage(tag.split(":")[1], message)
+						break;
+					case "ID":
+						String clientID = tag.split(":")[1]
+						Contact contact = Contact.findByContactID(clientID)
+						success = sendMessage(contact.phoneNumber, message)				
+						break;
+					default: 
+						break;
+				}				
+			}
+			
+				
+			if (success) {			
+				String messageID = logMessage(tags, message, title)
+				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "Message", totalRecp: tags.size.toString(), messageID: messageID])
+			} else {
+				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "FAILEDtext"])
+			}
 		} else {
-			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "FAILEDtext"])
+			render "Please go home and log in."
 		}
 	}
 	
@@ -91,6 +98,36 @@ class SmsGateOutController {
 	
 	def testMessage() {
 		sendMessage("3305408023", "THIS IS A TEST")
+	}
+	
+	def logMessage(ArrayList<String> tags, String body, String title) {
+		
+		// Create a UUID and cut it in half
+		String uniqueID = UUID.randomUUID().toString().replace("-", "");
+		int midpoint = uniqueID.length() / 2;
+		String halfUUID = uniqueID.substring(0, midpoint)
+		
+		MessageOut ms = new MessageOut()
+		ms.messageID = halfUUID
+		ms.userID = session["userID"]
+		ms.message = body
+		ms.title = title
+		ms.lastSentDate = new Date()
+		
+		String saveableList
+		for (String recep : tags) {		
+			saveableList = saveableList + "/" + recep
+		}
+		
+		ms.recipients = saveableList	
+		
+		// scheduled or recurring
+		ms.recurring = false
+		ms.scheduled = false
+			
+		ms.save(flush:true)
+		return ms.messageID 
+			
 	}
 
 	

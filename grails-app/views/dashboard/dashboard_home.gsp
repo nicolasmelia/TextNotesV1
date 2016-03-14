@@ -265,6 +265,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         
         
          <input  id = 'searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
+         <input  id = 'offset' type="hidden" value="${offset}">
+         <input  id = 'clientCount' type="hidden" value="${clientCount}">
         
                     
           <div class="row">
@@ -319,7 +321,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<g:else>
                  
                       <tr  class = "pointer" >
-                        <td><b>No Results, Try another search.</b></td>
+                        <td><b>No Results, Try another search or go back.</b></td>
                         <td>-</td>
 						<td>-</td>
                         <td>-</td>
@@ -359,7 +361,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         
                    <p style = "float: right; text-align: right; margin: 15px; display: inline-block;" >
                   
-                   <medium>Showing 1-20/3000</medium>
+                   <span id = "pageInfo">Showing ${currentPage}/3000</span>
   
                    </p>
                 
@@ -462,11 +464,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                  	<i class="fa fa-envelope-o"></i>Send Text
                   </g:link>
                   
- 				 <a href = "" >
-                  </a>
-                  <a class="btn btn-app" style = "margin-bottom:0px; margin-top: 15px;">
-                    <i class="fa fa-users"></i> Add to Group
-                  </a>
+ 				 <a href = "" ></a>
+                 
+                  
                   <g:link  style = "margin-bottom:0px; margin-top: 15px; "  action="editContact"  params="[contactID: it.contactID]"  type="button" class="btn btn-app"  >            
                     <i class="fa fa-edit"></i> Edit Contact
                   </g:link>
@@ -474,6 +474,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                    <g:link  style = "margin-bottom:0px; margin-top: 15px; "  action="details"  params="[contactID: it.contactID, conType: 'Contact']"  type="button" class="btn btn-app"  >            
                     <i class="fa fa-user"></i> Contact Details
                   </g:link>
+                  
+                  <a class="btn btn-app" style = "margin-bottom:0px; margin-top: 15px;">
+                    <i class="fa fa-users"></i> Add to Group
+                  </a>      
                   
                  
                   </div>
@@ -512,8 +516,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   $( document ).ready(function() {
 	  if($("#searchQueryHiddenField").val() != "") {
-		$("#seachQueryInput").val($("#searchQueryHiddenField").val().toString());
+			$("#seachQueryInput").val($("#searchQueryHiddenField").val().toString());
 		}
+
+		// Set pageinfo
+		var totalClientCount = $("#clientCount").val();
+		var offset = $("#offset").val();
+		var offsetTop = (parseInt(offset) + 10);
+		$("#pageInfo").html("Viewing " + offset + "-" + offsetTop + "/" + totalClientCount);
+		
 	});
 
   function test(number) {

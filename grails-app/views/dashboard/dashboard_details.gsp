@@ -254,10 +254,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
   <section class="content">
 
-
-
-
-
 			<!-- Contact added SUCCESS -->
             <div class="box box-default">
               <div class="box-header with-border">
@@ -269,11 +265,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<g:if test="${conType == 'Contact'}" >
 	              <div class="box-body">   
 	              <h4>${contact.fullName}</h4>
-	              <p>
-					Phone Number: <span id = "attachedRecipientsCount" >${contact.phoneNumber}</span> <br>
-					Remaining Text Balance: <span>TEST</span><br>
-					Scheduled Send Time: <span id = "ScheduledSendTime" ><b>Now</b></span>
-	              </p>
+	              
+  <table class="table table-bordered">
+
+                    <tr>
+                      <td>Phone Number</td>
+                      <td>${contact.phoneNumber}</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Address</td>
+                      <td>${contact.address}</td>
+                    </tr>
+
+                    <tr>
+                      <td>City</td>
+                      <td>${contact.city}</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>State</td>
+                      <td>${contact.state}</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Zip</td>
+                      <td>${contact.zip}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Subbed</td>
+                      <td>${contact.subbed}</td>
+                    </tr>
+               
+                    
+                  </table>   
+	              
+	              
+	              
 	            
 	            <div style = "margin: 10px 0px 5px 0px;" >
 	            
@@ -291,6 +320,51 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	
 	              </div><!-- /.box-body -->                      
 			</g:if>
+			
+                  
+			<g:if test="${conType == 'Message'}" >
+	              <div class="box-body">   
+	              <h4>Message  <g:formatDate format="MM-dd-yyyy" date="${message.lastSentDate}"/> </h4>
+	              
+  <table class="table table-bordered">
+
+                    <tr>
+                      <td>Title</td>
+                      <td>${message.title}</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Message</td>
+                      <td>${message.message}</td>
+                    </tr>
+                    
+                    
+                    <tr>
+                      <td>Recipients</td>
+                      <td>${res}</td>
+                    </tr>
+
+                    
+                  </table>   
+	              
+	              
+	              
+	            
+	            <div style = "margin: 10px 0px 5px 0px;" >
+	            
+                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
+                 	<i class="fa fa-envelope-o"></i> All Message History
+                  </g:link>       
+
+                  
+
+                                    	                
+	            </div>
+	
+	              </div><!-- /.box-body -->                      
+			</g:if>
+			
+			
 
             </div><!-- /.box -->
 			<!-- Contact added SUCCESS -->

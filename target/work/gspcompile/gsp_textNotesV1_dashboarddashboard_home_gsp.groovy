@@ -112,81 +112,85 @@ expressionOut.print(it.firstName)
 printHtmlPart(14)
 expressionOut.print(it.lastName)
 printHtmlPart(43)
+expressionOut.print(it.contactID)
+printHtmlPart(44)
 expressionOut.print(it.firstName)
 printHtmlPart(14)
 expressionOut.print(it.lastName)
-printHtmlPart(44)
-expressionOut.print(it.phoneNumber)
 printHtmlPart(45)
-if(true && (it.city)) {
+expressionOut.print(it.phoneNumber)
 printHtmlPart(46)
-expressionOut.print(it.city,)
+if(true && (it.city)) {
 printHtmlPart(47)
-expressionOut.print(it.state)
+expressionOut.print(it.city,)
 printHtmlPart(48)
-}
-else {
+expressionOut.print(it.state)
 printHtmlPart(49)
 }
+else {
 printHtmlPart(50)
 }
 printHtmlPart(51)
 }
-else {
 printHtmlPart(52)
 }
+else {
 printHtmlPart(53)
 }
-else {
 printHtmlPart(54)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
-printHtmlPart(55)
 }
+else {
+printHtmlPart(55)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
 printHtmlPart(56)
-createClosureForHtmlPart(57, 2)
+}
+printHtmlPart(57)
+createClosureForHtmlPart(58, 2)
 invokeTag('link','g',356,['action':("dashboard"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],2)
-printHtmlPart(58)
-createClosureForHtmlPart(59, 2)
+printHtmlPart(59)
+createClosureForHtmlPart(60, 2)
 invokeTag('link','g',357,['action':("dashboard"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],2)
-printHtmlPart(60)
-if(true && (contacts && contacts != 'NONE')) {
 printHtmlPart(61)
+if(true && (contacts && contacts != 'NONE')) {
+printHtmlPart(62)
 for( _it47479558 in (contacts) ) {
 changeItVariable(_it47479558)
-printHtmlPart(62)
+printHtmlPart(63)
+expressionOut.print(it.contactID)
+printHtmlPart(64)
 expressionOut.print(it.firstName)
 printHtmlPart(14)
 expressionOut.print(it.lastName)
-printHtmlPart(63)
-createClosureForHtmlPart(64, 4)
-invokeTag('link','g',463,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("sendTxt"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(65)
 createClosureForHtmlPart(66, 4)
-invokeTag('link','g',472,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("editContact"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
+invokeTag('link','g',463,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("sendTxt"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(67)
 createClosureForHtmlPart(68, 4)
-invokeTag('link','g',476,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("details"),'params':([contactID: it.contactID, conType: 'Contact']),'type':("button"),'class':("btn btn-app")],4)
+invokeTag('link','g',472,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("editContact"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(69)
-}
-printHtmlPart(70)
-}
+createClosureForHtmlPart(70, 4)
+invokeTag('link','g',476,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("details"),'params':([contactID: it.contactID, conType: 'Contact']),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(71)
-invokeTag('javascript','g',492,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+}
 printHtmlPart(72)
-invokeTag('javascript','g',495,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+}
 printHtmlPart(73)
-invokeTag('javascript','g',498,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',492,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(74)
+invokeTag('javascript','g',495,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(75)
+invokeTag('javascript','g',498,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(76)
 })
 invokeTag('captureBody','sitemesh',506,['class':("hold-transition skin-purple sidebar-mini")],1)
-printHtmlPart(75)
+printHtmlPart(77)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1457324953045L
+public static final long LAST_MODIFIED = 1457404331880L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

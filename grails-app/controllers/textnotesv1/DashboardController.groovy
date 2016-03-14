@@ -34,6 +34,9 @@ class DashboardController {
 			searchQuery = params.searchQuery	
 		}
 		
+		print clientCount
+
+		
 		if (session["userID"]) {		
 			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, contacts: getContactList(offset, searchQuery)])		 
 		} else {
@@ -104,7 +107,7 @@ class DashboardController {
 					contact.userID = session["userID"]
 					
 					contact.save(flush:true)
-					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContact", name: contact.fullName.toString(), number: contact.phoneNumber.toString()])
+					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "editContact", name: contact.fullName.toString(), number: contact.phoneNumber.toString(), contactID: contact.contactID])
 					
 				
 				}
@@ -214,7 +217,40 @@ class DashboardController {
 			if (params.conType == "Contact") {		
 				Contact contact = Contact.findByContactID(params.contactID)
 				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), contact: contact, conType:  params.conType])
-			}	
+			} else if (params.conType == "Message") {
+				MessageOut message = MessageOut.findByMessageID(params.messageID)
+				ArrayList<String> tags = message.recipients.split("/")
+				StringBuilder res = new StringBuilder();
+				for (String tag : tags)	 {
+					
+					if (!tag.toUpperCase().matches("NULL") && tag != null) {
+						String contactType = tag.split(":")[0]						
+						switch (contactType) {
+							case "N":  // Single number
+							if (res.length() != 0) {
+								res.append(', ');
+							}
+							res.append(tag.split(":")[1]);
+								break;
+							case "ID":
+								String clientID = tag.split(":")[1]
+								Contact contact = Contact.findByContactID(clientID)
+								if (res.length() != 0) {
+									res.append(', ');
+								}
+								res.append(contact.fullName);
+								break;
+							default:
+								break;
+						}
+					}
+				}
+								
+				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), message: message, conType:  params.conType, res: res.toString()])
+			}
+			
+			
+				
 	   } else {
 		   redirect(controller: "Home")
 	   }	

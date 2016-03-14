@@ -495,6 +495,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				Scheduled Send Time: <span id = "ScheduledSendTime" ><b>Now</b></span>
                 </g:each>
                 
+                
+
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
 
