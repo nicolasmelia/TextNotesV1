@@ -94,103 +94,109 @@ printHtmlPart(34)
 printHtmlPart(35)
 expressionOut.print(searchQueryHidden)
 printHtmlPart(36)
-createTagBody(2, {->
+expressionOut.print(offset)
 printHtmlPart(37)
-invokeTag('actionSubmit','g',279,['action':("dashboard"),'class':("btn btn-info btn-flat"),'type':("button"),'value':("Search")],-1)
+expressionOut.print(clientCount)
 printHtmlPart(38)
-})
-invokeTag('form','g',283,['id':("searchForm"),'controller':("Dashboard"),'action':("dashboard"),'enctype':("multipart/form-data")],2)
+createTagBody(2, {->
 printHtmlPart(39)
-if(true && (contacts || offset > 0)) {
+invokeTag('actionSubmit','g',281,['action':("dashboard"),'class':("btn btn-info btn-flat"),'type':("button"),'value':("Search")],-1)
 printHtmlPart(40)
-if(true && (contacts != 'NONE')) {
+})
+invokeTag('form','g',285,['id':("searchForm"),'controller':("Dashboard"),'action':("dashboard"),'enctype':("multipart/form-data")],2)
 printHtmlPart(41)
-for( _it68808938 in (contacts) ) {
-changeItVariable(_it68808938)
+if(true && (contacts || offset > 0)) {
 printHtmlPart(42)
-expressionOut.print(it.firstName)
-printHtmlPart(14)
-expressionOut.print(it.lastName)
+if(true && (contacts != 'NONE')) {
 printHtmlPart(43)
-expressionOut.print(it.contactID)
+for( _it1247338729 in (contacts) ) {
+changeItVariable(_it1247338729)
 printHtmlPart(44)
 expressionOut.print(it.firstName)
 printHtmlPart(14)
 expressionOut.print(it.lastName)
 printHtmlPart(45)
-expressionOut.print(it.phoneNumber)
+expressionOut.print(it.contactID)
 printHtmlPart(46)
-if(true && (it.city)) {
+expressionOut.print(it.firstName)
+printHtmlPart(14)
+expressionOut.print(it.lastName)
 printHtmlPart(47)
-expressionOut.print(it.city,)
+expressionOut.print(it.phoneNumber)
 printHtmlPart(48)
-expressionOut.print(it.state)
+if(true && (it.city)) {
 printHtmlPart(49)
-}
-else {
+expressionOut.print(it.city,)
 printHtmlPart(50)
-}
+expressionOut.print(it.state)
 printHtmlPart(51)
 }
+else {
 printHtmlPart(52)
 }
-else {
 printHtmlPart(53)
 }
 printHtmlPart(54)
 }
 else {
 printHtmlPart(55)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
+}
 printHtmlPart(56)
 }
+else {
 printHtmlPart(57)
-createClosureForHtmlPart(58, 2)
-invokeTag('link','g',356,['action':("dashboard"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],2)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
+printHtmlPart(58)
+}
 printHtmlPart(59)
 createClosureForHtmlPart(60, 2)
-invokeTag('link','g',357,['action':("dashboard"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],2)
+invokeTag('link','g',358,['action':("dashboard"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],2)
 printHtmlPart(61)
-if(true && (contacts && contacts != 'NONE')) {
-printHtmlPart(62)
-for( _it47479558 in (contacts) ) {
-changeItVariable(_it47479558)
+createClosureForHtmlPart(62, 2)
+invokeTag('link','g',359,['action':("dashboard"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],2)
 printHtmlPart(63)
-expressionOut.print(it.contactID)
+expressionOut.print(currentPage)
 printHtmlPart(64)
+if(true && (contacts && contacts != 'NONE')) {
+printHtmlPart(65)
+for( _it244090091 in (contacts) ) {
+changeItVariable(_it244090091)
+printHtmlPart(66)
+expressionOut.print(it.contactID)
+printHtmlPart(67)
 expressionOut.print(it.firstName)
 printHtmlPart(14)
 expressionOut.print(it.lastName)
-printHtmlPart(65)
-createClosureForHtmlPart(66, 4)
-invokeTag('link','g',463,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("sendTxt"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
-printHtmlPart(67)
-createClosureForHtmlPart(68, 4)
+printHtmlPart(68)
+createClosureForHtmlPart(69, 4)
+invokeTag('link','g',465,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("sendTxt"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
+printHtmlPart(70)
+createClosureForHtmlPart(71, 4)
 invokeTag('link','g',472,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("editContact"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
-printHtmlPart(69)
-createClosureForHtmlPart(70, 4)
-invokeTag('link','g',476,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("details"),'params':([contactID: it.contactID, conType: 'Contact']),'type':("button"),'class':("btn btn-app")],4)
-printHtmlPart(71)
-}
 printHtmlPart(72)
-}
-printHtmlPart(73)
-invokeTag('javascript','g',492,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+createClosureForHtmlPart(73, 4)
+invokeTag('link','g',476,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("details"),'params':([contactID: it.contactID, conType: 'Contact']),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(74)
-invokeTag('javascript','g',495,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+}
 printHtmlPart(75)
-invokeTag('javascript','g',498,['src':("dashboard/app.min.js")],-1)
+}
 printHtmlPart(76)
-})
-invokeTag('captureBody','sitemesh',506,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('javascript','g',496,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(77)
+invokeTag('javascript','g',499,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(78)
+invokeTag('javascript','g',502,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(79)
+})
+invokeTag('captureBody','sitemesh',510,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(80)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1457404331880L
+public static final long LAST_MODIFIED = 1457891978988L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

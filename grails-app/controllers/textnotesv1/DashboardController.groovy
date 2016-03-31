@@ -51,22 +51,42 @@ class DashboardController {
 	
 	
 	def sendTxt() {	
-			if (session["userID"]) {	
-				
+			if (session["userID"]) {					
 				// Check is a preuser was added from address book					
 				String preContactName = "NONE"
 				String preContactID = "NONE"
+				Contact contact
 				if (params.contactID) {
-					Contact contact = Contact.findByContactID(params.contactID)
-					preContactName = contact.firstName + " " + contact.lastName
+					contact = Contact.findByContactID(params.contactID)
+					preContactName = contact.fullName
 					preContactID = contact.contactID					
 				}
-								
-				render(view:"dashboard_SendTxt", model: [accountInfo: getUserAccountInfo(), preClientName: preContactName, preClientID: preContactID ])
-			
+				
+				render(view:"dashboard_SendTxt", model: [UAI: getUserAccountInfo(), preClientName: preContactName, preClientID: preContactID ])
+				
 		   } else {
 			   redirect(controller: "Home")
 		   }		
+	}
+	
+	def getRecipCount () {
+		int clientCount = 0 
+		ArrayList<String> tags = params.tags.toString().split(",")
+		for (String tag : tags)	 {
+			String contactType = tag.split(":")[0]
+			switch (contactType) {
+				case "N":  // Single number
+					clientCount += 1
+					break;
+				case "ID":
+					clientCount += 1
+					break;
+				default:
+					break;
+			}
+		}
+		
+		render clientCount.toString()
 	}
 	
 
@@ -108,13 +128,9 @@ class DashboardController {
 					
 					contact.save(flush:true)
 					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "editContact", name: contact.fullName.toString(), number: contact.phoneNumber.toString(), contactID: contact.contactID])
-					
-				
+	
 				}
-				
-				
-				
-				
+	
 		   } else {
 			   redirect(controller: "Home")
 		   }
@@ -150,12 +166,70 @@ class DashboardController {
 			
 			contact.save(flush:true)	
 
-			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContact", name: contact.fullName.toString(), number: contact.phoneNumber.toString()])			
+			redirect(controller: "Dashboard", action: "confirmation", params: [accountInfo: getUserAccountInfo(), conType: "AddContact", name: contact.firstName, contactID: contact.contactID])			
 		} else {
 			// User exist with the same number and name under this usersID
-			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "FAILEDAddContact"])		
+			redirect(controller: "Dashboard", action: "confirmation", params: [accountInfo: getUserAccountInfo(), conType: "FAILEDAddContact"])		
 		}
 		
+	}
+	
+	
+	def groups() {
+		int offset = 0
+		if (params.offset != null) {
+			offset = Integer.parseInt(params.offset)
+			if (params.up.toString().equals("true")) {
+				offset = offset + 10
+			} else {
+				if (offset > 0) {
+				offset = offset - 10
+				}
+			}
+		}
+		
+		// check to see if contacts exist
+		int groupCount = Groups.countByUserID(session.userID)
+				
+		if (session["userID"]) {
+			 render(view:"dashboard_groups",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, groupCount: groupCount, groups: getGroupList(offset)])
+		} else {
+			redirect(controller: "Home")
+		}
+		
+	}
+	
+	def createGroup() {
+		if (session["userID"]) {			
+			if (!params.name) {
+				render(view:"dashboard_addGroup",  model: [accountInfo: getUserAccountInfo()])
+			} else {
+				Groups testGroup = Groups.findByGroupNameAndUserID(params.name, session["userID"]); 			
+				if (!testGroup) {
+					Groups group = new Groups()
+					group.groupName = params.name
+					group.description = params.desc
+					group.state = params.state
+					group.memeberCount = 0
+					group.addDate = new Date()
+					group.userID = session["userID"]
+					// Create a UUID and cut it in half
+					String uniqueID = UUID.randomUUID().toString().replace("-", "");
+					int midpoint = uniqueID.length() / 2;
+					String halfUUID = uniqueID.substring(0, midpoint)
+					
+					group.groupID = halfUUID
+					group.save(flush:true) 
+					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addGroup", groupID: group.groupID, name: group.groupName])
+					
+				} else {
+					//Group exist 
+					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "FAILEDaddGroup", groupID: testGroup.groupID, name: testGroup.groupName])	
+				}
+			}		
+		} else {
+			redirect(controller: "Home")	
+		}
 	}
 	
 	def getContactList(offset, search){
@@ -174,6 +248,19 @@ class DashboardController {
 		}
 	}
 	
+	
+	def getGroupList(offset){
+		def	groups =  Groups.findAll("from Groups as g where g.userID=? order by g.groupName",
+					 [session.userID], [max: 10, offset: offset])
+		
+		if (groups.size > 0) {
+			return groups
+		} else {
+			return "NONE"
+		}
+	}
+	
+	
 	def searchContactAjax() {	
 		String searchString = params.searchString
 		ArrayList con = new ArrayList<Contact>()
@@ -184,11 +271,11 @@ class DashboardController {
 		
 		}	
 		
-			if (con.size == 0) {
-				render "NONE"
-			} else {
-				render con as JSON	
-			}
+		if (con.size == 0) {
+			render "NONE"
+		} else {
+			render con as JSON	
+		}
 	}
 	
 	def searchContact(searchString, offset) {
@@ -221,6 +308,7 @@ class DashboardController {
 				MessageOut message = MessageOut.findByMessageID(params.messageID)
 				ArrayList<String> tags = message.recipients.split("/")
 				StringBuilder res = new StringBuilder();
+				def contactCount = (tags.size - 1)
 				for (String tag : tags)	 {
 					
 					if (!tag.toUpperCase().matches("NULL") && tag != null) {
@@ -246,7 +334,7 @@ class DashboardController {
 					}
 				}
 								
-				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), message: message, conType:  params.conType, res: res.toString()])
+				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), message: message, conType:  params.conType, res: res.toString(), contactCount: contactCount])
 			}
 			
 			
@@ -255,6 +343,14 @@ class DashboardController {
 		   redirect(controller: "Home")
 	   }	
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	def proccessTxtSend() {
 		render params.tags

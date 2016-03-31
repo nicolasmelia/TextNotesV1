@@ -330,10 +330,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="box-footer">
                   <div class="pull-right">
                   
-                    <button onClick = "openPreview()" data-toggle="modal" data-target="#previewModal"  type="button" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
+                    <button onClick = "openPreview('${createLink(action: 'getRecipCount')}')" data-toggle="modal" data-target="#previewModal"  type="button" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
            
                   </div>
-                  <button class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
+                    <a href = "${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" class="btn btn-default">Cancel</a>
                 </div><!-- /.box-footer -->   
                 
               </div><!-- /. box -->
@@ -489,13 +489,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- /.box-header -->
                 <div class="box-body">
               
-              	<g:each in="${accountInfo}">
+              <input id = "remainingMonthlyTextBalance" type="hidden" value="${UAI.remainingMonthlyTextBalance}">
+ 
                 Recipients Attached: <span id = "attachedRecipientsCount" >0</span> <br>
-				Remaining Text Balance: <span>${it.remainingMonthlyTextBalance}/${it.monthlyTextBalance}</span><br>
-				Scheduled Send Time: <span id = "ScheduledSendTime" ><b>Now</b></span>
-                </g:each>
-                
-                
+				Remaining Text Balance: <span>${UAI.remainingMonthlyTextBalance}/${UAI.monthlyTextBalance}</span><br>
+				Scheduled Send Time: <span id = "ScheduledSendTime" ><b>Now</b></span>             
 
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
@@ -709,7 +707,7 @@ $( document ).ready(function() {
 		return true;
 	}
 
-	function openPreview() {
+	function openPreview(url) {
 		validateMainForm();
 		if ($("#compose-textarea").val().length > 0) {
 			$("#preMessageBody").text($("#compose-textarea").val());
@@ -722,7 +720,12 @@ $( document ).ready(function() {
 		} else {
 			$("#preMessageSubject").html("No Subject");		
 		}	
+		
+			getRecpCount(url, $('#tags').val());
+		
+		
 	}
+	
 
 	// Dont allow form submit with ENTER key
 	$(document).on("keypress", "form", function(event) { 
@@ -857,6 +860,8 @@ $( document ).ready(function() {
 	  $("input[placeholder~='Recipients']").attr('placeholder','');
   }
   
+  
+
 
 
 

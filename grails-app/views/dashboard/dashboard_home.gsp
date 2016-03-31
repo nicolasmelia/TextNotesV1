@@ -255,10 +255,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
   <section class="content">
           
-      <g:if test="${clientCount > 0}">	
+      <g:if test="${clientCount == 0}">	
          <div class="callout callout-info" style="margin-bottom: 10px!important;">
             <h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
-            Get started by adding clients below!
+            It looks like you dont have any contacts yet. Get started by adding clients below!
         </div>
         
         </g:if>
@@ -297,7 +297,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </thead>
                     <tbody>
 
-				 <g:if test="${contacts || offset > 0}">	
+				 <g:if test="${contacts != "NONE" || offset > 0}">	
 				 
 				 	<g:if test="${contacts != 'NONE'}">						 			
 	                    <g:each in="${contacts}">
@@ -312,8 +312,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<g:else>
 								<td>None</td>						
 							</g:else>
-	
-	                        <td>Yes</td>
+	     
+                 <g:if test="${it.subbed =! 'false'}" >
+                      <td><span style = "color: green;" ><b>Yes</b></span></td>
+                    </g:if>
+                    <g:else>
+                      <td><span style = "color: purple;"  >No</span></td>
+                    </g:else> 
+	                     
 	                      </tr>
 	                      
 						</g:each>
@@ -334,19 +340,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                  <g:else>
                  
                       <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'newContact')}';"  class = "pointer" >
-                        <td><a href = "#"><b>Add a contact!</b></a></td>
+                        <td><a href = "#"><b>Click here to add a contact!</b></a></td>
                         <td>-</td>
 						<td>-</td>
                         <td>-</td>
                       </tr>
                  
                  </g:else>
-                    
-
-                      
+                     
                     </tbody>
-                    
-                    
                     
                     <tfoot>
 
@@ -354,10 +356,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </table>
                 </div><!-- /.box-body -->
                 
-                        <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
+                  <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
+                        
+                        <g:if test="${offset > 0}">	  
 	                        <g:link  action="dashboard"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
-                        	<g:link  action="dashboard"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
-                        </div>
+                       	</g:if>
+                       	<g:else>
+                       	   <button disabled  type="button" class="btn btn-default">Back</button>                 	
+                       	</g:else>
+                        
+                        	<g:if test="${offset <= clientCount}">	
+                        		<g:link  action="dashboard"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
+                        	</g:if>
+                        	<g:else>
+                        		<button disabled  type="button" class="btn btn-default">Next</button>
+                        	</g:else>
+                  </div>
                         
                    <p style = "float: right; text-align: right; margin: 15px; display: inline-block;" >
                   

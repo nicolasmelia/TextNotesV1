@@ -393,7 +393,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </div><!-- /.box-body -->
                   <div class="box-footer">
                    <button  onClick = "return validateMainForm()" class="btn btn-info pull-right" id = "submitBtn" value = "Send"  action = "addNewContact"/>Add</button>	
-                    <a href = "#" type="submit" class="btn btn-default">Cancel</a>
+                    <a href = "${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" class="btn btn-default">Cancel</a>
                   </div><!-- /.box-footer -->
                   
                   

@@ -362,7 +362,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="box box-info">
               <div class="box-header with-border">
                   <i class="fa fa-warning"></i>
-                <h3 class="box-title">FAILED!</h3>
+                <h3 class="box-title">Failed</h3>
               </div>
               <div class="box-body">   
             <div class="callout callout-warning" style = "margin: 0px;" >
@@ -409,7 +409,68 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Contact added SUCCESS -->    
 		            
 		</g:elseif>
+		
+		
+		<g:elseif test="${conType == 'addGroup'}" >
 		            
+			<!-- SUCCESS -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                  <i class="fa fa-warning"></i>
+                <h3 class="box-title">Success!</h3>
+              </div>
+              <div class="box-body">   
+            <div class="callout callout-info" style = "margin: 0px;" >
+              <h4>Group Added.</h4>
+              <p>
+				${params.name} has been successfully added as a group. Click "Details" to view detailed information on this group.	
+              </p>
+            </div>
+            
+            <div style = "margin: 10px 0px 5px 0px;" >
+            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn   btn-default">New Message</a>
+            	
+            	<g:link  class="btn btn-default" action="details"  params="[groupID: params.groupID]"  type="button"  >            
+                    Details
+                  </g:link>
+    	        </div>
+
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+			<!-- Contact added SUCCESS -->    
+		            
+		</g:elseif>
+		            
+		            
+				<g:elseif test="${conType == 'FAILEDaddGroup'}" >
+		            
+			<!-- SUCCESS -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                  <i class="fa fa-warning"></i>
+                <h3 class="box-title">Failed</h3>
+              </div>
+              <div class="box-body">   
+            <div class="callout callout-warning" style = "margin: 0px;" >
+              <h4>Group already exist.</h4>
+              <p>
+				${params.name} already exist as a group. Click "Details" to view detailed information on this group.	
+              </p>
+            </div>
+            
+            <div style = "margin: 10px 0px 5px 0px;" >
+            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn   btn-default">New Message</a>
+            	
+            	<g:link  class="btn btn-default" action="details"  params="[groupID: params.groupID]"  type="button"  >            
+                    Details
+                  </g:link>
+    	        </div>
+
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+			<!-- Contact added SUCCESS -->    
+		            
+		</g:elseif>
 		            
 		            
             

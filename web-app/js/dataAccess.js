@@ -108,3 +108,18 @@
 				  });
 			}
 	}
+	
+	function getRecpCount(url, tags){
+		
+		$.ajax({
+		    url: url,
+		    type: "post",
+		    async: true,
+		    data: {tags : tags},
+		  }).done(function(result){
+				$("#attachedRecipientsCount").html(result);
+		  });
+		
+		  
+	}
+		  

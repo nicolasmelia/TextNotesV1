@@ -273,6 +273,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <td>${contact.phoneNumber}</td>
                     </tr>
                     
+                    <g:if test="${State =! 'None'}" >
+                    
                     <tr>
                       <td>Address</td>
                       <td>${contact.address}</td>
@@ -297,7 +299,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <td>Subbed</td>
                       <td>${contact.subbed}</td>
                     </tr>
+               </g:if>
                
+               <g:else>
+               
+                    <tr>
+                      <td>Address</td>
+                      <td>-</td>
+                    </tr>
+
+                    <tr>
+                      <td>City</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>State</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Zip</td>
+                      <td>-</td>
+                    </tr>               
+               
+               </g:else>
+               
+               
+                 <g:if test="${contact.subbed =! 'false'}" >
+               
+                    <tr>
+                      <td>Subbed</td>
+                      <td><span style = "color: green;" ><b>Yes</b></span></td>
+                    </tr>
+                    
+                    </g:if>
+                    <g:else>
+                    <tr>
+                      <td>Subbed</td>
+                      <td><span style = "color: purple;"  >No</span></td>
+                    </tr>
+                    </g:else>
                     
                   </table>   
 	              
@@ -343,6 +385,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <td>Recipients</td>
                       <td>${res}</td>
                     </tr>
+                    
+                    <tr>
+                      <td>Time Sent</td>
+                      <td><g:formatDate format="MM-dd-yyyy, hh:mm a" date="${message.lastSentDate}"/> EST</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Balanced Used</td>
+                      <td>${contactCount}</td>
+                    </tr>
+                    
 
                     
                   </table>   
@@ -353,10 +406,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	            <div style = "margin: 10px 0px 5px 0px;" >
 	            
                   <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
-                 	<i class="fa fa-envelope-o"></i> All Message History
+                 	All Message History
                   </g:link>       
 
-                  
+	            
+                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
+                 	View Balance
+                  </g:link>       
+
 
                                     	                
 	            </div>
