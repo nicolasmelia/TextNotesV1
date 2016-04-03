@@ -7,7 +7,7 @@ class Groups {
 	String groupName
 	String groupID
 	String userID
-	int memeberCount	
+	int memberCount	
 	String description
 	Date addDate
 	String state
@@ -16,7 +16,7 @@ class Groups {
 		groupName(nullable:true)
 		groupID(nullable:true)
 		userID(nullable:true)
-		memeberCount(nullable:true)
+		memberCount(nullable:true)
 		addDate(nullable:true)
 		description(nullable:true)
 		state(nullable:true)

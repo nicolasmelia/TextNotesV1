@@ -242,12 +242,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Contacts
+            Group
             <small>Full contact list</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Address Book</a></li>
-            <li class="active">Contacts</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Group</a></li>
+            <li class="active">${group.groupName}</li>
           </ol>
         </section>
 
@@ -259,62 +259,64 @@ scratch. This page gets rid of all links and provides the needed markup only.
         
          <input  id = 'searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
          <input  id = 'offset' type="hidden" value="${offset}">
-         <input  id = 'groupCount' type="hidden" value="${groupCount}">
+         <input  id = 'groupCount' type="hidden" value="${clientCount}">
         
                     
           <div class="row">
             <div class="col-xs-12">       
               <div class="box">
                 <div class="box-header">      
-                 <g:form id = "searchForm" controller="Dashboard" action="dashboard" enctype="multipart/form-data" >
-                <div class="input-group margin" style = "width: 250px; margin: 10px 0px 0px 0px;">
-             
-            	<g:link  class="btn btn-default" action="createGroup" type="button"  >            
-                   <span style = "margin-right: 2px;" class = "fa fa-users"> </span> Create Group
-                </g:link>
-                                          
-                  </div><!-- /input-group -->   
-              </g:form>
-                       
+                <h3>Group: ${group.groupName}</h3>                 
                 </div><!-- /.box-header -->
-                <div class="box-body">
+                
+  <div class="box-body">
                   <table id="example1" class="table table-bordered table-hover">
                     <thead>
                       <tr>
                         <th>Name</th>
-                        <th>Members</th>
-                        <th>Description</th>
+                        <th>Number</th>
+                        <th>Location</th>
+                        <th>Subbed</th>
                       </tr>
                     </thead>
                     <tbody>
 
-				 <g:if test="${groups || offset > 0}">	
+				 <g:if test="${contacts != "NONE" || offset > 0}">	
 				 
-				 	<g:if test="${groups != 'NONE'}">						 			
-	                    <g:each in="${groups}">
+				 	<g:if test="${contacts != 'NONE'}">						 			
+	                    <g:each in="${contacts}">
 	                    
-	                      <tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'detailedGroup', params: [groupID: it.groupID])}';"class = "pointer" >
-	                        <td><a href = "#"><b>${it.groupName}</b></a></td>
-	                        <td>${it.memberCount}</td>
+	                      <tr OnClick = "test('${it.firstName} ${it.lastName}')"  data-toggle="modal" data-target="#myModal${it.contactID}" class = "pointer" >
+	                        <td><a href = "#"><b>${it.firstName} ${it.lastName}</b></a></td>
+	                        <td>${it.phoneNumber}</td>
 	                        
-	                        <g:if test="${it.description}">
-								<td>${it.description}</td>
+	                        <g:if test="${it.city}">
+								<td>${it.city,}, ${it.state}</td>
 							</g:if>
 							<g:else>
 								<td>None</td>						
-							</g:else>	
+							</g:else>
+	     
+                 <g:if test="${it.subbed =! 'false'}" >
+                      <td><span style = "color: green;" ><b>Yes</b></span></td>
+                    </g:if>
+                    <g:else>
+                      <td><span style = "color: purple;"  >No</span></td>
+                    </g:else> 
+	                     
 	                      </tr>
 	                      
 						</g:each>
 					</g:if>
 					<g:else>
                  
-                      <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'newGroup')}';"  class = "pointer" >
-                        <td><a href = "#"><b>No Results, create a group or go back.</b></a></td>
+                      <tr  class = "pointer" >
+                        <td><b>No Results, Try another search or go back.</b></td>
                         <td>-</td>
 						<td>-</td>
+                        <td>-</td>
                       </tr>
-                      
+                 
 					</g:else>
 					
                  </g:if>
@@ -322,19 +324,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                  <g:else>
                  
                       <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'newContact')}';"  class = "pointer" >
-                        <td><a href = "#"><b>Add a Group!</b></a></td>
+                        <td><a href = "#"><b>Click here to add a contact!</b></a></td>
                         <td>-</td>
 						<td>-</td>
                         <td>-</td>
                       </tr>
                  
                  </g:else>
-                    
-
-                      
+                     
                     </tbody>
-                    
-                    
                     
                     <tfoot>
 
@@ -342,11 +340,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </table>
                 </div><!-- /.box-body -->
                 
-                        <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
-	                        <g:link  action="dashboard"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
-                        	<g:link  action="dashboard"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
-                        </div>
+                                  <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
                         
+                        <g:if test="${offset > 0}">	  
+	                        <g:link  action="detailedGroup"   params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden, groupName: group.groupName, groupID: group.groupID]"  type="button" class="btn btn-default">Back</g:link>
+                       	</g:if>
+                       	<g:else>
+                       	   <button disabled  type="button" class="btn btn-default">Back</button>                 	
+                       	</g:else>
+                        
+                        	<g:if test="${offset <= clientCount}">	
+                        	<g:link  action="detailedGroup"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden, groupName: group.groupName, groupID: group.groupID]"  type="button" class="btn btn-default">Next</g:link>
+                        	</g:if>
+                        	<g:else>
+                        		<button disabled  type="button" class="btn btn-default">Next</button>
+                        	</g:else>
+                  </div>
+                        
+
                    <p style = "float: right; text-align: right; margin: 15px; display: inline-block;" >
                   
                    <span id = "pageInfo">Showing ${currentPage}/3000</span>

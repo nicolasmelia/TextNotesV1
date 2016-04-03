@@ -199,6 +199,45 @@ class DashboardController {
 		
 	}
 	
+	def detailedGroup() {
+		int offset = 0
+		if (params.offset != null) {
+			offset = Integer.parseInt(params.offset)
+			if (params.up.toString().equals("true")) {
+				offset = offset + 10
+			} else {
+				if (offset > 0) {
+				offset = offset - 10
+				}
+			}
+		}
+		
+		// check to see if contacts exist
+		int clientCount = Contact.countByUserID(session.userID)
+		
+		// Get searchInfo if any
+		def searchQuery
+		if (!params.searchQuery && !params.searchQueryHidden) {
+			searchQuery = null
+		} else if (params.searchQueryHidden) {
+			searchQuery = params.searchQueryHidden
+		} else if (params.searchQuery) {
+			searchQuery = params.searchQuery
+		}
+		
+		// Get group 
+		Groups group = Groups.findByGroupID(params.groupID)
+
+		
+		if (session["userID"]) {
+			 render(view:"dashboard_DetailedGroup",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, contacts: getContactList(offset, searchQuery), group: group])
+		} else {
+			redirect(controller: "Home")
+		}
+		
+	}
+	
+	
 	def createGroup() {
 		if (session["userID"]) {			
 			if (!params.name) {
@@ -210,7 +249,7 @@ class DashboardController {
 					group.groupName = params.name
 					group.description = params.desc
 					group.state = params.state
-					group.memeberCount = 0
+					group.memberCount = 0
 					group.addDate = new Date()
 					group.userID = session["userID"]
 					// Create a UUID and cut it in half
