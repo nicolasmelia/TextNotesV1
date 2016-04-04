@@ -227,10 +227,9 @@ class DashboardController {
 		
 		// Get group 
 		Groups group = Groups.findByGroupID(params.groupID)
-
-		
+	
 		if (session["userID"]) {
-			 render(view:"dashboard_DetailedGroup",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, contacts: getContactList(offset, searchQuery), group: group])
+			 render(view:"dashboard_DetailedGroup",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, contacts: getContactListByGroup(offset, searchQuery, params.groupID), group: group])
 		} else {
 			redirect(controller: "Home")
 		}
@@ -295,6 +294,32 @@ class DashboardController {
 		if (groups.size > 0) {
 			return groups
 		} else {
+			return "NONE"
+		}
+	}
+	
+	def getContactListByGroup(offset, search, groupID){
+		List contacts = new ArrayList<Contact>()
+		if (search == null) {		
+			def members = GroupMember.findAllByGroupID(groupID)	
+			print groupID		
+			for (GroupMember member : members) {
+				if (member.contactID != null) {
+					println member.contactID	
+					Contact c = Contact.findByContactID(member.contactID)
+					println c.firstName
+					contacts.add(c)
+				}	
+			}	
+		} else {
+			contacts = searchContact(search, offset)
+		}
+		
+		if (contacts != null) {
+			print "MEEE"
+			return contacts
+		} else {
+			print "NONE"
 			return "NONE"
 		}
 	}

@@ -266,10 +266,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="col-xs-12">       
               <div class="box">
                 <div class="box-header">      
-                <h3>Group: ${group.groupName}</h3>                 
+                <h3  >Group: ${group.groupName}</h3>    
+                             
                 </div><!-- /.box-header -->
                 
-  <div class="box-body">
+  				<div class="box-body">
                   <table id="example1" class="table table-bordered table-hover">
                     <thead>
                       <tr>
