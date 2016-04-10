@@ -190,9 +190,17 @@ class DashboardController {
 		
 		// check to see if contacts exist
 		int groupCount = Groups.countByUserID(session.userID)
+			
+		// Check if a user is being added to a group
+		boolean addToGroup = false
+		def contactGroupAdd =  null
+		if (params.addToGroup.toString().equals("True")) {
+			contactGroupAdd = Contact.findByContactID(params.contactID)
+			addToGroup=true
+		}
 				
 		if (session["userID"]) {
-			 render(view:"dashboard_groups",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, groupCount: groupCount, groups: getGroupList(offset)])
+			 render(view:"dashboard_groups",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, addToGroup: addToGroup, contactGroupAdd: contactGroupAdd, groupCount: groupCount, groups: getGroupList(offset)])
 		} else {
 			redirect(controller: "Home")
 		}
@@ -214,7 +222,7 @@ class DashboardController {
 		
 		// check to see if contacts exist
 		int clientCount = Contact.countByUserID(session.userID)
-		
+	
 		// Get searchInfo if any
 		def searchQuery
 		if (!params.searchQuery && !params.searchQueryHidden) {
@@ -305,9 +313,7 @@ class DashboardController {
 			print groupID		
 			for (GroupMember member : members) {
 				if (member.contactID != null) {
-					println member.contactID	
 					Contact c = Contact.findByContactID(member.contactID)
-					println c.firstName
 					contacts.add(c)
 				}	
 			}	
@@ -409,13 +415,7 @@ class DashboardController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
 	def proccessTxtSend() {
 		render params.tags
 	}

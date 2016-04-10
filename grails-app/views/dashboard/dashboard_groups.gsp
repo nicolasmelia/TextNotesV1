@@ -241,22 +241,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
+        
+      
+	    <g:if test="${addToGroup}">	                    
           <h1>
-            Contacts
-            <small>Full contact list</small>
+            Add to Group
+            <small>Group list</small>
           </h1>
+	      </g:if>
+	    <g:else>
+          <h1>
+            Groups
+            <small>Group list</small>
+          </h1>
+	     </g:else>        
+          
+          
+
+	                    <g:if test="${addToGroup}">	                    
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Address Book</a></li>
-            <li class="active">Contacts</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Add to Group</a></li>
+            <li class="active">All Groups</li>
           </ol>
+	                    </g:if>
+	                    <g:else>    
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Groups</a></li>
+            <li class="active">All Groups</li>
+          </ol>
+			            </g:else> 
+          
         </section>
 
 
         <!-- Main content -->
   <section class="content">
           
-        
-        
+     
          <input  id = 'searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
          <input  id = 'offset' type="hidden" value="${offset}">
          <input  id = 'groupCount' type="hidden" value="${groupCount}">
@@ -269,15 +290,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                  <g:form id = "searchForm" controller="Dashboard" action="dashboard" enctype="multipart/form-data" >
                 <div class="input-group margin" style = "width: 250px; margin: 10px 0px 0px 0px;">
              
-            	<g:link  class="btn btn-default" action="createGroup" type="button"  >            
-                   <span style = "margin-right: 2px;" class = "fa fa-users"> </span> Create Group
-                </g:link>
+	                    <g:if test="${addToGroup}">	                    
+							<!-- /NOTHING -->
+	                    </g:if>
+	                    <g:else>    
+			            	<g:link  class="btn btn-default" action="createGroup" type="button"  >            
+			                   <span style = "margin-right: 2px;" class = "fa fa-users"> </span> Create Group
+			                </g:link>	 
+			            </g:else> 
+
                                           
                   </div><!-- /input-group -->   
               </g:form>
                        
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                
+	                    
+	                    <g:if test="${addToGroup}">	                    
+	              			<p style = "margin-top: -25px; margin-bottom: 15px;">Add <b>${contactGroupAdd.fullName}</b> to a group.</p> 
+	                    </g:if>
+	                    <g:else>
+	                    	<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'detailedGroup', params: [groupID: it.groupID])}';"class = "pointer" >
+	                    </g:else>
+	                            
+                
+                
                   <table id="example1" class="table table-bordered table-hover">
                     <thead>
                       <tr>
@@ -293,7 +331,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				 	<g:if test="${groups != 'NONE'}">						 			
 	                    <g:each in="${groups}">
 	                    
-	                      <tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'detailedGroup', params: [groupID: it.groupID])}';"class = "pointer" >
+	                    <g:if test="${addToGroup}">	                    
+	              			 <tr  data-toggle="modal" data-target="#myModal${it.groupID}" class = "pointer" >
+	                    </g:if>
+	                    <g:else>
+	                    	<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'detailedGroup', params: [groupID: it.groupID])}';"class = "pointer" >
+	                    </g:else>
+	                    
 	                        <td><a href = "#"><b>${it.groupName}</b></a></td>
 	                        <td>${it.memberCount}</td>
 	                        
@@ -329,9 +373,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       </tr>
                  
                  </g:else>
-                    
-
-                      
+                                    
                     </tbody>
                     
                     
@@ -436,41 +478,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div><!-- ./wrapper -->
     
 
-      <g:if test="${contacts && contacts != 'NONE'}">						 			      
-          <g:each in="${contacts}">
+
+				 <g:if test="${groups || offset > 0}">	
+	                    <g:each in="${groups}">
          
-            <div class="modal" id="myModal${it.contactID}" role="dialog">
+            <div class="modal" id="myModal${it.groupID}" role="dialog">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 id = "modalHeading" class="modal-title">Select an option: <b>${it.firstName} ${it.lastName}</b></h4>
+                    <h4 id = "modalHeading" class="modal-title"><b>${it.groupName}</b></h4>
                   </div>
-                  <div class="modal-body" style = "padding-top: 0px;" >
-                                    
-                  <g:link  style = "margin-bottom:0px; margin-top: 15px; "  action="sendTxt"  params="[contactID: it.contactID]"  type="button" class="btn btn-app"  >            
-                 	<i class="fa fa-envelope-o"></i>Send Text
-                  </g:link>
-                  
- 				 <a href = "" ></a>
-                 
-                  
-                  <g:link  style = "margin-bottom:0px; margin-top: 15px; "  action="editContact"  params="[contactID: it.contactID]"  type="button" class="btn btn-app"  >            
-                    <i class="fa fa-edit"></i> Edit Contact
-                  </g:link>
-                  
-                   <g:link  style = "margin-bottom:0px; margin-top: 15px; "  action="details"  params="[contactID: it.contactID, conType: 'Contact']"  type="button" class="btn btn-app"  >            
-                    <i class="fa fa-user"></i> Contact Details
-                  </g:link>
-                  
-                  <a class="btn btn-app" style = "margin-bottom:0px; margin-top: 15px;">
-                    <i class="fa fa-users"></i> Add to Group
-                  </a>      
-                  
-                 
+                  <div class="modal-body" style = "padding-top: 15px;" >
+                      Are you sure you want to add <b>${contactGroupAdd.fullName}</b> to group <b>${it.groupName}</b>       
                   </div>
                   <div class="modal-footer">
+                    <button onClick = "submitForm()" type="button" class="btn btn-primary pull-left" >Add</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                  
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
