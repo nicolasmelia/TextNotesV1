@@ -472,9 +472,60 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		            
 		</g:elseif>
 		            
+		<g:elseif test="${conType == 'AddContactToGroupSuccess'}" >
 		            
+			<!-- SUCCESS -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                  <i class="fa fa-bell-o"></i>
+                <h3 class="box-title">Success!</h3>
+              </div>
+              <div class="box-body">   
+            <div class="callout callout-info" style = "margin: 0px;" >
+              <h4>Member added to group.</h4>
+              <p>
+				<b>${params.name}</b> has successfully been added to <b>"${params.groupName}"</b> 
+              </p>
+            </div>
             
+            <div style = "margin: 10px 0px 5px 0px;" >
+            	<a href="${createLink(controller: 'Dashboard', action: 'groups')}" class="btn btn-default">Groups</a>
+            	<a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Contact List</a>
+            	
+
+
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+			<!-- Contact added SUCCESS -->    
+		            
+		</g:elseif>
+		                  
+				<g:elseif test="${conType == 'AddContactToGroupFail'}" >
+		            
+			<!-- SUCCESS -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                  <i class="fa fa-warning"></i>
+                <h3 class="box-title">Failed</h3>
+              </div>
+              <div class="box-body">   
+            <div class="callout callout-warning" style = "margin: 0px;" >
+              <h4>Member already exist.</h4>
+              <p>
+				${params.name} already exist in group <b>"${params.groupName}"</b>. 
+              </p>
+            </div>
             
+            <div style = "margin: 10px 0px 5px 0px;" >
+            	<a href="${createLink(controller: 'Dashboard', action: 'groups')}" class="btn btn-default">Groups</a>
+            	<a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Contact List</a>
+            	
+
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+			<!-- Contact added SUCCESS -->    
+		            
+		</g:elseif>
            
         </section><!-- /.content -->
         

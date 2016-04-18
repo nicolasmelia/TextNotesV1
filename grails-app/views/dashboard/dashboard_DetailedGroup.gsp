@@ -266,11 +266,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="col-xs-12">       
               <div class="box">
                 <div class="box-header">      
-                <h3  >Group: ${group.groupName}</h3>    
+                <h3>Group: ${group.groupName}</h3> 
+
+				 <g:form id = "searchForm" controller="Dashboard" action="dashboard" enctype="multipart/form-data" >
+                <div class="input-group margin" style = "width: 250px; margin: 10px 0px 0px 0px;">
+                      <input name = "groupID"   id = 'idSrch' type="hidden" value="${group.groupID}">
+             
+	                    <g:if test="${addToGroup}">	                    
+							<!-- /NOTHING -->
+	                    </g:if>
+	                    <g:else>    
+
+			                
+                    <input id = "seachQueryInput" name = "searchQuery" placeholder="Group Name..." type="text" class="form-control">
+                    <span class="input-group-btn">
+                      <g:actionSubmit  action="detailedGroup" class="btn btn-info btn-flat" type="button" value = "Search"></g:actionSubmit>             
+                    </span>   
+                                      
+			                
+			                 
+			            </g:else> 
+
+                                          
+                  </div><!-- /input-group -->   
+              </g:form>
+                   
                              
                 </div><!-- /.box-header -->
                 
+
+                
   				<div class="box-body">
+
+  				
                   <table id="example1" class="table table-bordered table-hover">
                     <thead>
                       <tr>
@@ -282,57 +310,81 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </thead>
                     <tbody>
 
-				 <g:if test="${contacts != "NONE" || offset > 0}">	
+				 <g:if test="${clientCount || contacts != 'NONE' || offset > 0}">	
 				 
 				 	<g:if test="${contacts != 'NONE'}">						 			
 	                    <g:each in="${contacts}">
 	                    
-	                      <tr OnClick = "test('${it.firstName} ${it.lastName}')"  data-toggle="modal" data-target="#myModal${it.contactID}" class = "pointer" >
-	                        <td><a href = "#"><b>${it.firstName} ${it.lastName}</b></a></td>
-	                        <td>${it.phoneNumber}</td>
-	                        
-	                        <g:if test="${it.city}">
-								<td>${it.city,}, ${it.state}</td>
-							</g:if>
-							<g:else>
-								<td>None</td>						
-							</g:else>
-	     
-                 <g:if test="${it.subbed =! 'false'}" >
-                      <td><span style = "color: green;" ><b>Yes</b></span></td>
-                    </g:if>
-                    <g:else>
-                      <td><span style = "color: purple;"  >No</span></td>
-                    </g:else> 
-	                     
+		                      <tr OnClick = "test('${it.firstName} ${it.lastName}')"  data-toggle="modal" data-target="#myModal${it.contactID}" class = "pointer" >
+		                        <td><a href = "#"><b>${it.firstName} ${it.lastName}</b></a></td>
+		                        <td>${it.phoneNumber}</td>
+		                        
+		                        <g:if test="${it.city}">
+									<td>${it.city,}, ${it.state}</td>
+								</g:if>
+								<g:else>
+									<td>None</td>						
+								</g:else>
+					     
+			                 <g:if test="${it.subbed =! 'false'}" >
+			                      <td><span style = "color: green;" ><b>Yes</b></span></td>
+			                    </g:if>
+			                    <g:else>
+			                      <td><span style = "color: purple;"  >No</span></td>
+			                    </g:else> 
+				                     
 	                      </tr>
 	                      
 						</g:each>
 					</g:if>
 					<g:else>
                  
+                  <g:if test="${isSearch}" >
+                      <tr onclick="document.location = '${createLink(action: 'groups')}';"  class = "pointer" >
+                        <td><a href = "#"><b>No Results, try another search or go back.</b></a></td>
+                        <td>-</td>
+						<td>-</td>
+                        <td>-</td>
+                      </tr>            
+                  </g:if>
+                  <g:else>
                       <tr  class = "pointer" >
-                        <td><b>No Results, Try another search or go back.</b></td>
+                        <td><b>-</b></td>
                         <td>-</td>
 						<td>-</td>
                         <td>-</td>
                       </tr>
-                 
+                  </g:else>
+
 					</g:else>
 					
                  </g:if>
                  
+
                  <g:else>
-                 
-                      <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'newContact')}';"  class = "pointer" >
-                        <td><a href = "#"><b>Click here to add a contact!</b></a></td>
+
+                      
+                  <g:if test="${isSearch}" >
+                      <tr onclick="document.location = '${createLink(controller: 'groups')}';"  class = "pointer" >
+                        <td><a href = "#"><b>No Results, try another search or go back.</b></a></td>
                         <td>-</td>
 						<td>-</td>
                         <td>-</td>
                       </tr>
-                 
+                  </g:if>
+                  <g:else>
+                      <tr  class = "" >
+                        <td><b>No members belong to this group yet.</b></td>
+                        <td>-</td>
+						<td>-</td>
+                        <td>-</td>
+                      </tr>
+                  </g:else> 
+                      
+                      
+                      
                  </g:else>
-                     
+            
                     </tbody>
                     
                     <tfoot>
@@ -519,7 +571,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		var totalClientCount = $("#groupCount").val();
 		var offset = $("#offset").val();
 		var offsetTop = (parseInt(offset) + 10);
-		$("#pageInfo").html("Viewing " + offset + "-" + offsetTop + "/" + totalClientCount);
+		$("#pageInfo").html("Viewing " + offset + "-" + offsetTop + " of " + totalClientCount);
 		
 	});
 

@@ -277,45 +277,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
   <section class="content">
           
-     
+      <g:if test="${groupCount == 0}">	
+	         <div class="callout callout-info" style="margin-bottom: 10px!important;">
+	            <h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
+	            It looks like you dont have any contacts yet. Get started by adding clients below!
+	        </div>      
+        </g:if>
+        
          <input  id = 'searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
          <input  id = 'offset' type="hidden" value="${offset}">
          <input  id = 'groupCount' type="hidden" value="${groupCount}">
-        
-                    
+               
           <div class="row">
             <div class="col-xs-12">       
               <div class="box">
                 <div class="box-header">      
-                 <g:form id = "searchForm" controller="Dashboard" action="dashboard" enctype="multipart/form-data" >
-                <div class="input-group margin" style = "width: 250px; margin: 10px 0px 0px 0px;">
-             
-	                    <g:if test="${addToGroup}">	                    
-							<!-- /NOTHING -->
-	                    </g:if>
-	                    <g:else>    
-			            	<g:link  class="btn btn-default" action="createGroup" type="button"  >            
-			                   <span style = "margin-right: 2px;" class = "fa fa-users"> </span> Create Group
-			                </g:link>	 
-			            </g:else> 
-
-                                          
-                  </div><!-- /input-group -->   
-              </g:form>
-                       
+   
                 </div><!-- /.box-header -->
-                <div class="box-body">
-                
-	                    
+                <div class="box-body">     
 	                    <g:if test="${addToGroup}">	                    
 	              			<p style = "margin-top: -25px; margin-bottom: 15px;">Add <b>${contactGroupAdd.fullName}</b> to a group.</p> 
-	                    </g:if>
-	                    <g:else>
-	                    	<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'detailedGroup', params: [groupID: it.groupID])}';"class = "pointer" >
-	                    </g:else>
-	                            
-                
-                
+	                    </g:if>          
                   <table id="example1" class="table table-bordered table-hover">
                     <thead>
                       <tr>
@@ -326,7 +308,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </thead>
                     <tbody>
 
-				 <g:if test="${groups || offset > 0}">	
+				 <g:if test="${groupCount > 0 || offset > 0}">	
 				 
 				 	<g:if test="${groups != 'NONE'}">						 			
 	                    <g:each in="${groups}">
@@ -353,8 +335,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</g:if>
 					<g:else>
                  
-                      <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'newGroup')}';"  class = "pointer" >
-                        <td><a href = "#"><b>No Results, create a group or go back.</b></a></td>
+                      <tr class = "pointer" >
+                        <td><a href = "#"><b>-</b></a></td>
                         <td>-</td>
 						<td>-</td>
                       </tr>
@@ -365,8 +347,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                  
                  <g:else>
                  
-                      <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'newContact')}';"  class = "pointer" >
-                        <td><a href = "#"><b>Add a Group!</b></a></td>
+                      <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'createGroup')}';"  class = "pointer" >
+                        <td><a href = "#"><b>Click here to add your first group!</b></a></td>
                         <td>-</td>
 						<td>-</td>
                         <td>-</td>
@@ -383,10 +365,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </tfoot>
                   </table>
                 </div><!-- /.box-body -->
-                
+                                        
+  
                         <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
-	                        <g:link  action="dashboard"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
-                        	<g:link  action="dashboard"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
+                      <g:if test="${offset > 0}">	  
+	                        <g:link  action="dashboard" action = "groups"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
+                       	</g:if>
+                       	<g:else>
+                       	   <button disabled  type="button" class="btn btn-default">Back</button>                 	
+                       	</g:else>
+                        
+                        	<g:if test="${offset <= groupCount}">	
+                        		<g:link  action="dashboard" action = "groups"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
+                        	</g:if>
+                        	<g:else>
+                        		<button disabled  type="button" class="btn btn-default">Next</button>
+                        	</g:else>
+                       
                         </div>
                         
                    <p style = "float: right; text-align: right; margin: 15px; display: inline-block;" >
@@ -479,7 +474,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     
 
 
-				 <g:if test="${groups || offset > 0}">	
+				 <g:if test="${addToGroup}">	
 	                    <g:each in="${groups}">
          
             <div class="modal" id="myModal${it.groupID}" role="dialog">
@@ -493,7 +488,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       Are you sure you want to add <b>${contactGroupAdd.fullName}</b> to group <b>${it.groupName}</b>       
                   </div>
                   <div class="modal-footer">
-                    <button onClick = "submitForm()" type="button" class="btn btn-primary pull-left" >Add</button>
+                  
+                    <g:link  action="addToGroup"  params="[contactID: contactGroupAdd.contactID, groupID: it.groupID]"  type="button" class="btn btn-primary pull-left" >Add</g:link>
                     <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
                   
                   </div>
@@ -532,7 +528,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		var totalClientCount = $("#groupCount").val();
 		var offset = $("#offset").val();
 		var offsetTop = (parseInt(offset) + 10);
-		$("#pageInfo").html("Viewing " + offset + "-" + offsetTop + "/" + totalClientCount);
+		$("#pageInfo").html("Viewing " + offset + "-" + offsetTop + " of " + totalClientCount);
 		
 	});
 

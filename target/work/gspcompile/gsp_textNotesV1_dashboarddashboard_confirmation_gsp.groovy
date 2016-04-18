@@ -151,23 +151,45 @@ createClosureForHtmlPart(34, 3)
 invokeTag('link','g',466,['class':("btn btn-default"),'action':("details"),'params':([groupID: params.groupID]),'type':("button")],3)
 printHtmlPart(52)
 }
+else if(true && (conType == 'AddContactToGroupSuccess')) {
 printHtmlPart(55)
-invokeTag('javascript','g',560,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+expressionOut.print(params.name)
 printHtmlPart(56)
-invokeTag('javascript','g',563,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+expressionOut.print(params.groupName)
 printHtmlPart(57)
-invokeTag('javascript','g',566,['src':("dashboard/app.min.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'groups'))
 printHtmlPart(58)
-})
-invokeTag('captureBody','sitemesh',601,['class':("hold-transition skin-purple sidebar-mini")],1)
+expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(59)
+}
+else if(true && (conType == 'AddContactToGroupFail')) {
+printHtmlPart(60)
+expressionOut.print(params.name)
+printHtmlPart(61)
+expressionOut.print(params.groupName)
+printHtmlPart(62)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'groups'))
+printHtmlPart(58)
+expressionOut.print(createLink(controller: 'Dashboard'))
+printHtmlPart(63)
+}
+printHtmlPart(64)
+invokeTag('javascript','g',611,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(65)
+invokeTag('javascript','g',614,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(66)
+invokeTag('javascript','g',617,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(67)
+})
+invokeTag('captureBody','sitemesh',652,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(68)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1459388080156L
+public static final long LAST_MODIFIED = 1460511028283L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

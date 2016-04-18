@@ -26,19 +26,21 @@ class DashboardController {
 		
 		// Get searchInfo if any
 		def searchQuery
+		boolean isSearch = false
 		if (!params.searchQuery && !params.searchQueryHidden) {
 			searchQuery = null
 		} else if (params.searchQueryHidden) {
 			searchQuery = params.searchQueryHidden	
+			isSearch = true
 		} else if (params.searchQuery) {
-			searchQuery = params.searchQuery	
+			searchQuery = params.searchQuery
+			isSearch = true
 		}
 		
-		print clientCount
-
-		
+		print isSearch
+	
 		if (session["userID"]) {		
-			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, contacts: getContactList(offset, searchQuery)])		 
+			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery)])		 
 		} else {
 			redirect(controller: "Home")
 		}
@@ -174,7 +176,6 @@ class DashboardController {
 		
 	}
 	
-	
 	def groups() {
 		int offset = 0
 		if (params.offset != null) {
@@ -193,11 +194,24 @@ class DashboardController {
 			
 		// Check if a user is being added to a group
 		boolean addToGroup = false
-		def contactGroupAdd =  null
+		def contactGroupAdd = null
 		if (params.addToGroup.toString().equals("True")) {
 			contactGroupAdd = Contact.findByContactID(params.contactID)
 			addToGroup=true
 		}
+		
+		// Get searchInfo if any
+		def searchQuery
+		if (!params.searchQuery && !params.searchQueryHidden) {
+			searchQuery = null
+		} else if (params.searchQueryHidden) {
+			searchQuery = params.searchQueryHidden
+		} else if (params.searchQuery) {
+			searchQuery = params.searchQuery
+		}
+		
+		
+		println addToGroup.toString() + " GROUP"
 				
 		if (session["userID"]) {
 			 render(view:"dashboard_groups",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, addToGroup: addToGroup, contactGroupAdd: contactGroupAdd, groupCount: groupCount, groups: getGroupList(offset)])
@@ -225,19 +239,22 @@ class DashboardController {
 	
 		// Get searchInfo if any
 		def searchQuery
+		boolean isSearch = false
 		if (!params.searchQuery && !params.searchQueryHidden) {
 			searchQuery = null
 		} else if (params.searchQueryHidden) {
 			searchQuery = params.searchQueryHidden
+			isSearch = true
 		} else if (params.searchQuery) {
 			searchQuery = params.searchQuery
+			isSearch = true
 		}
 		
 		// Get group 
 		Groups group = Groups.findByGroupID(params.groupID)
 	
 		if (session["userID"]) {
-			 render(view:"dashboard_DetailedGroup",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, contacts: getContactListByGroup(offset, searchQuery, params.groupID), group: group])
+			 render(view:"dashboard_DetailedGroup",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch: isSearch, contacts: getContactListByGroup(offset, searchQuery, params.groupID), group: group])
 		} else {
 			redirect(controller: "Home")
 		}
@@ -278,6 +295,40 @@ class DashboardController {
 		}
 	}
 	
+	def addToGroup(){
+		if (session["userID"]) {
+			def contact = Contact.findByContactID(params.contactID)
+			def group = Groups.findByGroupID(params.groupID)
+			def groupMember = new GroupMember()
+			
+			// Check if member already exist in group			
+			GroupMember testmember = GroupMember.findByGroupIDAndContactID(params.groupID, params.contactID)
+			if (testmember == null) {
+				// Create the groupMember
+				groupMember.groupID = group.groupID
+				groupMember.contactID = contact.contactID
+				groupMember.dateAdded =  new Date()
+				groupMember.userID =  session["userID"]
+				
+				group.memberCount = group.memberCount += 1
+				
+				
+				group.save(flush:true)
+				groupMember.save(flush:true)
+				
+				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContactToGroupSuccess", groupName: group.groupName, name: contact.fullName])		
+			} else {
+				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContactToGroupFail", groupName: group.groupName, name: contact.fullName])			
+			}
+			
+
+			
+			render "SUCCESS"
+		} else {
+			redirect(controller: "Home")	
+		}
+	}
+	
 	def getContactList(offset, search){
 		def contacts
 		if (search == null) {
@@ -294,8 +345,8 @@ class DashboardController {
 		}
 	}
 	
-	
 	def getGroupList(offset){
+		
 		def	groups =  Groups.findAll("from Groups as g where g.userID=? order by g.groupName",
 					 [session.userID], [max: 10, offset: offset])
 		
@@ -309,7 +360,7 @@ class DashboardController {
 	def getContactListByGroup(offset, search, groupID){
 		List contacts = new ArrayList<Contact>()
 		if (search == null) {		
-			def members = GroupMember.findAllByGroupID(groupID)	
+			def members = GroupMember.findAllByGroupID(groupID, [max: 10, offset: offset])	
 			print groupID		
 			for (GroupMember member : members) {
 				if (member.contactID != null) {
@@ -321,11 +372,9 @@ class DashboardController {
 			contacts = searchContact(search, offset)
 		}
 		
-		if (contacts != null) {
-			print "MEEE"
+		if (contacts.size > 0) {
 			return contacts
 		} else {
-			print "NONE"
 			return "NONE"
 		}
 	}

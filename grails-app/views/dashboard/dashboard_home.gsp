@@ -209,8 +209,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="${createLink(controller: 'Dashboard', action: 'dashboard')}">Contacts</a></li> 
-                <li><a href="${createLink(controller: 'Dashboard', action: 'groups')}">Groups</a></li>                
-                <li><a class = "fa fa-plus" href="${createLink(controller: 'Dashboard', action: 'newContact')}"> New Contact</a></li>    
+                <li><a href="${createLink(controller: 'Dashboard', action: 'groups')}">Groups</a></li>   
+
+                <li>
+                  <a href="#"><i ></i>Add New - <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                <li><a class = "fa fa-plus"   href="${createLink(controller: 'Dashboard', action: 'newContact')}"> New Contact</a></li>  
+                    <li>
+                <li><a class = "fa fa-plus" href="${createLink(controller: 'Dashboard', action: 'createGroup')}"> New Group</a></li>  
+
+                    </li>
+                  </ul>
+                </li>
+                  
               </ul>
             </li>
 
@@ -262,13 +273,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         
         </g:if>
-        
-        
+           
          <input  id = 'searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
          <input  id = 'offset' type="hidden" value="${offset}">
          <input  id = 'clientCount' type="hidden" value="${clientCount}">
-        
-                    
+                          
           <div class="row">
             <div class="col-xs-12">       
               <div class="box">
@@ -297,7 +306,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </thead>
                     <tbody>
 
-				 <g:if test="${contacts != "NONE" || offset > 0}">	
+				 <g:if test="${clientCount > 0 || offset > 0}">	
 				 
 				 	<g:if test="${contacts != 'NONE'}">						 			
 	                    <g:each in="${contacts}">
@@ -326,25 +335,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</g:if>
 					<g:else>
                  
-                      <tr  class = "pointer" >
-                        <td><b>No Results, Try another search or go back.</b></td>
+                 
+                  <g:if test="${isSearch}" >
+                      <tr onclick="document.location = '${createLink(controller: 'Dashboard')}';"  class = "pointer" >
+                        <td><a href = "#"><b>No Results, try another search or go back.</b></a></td>
                         <td>-</td>
 						<td>-</td>
                         <td>-</td>
                       </tr>
+                  </g:if>
+                  <g:else>
+                      <tr  class = "pointer" >
+                        <td><a href = "#"><b>-</b></a></td>
+                        <td>-</td>
+						<td>-</td>
+                        <td>-</td>
+                      </tr>
+                  </g:else>
                  
 					</g:else>
 					
                  </g:if>
                  
                  <g:else>
-                 
-                      <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'newContact')}';"  class = "pointer" >
-                        <td><a href = "#"><b>Click here to add a contact!</b></a></td>
+                    
+                  <g:if test="${isSearch}" >
+                      <tr onclick="document.location = '${createLink(controller: 'Dashboard')}';"  class = "pointer" >
+                        <td><a href = "#"><b>No Results, try another search or go back.</b></a></td>
                         <td>-</td>
 						<td>-</td>
                         <td>-</td>
                       </tr>
+                  </g:if>
+                  <g:else>
+                      <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'newContact')}';"  class = "pointer" >
+                        <td><a href = "#"><b>Click here to add your first contact!</b></a></td>
+                        <td>-</td>
+						<td>-</td>
+                        <td>-</td>
+                      </tr>
+                  </g:else>
+       
                  
                  </g:else>
                      
@@ -375,7 +406,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         
                    <p style = "float: right; text-align: right; margin: 15px; display: inline-block;" >
                   
-                   <span id = "pageInfo">Showing ${currentPage}/3000</span>
+                   <span id = "pageInfo">${currentPage} of 0</span>
   
                    </p>
                 
@@ -539,7 +570,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		var totalClientCount = $("#clientCount").val();
 		var offset = $("#offset").val();
 		var offsetTop = (parseInt(offset) + 10);
-		$("#pageInfo").html("Viewing " + offset + "-" + offsetTop + "/" + totalClientCount);
+		$("#pageInfo").html("Viewing " + offset + "-" + offsetTop + " of " + totalClientCount);
 		
 	});
 
