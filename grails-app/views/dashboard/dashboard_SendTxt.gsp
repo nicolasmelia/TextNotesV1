@@ -271,7 +271,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="box-body no-padding">
                   <ul class="nav nav-pills nav-stacked">
                     <li><a data-toggle="modal" data-target="#addContactModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Contact </a></li>
-                    <li><a data-toggle="modal" data-target="#myModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Group</a></li>
+                    <li><a data-toggle="modal" data-target="#addGroupModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Group</a></li>
                     <li><a data-toggle="modal" data-target="#addNumberModal" class = "pointer" ><i class="fa fa-plus-square"></i> Add Number </a></li>   
                   </ul>
                 </div><!-- /.box-body -->
@@ -537,6 +537,95 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
             
                  <!-- DRAFT MODAL --> 
+        <div class="modal" id="addGroupModal" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+ 
+ 				<div class="box-body">
+			
+ 				 <div class="box-header with-border" style = "padding-left: 0px;" >
+                  <h3 class="box-title">Add Group -</h3>
+                </div><!-- /.box-header -->
+                 
+                <div class="input-group margin" style = "width: 100%; margin: 0px 10px 10px 0px;">
+                                 
+                  
+                  </div><!-- /input-group -->   
+ 				
+  <table id="groupTable" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Members</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+				 
+				 	<g:if test="${groups != 'NONE'}">						 			
+	                    <g:each in="${groups}">
+	                    
+	                    <g:if test="${addToGroup}">	                    
+	              			 <tr  data-toggle="modal" data-target="#myModal${it.groupID}" class = "pointer" >
+	                    </g:if>
+	                    <g:else>
+	                    	<tr  onClick = "addGroupPrePick('${it.groupID}', '${it.groupName}')" class = "pointer" >
+	                    </g:else>
+	                    
+	                        <td><a href = "#"><b>${it.groupName}</b></a></td>
+	                        <td>${it.memberCount}</td>
+	                        
+	                        <g:if test="${it.description}">
+								<td>${it.description}</td>
+							</g:if>
+							<g:else>
+								<td>None</td>						
+							</g:else>	
+	                      </tr>
+	                      
+						</g:each>
+					</g:if>
+					<g:else>
+                 
+                 
+                      <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'createGroup')}';"  class = "pointer" >
+                        <td><a href = "#"><b>Click here to add your first group!</b></a></td>
+                        <td>-</td>
+						<td>-</td>
+                        <td>-</td>
+                      </tr>
+                      
+					</g:else>
+					
+       
+                    </tbody>
+                    
+                    
+                    
+                    <tfoot>
+
+                    </tfoot>
+                  </table>
+                  
+                  <div id = "resultOver"  style = "display: none; margin-top: 10px;"  class="alert alert-info alert-dismissable">
+                    <h4><i class="icon fa fa-exclamation-circle"></i>Top 15 results displayed.</h4>
+                    <p id = "previewModalAlertText">Too many results, please narrow down your search.</p>
+                  </div> 
+                  
+                  
+                </div><!-- /.box-body -->
+
+
+                  <div class="modal-footer">
+                    <button onClick = "clearWarnings()"  type="button" class="btn btn-default pull-left" data-dismiss="modal" >Close</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->     
+      
+            
+                 <!-- DRAFT MODAL --> 
         <div class="modal" id="addContactModal" role="dialog">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -592,8 +681,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->     
-      
+            </div><!-- /.modal -->    
      
   </body>
 
@@ -661,9 +749,9 @@ $( document ).ready(function() {
 		 tagClass: function(item) {
 			    switch (item.optionType) {
 			      case 'Pick'   : return 'label label-info';
-			      case 'America'  : return 'label label-important';
+			      case 'none'  : return 'label label-important';
 			      case 'custom': return 'label label-success';
-			      case 'Africa'   : return 'badge badge-inverse';
+			      case 'group'   : return 'badge badge-inverse';
 			      case 'Asia'     : return 'badge badge-warning';
 			    }
 			  },
@@ -746,7 +834,7 @@ $( document ).ready(function() {
 		}
 	}
 
-	  // ******* CUSTOM NUMBER MODAL ******* 
+	  // ******* CUSTOM CONTACT ******* 
 	function addCustomNumberPrePick() {
 		// Number set from addNumber modal for custom numbers not in address book.	
 			var name = $('#preClientName').val();
@@ -773,10 +861,38 @@ $( document ).ready(function() {
 			}		 
 	}
 
+	  // ******* CUSTOM CONTACT ******* 
+	function addGroupPrePick(groupID, groupName) {
+		// Number set from addNumber modal for custom numbers not in address book.	
+			if (groupName != "NONE") {
+				$('#tags').tagsinput('add', { "value":  'G:' + groupID , "text": groupName, "optionType": "group"});	
+				removeToPlaceHolder();	
+				$('#addGroupModal').modal("hide");		
+				return true;
+			} else {
+				return false;
+			}		 
+	}
+
   	// Set focus to number input
 	$('#addNumberModal').on('shown.bs.modal', function () {
 	    $('#customNumber').focus();
 	})
+	
+  	// Set focus to anme input
+	$('#addContactModal').on('shown.bs.modal', function () {
+	    $('#searchInput').focus();
+	    $('#searchInput').val("");
+	    $("#example1 > tbody").html("");
+	    
+	$('#contactTable').append("<tr class = 'pointer' >" +
+		"<td>Please enter a search.</td>" +
+		"<td>-</td>" +
+		"<td>-</td>" +
+		"</tr>");	
+		$("#resultOver").css("display","none");		 
+	})
+	
 	// ******* CUSTOM NUMBER MODAL ******* 
 	
 

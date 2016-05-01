@@ -39,8 +39,8 @@
 						// clear the old results
 						  $('#contactTable').html("");
 						  
-					  if (serverResult != null) {
-						  if (serverResult != "NONE") {					  
+					  if (serverResult != null && serverResult != "NONE") {
+						  if (serverResult != "" && serverResult != "NONE") {					  
 							  $.each(serverResult[0], function(idx, obj) {
 								  clientCount = clientCount + 1;
 								  if (clientCount < 16) {
@@ -104,6 +104,14 @@
 							  }
 
 						  }
+					  } else {
+						  $('#contactTable').append("<tr class = 'pointer' >" +
+							  		"<td>Please enter a search.</td>" +
+							  		"<td>-</td>" +
+							  		"<td>-</td>" +
+							  		"</tr>");	
+						  
+						  $("#resultOver").css("display","none");						  
 					  }
 				  });
 			}

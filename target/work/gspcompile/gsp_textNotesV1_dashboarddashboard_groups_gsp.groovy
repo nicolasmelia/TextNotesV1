@@ -102,124 +102,125 @@ else {
 printHtmlPart(38)
 }
 printHtmlPart(39)
-expressionOut.print(searchQueryHidden)
+if(true && (groupCount == 0)) {
 printHtmlPart(40)
-expressionOut.print(offset)
+}
 printHtmlPart(41)
-expressionOut.print(groupCount)
+expressionOut.print(searchQueryHidden)
 printHtmlPart(42)
-createTagBody(2, {->
+expressionOut.print(offset)
 printHtmlPart(43)
-if(true && (addToGroup)) {
+expressionOut.print(groupCount)
 printHtmlPart(44)
-}
-else {
+if(true && (addToGroup)) {
 printHtmlPart(45)
-createClosureForHtmlPart(46, 4)
-invokeTag('link','g',299,['class':("btn btn-default"),'action':("createGroup"),'type':("button")],4)
-printHtmlPart(47)
-}
-printHtmlPart(48)
-})
-invokeTag('form','g',304,['id':("searchForm"),'controller':("Dashboard"),'action':("dashboard"),'enctype':("multipart/form-data")],2)
-printHtmlPart(49)
-if(true && (addToGroup)) {
-printHtmlPart(50)
 expressionOut.print(contactGroupAdd.fullName)
-printHtmlPart(51)
+printHtmlPart(46)
 }
-printHtmlPart(52)
-if(true && (groups || offset > 0)) {
-printHtmlPart(53)
+printHtmlPart(47)
+if(true && (groupCount > 0 || offset > 0)) {
+printHtmlPart(48)
 if(true && (groups != 'NONE')) {
-printHtmlPart(54)
-for( _it556798624 in (groups) ) {
-changeItVariable(_it556798624)
-printHtmlPart(55)
+printHtmlPart(49)
+for( _it298045034 in (groups) ) {
+changeItVariable(_it298045034)
+printHtmlPart(50)
 if(true && (addToGroup)) {
-printHtmlPart(56)
+printHtmlPart(51)
 expressionOut.print(it.groupID)
-printHtmlPart(57)
+printHtmlPart(52)
 }
 else {
-printHtmlPart(58)
+printHtmlPart(53)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'detailedGroup', params: [groupID: it.groupID]))
+printHtmlPart(54)
+}
+printHtmlPart(55)
+expressionOut.print(it.groupName)
+printHtmlPart(56)
+expressionOut.print(it.memberCount)
+printHtmlPart(57)
+if(true && (it.description)) {
+printHtmlPart(58)
+expressionOut.print(it.description)
 printHtmlPart(59)
 }
+else {
 printHtmlPart(60)
-expressionOut.print(it.groupName)
+}
 printHtmlPart(61)
-expressionOut.print(it.memberCount)
+}
 printHtmlPart(62)
-if(true && (it.description)) {
+}
+else {
 printHtmlPart(63)
-expressionOut.print(it.description)
+}
 printHtmlPart(64)
 }
 else {
 printHtmlPart(65)
-}
+expressionOut.print(createLink(controller: 'Dashboard', action: 'createGroup'))
 printHtmlPart(66)
 }
 printHtmlPart(67)
-}
-else {
+if(true && (offset > 0)) {
 printHtmlPart(68)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'newGroup'))
-printHtmlPart(69)
-}
+createClosureForHtmlPart(69, 3)
+invokeTag('link','g',372,['action':("groups"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(70)
 }
 else {
-printHtmlPart(68)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
 printHtmlPart(71)
 }
 printHtmlPart(72)
-createClosureForHtmlPart(73, 2)
-invokeTag('link','g',384,['action':("dashboard"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],2)
-printHtmlPart(74)
-createClosureForHtmlPart(75, 2)
-invokeTag('link','g',385,['action':("dashboard"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],2)
-printHtmlPart(76)
-expressionOut.print(currentPage)
-printHtmlPart(77)
-if(true && (addToGroup)) {
-printHtmlPart(78)
-for( _it1134924425 in (groups) ) {
-changeItVariable(_it1134924425)
-printHtmlPart(79)
-expressionOut.print(it.groupID)
-printHtmlPart(80)
-expressionOut.print(it.groupName)
-printHtmlPart(81)
-expressionOut.print(contactGroupAdd.fullName)
-printHtmlPart(82)
-expressionOut.print(it.groupName)
-printHtmlPart(83)
-createClosureForHtmlPart(84, 4)
-invokeTag('link','g',493,['action':("addToGroup"),'params':([contactID: contactGroupAdd.contactID, groupID: it.groupID]),'type':("button"),'class':("btn btn-primary pull-left")],4)
-printHtmlPart(85)
+if(true && (offset <= groupCount)) {
+printHtmlPart(73)
+createClosureForHtmlPart(74, 3)
+invokeTag('link','g',379,['action':("groups"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+printHtmlPart(75)
 }
+else {
+printHtmlPart(76)
+}
+printHtmlPart(77)
+expressionOut.print(currentPage)
+printHtmlPart(78)
+if(true && (addToGroup)) {
+printHtmlPart(79)
+for( _it440082302 in (groups) ) {
+changeItVariable(_it440082302)
+printHtmlPart(80)
+expressionOut.print(it.groupID)
+printHtmlPart(81)
+expressionOut.print(it.groupName)
+printHtmlPart(82)
+expressionOut.print(contactGroupAdd.fullName)
+printHtmlPart(83)
+expressionOut.print(it.groupName)
+printHtmlPart(84)
+createClosureForHtmlPart(85, 4)
+invokeTag('link','g',492,['action':("addToGroup"),'params':([contactID: contactGroupAdd.contactID, groupID: it.groupID]),'type':("button"),'class':("btn btn-primary pull-left")],4)
 printHtmlPart(86)
 }
 printHtmlPart(87)
-invokeTag('javascript','g',506,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+}
 printHtmlPart(88)
-invokeTag('javascript','g',509,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+invokeTag('javascript','g',505,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(89)
-invokeTag('javascript','g',512,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',508,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(90)
-})
-invokeTag('captureBody','sitemesh',520,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('javascript','g',511,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(91)
+})
+invokeTag('captureBody','sitemesh',519,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(92)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1460508066862L
+public static final long LAST_MODIFIED = 1462046444097L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

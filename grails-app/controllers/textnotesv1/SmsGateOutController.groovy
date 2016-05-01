@@ -52,6 +52,15 @@ class SmsGateOutController {
 						Contact contact = Contact.findByContactID(clientID)
 						success = sendMessage(contact.phoneNumber, message)				
 						break;
+					case "G":
+						String groupID = tag.split(":")[1]
+						Groups group = Groups.findByGroupID(groupID)				
+						def allMemebers = GroupMember.findAllByGroupIDAndUserID(group.groupID, session["userID"])
+						for (GroupMember member : allMemebers){
+							Contact contact = Contact.findByContactID(member.contactID)
+							success = sendMessage(contact.phoneNumber, message)
+						}
+						break;
 					default: 
 						break;
 				}				

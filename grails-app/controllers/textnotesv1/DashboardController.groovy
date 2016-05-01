@@ -63,8 +63,8 @@ class DashboardController {
 					preContactName = contact.fullName
 					preContactID = contact.contactID					
 				}
-				
-				render(view:"dashboard_SendTxt", model: [UAI: getUserAccountInfo(), preClientName: preContactName, preClientID: preContactID ])
+								
+				render(view:"dashboard_SendTxt", model: [UAI: getUserAccountInfo(), preClientName: preContactName, preClientID: preContactID, groups: getGroupList(0, true) ])
 				
 		   } else {
 			   redirect(controller: "Home")
@@ -82,6 +82,11 @@ class DashboardController {
 					break;
 				case "ID":
 					clientCount += 1
+					break;
+				case "G":
+					String groupID = tag.split(":")[1]
+					Groups group = Groups.findByGroupID(groupID);
+					clientCount += group.memberCount
 					break;
 				default:
 					break;
@@ -214,7 +219,7 @@ class DashboardController {
 		println addToGroup.toString() + " GROUP"
 				
 		if (session["userID"]) {
-			 render(view:"dashboard_groups",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, addToGroup: addToGroup, contactGroupAdd: contactGroupAdd, groupCount: groupCount, groups: getGroupList(offset)])
+			 render(view:"dashboard_groups",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, addToGroup: addToGroup, contactGroupAdd: contactGroupAdd, groupCount: groupCount, groups: getGroupList(offset, false)])
 		} else {
 			redirect(controller: "Home")
 		}
@@ -345,10 +350,15 @@ class DashboardController {
 		}
 	}
 	
-	def getGroupList(offset){
-		
-		def	groups =  Groups.findAll("from Groups as g where g.userID=? order by g.groupName",
+	def getGroupList(offset, getAll){
+		def groups;
+		if (!getAll) {
+			groups =  Groups.findAll("from Groups as g where g.userID=? order by g.groupName",
 					 [session.userID], [max: 10, offset: offset])
+		} else {
+			groups =  Groups.findAll("from Groups as g where g.userID=? order by g.groupName",
+			[session.userID], [max: 50])
+		}
 		
 		if (groups.size > 0) {
 			return groups
@@ -427,26 +437,53 @@ class DashboardController {
 				MessageOut message = MessageOut.findByMessageID(params.messageID)
 				ArrayList<String> tags = message.recipients.split("/")
 				StringBuilder res = new StringBuilder();
-				def contactCount = (tags.size - 1)
-				for (String tag : tags)	 {
-					
+				int contactCount = 0
+				for (String tag : tags)	 {			
 					if (!tag.toUpperCase().matches("NULL") && tag != null) {
 						String contactType = tag.split(":")[0]						
 						switch (contactType) {
 							case "N":  // Single number
+							
+							res.append(tag.split(":")[1]);
+							
+							
 							if (res.length() != 0) {
 								res.append(', ');
 							}
-							res.append(tag.split(":")[1]);
+							contactCount += 1
 								break;
 							case "ID":
 								String clientID = tag.split(":")[1]
 								Contact contact = Contact.findByContactID(clientID)
+
+								res.append(contact.fullName);
+								
 								if (res.length() != 0) {
 									res.append(', ');
 								}
-								res.append(contact.fullName);
+								
+								contactCount += 1		
 								break;
+							case "G":
+								String groupID = tag.split(":")[1]
+								Groups group = Groups.findByGroupID(groupID)
+								def allMemebers = GroupMember.findAllByGroupIDAndUserID(group.groupID, session["userID"])
+								int loopCount = 0
+								for (GroupMember member : allMemebers){
+									Contact contact = Contact.findByContactID(member.contactID)
+									res.append(contact.fullName);
+									
+									loopCount += 1
+									
+								//	if ((loopCount < allMemebers.size()) && res.length() != 0) {
+								//	res.append(', ');
+								//	}
+									
+									res.append(', ');
+			
+								}
+								contactCount += group.memberCount				
+								break;			
 							default:
 								break;
 						}
