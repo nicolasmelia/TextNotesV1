@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_textNotesV1_dashboarddashboard_home_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/dashboard/dashboard_home.gsp" }
+class gsp_textNotesV1_dashboarddashboard_contacts_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/dashboard/dashboard_contacts.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()
@@ -102,136 +102,143 @@ expressionOut.print(offset)
 printHtmlPart(39)
 expressionOut.print(clientCount)
 printHtmlPart(40)
-if(true && (clientCount > 0 || offset > 0)) {
+createTagBody(2, {->
 printHtmlPart(41)
-if(true && (contacts != 'NONE')) {
+invokeTag('actionSubmit','g',326,['action':("dashboard"),'class':("btn btn-info btn-flat"),'type':("button"),'value':("Search")],-1)
 printHtmlPart(42)
-for( _it1274699449 in (contacts) ) {
-changeItVariable(_it1274699449)
+})
+invokeTag('form','g',330,['id':("searchForm"),'controller':("Dashboard"),'action':("dashboard"),'enctype':("multipart/form-data")],2)
 printHtmlPart(43)
-expressionOut.print(it.contactID)
+if(true && (clientCount > 0 || offset > 0)) {
 printHtmlPart(44)
+if(true && (contacts != 'NONE')) {
+printHtmlPart(45)
+for( _it979074430 in (contacts) ) {
+changeItVariable(_it979074430)
+printHtmlPart(46)
+expressionOut.print(it.contactID)
+printHtmlPart(47)
 expressionOut.print(it.firstName)
 printHtmlPart(13)
 expressionOut.print(it.lastName)
-printHtmlPart(45)
-expressionOut.print(it.phoneNumber)
-printHtmlPart(46)
-if(true && (it.city)) {
-printHtmlPart(47)
-expressionOut.print(it.city,)
 printHtmlPart(48)
-expressionOut.print(it.state)
+expressionOut.print(it.phoneNumber)
 printHtmlPart(49)
-}
-else {
+if(true && (it.city)) {
 printHtmlPart(50)
-}
+expressionOut.print(it.city,)
 printHtmlPart(51)
-if(true && (it.subbed =! 'false')) {
+expressionOut.print(it.state)
 printHtmlPart(52)
 }
 else {
 printHtmlPart(53)
 }
 printHtmlPart(54)
-}
+if(true && (it.subbed =! 'false')) {
 printHtmlPart(55)
 }
 else {
 printHtmlPart(56)
-if(true && (isSearch)) {
+}
 printHtmlPart(57)
-expressionOut.print(createLink(controller: 'Dashboard'))
+}
 printHtmlPart(58)
 }
 else {
 printHtmlPart(59)
-}
+if(true && (isSearch)) {
 printHtmlPart(60)
-}
+expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(61)
 }
 else {
 printHtmlPart(62)
-if(true && (isSearch)) {
-printHtmlPart(57)
-expressionOut.print(createLink(controller: 'Dashboard'))
-printHtmlPart(58)
 }
-else {
-printHtmlPart(57)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
 printHtmlPart(63)
 }
 printHtmlPart(64)
 }
+else {
 printHtmlPart(65)
-if(true && (offset > 0)) {
+if(true && (isSearch)) {
+printHtmlPart(60)
+expressionOut.print(createLink(controller: 'Dashboard'))
+printHtmlPart(61)
+}
+else {
+printHtmlPart(60)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
 printHtmlPart(66)
-createClosureForHtmlPart(67, 3)
-invokeTag('link','g',421,['action':("dashboard"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+}
+printHtmlPart(67)
+}
 printHtmlPart(68)
-}
-else {
+if(true && (offset > 0)) {
 printHtmlPart(69)
-}
-printHtmlPart(70)
-if(true && (offset <= clientCount)) {
+createClosureForHtmlPart(70, 3)
+invokeTag('link','g',429,['action':("dashboard"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(71)
-createClosureForHtmlPart(72, 3)
-invokeTag('link','g',428,['action':("dashboard"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(73)
 }
 else {
-printHtmlPart(74)
+printHtmlPart(72)
 }
-printHtmlPart(75)
-expressionOut.print(currentPage)
+printHtmlPart(73)
+if(true && (offset <= clientCount)) {
+printHtmlPart(74)
+createClosureForHtmlPart(75, 3)
+invokeTag('link','g',436,['action':("dashboard"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(76)
-if(true && (contacts && contacts != 'NONE')) {
+}
+else {
 printHtmlPart(77)
-for( _it707492405 in (contacts) ) {
-changeItVariable(_it707492405)
+}
 printHtmlPart(78)
-expressionOut.print(it.contactID)
+expressionOut.print(currentPage)
 printHtmlPart(79)
+if(true && (contacts && contacts != 'NONE')) {
+printHtmlPart(80)
+for( _it332149166 in (contacts) ) {
+changeItVariable(_it332149166)
+printHtmlPart(81)
+expressionOut.print(it.contactID)
+printHtmlPart(82)
 expressionOut.print(it.firstName)
 printHtmlPart(13)
 expressionOut.print(it.lastName)
-printHtmlPart(80)
-createClosureForHtmlPart(81, 4)
-invokeTag('link','g',538,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("sendTxt"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
-printHtmlPart(82)
-createClosureForHtmlPart(83, 4)
-invokeTag('link','g',545,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("editContact"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
-printHtmlPart(84)
-createClosureForHtmlPart(85, 4)
-invokeTag('link','g',549,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("details"),'params':([contactID: it.contactID, conType: 'Contact']),'type':("button"),'class':("btn btn-app")],4)
-printHtmlPart(86)
-createClosureForHtmlPart(87, 4)
-invokeTag('link','g',554,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("groups"),'params':([contactID: it.contactID, addToGroup: 'True']),'type':("button"),'class':("btn btn-app")],4)
-printHtmlPart(88)
-}
+printHtmlPart(83)
+createClosureForHtmlPart(84, 4)
+invokeTag('link','g',546,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("sendTxt"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
+printHtmlPart(85)
+createClosureForHtmlPart(86, 4)
+invokeTag('link','g',553,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("editContact"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
+printHtmlPart(87)
+createClosureForHtmlPart(88, 4)
+invokeTag('link','g',557,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("details"),'params':([contactID: it.contactID, conType: 'Contact']),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(89)
-}
-printHtmlPart(90)
-invokeTag('javascript','g',571,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+createClosureForHtmlPart(90, 4)
+invokeTag('link','g',562,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("groups"),'params':([contactID: it.contactID, addToGroup: 'True']),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(91)
-invokeTag('javascript','g',574,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+}
 printHtmlPart(92)
-invokeTag('javascript','g',577,['src':("dashboard/app.min.js")],-1)
+}
 printHtmlPart(93)
-})
-invokeTag('captureBody','sitemesh',585,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('javascript','g',579,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(94)
+invokeTag('javascript','g',582,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(95)
+invokeTag('javascript','g',585,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(96)
+})
+invokeTag('captureBody','sitemesh',593,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(97)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1462248990305L
+public static final long LAST_MODIFIED = 1462248019941L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

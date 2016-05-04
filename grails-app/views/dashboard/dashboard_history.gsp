@@ -65,7 +65,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-             
+              <!-- Messages: style can be found in dropdown.less-->
+              <li class="dropdown messages-menu">
+                <!-- Menu toggle button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-envelope-o"></i>
+                  <span class="label label-success">0</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 0 messages</li>
+                  <li>
+                    <!-- inner menu: contains the messages -->
+                    <ul class="menu">
+                      <li><!-- start message -->
+                        <a href="#">
+                          <div class="pull-left">
+                            <!-- User Image -->
+                            <img src="${resource(dir: 'images', file: 'dashboard/default_avatar.png')}" class="img-circle" alt="User Image">
+                          </div>
+                          <!-- Message title and timestamp -->
+                          <h4>
+                            Support Team
+                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                          </h4>
+                          <!-- The message -->
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li><!-- end message -->
+                    </ul><!-- /.menu -->
+                  </li>
+                  <li class="footer"><a href="#">See All Messages</a></li>
+                </ul>
+              </li><!-- /.messages-menu -->
 
               <!-- Notifications Menu -->
               <li class="dropdown notifications-menu">
@@ -173,36 +204,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <ul class="sidebar-menu">
             <li class="header">Tools</li>
             <!-- Optionally, you can add icons to the links -->
-            
-           <li class = "active">
-              <a href="${createLink(controller: 'Dashboard', action: 'Dashboard')}">
-                <i class="fa fa-home"></i> <span>Home</span>
-              </a>
-            </li>
-            
-
-            <li >
+             
+            <li class="active">
               <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="${createLink(controller: 'Dashboard', action: 'dashboard')}">View Contacts</a></li> 
-                <li><a href="${createLink(controller: 'Dashboard', action: 'groups')}">View Groups</a></li>   
-                <li><a class = ""   href="${createLink(controller: 'Dashboard', action: 'newContact')}"> New Contact</a></li>  
-                <li><a class = "" href="${createLink(controller: 'Dashboard', action: 'createGroup')}"> New Group</a></li>  
-
-			<!-- Do not display this at the moment
-
-                <li>
-                  <a href="#"><i ></i>Add New - <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                <li><a class = "fa fa-plus"   href="${createLink(controller: 'Dashboard', action: 'newContact')}"> New Contact</a></li>  
-                    <li>
-                <li><a class = "fa fa-plus" href="${createLink(controller: 'Dashboard', action: 'createGroup')}"> New Group</a></li>  
-
-                    </li>
-                  </ul>
-                </li>
-			-->
-                  
+                <li><a href="${createLink(controller: 'Dashboard', action: 'dashboard')}">Contacts</a></li> 
+                <li><a href="${createLink(controller: 'Dashboard', action: 'groups')}">Groups</a></li>                
+                <li><a class = "fa fa-plus" href="${createLink(controller: 'Dashboard', action: 'newContact')}"> New Contact</a></li>    
               </ul>
             </li>
 
@@ -233,222 +241,152 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
+        
+      
+	    <g:if test="${addToGroup}">	                    
           <h1>
-            Contacts
-            <small>Full contact list</small>
+            Add to Group
+            <small>Group list</small>
           </h1>
+	      </g:if>
+	    <g:else>
+          <h1>
+            Groups
+            <small>Group list</small>
+          </h1>
+	     </g:else>        
+          
+          
+
+	                    <g:if test="${addToGroup}">	                    
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Address Book</a></li>
-            <li class="active">Contacts</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Add to Group</a></li>
+            <li class="active">All Groups</li>
           </ol>
+	                    </g:if>
+	                    <g:else>    
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Groups</a></li>
+            <li class="active">All Groups</li>
+          </ol>
+			            </g:else> 
+          
         </section>
 
 
         <!-- Main content -->
   <section class="content">
           
-      <g:if test="${clientCount == 0}">	
-         <div class="callout callout-info" style="margin-bottom: 10px!important;">
-            <h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
-            It looks like you dont have any contacts yet. Get started by adding clients below!
-        </div>
+      <g:if test="${groupCount == 0}">	
+	         <div class="callout callout-info" style="margin-bottom: 10px!important;">
+	            <h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
+	            It looks like you dont have any contacts yet. Get started by adding clients below!
+	        </div>      
+        </g:if>
         
-        </g:if>       
-        
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Text</h3>
-                  <p>Compose a text</p>
-                </div>
-                <div class="icon" >
-                  <i class="fa fa-envelope-o" style = " font-size: 0.85em;"></i>
-                </div>
-                <a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="small-box-footer">Send Now <i class="fa fa-arrow-circle-right"> </i></a>
-              </div>
-            </div><!-- ./col -->
-            
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Contacts</h3>
-                  <p>Your Contacts</p>
-                </div>
-                <div class="icon">
-                  <i class="fa fa-users" style = " font-size: 0.8em;"></i>
-                </div>
-                <a href="#" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-                       
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-red">
-                <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Inbox</h3>
-                  <p><b>0</b> New</p>
-                  
-                </div>
-                <div class="icon">
-                  <i class="fa fa-inbox" style = " font-size: 0.85em;" ></i>
-                </div>
-                <a href="#" class="small-box-footer"> View <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-            
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Balance</h3>
-                  <p>Your Balance</p>
-                </div>
-                <div class="icon">
-                  <i class="fa fa-balance-scale" style = " font-size: 0.8em;"></i>
-                </div>
-                <a href="#" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-
-            
-
-            
-          </div><!-- /.row -->
-          <!-- Main row -->
-        
-        
-        
-        
-           
          <input  id = 'searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
          <input  id = 'offset' type="hidden" value="${offset}">
-         <input  id = 'clientCount' type="hidden" value="${clientCount}">
-                          
+         <input  id = 'groupCount' type="hidden" value="${groupCount}">
+               
           <div class="row">
             <div class="col-xs-12">       
               <div class="box">
                 <div class="box-header">      
-         
-        <h3 style = "margin: 10px 0px 0px 0px" >Recent Contacts</h3> 
-                       
+   
                 </div><!-- /.box-header -->
-                <div class="box-body">
+                <div class="box-body">     
+	                    <g:if test="${addToGroup}">	                    
+	              			<p style = "margin-top: -25px; margin-bottom: 15px;">Add <b>${contactGroupAdd.fullName}</b> to a group.</p> 
+	                    </g:if>          
                   <table id="example1" class="table table-bordered table-hover">
                     <thead>
                       <tr>
                         <th>Name</th>
-                        <th>Number</th>
-                        <th>Location</th>
-                        <th>Subbed</th>
+                        <th>Members</th>
+                        <th>Description</th>
                       </tr>
                     </thead>
                     <tbody>
 
-				 <g:if test="${clientCount > 0 || offset > 0}">	
+				 <g:if test="${groupCount > 0 || offset > 0}">	
 				 
-				 	<g:if test="${contacts != 'NONE'}">						 			
-	                    <g:each in="${contacts}">
+				 	<g:if test="${groups != 'NONE'}">						 			
+	                    <g:each in="${groups}">
 	                    
-	                      <tr  data-toggle="modal" data-target="#myModal${it.contactID}" class = "pointer" >
-	                        <td><a href = "#"><b>${it.firstName} ${it.lastName}</b></a></td>
-	                        <td>${it.phoneNumber}</td>
+	                    <g:if test="${addToGroup}">	                    
+	              			 <tr  data-toggle="modal" data-target="#myModal${it.groupID}" class = "pointer" >
+	                    </g:if>
+	                    <g:else>
+	                    	<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'detailedGroup', params: [groupID: it.groupID])}';"class = "pointer" >
+	                    </g:else>
+	                    
+	                        <td><a href = "#"><b>${it.groupName}</b></a></td>
+	                        <td>${it.memberCount}</td>
 	                        
-	                        <g:if test="${it.city}">
-								<td>${it.city,}, ${it.state}</td>
+	                        <g:if test="${it.description}">
+								<td>${it.description}</td>
 							</g:if>
 							<g:else>
 								<td>None</td>						
-							</g:else>
-	     
-                 <g:if test="${it.subbed =! 'false'}" >
-                      <td><span style = "color: green;" ><b>Yes</b></span></td>
-                    </g:if>
-                    <g:else>
-                      <td><span style = "color: purple;"  >No</span></td>
-                    </g:else> 
-	                     
+							</g:else>	
 	                      </tr>
 	                      
 						</g:each>
 					</g:if>
 					<g:else>
                  
-                 
-                  <g:if test="${isSearch}" >
-                      <tr onclick="document.location = '${createLink(controller: 'Dashboard')}';"  class = "pointer" >
-                        <td><a href = "#"><b>No Results, try another search or go back.</b></a></td>
-                        <td>-</td>
-						<td>-</td>
-                        <td>-</td>
-                      </tr>
-                  </g:if>
-                  <g:else>
-                      <tr  class = "pointer" >
+                      <tr class = "pointer" >
                         <td><a href = "#"><b>-</b></a></td>
                         <td>-</td>
 						<td>-</td>
-                        <td>-</td>
                       </tr>
-                  </g:else>
-                 
+                      
 					</g:else>
 					
                  </g:if>
                  
                  <g:else>
-                    
-                  <g:if test="${isSearch}" >
-                      <tr onclick="document.location = '${createLink(controller: 'Dashboard')}';"  class = "pointer" >
-                        <td><a href = "#"><b>No Results, try another search or go back.</b></a></td>
+                 
+                      <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'createGroup')}';"  class = "pointer" >
+                        <td><a href = "#"><b>Click here to add your first group!</b></a></td>
                         <td>-</td>
 						<td>-</td>
                         <td>-</td>
                       </tr>
-                  </g:if>
-                  <g:else>
-                      <tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'newContact')}';"  class = "pointer" >
-                        <td><a href = "#"><b>Click here to add your first contact!</b></a></td>
-                        <td>-</td>
-						<td>-</td>
-                        <td>-</td>
-                      </tr>
-                  </g:else>
-       
                  
                  </g:else>
-                     
+                                    
                     </tbody>
+                    
+                    
                     
                     <tfoot>
 
                     </tfoot>
                   </table>
                 </div><!-- /.box-body -->
-                
-                  <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
-                        
-                        <g:if test="${offset > 0}">	  
-	                        <g:link  action="dashboard"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
+                                        
+  
+                        <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
+                      <g:if test="${offset > 0}">	  
+	                        <g:link  action="dashboard" action = "groups"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
                        	</g:if>
                        	<g:else>
                        	   <button disabled  type="button" class="btn btn-default">Back</button>                 	
                        	</g:else>
                         
-                        	<g:if test="${offset <= clientCount}">	
-                        		<g:link  action="dashboard"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
+                        	<g:if test="${offset <= groupCount}">	
+                        		<g:link  action="dashboard" action = "groups"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
                         	</g:if>
                         	<g:else>
                         		<button disabled  type="button" class="btn btn-default">Next</button>
                         	</g:else>
-                  </div>
+                       
+                        </div>
                         
                    <p style = "float: right; text-align: right; margin: 15px; display: inline-block;" >
                   
-                   <span id = "pageInfo">${currentPage} of 0</span>
+                   <span id = "pageInfo">Showing ${currentPage}/3000</span>
   
                    </p>
                 
@@ -535,43 +473,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div><!-- ./wrapper -->
     
 
-      <g:if test="${contacts && contacts != 'NONE'}">						 			      
-          <g:each in="${contacts}">
+
+				 <g:if test="${addToGroup}">	
+	                    <g:each in="${groups}">
          
-            <div class="modal" id="myModal${it.contactID}" role="dialog">
+            <div class="modal" id="myModal${it.groupID}" role="dialog">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 id = "modalHeading" class="modal-title">Select an option: <b>${it.firstName} ${it.lastName}</b></h4>
+                    <h4 id = "modalHeading" class="modal-title"><b>${it.groupName}</b></h4>
                   </div>
-                  <div class="modal-body" style = "padding-top: 0px;" >
-                                    
-                  <g:link  style = "margin-bottom:0px; margin-top: 15px; "  action="sendTxt"  params="[contactID: it.contactID]"  type="button" class="btn btn-app"  >            
-                 	<i class="fa fa-envelope-o"></i>Send Text
-                  </g:link>
-                  
- 				 <a href = "" ></a>
-                 
-                  
-                  <g:link  style = "margin-bottom:0px; margin-top: 15px; "  action="editContact"  params="[contactID: it.contactID]"  type="button" class="btn btn-app"  >            
-                    <i class="fa fa-edit"></i> Edit Contact
-                  </g:link>
-                  
-                   <g:link  style = "margin-bottom:0px; margin-top: 15px; "  action="details"  params="[contactID: it.contactID, conType: 'Contact']"  type="button" class="btn btn-app"  >            
-                    <i class="fa fa-user"></i> Contact Details
-                  </g:link>
-                  
-                  
-                   <g:link  style = "margin-bottom:0px; margin-top: 15px; "  action="groups"  params="[contactID: it.contactID, addToGroup: 'True']"  type="button" class="btn btn-app"  >            
-                    <i class="fa fa-users"></i> Add to Group
-                  </g:link>
-                  
-
-                 
+                  <div class="modal-body" style = "padding-top: 15px;" >
+                      Are you sure you want to add <b>${contactGroupAdd.fullName}</b> to group <b>${it.groupName}</b>       
                   </div>
                   <div class="modal-footer">
+                  
+                    <g:link  action="addToGroup"  params="[contactID: contactGroupAdd.contactID, groupID: it.groupID]"  type="button" class="btn btn-primary pull-left" >Add</g:link>
                     <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                  
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
@@ -604,12 +524,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
 
   $( document ).ready(function() {
-	  if($("#searchQueryHiddenField").val() != "") {
-			$("#seachQueryInput").val($("#searchQueryHiddenField").val().toString());
-		}
-
 		// Set pageinfo
-		var totalClientCount = $("#clientCount").val();
+		var totalClientCount = $("#groupCount").val();
 		var offset = $("#offset").val();
 		var offsetTop = (parseInt(offset) + 10);
 		$("#pageInfo").html("Viewing " + offset + "-" + offsetTop + " of " + totalClientCount);

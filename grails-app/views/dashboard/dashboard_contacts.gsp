@@ -173,15 +173,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <ul class="sidebar-menu">
             <li class="header">Tools</li>
             <!-- Optionally, you can add icons to the links -->
-            
-           <li class = "active">
-              <a href="${createLink(controller: 'Dashboard', action: 'Dashboard')}">
-                <i class="fa fa-home"></i> <span>Home</span>
-              </a>
-            </li>
-            
-
-            <li >
+             
+            <li class="active">
               <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="${createLink(controller: 'Dashboard', action: 'dashboard')}">View Contacts</a></li> 
@@ -253,70 +246,63 @@ scratch. This page gets rid of all links and provides the needed markup only.
             It looks like you dont have any contacts yet. Get started by adding clients below!
         </div>
         
-        </g:if>       
+        </g:if>
+        
         
           <!-- Small boxes (Stat box) -->
           <div class="row">
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-aqua">
-                <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Text</h3>
-                  <p>Compose a text</p>
-                </div>
-                <div class="icon" >
-                  <i class="fa fa-envelope-o" style = " font-size: 0.85em;"></i>
-                </div>
-                <a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="small-box-footer">Send Now <i class="fa fa-arrow-circle-right"> </i></a>
-              </div>
-            </div><!-- ./col -->
-            
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Contacts</h3>
-                  <p>Your Contacts</p>
+                <div class="inner">
+                  <h3>Text</h3>
+                  <p>Send a text</p>
                 </div>
                 <div class="icon">
-                  <i class="fa fa-users" style = " font-size: 0.8em;"></i>
+                  <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Compose a Text <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
-                       
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-red">
-                <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Inbox</h3>
-                  <p><b>0</b> New</p>
-                  
-                </div>
-                <div class="icon">
-                  <i class="fa fa-inbox" style = " font-size: 0.85em;" ></i>
-                </div>
-                <a href="#" class="small-box-footer"> View <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-            
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-green">
-                <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Balance</h3>
-                  <p>Your Balance</p>
+                <div class="inner">
+                  <h3>Send Text<sup style="font-size: 20px">%</sup></h3>
+                  <p>Bounce Rate</p>
                 </div>
                 <div class="icon">
-                  <i class="fa fa-balance-scale" style = " font-size: 0.8em;"></i>
+                  <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
-
-            
-
-            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h3>44</h3>
+                  <p>User Registrations</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-person-add"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-red">
+                <div class="inner">
+                  <h3>65</h3>
+                  <p>Unique Visitors</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
           </div><!-- /.row -->
           <!-- Main row -->
         
@@ -332,8 +318,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="col-xs-12">       
               <div class="box">
                 <div class="box-header">      
-         
-        <h3 style = "margin: 10px 0px 0px 0px" >Recent Contacts</h3> 
+                 <g:form id = "searchForm" controller="Dashboard" action="dashboard" enctype="multipart/form-data" >
+                <div class="input-group margin" style = "width: 250px; margin: 10px 0px 0px 0px;">
+                
+                    <input id = "seachQueryInput" name = "searchQuery" placeholder="Name, address..." type="text" class="form-control">
+                    <span class="input-group-btn">
+                      <g:actionSubmit  action="dashboard" class="btn btn-info btn-flat" type="button" value = "Search"></g:actionSubmit>             
+                    </span>   
+                                     
+                  </div><!-- /input-group -->   
+              </g:form>
                        
                 </div><!-- /.box-header -->
                 <div class="box-body">

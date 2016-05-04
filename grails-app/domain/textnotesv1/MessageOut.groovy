@@ -13,6 +13,8 @@ class MessageOut {
 	String userID
 	String messageID
 	
+	int contactCount
+	
 	boolean recurring
 	boolean scheduled 
 	
@@ -23,5 +25,6 @@ class MessageOut {
     static constraints = {
 		message(maxSize: 2000) // Max from sms service is 1600
 		scheduleTime(nullable:true)	
+		contactCount(nullable:true)	
     }
 }

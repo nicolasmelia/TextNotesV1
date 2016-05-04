@@ -8,10 +8,12 @@ import com.twilio.sdk.verbs.Media;
 import java.util.Map;
 import java.util.HashMap;
  
+
 import com.twilio.sdk.resource.factory.MessageFactory
 import com.twilio.sdk.resource.instance.Account;
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
+
 
 
 
@@ -125,7 +127,7 @@ class SmsGateOutController {
 		
 		String saveableList
 		for (String recep : tags) {		
-			saveableList = saveableList + "/" + recep
+			saveableList = saveableList + "," + recep
 		}
 		
 		ms.recipients = saveableList	
@@ -134,10 +136,60 @@ class SmsGateOutController {
 		ms.recurring = false
 		ms.scheduled = false
 			
+		ms.contactCount = getRecipCount(saveableList)
 		ms.save(flush:true)
+		
+		createHistoryLog("Message", ms.contactCount)
+		
 		return ms.messageID 
 			
 	}
+	
+	def createHistoryLog(String type, int contactCount){
+		History history = new History()
+		
+		// Create a UUID and cut it in half
+		String uniqueID = UUID.randomUUID().toString().replace("-", "");
+		int midpoint = uniqueID.length() / 2;
+		String halfUUID = uniqueID.substring(0, midpoint)
+		
+		history.userID = session["userID"]
+		history.historyID = halfUUID
+		history.description = "Message sent to " + contactCount.toString() + " recipients." 
+		history.type = type
+		history.date = new Date()
+		history.save(flush:true)
+			
+	}
+	
+	
+	int getRecipCount (String tags) {
+		int clientCount = 0
+		print tags
+		ArrayList<String> tagList = tags.split(",")
+		for (String tag : tagList)	 {
+			String contactType = tag.split(":")[0]
+			switch (contactType) {
+				case "N":  // Single number
+					clientCount += 1
+					break;
+				case "ID":
+					clientCount += 1
+					break;
+				case "G":
+					String groupID = tag.split(":")[1]
+					Groups group = Groups.findByGroupID(groupID);
+					clientCount += group.memberCount
+					break;
+				default:
+					break;
+			}
+		}
+		
+		return clientCount
+	}
+	
+	
 
 	
 	

@@ -226,6 +226,48 @@ class DashboardController {
 		
 	}
 	
+	def history() {
+		int offset = 0
+		if (params.offset != null) {
+			offset = Integer.parseInt(params.offset)
+			if (params.up.toString().equals("true")) {
+				offset = offset + 10
+			} else {
+				if (offset > 0) {
+				offset = offset - 10
+				}
+			}
+		}
+		
+		// check to see if contacts exist
+		int groupCount = Groups.countByUserID(session.userID)
+			
+		// Check if a user is being added to a group
+		boolean addToGroup = false
+		def contactGroupAdd = null
+		if (params.addToGroup.toString().equals("True")) {
+			contactGroupAdd = Contact.findByContactID(params.contactID)
+			addToGroup=true
+		}
+		
+		// Get searchInfo if any
+		def searchQuery
+		if (!params.searchQuery && !params.searchQueryHidden) {
+			searchQuery = null
+		} else if (params.searchQueryHidden) {
+			searchQuery = params.searchQueryHidden
+		} else if (params.searchQuery) {
+			searchQuery = params.searchQuery
+		}
+		
+		if (session["userID"]) {
+			 render(view:"dashboard_groups",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, addToGroup: addToGroup, contactGroupAdd: contactGroupAdd, groupCount: groupCount, groups: getGroupList(offset, false)])
+		} else {
+			redirect(controller: "Home")
+		}
+		
+	}
+	
 	def detailedGroup() {
 		int offset = 0
 		if (params.offset != null) {
@@ -265,8 +307,7 @@ class DashboardController {
 		}
 		
 	}
-	
-	
+		
 	def createGroup() {
 		if (session["userID"]) {			
 			if (!params.name) {
@@ -536,6 +577,23 @@ class DashboardController {
 		return accountInfo
 	}
 	
+	def createHistoryLog(String description, String type){
+		History history = new History()
+		
+		// Create a UUID and cut it in half
+		String uniqueID = UUID.randomUUID().toString().replace("-", "");
+		int midpoint = uniqueID.length() / 2;
+		String halfUUID = uniqueID.substring(0, midpoint)
+		
+		history.userID = session["userID"]
+		history.historyID = halfUUID
+		history.description = description
+		history.type = type
+		history.date = new Date()
+		history.save(flush:true)
+		
+	}
+	
 	
 	def createSession(String userID) {
 		// Creates a session if one does not exist
@@ -549,5 +607,7 @@ class DashboardController {
 			return false
 		}	
 	}
+	
+	
 	
 }
