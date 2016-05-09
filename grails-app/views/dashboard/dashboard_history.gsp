@@ -209,7 +209,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="${createLink(controller: 'Dashboard', action: 'dashboard')}">Contacts</a></li> 
-                <li><a href="${createLink(controller: 'Dashboard', action: 'groups')}">Groups</a></li>                
+                <li><a href="${createLink(controller: 'Dashboard', action: 'history')}">history</a></li>                
                 <li><a class = "fa fa-plus" href="${createLink(controller: 'Dashboard', action: 'newContact')}"> New Contact</a></li>    
               </ul>
             </li>
@@ -251,7 +251,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	      </g:if>
 	    <g:else>
           <h1>
-            Groups
+            history
             <small>Group list</small>
           </h1>
 	     </g:else>        
@@ -261,13 +261,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                    <g:if test="${addToGroup}">	                    
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Add to Group</a></li>
-            <li class="active">All Groups</li>
+            <li class="active">All history</li>
           </ol>
 	                    </g:if>
 	                    <g:else>    
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Groups</a></li>
-            <li class="active">All Groups</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> history</a></li>
+            <li class="active">All history</li>
           </ol>
 			            </g:else> 
           
@@ -301,27 +301,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <table id="example1" class="table table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Members</th>
-                        <th>Description</th>
+                        <th>Action</th>
+                        <th>description</th>
+                        <th>Date</th>
                       </tr>
                     </thead>
                     <tbody>
 
 				 <g:if test="${groupCount > 0 || offset > 0}">	
 				 
-				 	<g:if test="${groups != 'NONE'}">						 			
-	                    <g:each in="${groups}">
+				 	<g:if test="${history != 'NONE'}">						 			
+	                    <g:each in="${history}">
+
 	                    
-	                    <g:if test="${addToGroup}">	                    
-	              			 <tr  data-toggle="modal" data-target="#myModal${it.groupID}" class = "pointer" >
-	                    </g:if>
-	                    <g:else>
-	                    	<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'detailedGroup', params: [groupID: it.groupID])}';"class = "pointer" >
-	                    </g:else>
-	                    
-	                        <td><a href = "#"><b>${it.groupName}</b></a></td>
-	                        <td>${it.memberCount}</td>
+	                        <td>${it.type}</td>
 	                        
 	                        <g:if test="${it.description}">
 								<td>${it.description}</td>
@@ -329,7 +322,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<g:else>
 								<td>None</td>						
 							</g:else>	
+							
+						<td><g:formatDate format="yyyy-MM-dd HH:mm" date="${it.date}"/></td>
+							
+							
 	                      </tr>
+	                      
 	                      
 						</g:each>
 					</g:if>
@@ -369,14 +367,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
                         <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
                       <g:if test="${offset > 0}">	  
-	                        <g:link  action="dashboard" action = "groups"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
+	                        <g:link  action="dashboard" action = "history"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
                        	</g:if>
                        	<g:else>
                        	   <button disabled  type="button" class="btn btn-default">Back</button>                 	
                        	</g:else>
                         
                         	<g:if test="${offset <= groupCount}">	
-                        		<g:link  action="dashboard" action = "groups"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
+                        		<g:link  action="dashboard" action = "history"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
                         	</g:if>
                         	<g:else>
                         		<button disabled  type="button" class="btn btn-default">Next</button>
@@ -475,7 +473,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 				 <g:if test="${addToGroup}">	
-	                    <g:each in="${groups}">
+	                    <g:each in="${history}">
          
             <div class="modal" id="myModal${it.groupID}" role="dialog">
               <div class="modal-dialog">

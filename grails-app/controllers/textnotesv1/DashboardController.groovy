@@ -47,10 +47,44 @@ class DashboardController {
 		
 	}
 	
-	def test() {
-		print params.offset
-	}
+	def contacts() {	
+		int offset = 0
+		if (params.offset != null) {
+			offset = Integer.parseInt(params.offset)
+			if (params.up.toString().equals("true")) {
+				offset = offset + 10
+			} else {
+				if (offset > 0) {
+				offset = offset - 10
+				}
+			}
+		}
+		
+		// check to see if contacts exist
+		int clientCount = Contact.countByUserID(session.userID)
+		
+		// Get searchInfo if any
+		def searchQuery
+		boolean isSearch = false
+		if (!params.searchQuery && !params.searchQueryHidden) {
+			searchQuery = null
+		} else if (params.searchQueryHidden) {
+			searchQuery = params.searchQueryHidden	
+			isSearch = true
+		} else if (params.searchQuery) {
+			searchQuery = params.searchQuery
+			isSearch = true
+		}
+		
+		print isSearch
 	
+		if (session["userID"]) {		
+			 render(view:"dashboard_contacts",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery)])		 
+		} else {
+			redirect(controller: "Home")
+		}
+		
+	}
 	
 	def sendTxt() {	
 			if (session["userID"]) {					
@@ -96,8 +130,6 @@ class DashboardController {
 		render clientCount.toString()
 	}
 	
-
-	
 	def newContact() {
 			if (session["userID"]) {
 				render(view:"dashboard_addContact", model: [accountInfo: getUserAccountInfo()])	
@@ -120,7 +152,11 @@ class DashboardController {
 					}					
 				} else {
 					// Edit the contact 
+
 					Contact contact = Contact.findByContactID(params.contactID)
+					
+					createHistoryLog("Edited " + contact.fullName, "Edit Contact")
+					
 					contact.firstName = params.firstName.toString().trim()
 					contact.lastName = params.lastName.toString().trim()
 					contact.fullName = contact.firstName + " " + contact.lastName
@@ -132,6 +168,8 @@ class DashboardController {
 					contact.address = params.address.toString().trim()
 
 					contact.userID = session["userID"]
+					
+					
 					
 					contact.save(flush:true)
 					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "editContact", name: contact.fullName.toString(), number: contact.phoneNumber.toString(), contactID: contact.contactID])
@@ -172,7 +210,9 @@ class DashboardController {
 			contact.userID = session["userID"]
 			
 			contact.save(flush:true)	
-
+			
+			createHistoryLog("Added " + contact.fullName + " to contact book", "Contact")
+			
 			redirect(controller: "Dashboard", action: "confirmation", params: [accountInfo: getUserAccountInfo(), conType: "AddContact", name: contact.firstName, contactID: contact.contactID])			
 		} else {
 			// User exist with the same number and name under this usersID
@@ -214,10 +254,7 @@ class DashboardController {
 		} else if (params.searchQuery) {
 			searchQuery = params.searchQuery
 		}
-		
-		
-		println addToGroup.toString() + " GROUP"
-				
+					
 		if (session["userID"]) {
 			 render(view:"dashboard_groups",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, addToGroup: addToGroup, contactGroupAdd: contactGroupAdd, groupCount: groupCount, groups: getGroupList(offset, false)])
 		} else {
@@ -240,15 +277,10 @@ class DashboardController {
 		}
 		
 		// check to see if contacts exist
-		int groupCount = Groups.countByUserID(session.userID)
+		int groupCount = History.countByUserID(session.userID)
 			
 		// Check if a user is being added to a group
 		boolean addToGroup = false
-		def contactGroupAdd = null
-		if (params.addToGroup.toString().equals("True")) {
-			contactGroupAdd = Contact.findByContactID(params.contactID)
-			addToGroup=true
-		}
 		
 		// Get searchInfo if any
 		def searchQuery
@@ -261,7 +293,7 @@ class DashboardController {
 		}
 		
 		if (session["userID"]) {
-			 render(view:"dashboard_groups",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, addToGroup: addToGroup, contactGroupAdd: contactGroupAdd, groupCount: groupCount, groups: getGroupList(offset, false)])
+			 render(view:"dashboard_history",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, addToGroup: addToGroup, groupCount: groupCount, history: getHistoryList(offset)])
 		} else {
 			redirect(controller: "Home")
 		}
@@ -329,6 +361,9 @@ class DashboardController {
 					
 					group.groupID = halfUUID
 					group.save(flush:true) 
+					
+					createHistoryLog("Created group " + group.groupName, "Group")	
+					
 					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addGroup", groupID: group.groupID, name: group.groupName])
 					
 				} else {
@@ -360,6 +395,9 @@ class DashboardController {
 				
 				
 				group.save(flush:true)
+				
+				createHistoryLog("Added " + contact.fullName + " to group " + group.groupName, "Group")
+							
 				groupMember.save(flush:true)
 				
 				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContactToGroupSuccess", groupName: group.groupName, name: contact.fullName])		
@@ -403,6 +441,20 @@ class DashboardController {
 		
 		if (groups.size > 0) {
 			return groups
+		} else {
+			return "NONE"
+		}
+	}
+	
+	def getHistoryList(offset){
+		def history;
+		
+			history =  History.findAll("from History as h where h.userID=? order by h.date DESC",
+					 [session.userID], [max: 10, offset: offset])
+
+		
+		if (history.size > 0) {
+			return history
 		} else {
 			return "NONE"
 		}
@@ -540,8 +592,7 @@ class DashboardController {
 		   redirect(controller: "Home")
 	   }	
 	}
-	
-	
+
 
 	def proccessTxtSend() {
 		render params.tags

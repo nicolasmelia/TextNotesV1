@@ -216,13 +216,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
        
              <li class="treeview">
-              <a href="#"><i class="fa fa-ticket"></i> <span>Promotions</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-inbox"></i> <span>Keywords</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="${createLink(controller: 'Dashboard', action: 'ViewPromos')}">View Promotions</a></li>
-                <li><a href="${createLink(controller: 'Dashboard', action: 'validatePromo')}">Validate Promo Code</a></li>       
-                <li><a href="${createLink(controller: 'Dashboard', action: 'createPromo')}">Create Promotion</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'ViewPromos')}">View Keywords</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'validatePromo')}">Keyword Inbox</a></li>       
+                <li><a href="${createLink(controller: 'Dashboard', action: 'createPromo')}">New Keyword</a></li>
               </ul>
             </li>
+            
+       
+             <li class="treeview">
+              <a href="#"><i class="fa fa-paw"></i> <span>Account</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="${createLink(controller: 'Dashboard', action: 'history')}">My Balance</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'history')}">My Activity</a></li>
+              </ul>
+            </li>
+            
 
           </ul><!-- /.sidebar-menu -->
         </section>
@@ -281,7 +291,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="icon">
                   <i class="fa fa-users" style = " font-size: 0.8em;"></i>
                 </div>
-                <a href="#" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="${createLink(controller: 'Dashboard', action: 'contacts')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"> </i></a>
               </div>
             </div><!-- ./col -->
                        
@@ -289,8 +299,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <!-- small box -->
               <div class="small-box bg-red">
                 <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Inbox</h3>
-                  <p><b>0</b> New</p>
+                  <h3 style = "font-size: 30px;" >Keywords</h3>
+                  <p>Inbox and Keywords</p>
                   
                 </div>
                 <div class="icon">
