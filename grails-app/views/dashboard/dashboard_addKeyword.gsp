@@ -31,6 +31,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
     -->
     <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='dashboard/skins/skin-purple.min.css'/>">
     
+    <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'/>">
+    
+    <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/select2/select2.min.css'/>">
+      
+    <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='tagsinput/dist/bootstrap-tagsinput.css'/>">
+    
+    
+    <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/timepicker/bootstrap-timepicker.min.css'/>">
+    
+     <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/daterangepicker/daterangepicker-bs3.css'/>">
+    
+    
+     <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/iCheck/all.css'/>">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,8 +51,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
   </head>
-
   <body class="hold-transition skin-purple sidebar-mini">
     <div class="wrapper">
 
@@ -202,7 +215,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="header">Tools</li>
             <!-- Optionally, you can add icons to the links -->
             
-             
+                    
             <li class="active">
               <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
@@ -229,7 +242,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li><a href="${createLink(controller: 'Dashboard', action: 'createPromo')}">Create Promotion</a></li>
               </ul>
             </li>
-       
 
             
           </ul><!-- /.sidebar-menu -->
@@ -242,328 +254,95 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Confirmations
-            <small>Current</small>
+            Keyword
+            <small>Create</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Transactions</a></li>
-            <li class="active">Confirmation</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Keyword</a></li>
+            <li class="active">New</li>
           </ol>
         </section>
 
         <!-- Main content -->
   <section class="content">
+       
+       
+    <!-- Horizontal Form -->
+              <div class="box box-info" style = "max-width: 600px;">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Create a keyword</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+               <g:form id = "txtForm" class="form-horizontal" controller="Dashboard" action="newKeyWord" enctype="multipart/form-data" >
+                
+                  <div class="box-body">
+                  
+                  
+                  <div id = "ModalAlert"  style = "display: none;"  class="alert alert-danger alert-dismissable">
+                    <h4><i class="icon fa fa-exclamation-circle"></i>Fix needed</h4>
+                    <p id = "ModalAlertText"></p>
+                  </div>
+                 
+
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Keyword</label>
+                      <div class="col-sm-10">
+                        <input  name = "keyword"  id  = "keyword" type="text" class="form-control" placeholder="Required">
+                      </div>
+                    </div>
+                  
+                    <div class="form-group">        
+                      <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
+                      <div class="col-sm-10">
+                        <textarea  name = "desc"  id = "Desc" type="text" class="form-control" placeholder="Not Required"></textarea>
+                      </div>
+                    </div>
 
 
-<g:if test="${params.conType == 'Message'}">
+				<hr>
 
-			<!-- MESSAGE SENT SUCCESS -->
-            <div class="box box-info">
-              <div class="box-header with-border">
-                  <i class="fa fa-bell-o"></i>
-                <h3 class="box-title">Success!</h3>
+		                  <!-- Date range -->
+                  <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Date Range</label>   
+                    <div class="input-group" style = "width:50%;">
+                    
+                   <div class="col-sm-10" style = "width:100%;">
+                      <input placeholder="Click to select range" name = "dateRange" style = "width:100%;" type="text" class="form-control" id="reservation">
+                      </div>
+                    </div><!-- /.input group -->                
+                  </div><!-- /.form group --> 
+                  
+                  
+	                  <!-- Date range -->
+                  <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Never End</label>   
+                    <div class="input-group">
+                    
+                   <div class="col-sm-10" style = "width:100%;">
+                    
+                    <label>
+                      <input name = "endless" id = "endlessChkBox"  type="checkbox" class="minimal">
+                    </label>
               </div>
-              <div class="box-body">   
-            <div class="callout callout-info" style = "margin: 0px;" >
-              <h4>Message sent</h4>
-              <p>Your message has been successfully sent to <b>${params.totalRecp}</b> recipient(s). View detailed information about this message by clicking "Details" below.</p>
-            </div>
-            
-            <div style = "margin: 10px 0px 5px 0px;" >
-                <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn   btn-default">Address Book</a>
-	            <g:link  class="btn btn-default" action="details"  params="[conType: 'Message', messageID: params.messageID]"  type="button"  >            
-                    Details
-                  </g:link>
-            </div>
-
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-            <!-- MESSAGE SENT SUCCESS -->
+                    </div><!-- /.input group -->                
+                  </div><!-- /.form group --> 
+                  
+ 
+                  </div><!-- /.box-body -->
+                  <div class="box-footer">
+                   <button  onClick = "return validateMainForm()" class="btn btn-info pull-right" id = "submitBtn" value = "Send"  action = "newKeyWord"/>Create</button>	
+                    <a href = "${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" class="btn btn-default">Cancel</a>
+                  </div><!-- /.box-footer -->
+                  
+                
+               </g:form>
+                
+              </div><!-- /.box -->
          
-</g:if>
-    
-<g:elseif test="${conType == 'AddContact'}" >
-
-			<!-- Contact added SUCCESS -->
-            <div class="box box-info">
-              <div class="box-header with-border">
-                  <i class="fa fa-bell-o"></i>
-                <h3 class="box-title">Success!</h3>
-              </div>
-              <div class="box-body">   
-            <div class="callout callout-info" style = "margin: 0px;" >
-              <h4>Contact added</h4>
-              <p>
-				${params.name} has been successfully added to your address book. Click "Details" to view detailed information on your new contact.	
-              </p>
-            </div>
-            
-            <div style = "margin: 10px 0px 5px 0px;" >
-                <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Address Book</a>
-            	
-            	<g:link  class="btn btn-default" action="details"  params="[contactID: params.contactID, conType: 'Contact']"  type="button"  >            
-                    Details
-                  </g:link>
-    	
-                  <g:link class="btn btn-default"   action="sendTxt"  params="[contactID: params.contactID]"  type="button"   >            
-                 	Send Text
-                  </g:link>
-    	
-            </div>
-
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-			<!-- Contact added SUCCESS -->
-            
-            
-</g:elseif>
-
-
-    
-<g:elseif test="${conType == 'editContact'}" >
-
-			<!-- Contact added SUCCESS -->
-            <div class="box box-info">
-              <div class="box-header with-border">
-                  <i class="fa fa-bell-o"></i>
-                <h3 class="box-title">Success!</h3>
-              </div>
-              <div class="box-body">   
-            <div class="callout callout-info" style = "margin: 0px;" >
-              <h4>Contact edit saved</h4>
-              <p>
-				${params.name} has been successfully edited. Click "Details" to view detailed information on this contact.	
-              </p>
-            </div>
-            
-            <div style = "margin: 10px 0px 5px 0px;" >
-                <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Address Book</a>
-            	
-            	<g:link  class="btn btn-default" action="details"  params="[contactID: params.contactID, conType: 'Contact']"  type="button"  >            
-                    Details
-                  </g:link>
-    	
-                  <g:link class="btn btn-default"   action="sendTxt"  params="[contactID: params.contactID]"  type="button"   >            
-                 	Send Text
-                  </g:link>
-    	
-            </div>
-
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-			<!-- Contact added SUCCESS -->
-            
-            
-</g:elseif>
-
-<g:elseif test="${conType == 'FAILEDAddContact'}" >
-
-			<!-- Contact added FAILED -->
-            <div class="box box-info">
-              <div class="box-header with-border">
-                  <i class="fa fa-warning"></i>
-                <h3 class="box-title">Failed</h3>
-              </div>
-              <div class="box-body">   
-            <div class="callout callout-warning" style = "margin: 0px;" >
-              <h4>Contact Already Exist</h4>
-              <p>
-              	It looks like this contact already exist in your address book. Please go back or view your adress book for more information.
-              </p>
-            </div>
-            
-            <div style = "margin: 10px 0px 5px 0px;" >
-                <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Address Book</a>
-            </div>
-
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-			<!-- Contact added SUCCESS -->
-			
-			</g:elseif>
-			
-            
-		<g:elseif test="${conType == 'FAILEDtext'}" >
-		            
-			<!-- Text sent FAILED -->
-            <div class="box box-info">
-              <div class="box-header with-border">
-                  <i class="fa fa-warning"></i>
-                <h3 class="box-title">FAILED!</h3>
-              </div>
-              <div class="box-body">   
-            <div class="callout callout-warning" style = "margin: 0px;" >
-              <h4>Message failed.</h4>
-              <p>
-              	Your message has failed to send to all recipients. Please go back and try again. If this error does not get resolved please contact support at Support@TxtWolf.com
-              </p>
-            </div>
-            
-            <div style = "margin: 10px 0px 5px 0px;" >
-            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn   btn-default">New Message</a>
-	            <a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Details</a>
-            </div>
-
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-			<!-- Contact added SUCCESS -->    
-		            
-		</g:elseif>
-		
-		
-		<g:elseif test="${conType == 'addGroup'}" >
-		            
-			<!-- SUCCESS -->
-            <div class="box box-info">
-              <div class="box-header with-border">
-                  <i class="fa fa-warning"></i>
-                <h3 class="box-title">Success!</h3>
-              </div>
-              <div class="box-body">   
-            <div class="callout callout-info" style = "margin: 0px;" >
-              <h4>Group Added.</h4>
-              <p>
-				${params.name} has been successfully added as a group. Click "Details" to view detailed information on this group.	
-              </p>
-            </div>
-            
-            <div style = "margin: 10px 0px 5px 0px;" >
-            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn btn-default">New Message</a>
-            	
-            	<g:link  class="btn btn-default" action="details"  params="[groupID: params.groupID]"  type="button"  >            
-                    Details
-                  </g:link>
-    	        </div>
-
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-			<!-- Contact added SUCCESS -->    
-		            
-		</g:elseif>
-		            
-		            
-				<g:elseif test="${conType == 'FAILEDaddGroup'}" >
-		            
-			<!-- SUCCESS -->
-            <div class="box box-info">
-              <div class="box-header with-border">
-                  <i class="fa fa-warning"></i>
-                <h3 class="box-title">Failed</h3>
-              </div>
-              <div class="box-body">   
-            <div class="callout callout-warning" style = "margin: 0px;" >
-              <h4>Group already exist.</h4>
-              <p>
-				${params.name} already exist as a group. Click "Details" to view detailed information on this group.	
-              </p>
-            </div>
-            
-            <div style = "margin: 10px 0px 5px 0px;" >
-            	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn btn-default">New Message</a>
-            	
-            	<g:link  class="btn btn-default" action="details"  params="[groupID: params.groupID]"  type="button"  >            
-                    Details
-                  </g:link>
-    	        </div>
-
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-			<!-- Contact added SUCCESS -->    
-		            
-		</g:elseif>
-		            
-		<g:elseif test="${conType == 'AddContactToGroupSuccess'}" >
-		            
-			<!-- SUCCESS -->
-            <div class="box box-info">
-              <div class="box-header with-border">
-                  <i class="fa fa-bell-o"></i>
-                <h3 class="box-title">Success!</h3>
-              </div>
-              <div class="box-body">   
-            <div class="callout callout-info" style = "margin: 0px;" >
-              <h4>Member added to group.</h4>
-              <p>
-				<b>${params.name}</b> has successfully been added to <b>"${params.groupName}"</b> 
-              </p>
-            </div>
-            
-            <div style = "margin: 10px 0px 5px 0px;" >
-            	<a href="${createLink(controller: 'Dashboard', action: 'groups')}" class="btn btn-default">Groups</a>
-            	<a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Contact List</a>
-            	
-
-
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-			<!-- Contact added SUCCESS -->    
-		            
-		</g:elseif>
-		                  
-				<g:elseif test="${conType == 'AddContactToGroupFail'}" >
-		            
-			<!-- SUCCESS -->
-            <div class="box box-info">
-              <div class="box-header with-border">
-                  <i class="fa fa-warning"></i>
-                <h3 class="box-title">Failed</h3>
-              </div>
-              <div class="box-body">   
-            <div class="callout callout-warning" style = "margin: 0px;" >
-              <h4>Member already exist.</h4>
-              <p>
-				${params.name} already exist in group <b>"${params.groupName}"</b>. 
-              </p>
-            </div>
-            
-            <div style = "margin: 10px 0px 5px 0px;" >
-            	<a href="${createLink(controller: 'Dashboard', action: 'groups')}" class="btn btn-default">Groups</a>
-            	<a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Contact List</a>
-            	
-
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-			<!-- Contact added SUCCESS -->    
-		            
-		</g:elseif>
-		
-		<g:elseif test="${conType == 'addKeyword'}" >
-		            
-			<!-- SUCCESS -->
-            <div class="box box-info">
-              <div class="box-header with-border">
-                  <i class="fa fa-bell-o"></i>
-                <h3 class="box-title">Success!</h3>
-              </div>
-              <div class="box-body">   
-            <div class="callout callout-info" style = "margin: 0px;" >
-              <h4>Keyword Created</h4>
-              <p>
-				<b>${params.keyword}</b> has successfully been regestered! You can now have people text		
-				<b>${params.keyword}</b> to <b>${params.phoneNumber}</b> to participate in your campaign. Your campaign
-				is effective on <b>${params.dateEff}</b>. Click "Detailed View" to view more information on your new keyword.
-              </p>
-              
-              <h4>Keyword Tips!</h4>
-              
-               <p>
-               Learn how to use your kwey erojwelfkjasd fdskf idsafjisdfj i;sadl
-	
-              </p>
-            </div>
-            
-            <div style = "margin: 10px 0px 5px 0px;" >
-            	<a href="${createLink(controller: 'Dashboard', action: 'groups')}" class="btn btn-default">Detailed View</a>
-            	<a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">All Keywords</a>
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-			<!-- Contact added SUCCESS -->    
-		            
-		</g:elseif>
-
-        </section><!-- /.content -->
+  </section><!-- /.content -->
         
       </div><!-- /.content-wrapper -->
+
 
       <!-- Main Footer -->
       <footer class="main-footer">
@@ -574,7 +353,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Default to the left -->
         <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
       </footer>
-
+      
       <!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-dark">
         <!-- Create the tabs -->
@@ -639,6 +418,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
 
+
     <!-- REQUIRED JS SCRIPTS -->
 
     <!-- jQuery 2.1.4 -->
@@ -649,6 +429,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
     
     <!-- AdminLTE App -->
     <g:javascript src="dashboard/app.min.js" /> 
+    
+    <g:javascript src="dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" /> 
+
+    <g:javascript src="dashboard/plugins/select2/select2.full.min.js" /> 
+    
+    <g:javascript src="tagsinput/dist/bootstrap-tagsinput.min.js"/>
+    
+      
+    <!-- InputMask -->    
+    <g:javascript src="dashboard/plugins/input-mask/jquery.inputmask.js" /> 
+    <g:javascript src="dashboard/plugins/input-mask/jquery.inputmask.date.extensions.js" /> 
+    <g:javascript src="dashboard/plugins/input-mask/jquery.inputmask.extensions.js" /> 
+
+    
+    <!-- date-range-picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <g:javascript src="dashboard/plugins/daterangepicker/daterangepicker.js" /> 
+    
+    <!-- bootstrap color picker -->
+    <g:javascript src="dashboard/plugins/colorpicker/bootstrap-colorpicker.min.js" /> 
+    
+    <!-- bootstrap time picker -->
+    <g:javascript src="dashboard/plugins/timepicker/bootstrap-timepicker.min.js" /> 
+    
+    <!-- SlimScroll 1.3.0 -->
+    <g:javascript src="dashboard/plugins/slimScroll/jquery.slimscroll.min.js" /> 
+    
+    <!-- iCheck 1.0.1 -->
+    <g:javascript src="dashboard/plugins/iCheck/icheck.min.js" /> 
+    
+    <!-- FastClick -->
+    <g:javascript src="dashboard/plugins/fastclick/fastclick.min.js" /> 
+   
+     <!-- JQUERY UI -->
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+  
     
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
@@ -687,12 +505,111 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   <script>
 
-  function test(number) {
-	  $("#modalHeading").text(number);
-	}
+  $("[data-mask]").inputmask();
 
+  function validateMainForm() {		  
+	  var error = false;
+	 // var desc = $('#desc').val();
+	  var keyword = $('#keyword').val();
+	 // var state = $('#state').val();
+	 	  var dateRange = $('#reservation').val();
+	 
+	  
+	  var endlessBox = $('#endlessChkBox').prop('checked');  
+
+	   
+	  	//Clear old values
+	  	errors = [];
+		$("#ModalAlertText").html("");  
+				
+	  	if (keyword.length < 2) {
+			error = true;
+			errors.push("Please enter a valid keyword.");			
+		} 
+
+
+		if (error){
+			for (i = 0; i < errors.length; i++) { 
+				$("#ModalAlertText").append("*" + errors[i] + "<br/>");		
+			}			
+			$("#ModalAlert").slideDown();
+			return false;
+		} else {
+			$("#ModalAlert").css("display","none");		
+			return true;
+		}
+			
+  }
+
+  $(function () {
+
+
+	  
+      //Initialize Select2 Elements
+      $(".select2").select2();
+
+      //Datemask dd/mm/yyyy
+      $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+      //Datemask2 mm/dd/yyyy
+      $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+      //Money Euro
+      $("[data-mask]").inputmask();
+
+      //Date range picker
+      $('#reservation').daterangepicker();
+      //Date range picker with time picker
+      $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+      //Date range as a button
+      $('#daterange-btn').daterangepicker(
+          {
+            ranges: {
+              'Today': [moment(), moment()],
+              'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+              'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+              'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+              'This Month': [moment().startOf('month'), moment().endOf('month')],
+              'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            startDate: moment().subtract(29, 'days'),
+            endDate: moment()
+          },
+      function (start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+      }
+      );
+
+      //iCheck for checkbox and radio inputs
+      $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+      });
+      //Red color scheme for iCheck
+      $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+        checkboxClass: 'icheckbox_minimal-red',
+        radioClass: 'iradio_minimal-red'
+      });
+      //Flat red color scheme for iCheck
+      $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass: 'iradio_flat-green'
+      });
+
+      //Colorpicker
+      $(".my-colorpicker1").colorpicker();
+      //color picker with addon
+      $(".my-colorpicker2").colorpicker();
+
+      //Timepicker
+      $(".timepicker").timepicker({
+        showInputs: false
+      });
+    });
+
+  
 
   </script>
   
   
 </html>
+
+

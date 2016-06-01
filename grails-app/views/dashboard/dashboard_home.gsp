@@ -220,7 +220,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="treeview-menu">
                 <li><a href="${createLink(controller: 'Dashboard', action: 'ViewPromos')}">View Keywords</a></li>
                 <li><a href="${createLink(controller: 'Dashboard', action: 'validatePromo')}">Keyword Inbox</a></li>       
-                <li><a href="${createLink(controller: 'Dashboard', action: 'createPromo')}">New Keyword</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'newKeyWord')}">New Keyword</a></li>
               </ul>
             </li>
             

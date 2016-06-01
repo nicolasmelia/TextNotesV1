@@ -92,7 +92,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 						</li>
 						<li>
 							<span class="icon major style3 fa-paper-plane"></span>
-							<h3>Mass Texting</h3>
+							<h3>Mass Text</h3>
 							<p>Reach and retain your customers by sending updates and promotions to thousands instantly! Send individual or group text.</p>
 						</li>
 						<li>
@@ -102,7 +102,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 						</li>
 						<li>
 							<span class="icon major style1 fa-calendar-check-o"></span>
-							<h3>Scheduling</h3>
+							<h3>Notifications</h3>
 							<p>Want to send a message next week and already know what you're going to say? Contact Groups of customers with scheduled messages.</p>
 						</li>
 					</ul>

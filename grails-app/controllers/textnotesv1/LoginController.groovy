@@ -138,6 +138,8 @@ class LoginController {
 				session["firstName"] = user.firstName
 				session["lastName"] = user.lastName
 				session["signUpDate"] = user.signUpDate	
+				session["phoneNumber"] = "(330)540-8023"
+				
 				return true
 			} else {
 				// User has been deleted and a cookie still exist...

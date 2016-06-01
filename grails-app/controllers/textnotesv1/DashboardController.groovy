@@ -1,6 +1,7 @@
 package textnotesv1
 
 import grails.converters.JSON
+import java.text.SimpleDateFormat
 
 class DashboardController {
 
@@ -592,6 +593,54 @@ class DashboardController {
 		   redirect(controller: "Home")
 	   }	
 	}
+	
+	def newKeyWord() {
+		if (session["userID"]) {
+			if (!params.keyword) {
+				render(view:"dashboard_addKeyword",  model: [accountInfo: getUserAccountInfo()])
+			} else {
+
+				Keyword keyword = new Keyword()
+				
+				keyword.keyword = params.keyword
+				keyword.description = params.desc 
+				
+				SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+				
+				if (params.dateRange) {
+					keyword.dateEff = formatter.parse(params.dateRange.toString().split("-")[0].trim());
+					keyword.dateExp = formatter.parse(params.dateRange.toString().split("-")[1].trim());	
+				} else {
+					keyword.dateEff = new Date()	
+					keyword.dateExp = formatter.parse("01/01/2999");	
+				}
+				
+				if (params.endless) {
+					keyword.endless = true
+				} else {
+					keyword.endless = false			
+				}
+			
+					// Create a UUID and cut it in half
+					String uniqueID = UUID.randomUUID().toString().replace("-", "");
+					int midpoint = uniqueID.length() / 2;
+					String halfUUID = uniqueID.substring(0, midpoint)
+					
+					keyword.userID = session["userID"]
+						
+					keyword.promotionID = halfUUID
+					
+					keyword.save(flush:true)
+					
+
+					
+					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addKeyword", keyword: keyword.keyword, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
+	
+			}
+		} else {
+			redirect(controller: "Home")
+		}	
+	}
 
 
 	def proccessTxtSend() {
@@ -653,6 +702,7 @@ class DashboardController {
 			session["userID"] = user.userID
 			session["firstName"] = user.firstName
 			session["lastName"] = user.lastName
+			session["phoneNumber"] = "(330)540-8023"
 			return true
 		} else {
 			return false
