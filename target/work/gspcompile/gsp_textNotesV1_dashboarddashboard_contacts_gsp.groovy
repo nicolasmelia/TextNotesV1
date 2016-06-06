@@ -113,8 +113,8 @@ if(true && (clientCount > 0 || offset > 0)) {
 printHtmlPart(44)
 if(true && (contacts != 'NONE')) {
 printHtmlPart(45)
-for( _it1645241964 in (contacts) ) {
-changeItVariable(_it1645241964)
+for( _it1595782032 in (contacts) ) {
+changeItVariable(_it1595782032)
 printHtmlPart(46)
 expressionOut.print(it.contactID)
 printHtmlPart(47)
@@ -177,7 +177,7 @@ printHtmlPart(68)
 if(true && (offset > 0)) {
 printHtmlPart(69)
 createClosureForHtmlPart(70, 3)
-invokeTag('link','g',368,['action':("dashboard"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+invokeTag('link','g',368,['action':("contacts"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(71)
 }
 else {
@@ -187,7 +187,7 @@ printHtmlPart(73)
 if(true && (offset <= clientCount)) {
 printHtmlPart(74)
 createClosureForHtmlPart(75, 3)
-invokeTag('link','g',375,['action':("dashboard"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+invokeTag('link','g',375,['action':("contacts"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(76)
 }
 else {
@@ -198,8 +198,8 @@ expressionOut.print(currentPage)
 printHtmlPart(79)
 if(true && (contacts && contacts != 'NONE')) {
 printHtmlPart(80)
-for( _it499802818 in (contacts) ) {
-changeItVariable(_it499802818)
+for( _it2026237784 in (contacts) ) {
+changeItVariable(_it2026237784)
 printHtmlPart(81)
 expressionOut.print(it.contactID)
 printHtmlPart(82)
@@ -238,7 +238,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1462724106348L
+public static final long LAST_MODIFIED = 1465154792044L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

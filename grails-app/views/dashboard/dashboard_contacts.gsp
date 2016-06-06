@@ -365,14 +365,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
                         
                         <g:if test="${offset > 0}">	  
-	                        <g:link  action="dashboard"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
+	                        <g:link  action="contacts"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
                        	</g:if>
                        	<g:else>
                        	   <button disabled  type="button" class="btn btn-default">Back</button>                 	
                        	</g:else>
                         
                         	<g:if test="${offset <= clientCount}">	
-                        		<g:link  action="dashboard"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
+                        		<g:link  action="contacts"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
                         	</g:if>
                         	<g:else>
                         		<button disabled  type="button" class="btn btn-default">Next</button>

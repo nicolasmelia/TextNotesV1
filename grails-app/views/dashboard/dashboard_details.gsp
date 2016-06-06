@@ -421,6 +421,76 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	              </div><!-- /.box-body -->                      
 			</g:if>
 			
+	<g:if test="${conType == 'keyword'}" >
+	              <div class="box-body">   
+	              <h4>Keyword ${keyword.keyword} </h4>
+	              
+  <table class="table table-bordered">
+
+                    <tr>
+                      <td>Title</td>
+                      <td>${keyword.keyword}</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Description</td>
+                      <td>${keyword.description}</td>
+                    </tr>
+                    
+                    
+                    <tr>
+                      <td>Date Effective</td>
+                      <td>
+                      
+                      <g:formatDate format="yyyy-MM-dd" date="${keyword.dateExp}"/> - 
+                      
+	                         <g:if test="${keyword.endless}">
+	                          Endless
+	                         </g:if>
+	                         <g:else>
+	                            <g:formatDate format="yyyy-MM-dd" date="${keyword.dateExp}"/>
+	                         </g:else>
+                      
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Total Replys</td>
+                      <td>${keyword.replys}</td>
+                    </tr>              
+
+ 
+                  </table>   
+	              
+	              
+	              
+	            
+	            <div style = "margin: 10px 0px 5px 0px;" >
+	            
+                  	            
+                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
+                 	Susbend
+                  </g:link>   
+
+	            
+                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
+                 	Delete
+                  </g:link>      
+                  
+
+	            
+                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
+                 	View Keywords
+                  </g:link>       
+
+
+                                    	                
+	            </div>
+	
+	              </div><!-- /.box-body -->                      
+			</g:if>	
+			
+			
 			
 
             </div><!-- /.box -->

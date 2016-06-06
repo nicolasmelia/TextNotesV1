@@ -70,7 +70,7 @@ invokeTag('form','g',168,['controller':("Dashboard"),'action':("dashboard"),'enc
 printHtmlPart(23)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'Dashboard'))
 printHtmlPart(24)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'contacts'))
 printHtmlPart(25)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'groups'))
 printHtmlPart(26)
@@ -116,8 +116,8 @@ if(true && (clientCount > 0 || offset > 0)) {
 printHtmlPart(46)
 if(true && (contacts != 'NONE')) {
 printHtmlPart(47)
-for( _it1428771375 in (contacts) ) {
-changeItVariable(_it1428771375)
+for( _it1944468301 in (contacts) ) {
+changeItVariable(_it1944468301)
 printHtmlPart(48)
 expressionOut.print(it.contactID)
 printHtmlPart(49)
@@ -201,8 +201,8 @@ expressionOut.print(currentPage)
 printHtmlPart(81)
 if(true && (contacts && contacts != 'NONE')) {
 printHtmlPart(82)
-for( _it391823939 in (contacts) ) {
-changeItVariable(_it391823939)
+for( _it1014071026 in (contacts) ) {
+changeItVariable(_it1014071026)
 printHtmlPart(83)
 expressionOut.print(it.contactID)
 printHtmlPart(84)
@@ -241,7 +241,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1464055572764L
+public static final long LAST_MODIFIED = 1465154708282L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

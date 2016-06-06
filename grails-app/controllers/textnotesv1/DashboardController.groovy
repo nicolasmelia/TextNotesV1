@@ -264,6 +264,43 @@ class DashboardController {
 		
 	}
 	
+	def keywords() {
+		int offset = 0
+		if (params.offset != null) {
+			offset = Integer.parseInt(params.offset)
+			if (params.up.toString().equals("true")) {
+				offset = offset + 10
+			} else {
+				if (offset > 0) {
+				offset = offset - 10
+				}
+			}
+		}
+		
+		// check to see if contacts exist
+		int keywordCount = Keyword.countByUserID(session.userID)
+			
+
+		
+		// Get searchInfo if any
+		def searchQuery
+		if (!params.searchQuery && !params.searchQueryHidden) {
+			searchQuery = null
+		} else if (params.searchQueryHidden) {
+			searchQuery = params.searchQueryHidden
+		} else if (params.searchQuery) {
+			searchQuery = params.searchQuery
+		}
+					
+		if (session["userID"]) {
+			 render(view:"dashboard_keywords",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, keywordCount: keywordCount, keywords: getKeywordList(offset)])
+		} else {
+			redirect(controller: "Home")
+		}
+		
+	}
+	
+	
 	def history() {
 		int offset = 0
 		if (params.offset != null) {
@@ -447,6 +484,16 @@ class DashboardController {
 		}
 	}
 	
+	def getKeywordList(offset){
+		def keywords =  Keyword.findAll("from Keyword as k where k.userID=? order by k.dateCreated DESC",
+					 [session.userID], [max: 10, offset: offset])
+		if (keywords.size > 0) {
+			return keywords
+		} else {
+			return "NONE"
+		}
+	}
+	
 	def getHistoryList(offset){
 		def history;
 		
@@ -536,11 +583,8 @@ class DashboardController {
 					if (!tag.toUpperCase().matches("NULL") && tag != null) {
 						String contactType = tag.split(":")[0]						
 						switch (contactType) {
-							case "N":  // Single number
-							
-							res.append(tag.split(":")[1]);
-							
-							
+							case "N":  // Single number						
+							res.append(tag.split(":")[1]);							
 							if (res.length() != 0) {
 								res.append(', ');
 							}
@@ -585,10 +629,12 @@ class DashboardController {
 				}
 								
 				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), message: message, conType:  params.conType, res: res.toString(), contactCount: contactCount])
-			}
+			} else if (params.conType == "keyword") {
+			Keyword keyword = Keyword.findByPromotionID(params.promotionID)
 			
+			render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), keyword: keyword, conType:  params.conType])
 			
-				
+			}		
 	   } else {
 		   redirect(controller: "Home")
 	   }	
@@ -604,7 +650,8 @@ class DashboardController {
 				
 				keyword.keyword = params.keyword
 				keyword.description = params.desc 
-				
+				keyword.dateCreated = new Date()
+				keyword.replys = 0
 				SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 				
 				if (params.dateRange) {
@@ -612,6 +659,7 @@ class DashboardController {
 					keyword.dateExp = formatter.parse(params.dateRange.toString().split("-")[1].trim());	
 				} else {
 					keyword.dateEff = new Date()	
+					keyword.endless = true
 					keyword.dateExp = formatter.parse("01/01/2999");	
 				}
 				
@@ -626,14 +674,15 @@ class DashboardController {
 					int midpoint = uniqueID.length() / 2;
 					String halfUUID = uniqueID.substring(0, midpoint)
 					
-					keyword.userID = session["userID"]
-						
-					keyword.promotionID = halfUUID
+					if (keyword.campaignType) {
+						keyword.campaignType = params.campaignType
+					} else {
+						params.campaignType = "Standard"
+					}
 					
-					keyword.save(flush:true)
-					
-
-					
+					keyword.userID = session["userID"]					
+					keyword.promotionID = halfUUID					
+					keyword.save(flush:true)		
 					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addKeyword", keyword: keyword.keyword, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
 	
 			}
