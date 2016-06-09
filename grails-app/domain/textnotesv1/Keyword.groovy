@@ -15,6 +15,9 @@ class Keyword {
 	boolean multipleEntries
 	int replys
 	
+	boolean deleted
+	boolean suspened
+	
     static constraints = {
 		dateEff(nullable:true)
 		dateExp(nullable:true)
@@ -24,8 +27,8 @@ class Keyword {
 		campaignType(nullable:true)	
 		replys(nullable:true)
 		dateCreated(nullable:true)
-		
-		
+		suspened(nullable:true)
+		deleted(nullable:true)
 		multipleEntries(nullable:true)	
     }
 	

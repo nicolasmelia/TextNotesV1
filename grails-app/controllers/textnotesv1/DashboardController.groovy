@@ -683,7 +683,7 @@ class DashboardController {
 					keyword.userID = session["userID"]					
 					keyword.promotionID = halfUUID					
 					keyword.save(flush:true)		
-					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addKeyword", keyword: keyword.keyword, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
+					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addKeyword", keyword: keyword.keyword,  promotionID: params.promotionID, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
 	
 			}
 		} else {
@@ -691,6 +691,32 @@ class DashboardController {
 		}	
 	}
 
+	def suspendKeyword() {
+		Keyword keyword = Keyword.findByPromotionID(params.promotionID)
+		keyword.suspened = true
+		keyword.deleted = false
+		keyword.save(flush:true)
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		
+		redirect(controller: "Dashboard", action: "confirmation", params: [conType: "suspendKeyword", keyword: keyword.keyword, promotionID: params.promotionID, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
+		
+	}
+	
+	def reactivateKeyword() {
+		Keyword keyword = Keyword.findByPromotionID(params.promotionID)
+		keyword.suspened = false
+		keyword.deleted = false
+		keyword.save(flush:true)
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		
+		redirect(controller: "Dashboard", action: "confirmation", params: [conType: "reactivateKeyword", keyword: keyword.keyword, promotionID: params.promotionID, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
+		
+	}
+	
+	
+	
 
 	def proccessTxtSend() {
 		render params.tags

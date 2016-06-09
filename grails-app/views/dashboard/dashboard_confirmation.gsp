@@ -553,13 +553,85 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             
             <div style = "margin: 10px 0px 5px 0px;" >
-            	<a href="${createLink(controller: 'Dashboard', action: 'groups')}" class="btn btn-default">Detailed View</a>
+            	<g:link action = "details" params = "[conType:'keyword', promotionID: params.promotionID]"  class="btn btn-default">Detailed View</g:link>
             	<a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">All Keywords</a>
               </div><!-- /.box-body -->
             </div><!-- /.box -->
 			<!-- Contact added SUCCESS -->    
 		            
 		</g:elseif>
+		
+		<g:elseif test="${conType == 'suspendKeyword'}" >
+		            
+			<!-- SUCCESS -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                  <i class="fa fa-bell-o"></i>
+                <h3 class="box-title">Success!</h3>
+              </div>
+              <div class="box-body">   
+            <div class="callout callout-info" style = "margin: 0px;" >
+              <h4>Keyword Suspended</h4>
+              <p>
+				<b>${params.keyword}</b> People are no longer able to send this keyword into your promotion. You can re-enable this keyword anytime.
+				 Click "Detailed View" to view more information on your keyword.
+              </p>
+              
+              <h4>Keyword Tips!</h4>
+              
+               <p>
+               Learn how to use your kwey erojwelfkjasd fdskf idsafjisdfj i;sadl ${params.promotionID}
+	
+              </p>
+            </div>
+            
+            <div style = "margin: 10px 0px 5px 0px;" >
+            	<g:link action = "details" params = "[conType:'keyword', promotionID: params.promotionID]"  class="btn btn-default">Detailed View</g:link>
+            	<a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">All Keywords</a>
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+			<!-- Contact added SUCCESS -->    
+		            
+		</g:elseif>
+		
+		<g:elseif test="${conType == 'reactivateKeyword'}" >
+		            
+			<!-- SUCCESS -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                  <i class="fa fa-bell-o"></i>
+                <h3 class="box-title">Success!</h3>
+              </div>
+              <div class="box-body">   
+            <div class="callout callout-info" style = "margin: 0px;" >
+              <h4>Keyword Reactivated</h4>
+              <p>
+				<b>${params.keyword}</b> has successfully been reactivated! You can now have people text		
+				<b>${params.keyword}</b> to <b>${params.phoneNumber}</b> to participate in your campaign. Your campaign
+				is effective on <b>${params.dateEff}</b>. Click "Detailed View" to view more information on your new keyword.
+              </p>
+              
+              <h4>Keyword Tips!</h4>
+              
+               <p>
+               Learn how to use your kwey erojwelfkjasd fdskf idsafjisdfj i;sadl ${params.promotionID}
+	
+              </p>
+            </div>
+            
+            <div style = "margin: 10px 0px 5px 0px;" >
+            	<g:link action = "details" params = "[conType:'keyword', promotionID: params.promotionID]"  class="btn btn-default">Detailed View</g:link>
+            	<a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">All Keywords</a>
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+			<!-- Contact added SUCCESS -->    
+		            
+		</g:elseif>
+		
+		
+		
+		
+		
 
         </section><!-- /.content -->
         

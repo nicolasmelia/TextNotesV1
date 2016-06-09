@@ -423,13 +423,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			
 	<g:if test="${conType == 'keyword'}" >
 	              <div class="box-body">   
-	              <h4>Keyword ${keyword.keyword} </h4>
+	              <h4>Keyword ${keyword.keyword}
+	              
+	              <g:if test="${keyword.suspened}" >
+	              <span style = "color: red;"><b>Suspended: Not Active</b></span>
+	              </g:if>
+	              
+	              
+	               </h4>
 	              
   <table class="table table-bordered">
 
                     <tr>
                       <td>Title</td>
-                      <td>${keyword.keyword}</td>
+                      <td>${keyword.keyword}   
+                      
+                      
+                      </td>
                     </tr>
                     
                     <tr>
@@ -467,27 +477,78 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	            
 	            <div style = "margin: 10px 0px 5px 0px;" >
 	            
-                  	            
-                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
-                 	Susbend
-                  </g:link>   
+                  <g:if test="${keyword.suspened}" >                	            
+					<a data-toggle="modal" data-target="#reactivateModal"   class="btn btn-default"  type="button"  >            
+	                 	Reactivate
+	                  </a>              
+                  </g:if>
+                  <g:else> 
+	                  <a data-toggle="modal" data-target="#suspendModal"   class="btn btn-default"  type="button"  >            
+	                 	Suspend
+	                  </a>    
+                  </g:else> 
 
 	            
-                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
-                 	Delete
-                  </g:link>      
-                  
-
-	            
-                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
-                 	View Keywords
+                  <g:link  class="btn btn-default"  action="keywords" type="button"  >            
+                 	View All Keywords
                   </g:link>       
 
 
                                     	                
 	            </div>
 	
-	              </div><!-- /.box-body -->                      
+	              </div><!-- /.box-body -->  
+	              
+       
+				<!-- addNumberModal --> 
+                <div class="modal" id="suspendModal" role="dialog" data-backdrop="static">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id = "modalHeading" class="modal-title">Change keyword stauts</h4>
+                  </div>
+                  <div class="modal-body">
+                  
+                  <!-- phone mask -->
+                    <p>Are you sure you want to suspend this keyword? People will no longer be able to send this keyword into your promotion. You can re-enable this keyword anytime.</p>
+
+                  </div>
+                  <div class="modal-footer">
+                    <g:link action = "suspendKeyword" params = "[promotionID:params.promotionID]" type="button" class="btn btn-warning pull-left" >Suspend</g:link>
+                    <button onClick = "clearWarnings()"  type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->  
+	              
+	              
+				<!-- addNumberModal --> 
+                <div class="modal" id="reactivateModal" role="dialog" data-backdrop="static">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id = "modalHeading" class="modal-title">Change keyword stauts</h4>
+                  </div>
+                  <div class="modal-body">
+                  
+                  <!-- phone mask -->
+                    <p>Are you sure you want to reactivate this keyword?</p>
+
+                  </div>
+                  <div class="modal-footer">
+                    <g:link action = "reactivateKeyword" params = "[promotionID:params.promotionID]"  type="button" class="btn btn-default pull-left" >Reactivate</g:link>
+                    <button onClick = "clearWarnings()"  type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->  
+	               
+	              
+	              
+	              
+	                                  
 			</g:if>	
 			
 			
@@ -596,6 +657,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
+  
+         
+         
          
             <div class="modal" id="myModal" role="dialog">
               <div class="modal-dialog">
@@ -619,6 +683,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                    
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
