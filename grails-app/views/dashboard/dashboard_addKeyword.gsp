@@ -297,7 +297,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <textarea  name = "desc"  id = "Desc" type="text" class="form-control" placeholder="Not Required"></textarea>
                       </div>
                     </div>
-
+                    
+                                      <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Campaign Type</label>
+                         <div class="col-sm-10">                    
+                      <select name = "campaignSelected"  id  = "campaignSelected"  class="form-control">
+							<option value="norm">Normal</option>
+								<option value="coup">Coupon</option>
+								<option value="con">Contest</option>
+                      </select>
+                         </div>
+                      
+                    </div>
+                    
+         <div class="callout callout-default" style="margin-bottom: 10px!important;">
+            <h4><i class="fa fa-flag-o"></i><span id = "campaignType" > Campaign: <b>Normal</b></span></h4>
+         <span id = "campaignDesc" >    It looks like you dont have any contacts yet. Get started by adding clients below! </span>
+        </div>
 
 				<hr>
 
@@ -505,7 +521,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   <script>
 
+
+  // campaignSelected
+
   $("[data-mask]").inputmask();
+
+
+  $('#campaignSelected').on('change', function() {
+		$("#campaignType").html(" Campaign: " + this.value);
+	
+		switch(this.value) {
+	    case "norm":
+			$("#campaignType").html(" Campaign: " + "<b>Normal</b>");
+			$("#campaignDesc").html("fewfewf");     
+	        break;
+	    case "coup":
+			$("#campaignType").html(" Campaign: " + "<b>Coupon</b>");		    
+			$("#campaignDesc").html("BLeeeALLL");     
+	        break;
+	    case "con":
+			$("#campaignType").html(" Campaign: " + "<b>Contest</b>");		    
+			$("#campaignDesc").html("BLfALLL");     
+		};
+		  
+	  
+	});
 
   function validateMainForm() {		  
 	  var error = false;

@@ -183,28 +183,59 @@ expressionOut.print(params.phoneNumber)
 printHtmlPart(67)
 expressionOut.print(params.dateEff)
 printHtmlPart(68)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'groups'))
-printHtmlPart(69)
-expressionOut.print(createLink(controller: 'Dashboard'))
+createClosureForHtmlPart(69, 3)
+invokeTag('link','g',556,['action':("details"),'params':([conType:'keyword', promotionID: params.promotionID]),'class':("btn btn-default")],3)
 printHtmlPart(70)
-}
+expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(71)
-invokeTag('javascript','g',645,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+}
+else if(true && (conType == 'suspendKeyword')) {
 printHtmlPart(72)
-invokeTag('javascript','g',648,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+expressionOut.print(params.keyword)
 printHtmlPart(73)
-invokeTag('javascript','g',651,['src':("dashboard/app.min.js")],-1)
+expressionOut.print(params.promotionID)
 printHtmlPart(74)
-})
-invokeTag('captureBody','sitemesh',686,['class':("hold-transition skin-purple sidebar-mini")],1)
+createClosureForHtmlPart(69, 3)
+invokeTag('link','g',589,['action':("details"),'params':([conType:'keyword', promotionID: params.promotionID]),'class':("btn btn-default")],3)
+printHtmlPart(70)
+expressionOut.print(createLink(controller: 'Dashboard'))
+printHtmlPart(71)
+}
+else if(true && (conType == 'reactivateKeyword')) {
 printHtmlPart(75)
+expressionOut.print(params.keyword)
+printHtmlPart(76)
+expressionOut.print(params.keyword)
+printHtmlPart(66)
+expressionOut.print(params.phoneNumber)
+printHtmlPart(67)
+expressionOut.print(params.dateEff)
+printHtmlPart(77)
+expressionOut.print(params.promotionID)
+printHtmlPart(74)
+createClosureForHtmlPart(69, 3)
+invokeTag('link','g',623,['action':("details"),'params':([conType:'keyword', promotionID: params.promotionID]),'class':("btn btn-default")],3)
+printHtmlPart(70)
+expressionOut.print(createLink(controller: 'Dashboard'))
+printHtmlPart(71)
+}
+printHtmlPart(78)
+invokeTag('javascript','g',717,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(79)
+invokeTag('javascript','g',720,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(80)
+invokeTag('javascript','g',723,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(81)
+})
+invokeTag('captureBody','sitemesh',758,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(82)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1464747737798L
+public static final long LAST_MODIFIED = 1465440447539L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -304,7 +304,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <th>Date Effective</th>
                         
                         <th>Description</th>
-                         <th>Total Replys</th>
+                        <th>Total Replys</th>
+                        
+                        <th>Active</th>
                         
                       </tr>
                     </thead>
@@ -318,16 +320,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                    	<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:it.promotionID])}';"class = "pointer" >
 	                    
 	                        <td><a href = "#"><b>${it.keyword}</b></a></td>
-	                        <td>${it.campaignType}</td>
+	                        
+	                        	                         
+	                         <g:if test="${it.campaignType == 'con'}">
+								<td>Contest</td>
+								</g:if>
+							<g:elseif test="${it.campaignType == 'norm'}">
+								<td>Normal</td>
+							</g:elseif>
+							<g:elseif test="${it.campaignType == 'coup'}">
+								<td>Coupon</td>
+							</g:elseif>
+							<g:else>
+								<td>None</td>
+							</g:else>								                         
+	                        
 	                        
 	                        <td><g:formatDate format="yyyy-MM-dd" date="${it.dateEff}"/>
-	                         - 
+	                       
 	                         
 	                         <g:if test="${it.endless}">
-	                          Endless
+	                           - Endless
 	                         </g:if>
 	                         <g:else>
-	                            <g:formatDate format="yyyy-MM-dd" date="${it.dateExp}"/>
+	                            - <g:formatDate format="yyyy-MM-dd" date="${it.dateExp}"/>
 	                         </g:else>
 	                         
 	                   		  </td>
@@ -340,8 +356,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<td>-</td>						
 							</g:else>	
 							
-							<td>${it.replys}</td>							
+							<td>${it.replys}</td>	
 							
+							
+
+	                        <g:if test="${it.suspened}">
+								<td style = "color: red;">No</td>
+							</g:if>
+							<g:else>
+								<td style = "color: green;" >Yes</td>						
+							</g:else>	
+					
 	                      </tr>
 	                      
 	                      

@@ -148,51 +148,62 @@ printHtmlPart(62)
 if(true && (conType == 'keyword')) {
 printHtmlPart(63)
 expressionOut.print(keyword.keyword)
-printHtmlPart(52)
-expressionOut.print(keyword.keyword)
 printHtmlPart(64)
-expressionOut.print(keyword.description)
+if(true && (keyword.suspened)) {
 printHtmlPart(65)
-invokeTag('formatDate','g',445,['format':("yyyy-MM-dd"),'date':(keyword.dateExp)],-1)
+}
 printHtmlPart(66)
-if(true && (keyword.endless)) {
+expressionOut.print(keyword.keyword)
 printHtmlPart(67)
+expressionOut.print(keyword.description)
+printHtmlPart(68)
+invokeTag('formatDate','g',455,['format':("yyyy-MM-dd"),'date':(keyword.dateExp)],-1)
+printHtmlPart(69)
+if(true && (keyword.endless)) {
+printHtmlPart(70)
 }
 else {
-printHtmlPart(68)
-invokeTag('formatDate','g',451,['format':("yyyy-MM-dd"),'date':(keyword.dateExp)],-1)
-printHtmlPart(69)
-}
-printHtmlPart(70)
-expressionOut.print(keyword.replys)
 printHtmlPart(71)
-createClosureForHtmlPart(72, 3)
-invokeTag('link','g',473,['data-toggle':("modal"),'data-target':("#suspendModal"),'class':("btn btn-default"),'type':("button")],3)
+invokeTag('formatDate','g',461,['format':("yyyy-MM-dd"),'date':(keyword.dateExp)],-1)
+printHtmlPart(72)
+}
 printHtmlPart(73)
-createClosureForHtmlPart(74, 3)
-invokeTag('link','g',478,['class':("btn btn-default"),'action':("sendTxt"),'params':([]),'type':("button")],3)
+expressionOut.print(keyword.replys)
+printHtmlPart(74)
+if(true && (keyword.suspened)) {
 printHtmlPart(75)
-createClosureForHtmlPart(76, 3)
-invokeTag('link','g',484,['class':("btn btn-default"),'action':("sendTxt"),'params':([]),'type':("button")],3)
-printHtmlPart(61)
+}
+else {
+printHtmlPart(76)
 }
 printHtmlPart(77)
-invokeTag('javascript','g',587,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
-printHtmlPart(78)
-invokeTag('javascript','g',590,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+createClosureForHtmlPart(78, 3)
+invokeTag('link','g',494,['class':("btn btn-default"),'action':("keywords"),'type':("button")],3)
 printHtmlPart(79)
-invokeTag('javascript','g',593,['src':("dashboard/app.min.js")],-1)
-printHtmlPart(80)
-})
-invokeTag('captureBody','sitemesh',665,['class':("hold-transition skin-purple sidebar-mini")],1)
+createClosureForHtmlPart(80, 3)
+invokeTag('link','g',518,['action':("suspendKeyword"),'params':([promotionID:params.promotionID]),'type':("button"),'class':("btn btn-warning pull-left")],3)
 printHtmlPart(81)
+createClosureForHtmlPart(82, 3)
+invokeTag('link','g',541,['action':("reactivateKeyword"),'params':([promotionID:params.promotionID]),'type':("button"),'class':("btn btn-default pull-left")],3)
+printHtmlPart(83)
+}
+printHtmlPart(84)
+invokeTag('javascript','g',648,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(85)
+invokeTag('javascript','g',651,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(86)
+invokeTag('javascript','g',654,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(87)
+})
+invokeTag('captureBody','sitemesh',693,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(88)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1465430488787L
+public static final long LAST_MODIFIED = 1465440835751L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

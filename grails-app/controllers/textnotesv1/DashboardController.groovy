@@ -293,7 +293,7 @@ class DashboardController {
 		}
 					
 		if (session["userID"]) {
-			 render(view:"dashboard_keywords",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, keywordCount: keywordCount, keywords: getKeywordList(offset)])
+			 render(view:"dashboard_keywords",  model: [accountInfo: getUserAccountInfo(), dateNow: new Date(), offset: offset, up: params.up, keywordCount: keywordCount, keywords: getKeywordList(offset)])
 		} else {
 			redirect(controller: "Home")
 		}
@@ -485,7 +485,7 @@ class DashboardController {
 	}
 	
 	def getKeywordList(offset){
-		def keywords =  Keyword.findAll("from Keyword as k where k.userID=? order by k.dateCreated DESC",
+		def keywords =  Keyword.findAll("from Keyword as k where k.userID=? order by k.dateEff DESC",
 					 [session.userID], [max: 10, offset: offset])
 		if (keywords.size > 0) {
 			return keywords
@@ -674,10 +674,10 @@ class DashboardController {
 					int midpoint = uniqueID.length() / 2;
 					String halfUUID = uniqueID.substring(0, midpoint)
 					
-					if (keyword.campaignType) {
-						keyword.campaignType = params.campaignType
+					if (params.campaignSelected) {
+						keyword.campaignType = params.campaignSelected
 					} else {
-						params.campaignType = "Standard"
+						params.campaignType = "norm"
 					}
 					
 					keyword.userID = session["userID"]					
