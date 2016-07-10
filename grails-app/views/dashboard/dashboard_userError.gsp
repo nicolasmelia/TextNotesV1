@@ -42,12 +42,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <body class="hold-transition skin-purple sidebar-mini">
     <div class="wrapper">
+    
 
       <!-- Main Header -->
       <header class="main-header">
+      
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a  href="${createLink(controller: 'Dashboard', action: 'dashboard')}"  class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>W</b>olf</span>
           <!-- logo for regular state and mobile devices -->
@@ -185,29 +187,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="#"><i class="fa fa-circle text-success"></i> Active</a>
             </div>
           </div>
-
+          
           <!-- search form (Optional) -->
-          <form action="#" method="get" class="sidebar-form">
+           <g:form   controller="Dashboard" action="dashboard" enctype="multipart/form-data" class="sidebar-form">           
             <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search Contacts...">
+              <input type="text" name = "searchQuery"  class="form-control" placeholder="Search Contacts...">
               <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+              <button action="dashboard" name="search" id="search-btn" class="btn btn-flat" ><i class="fa fa-search"></i></button>
               </span>
             </div>
-          </form>
+            </g:form> 
+   
           <!-- /.search form -->
 
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
             <li class="header">Tools</li>
             <!-- Optionally, you can add icons to the links -->
-            
              
             <li class="active">
               <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="${createLink(controller: 'Dashboard', action: 'dashboard')}">Contacts</a></li> 
-                <li><a href="${createLink(controller: 'Dashboard', action: 'groups')}">Groups</a></li>                
+                <li><a href="${createLink(controller: 'Dashboard', action: 'keywords')}">keywords</a></li>                
                 <li><a class = "fa fa-plus" href="${createLink(controller: 'Dashboard', action: 'newContact')}"> New Contact</a></li>    
               </ul>
             </li>
@@ -229,9 +231,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li><a href="${createLink(controller: 'Dashboard', action: 'createPromo')}">Create Promotion</a></li>
               </ul>
             </li>
-       
 
-            
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -241,365 +241,96 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
+        
+      
+	    <g:if test="${addToGroup}">	                    
           <h1>
-           	Details ${conType}
-            <small>Current</small>
+            Add to Group
+            <small>Group list</small>
           </h1>
+	      </g:if>
+	    <g:else>
+          <h1>
+            UhOh!
+            <small>User Error</small>
+          </h1>
+	     </g:else>        
+
+	                    <g:if test="${addToGroup}">	                    
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Transactions</a></li>
-            <li class="active">Confirmation</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Add to Group</a></li>
+            <li class="active">All keywords</li>
           </ol>
+	                    </g:if>
+	                    <g:else>    
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> keywords</a></li>
+            <li class="active">All keywords</li>
+          </ol>
+			            </g:else> 
+          
         </section>
+
 
         <!-- Main content -->
   <section class="content">
-
-			<!-- Contact added SUCCESS -->
-            <div class="box box-default">
-              <div class="box-header with-border">
-                  <i class="fa fa-book"></i>
-                <h3 class="box-title">Details</h3>
+          
+      <g:if test="${keywordCount == 0}">	
+	         <div class="callout callout-info" style="margin-bottom: 10px!important;">
+	            <h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
+	            It looks like you dont have any contacts yet. Get started by adding clients below!
+	        </div>      
+        </g:if>
+        
+         <input  id = 'searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
+         <input  id = 'offset' type="hidden" value="${offset}">
+         <input  id = 'keywordCount' type="hidden" value="${keywordCount}">
+               
+          <div class="row">
+            <div class="col-xs-12">       
+              <div class="box">
+            <div class="box-header with-border">
+                  <i class="fa fa-bell-o"></i>
+                <h3 class="box-title">${header}</h3>
               </div>
-              
-                  
-			<g:if test="${conType == 'Contact'}" >
-	              <div class="box-body">   
-	              <h4>${contact.fullName}</h4>
-	              
-  <table class="table table-bordered">
-
-                    <tr>
-                      <td>Phone Number</td>
-                      <td>${contact.phoneNumber}</td>
-                    </tr>
-                    
-                    <g:if test="${State =! 'None'}" >
-                    
-                    <tr>
-                      <td>Address</td>
-                      <td>${contact.address}</td>
-                    </tr>
-
-                    <tr>
-                      <td>City</td>
-                      <td>${contact.city}</td>
-                    </tr>
-                    
-                    <tr>
-                      <td>State</td>
-                      <td>${contact.state}</td>
-                    </tr>
-                    
-                    <tr>
-                      <td>Zip</td>
-                      <td>${contact.zip}</td>
-                    </tr>
-
-                    <tr>
-                      <td>Subbed</td>
-                      <td>${contact.subbed}</td>
-                    </tr>
-               </g:if>
-               
-               <g:else>
-               
-                    <tr>
-                      <td>Address</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>City</td>
-                      <td>-</td>
-                    </tr>
-                    
-                    <tr>
-                      <td>State</td>
-                      <td>-</td>
-                    </tr>
-                    
-                    <tr>
-                      <td>Zip</td>
-                      <td>-</td>
-                    </tr>               
-               
-               </g:else>
-               
-               
-                 <g:if test="${contact.subbed =! 'false'}" >
-               
-                    <tr>
-                      <td>Subbed</td>
-                      <td><span style = "color: green;" ><b>Yes</b></span></td>
-                    </tr>
-                    
-                    </g:if>
-                    <g:else>
-                    <tr>
-                      <td>Subbed</td>
-                      <td><span style = "color: purple;"  >No</span></td>
-                    </tr>
-                    </g:else>
-                    
-                  </table>   
-	              
-	              
-	              
-	            
+      
+                <div class="box-body">     
+                
+            <div class="callout callout-info" style = "margin: 0px;" >
+                 	${body}
+              </div>
 	            <div style = "margin: 10px 0px 5px 0px;" >
 	            
-                  <g:link  class="btn btn-default"  action="sendTxt"  params="[contactID: contact.contactID]"  type="button"  >            
-                 	<i class="fa fa-envelope-o"></i> Send Text
-                  </g:link>       
-                            
-                  <g:link class="btn btn-default" action="editContact"  params="[contactID: contact.contactID]"  type="button"  >            
-                    Edit Contact
-                  </g:link>
-                  
+	             <g:if test="${button == 'keyword'}">
+	                  <g:link  class="btn btn-default"  action="newKeyWord"   type="button"  >            
+	                 	Create New Keyword
+	                  </g:link>    
+	                   
+	                  <g:link  class="btn btn-default"  action="dashboard"  type="button"  >            
+	                 	Home
+	                  </g:link>   
 
-                                    	                
-	            </div>
-	
-	              </div><!-- /.box-body -->                      
-			</g:if>
-			
-                  
-			<g:if test="${conType == 'Message'}" >
-	              <div class="box-body">   
-	              <h4>Message  <g:formatDate format="MM-dd-yyyy" date="${message.lastSentDate}"/> </h4>
-	              
-  <table class="table table-bordered">
+                  </g:if>    
+                 
+                  <g:else>
+	                  
+	                  <g:link  class="btn btn-default"  action="dashboard"  type="button"  >            
+	                 	Home
+	                  </g:link>   
 
-                    <tr>
-                      <td>Title</td>
-                      <td>${message.title}</td>
-                    </tr>
-                    
-                    <tr>
-                      <td>Message</td>
-                      <td>${message.message}</td>
-                    </tr>
-                    
-                    
-                    <tr>
-                      <td>Recipients</td>
-                      <td>${res}</td>
-                    </tr>
-                    
-                    <tr>
-                      <td>Time Sent</td>
-                      <td><g:formatDate format="MM-dd-yyyy, hh:mm a" date="${message.lastSentDate}"/> EST</td>
-                    </tr>
-                    
-                    <tr>
-                      <td>Balanced Used</td>
-                      <td>${contactCount}</td>
-                    </tr>
-                    
-
-                    
-                  </table>   
-	              
-	              
-	              
-	            
-	            <div style = "margin: 10px 0px 5px 0px;" >
-	            
-                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
-                 	All Message History
-                  </g:link>       
-
-	            
-                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
-                 	View Balance
-                  </g:link>       
-
-
-                                    	                
-	            </div>
-	
-	              </div><!-- /.box-body -->                      
-			</g:if>
-			
-	<g:if test="${conType == 'keyword'}" >
-	              <div class="box-body">   
-	              <h4>Keyword ${keyword.keyword}
-	              
-	              <g:if test="${keyword.suspened}" >
-	              <span style = "color: red;"><b>Suspended: Not Active</b></span>
-	              </g:if>
-	              
-	              
-	               </h4>
-	              
-  <table class="table table-bordered">
-
-                    <tr>
-                      <td>Keyword</td>
-                      <td>${keyword.keyword}   
-                      
-                      
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td>Description</td>
-                      <td>${keyword.description}</td>
-                    </tr>
-                    
-                    
-                    <tr>
-                      <td>Date Effective</td>
-                      <td>
-                      
-                      <g:formatDate format="MM-dd-yyyy" date="${keyword.dateExp}"/> - 
-                      
-	                         <g:if test="${keyword.endless}">
-	                          Endless
-	                         </g:if>
-	                         <g:else>
-	                            <g:formatDate format="MM-dd-yyyy" date="${keyword.dateExp}"/>
-	                         </g:else>
-                      
-                      </td>
-                    </tr>
-                    
-                    
-                    <tr>
-                      <td>Campaign Type</td>
-                      <td>
-                      	  <g:if test="${keyword.campaignType == 'con'}">
-	                          Contest
-	                         </g:if>
-	                         <g:elseif test="${keyword.campaignType == 'cust'}">
-	                         Custom
-	                         </g:elseif> 
-	                         <g:elseif  test="${keyword.campaignType == 'coup'}">
-	                         Coupon
-	                         </g:elseif>
-	                         <g:else>
-	                            NONE: Something went wrong...
-	                         </g:else>               
-                     </td>
-                      
-                      
-                    </tr>              
-
-                    
-                    <tr>
-                      <td>Responce Text</td>
-                      <td>${keyword.responceText}</td>
-                    </tr>              
-
-                    <tr>
-                      <td>Allow multiple Entries</td>
-                      <td>
-							<g:if test="${keyword.multipleEntries == 'true'}">
-	                          Yes
-	                         </g:if>
-	                         <g:else>
-	                        	 No
-	                         </g:else>
-                      </td>
-                    </tr>     
-                    
-                    <tr>
-                      <td>Date Created</td>
-                      <td>
-							<g:formatDate format="MM-dd-yyyy" date="${keyword.dateCreated}"/>
-                      </td>
-                    </tr>     
-                                      
-                    <tr>
-                      <td>Total Replys</td>
-                      <td>${keyword.replys}</td>
-                    </tr>              
-
-
-
- 
-                  </table>   
-	              
-	              
-	              
-	            
-	            <div style = "margin: 10px 0px 5px 0px;" >
-	            
-                  <g:if test="${keyword.suspened}" >                	            
-					<a data-toggle="modal" data-target="#reactivateModal"   class="btn btn-default"  type="button"  >            
-	                 	Reactivate
-	                  </a>              
-                  </g:if>
-                  <g:else> 
-	                  <a data-toggle="modal" data-target="#suspendModal"   class="btn btn-default"  type="button"  >            
-	                 	Suspend
-	                  </a>    
-                  </g:else> 
-
-	            
-                  <g:link  class="btn btn-default"  action="keywords" type="button"  >            
-                 	View All Keywords
-                  </g:link>       
-
-
-                                    	                
-	            </div>
-	
-	              </div><!-- /.box-body -->  
-	              
-       
-				<!-- addNumberModal --> 
-                <div class="modal" id="suspendModal" role="dialog" data-backdrop="static">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 id = "modalHeading" class="modal-title">Change keyword stauts</h4>
-                  </div>
-                  <div class="modal-body">
-                  
-                  <!-- phone mask -->
-                    <p>Are you sure you want to suspend this keyword? People will no longer be able to send this keyword into your promotion. You can re-enable this keyword anytime.</p>
+                  </g:else>
 
                   </div>
-                  <div class="modal-footer">
-                    <g:link action = "suspendKeyword" params = "[promotionID:params.promotionID]" type="button" class="btn btn-warning pull-left" >Suspend</g:link>
-                    <button onClick = "clearWarnings()"  type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
-                  </div>
-                </div><!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->  
-	              
-	              
-				<!-- addNumberModal --> 
-                <div class="modal" id="reactivateModal" role="dialog" data-backdrop="static">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 id = "modalHeading" class="modal-title">Change keyword stauts</h4>
-                  </div>
-                  <div class="modal-body">
-                  
-                  <!-- phone mask -->
-                    <p>Are you sure you want to reactivate this keyword?</p>
 
-                  </div>
-                  <div class="modal-footer">
-                    <g:link action = "reactivateKeyword" params = "[promotionID:params.promotionID]"  type="button" class="btn btn-default pull-left" >Reactivate</g:link>
-                    <button onClick = "clearWarnings()"  type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
-                  </div>
-                </div><!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->  
-	               
-	                                                
-			</g:if>	
-			
-            </div><!-- /.box -->
-			<!-- Contact added SUCCESS -->
+
+                </div><!-- /.box-body -->
+                                        
   
-        </section><!-- /.content -->
+                
+              </div> <!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section> 
         
       </div><!-- /.content-wrapper -->
 
@@ -676,8 +407,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
            immediately after the control sidebar -->
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
+    
 
-    <!-- REQUIRED JS SCRIPTS -->
+     <!-- REQUIRED JS SCRIPTS -->
 
     <!-- jQuery 2.1.4 -->
     <g:javascript src="dashboard/plugins/jQuery/jQuery-2.1.4.min.js" /> 
@@ -692,45 +424,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
-  
          
-         
-         
-            <div class="modal" id="myModal" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 id = "modalHeading" class="modal-title">Modal Default</h4>
-                  </div>
-                  <div class="modal-body">
-                  
- 				 <a class="btn btn-app" style = "margin-bottom:0px;" >
-                    <i class="fa fa-comment"></i> Send Text
-                  </a>
-                  <a class="btn btn-app" style = "margin-bottom:0px;">
-                    <i class="fa fa-users"></i> Add to Group
-                  </a>
-                  <a class="btn btn-app" style = "margin-bottom:0px;">
-                    <i class="fa fa-edit"></i> Edit
-                  </a>
-                    
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
-                    
-                  </div>
-                </div><!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-
          
   </body>
   
   <script>
 
+
+  
+
+  $( document ).ready(function() {
+		// Set pageinfo
+		var totalClientCount = $("#keywordCount").val();
+		var offset = $("#offset").val();
+		var offsetTop = (parseInt(offset) + 10);
+		$("#pageInfo").html("Viewing " + offset + "-" + offsetTop + " of " + totalClientCount);
+		
+	});
+
   function test(number) {
-	  $("#modalHeading").text(number);
+	  return true;
 	}
 
 

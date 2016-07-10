@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_textNotesV1_dashboarddashboard_keywords_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/dashboard/dashboard_keywords.gsp" }
+class gsp_textNotesV1_dashboarddashboard_userError_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/dashboard/dashboard_userError.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()
@@ -112,117 +112,44 @@ expressionOut.print(offset)
 printHtmlPart(43)
 expressionOut.print(keywordCount)
 printHtmlPart(44)
-if(true && (addToGroup)) {
+if(true && (offset > 0)) {
 printHtmlPart(45)
-expressionOut.print(contactGroupAdd.fullName)
-printHtmlPart(46)
-}
+createClosureForHtmlPart(46, 3)
+invokeTag('link','g',306,['action':("keywords"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(47)
-if(true && (keywordCount > 0 || offset > 0)) {
+}
+else {
 printHtmlPart(48)
-if(true && (keywords != 'NONE')) {
+}
 printHtmlPart(49)
-for( _it2011592223 in (keywords) ) {
-changeItVariable(_it2011592223)
+if(true && (offset <= keywordCount)) {
 printHtmlPart(50)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:it.promotionID]))
-printHtmlPart(51)
-expressionOut.print(it.keyword)
+createClosureForHtmlPart(51, 3)
+invokeTag('link','g',313,['action':("keywords"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(52)
-if(true && (it.campaignType == 'con')) {
+}
+else {
 printHtmlPart(53)
 }
-else if(true && (it.campaignType == 'cust')) {
 printHtmlPart(54)
-}
-else if(true && (it.campaignType == 'coup')) {
-printHtmlPart(55)
-}
-else {
-printHtmlPart(56)
-}
-printHtmlPart(57)
-invokeTag('formatDate','g',339,['format':("MM-dd-yyyy"),'date':(it.dateEff)],-1)
-printHtmlPart(58)
-if(true && (it.endless)) {
-printHtmlPart(59)
-}
-else {
-printHtmlPart(60)
-invokeTag('formatDate','g',346,['format':("MM-dd-yyyy"),'date':(it.dateExp)],-1)
-printHtmlPart(61)
-}
-printHtmlPart(62)
-if(true && (it.description)) {
-printHtmlPart(63)
-expressionOut.print(it.description)
-printHtmlPart(64)
-}
-else {
-printHtmlPart(65)
-}
-printHtmlPart(66)
-expressionOut.print(it.replys)
-printHtmlPart(67)
-if(true && (it.suspened)) {
-printHtmlPart(68)
-}
-else {
-printHtmlPart(69)
-}
-printHtmlPart(70)
-}
-printHtmlPart(71)
-}
-else {
-printHtmlPart(72)
-}
-printHtmlPart(73)
-}
-else {
-printHtmlPart(74)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'newKeyWord'))
-printHtmlPart(75)
-}
-printHtmlPart(76)
-if(true && (offset > 0)) {
-printHtmlPart(77)
-createClosureForHtmlPart(78, 3)
-invokeTag('link','g',411,['action':("keywords"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(79)
-}
-else {
-printHtmlPart(80)
-}
-printHtmlPart(81)
-if(true && (offset <= keywordCount)) {
-printHtmlPart(82)
-createClosureForHtmlPart(83, 3)
-invokeTag('link','g',418,['action':("keywords"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(84)
-}
-else {
-printHtmlPart(85)
-}
-printHtmlPart(86)
 expressionOut.print(currentPage)
-printHtmlPart(87)
-invokeTag('javascript','g',518,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
-printHtmlPart(88)
-invokeTag('javascript','g',521,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
-printHtmlPart(89)
-invokeTag('javascript','g',524,['src':("dashboard/app.min.js")],-1)
-printHtmlPart(90)
+printHtmlPart(55)
+invokeTag('javascript','g',413,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(56)
+invokeTag('javascript','g',416,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(57)
+invokeTag('javascript','g',419,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(58)
 })
-invokeTag('captureBody','sitemesh',532,['class':("hold-transition skin-purple sidebar-mini")],1)
-printHtmlPart(91)
+invokeTag('captureBody','sitemesh',427,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(59)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1468090522681L
+public static final long LAST_MODIFIED = 1468118525739L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

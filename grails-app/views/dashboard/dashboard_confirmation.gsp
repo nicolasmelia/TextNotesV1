@@ -540,14 +540,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <h4>Keyword Created</h4>
               <p>
 				<b>${params.keyword}</b> has successfully been regestered! You can now have people text		
-				<b>${params.keyword}</b> to <b>${params.phoneNumber}</b> to participate in your campaign. Your campaign
-				is effective on <b>${params.dateEff}</b>. Click "Detailed View" to view more information on your new keyword.
+				<b>"${params.keyword}"</b> to <b>${params.phoneNumber}</b> to participate in your campaign. 
+				
+				<g:if test="${params.endless == 'true'}" >
+						Your campaign is effective <b>${params.dateEff}</b> and will not end untill you expire it.
+				</g:if>
+				<g:else> 
+					Your campaign is effective <b>${params.dateEff}</b> to <b>${params.dateExp}</b>.		
+				</g:else>
+				
+				
+				Click "Detailed View" to view more information on your new keyword.
               </p>
               
               <h4>Keyword Tips!</h4>
               
                <p>
-               Learn how to use your kwey erojwelfkjasd fdskf idsafjisdfj i;sadl
+               Blah blah blah links to things
 	
               </p>
             </div>
@@ -581,12 +590,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
               
                <p>
                Learn how to use your kwey erojwelfkjasd fdskf idsafjisdfj i;sadl ${params.promotionID}
-	
+	${params.promotionID}
               </p>
             </div>
             
             <div style = "margin: 10px 0px 5px 0px;" >
-            	<g:link action = "details" params = "[conType:'keyword', promotionID: params.promotionID]"  class="btn btn-default">Detailed View</g:link>
+            	<g:link action = "details" params = "[conType:'keyword', promotionID:params.promotionID]"  class="btn btn-default">Detailed View</g:link>
             	<a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">All Keywords</a>
               </div><!-- /.box-body -->
             </div><!-- /.box -->

@@ -907,7 +907,7 @@ $( document ).ready(function() {
       var sub = $("#subject").val().length;
       var count = sub + cs;
       $('#charCount').text(count + '/260 characters');
-      $( "#txtForm" ).submit();
+     // $( "#txtForm" ).submit();
   }
 
   // Form Validation

@@ -299,7 +299,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <table id="example1" class="table table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th>Name</th>
+                        <th>Keyword</th>
                         <th>Campaign Type</th>
                         <th>Date Effective</th>
                         
@@ -325,25 +325,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                         <g:if test="${it.campaignType == 'con'}">
 								<td>Contest</td>
 								</g:if>
-							<g:elseif test="${it.campaignType == 'norm'}">
-								<td>Normal</td>
+							<g:elseif test="${it.campaignType == 'cust'}">
+								<td>Customer</td>
 							</g:elseif>
 							<g:elseif test="${it.campaignType == 'coup'}">
 								<td>Coupon</td>
 							</g:elseif>
 							<g:else>
-								<td>None</td>
+								<td>None: Something went wrong!</td>
 							</g:else>								                         
 	                        
 	                        
-	                        <td><g:formatDate format="yyyy-MM-dd" date="${it.dateEff}"/>
+	                        <td><g:formatDate format="MM-dd-yyyy" date="${it.dateEff}"/>
 	                       
 	                         
 	                         <g:if test="${it.endless}">
 	                           - Endless
 	                         </g:if>
 	                         <g:else>
-	                            - <g:formatDate format="yyyy-MM-dd" date="${it.dateExp}"/>
+	                            - <g:formatDate format="MM-dd-yyyy" date="${it.dateExp}"/>
 	                         </g:else>
 	                         
 	                   		  </td>

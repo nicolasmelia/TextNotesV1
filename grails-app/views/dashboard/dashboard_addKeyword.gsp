@@ -298,22 +298,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       </div>
                     </div>
                     
-                                      <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Campaign Type</label>
-                         <div class="col-sm-10">                    
-                      <select name = "campaignSelected"  id  = "campaignSelected"  class="form-control">
-							<option value="norm">Normal</option>
-								<option value="coup">Coupon</option>
-								<option value="con">Contest</option>
-                      </select>
-                         </div>
-                      
-                    </div>
                     
-         <div class="callout callout-default" style="margin-bottom: 10px!important;">
-            <h4><i class="fa fa-flag-o"></i><span id = "campaignType" > Campaign: <b>Normal</b></span></h4>
-         <span id = "campaignDesc" >    It looks like you dont have any contacts yet. Get started by adding clients below! </span>
-        </div>
 
 				<hr>
 
@@ -325,24 +310,79 @@ scratch. This page gets rid of all links and provides the needed markup only.
                    <div class="col-sm-10" style = "width:100%;">
                       <input placeholder="Click to select range" name = "dateRange" style = "width:100%;" type="text" class="form-control" id="reservation">
                       </div>
-                    </div><!-- /.input group -->                
+                    </div><!-- /.input group -->     
+                    
+                    
+                               
                   </div><!-- /.form group --> 
                   
                   
 	                  <!-- Date range -->
                   <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Never End</label>   
-                    <div class="input-group">
-                    
-                   <div class="col-sm-10" style = "width:100%;">
-                    
+                    <div class="input-group">                  
+                   <div class="col-sm-10" style = "width:100%;">  
                     <label>
                       <input name = "endless" id = "endlessChkBox"  type="checkbox" class="minimal">
+               
                     </label>
-              </div>
+                    
+                    <i>(Campaign will not end until you expire it) </i>
+              		</div>
                     </div><!-- /.input group -->                
                   </div><!-- /.form group --> 
                   
+                  
+                  <hr>     
+                    
+                    
+                    
+                    
+                                      <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Campaign Type</label>
+                         <div class="col-sm-10">                    
+                      <select name = "campaignSelected"  id  = "campaignSelected"  class="form-control">
+							<option value="cust">Custom</option>
+								<option value="coup">Coupon</option>
+								<option value="con">Contest</option>
+                      </select>
+                         </div>            
+                    </div>
+                            
+         <div class="callout callout-default" style="margin-bottom: 10px!important;">
+            <h4><i class="fa fa-flag-o"></i><span id = "campaignType" > Campaign: <b>Normal</b></span></h4>
+         <span id = "campaignDesc" >    It looks like you dont have any contacts yet. Get started by adding clients below! </span>
+        </div>
+
+		                  <!--************* Camp type *************-->
+
+                  
+                    <div class="form-group" id = "text" style = "display:none;">        
+                      <label for="inputEmail3" class="col-sm-2 control-label">Responce Text</label>
+                      <div class="col-sm-10">
+                        <textarea  name = "responceText"  id = "responceText" type="text" class="form-control" placeholder="Required"></textarea>
+                     <p id = 'charCount' class="help-block">0/200 characters</p>
+                      </div>
+                    </div>
+                    
+                    
+                     <div class="form-group" id = "couponChkBox" style = "display:none;">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Multiple Use</label>  
+                       
+                    <div class="input-group">                   
+                   <div class="col-sm-10" style = "width:100%;">       
+                    <label>
+                      <input name = "couponChkBox" id = "endlessChkBox"  type="checkbox" class="minimal"> 
+                      
+                    </label>
+                        <i>(Allows for multiple uses of this coupon) </i>
+                    
+           			   </div>
+                    </div><!-- /.input group -->                
+                  </div><!-- /.form group --> 
+
+		                  <!--************* Camp type *************-->
+
  
                   </div><!-- /.box-body -->
                   <div class="box-footer">
@@ -521,6 +561,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   <script>
 
+  $( document ).ready(function() {
+	  // Normal preset
+		$("#campaignType").html(" Campaign: " + "<b>Simple</b>");
+		$("#campaignDesc").html("A <i>'Simple'</i> keyword allows you to collect the phone number of an entry " +
+			"for your own personal business use. This type of keyword is not a contest or a coupon, but rather " +
+			"allows you to customize its use and need. ");  
+		
+		$("#couponChkBox").css("display","none")
+		$("#text").css("display","block")
+		
+	});
 
   // campaignSelected
 
@@ -531,17 +582,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		$("#campaignType").html(" Campaign: " + this.value);
 	
 		switch(this.value) {
-	    case "norm":
-			$("#campaignType").html(" Campaign: " + "<b>Normal</b>");
-			$("#campaignDesc").html("fewfewf");     
+	    case "cust":
+			$("#campaignType").html(" Campaign: " + "<b>Simple</b>");
+			$("#campaignDesc").html("A <i>'Custom'</i> keyword allows you to collect the phone number of an entry " +
+				"for your own personal business use. This type of keyword is not a contest or a coupon, but rather " +
+				"allows you to customize its use and need. ");  		
+			$("#couponChkBox").css("display","none")
+			$("#text").css("display","block")		   
 	        break;
 	    case "coup":
 			$("#campaignType").html(" Campaign: " + "<b>Coupon</b>");		    
-			$("#campaignDesc").html("BLeeeALLL");     
+			$("#campaignDesc").html("Enter text below that correlates to the coupon you are offering. " +
+			"For example <i>'Show us this message for an extra 25% off your next order!'</i>. " +
+			"Your custmer will also be sent a coupon code that you can enter into the 'Validate Code' page " +
+			"located in the keyword menu. This keeps customers from using your coupon more than once if you so choose.");  
+			$("#text").css("display","block")
+			$("#couponChkBox").css("display","block")
+			
+  
 	        break;
 	    case "con":
 			$("#campaignType").html(" Campaign: " + "<b>Contest</b>");		    
-			$("#campaignDesc").html("BLfALLL");     
+			$("#campaignDesc").html("Enter text below to notify your customer they have been entered into your contest. For example " + 
+			"<i>'You have been entered into our contest for a free cake!'</i>. When you end your contest you can randomly select winners " +
+			"from the 'My Contest' page under the keyword menu.");   
+			$("#couponChkBox").css("display","none")
+			  
 		};
 		  
 	  
@@ -553,9 +619,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	  var keyword = $('#keyword').val();
 	 // var state = $('#state').val();
 	 	  var dateRange = $('#reservation').val();
-	 
-	  
-	  var endlessBox = $('#endlessChkBox').prop('checked');  
+		  var responceText = $('#responceText').val();
+			
+	 	 var endlessBox = $('#endlessChkBox').prop('checked');  
 
 	   
 	  	//Clear old values
@@ -567,6 +633,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			errors.push("Please enter a valid keyword.");			
 		} 
 
+	  	if (responceText.length < 4) {
+			error = true;
+			errors.push("Please enter a valid responce.");			
+		} else if (responceText.length > 200) {
+			error = true;
+			errors.push("Responce can only be up to 200 characters.");			
+		}
 
 		if (error){
 			for (i = 0; i < errors.length; i++) { 
@@ -582,9 +655,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   }
 
   $(function () {
-
-
-	  
+ 
       //Initialize Select2 Elements
       $(".select2").select2();
 
@@ -644,6 +715,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
         showInputs: false
       });
     });
+
+
+  $('#responceText').keydown(updateCount);
+  $('#responceText').keyup(updateCount);
+  
+  function updateCount() {
+      var cs = $("#responceText").val().length;
+      var count = cs;
+      $('#charCount').text(count + '/200 characters');
+     // $( "#txtForm" ).submit();
+  }
 
   
 

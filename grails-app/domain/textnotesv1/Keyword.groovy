@@ -11,6 +11,8 @@ class Keyword {
 	String keyword
 	String description
 	String campaignType
+	String responceText
+	
 	boolean endless
 	boolean multipleEntries
 	int replys
@@ -30,6 +32,8 @@ class Keyword {
 		suspened(nullable:true)
 		deleted(nullable:true)
 		multipleEntries(nullable:true)	
+		responceText(nullable:true)
+		
     }
 	
 	

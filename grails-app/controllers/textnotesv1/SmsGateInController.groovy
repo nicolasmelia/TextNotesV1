@@ -54,7 +54,38 @@ class SmsGateInController {
 		if (from == null) from = "No Number"
 		if (body == null) body = "No Message"
 							
-		Message message = new Message("Hello, You texted from" + from + "and you sent me: " + body) ;
+		
+		// test if this is a keyword.
+		Message message
+		Keyword keyword = Keyword.findByKeyword(body.toLowerCase())
+		
+		
+	//	6/30/2016 < 6/13/2016
+		
+		if (Keyword != null) {
+			Date todaysDate = new Date()
+			if (((keyword.dateEff > todaysDate) && (keyword.dateExp < todaysDate)) || keyword.endless == true) {
+				message = new Message(keyword.responceText);	
+			} else {
+				message = new Message("Sorry this keyword is currently not active.") ;			
+			}	
+			
+			if (keyword.campaignType == "Coup") {
+				CouponIn coupon = new CouponIn()
+				coupon.keywordID =  keyword.promotionID
+				coupon.DateRedeemed = new Date()
+				// Create a UUID and cut it in half
+				String uniqueID = UUID.randomUUID().toString().replace("-", "");
+				int midpoint = uniqueID.length() / 4;
+				String halfUUID = uniqueID.substring(0, midpoint)			
+				coupon.couponCode = halfUUID	
+			}
+		
+		} else {
+			message = new Message("Sorry this is not a valis keyword. Try again?") ;	
+		}
+		
+		 
 		Media media = new Media("https://demo.twilio.com/owl.png")
 		try {
 			message.append(media);

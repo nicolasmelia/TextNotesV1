@@ -644,52 +644,59 @@ class DashboardController {
 		if (session["userID"]) {
 			if (!params.keyword) {
 				render(view:"dashboard_addKeyword",  model: [accountInfo: getUserAccountInfo()])
-			} else {
-
-				Keyword keyword = new Keyword()
-				
-				keyword.keyword = params.keyword
-				keyword.description = params.desc 
-				keyword.dateCreated = new Date()
-				keyword.replys = 0
-				SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-				
-				if (params.dateRange) {
-					keyword.dateEff = formatter.parse(params.dateRange.toString().split("-")[0].trim());
-					keyword.dateExp = formatter.parse(params.dateRange.toString().split("-")[1].trim());	
-				} else {
-					keyword.dateEff = new Date()	
-					keyword.endless = true
-					keyword.dateExp = formatter.parse("01/01/2999");	
-				}
-				
-				if (params.endless) {
-					keyword.endless = true
-				} else {
-					keyword.endless = false			
-				}
-			
-					// Create a UUID and cut it in half
-					String uniqueID = UUID.randomUUID().toString().replace("-", "");
-					int midpoint = uniqueID.length() / 2;
-					String halfUUID = uniqueID.substring(0, midpoint)
+			} else {			
+				if (!Keyword.findByKeywordAndUserID(params.keyword.toString().trim(),session["userID"])) {
+					Keyword keyword = new Keyword()
 					
-					if (params.campaignSelected) {
-						keyword.campaignType = params.campaignSelected
+					keyword.keyword = params.keyword.toString().trim()
+					keyword.description = params.desc.toString().trim()
+					keyword.dateCreated = new Date()
+					keyword.replys = 0
+					keyword.responceText = params.responceText.toString().trim()
+					
+					SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+					
+					if (params.dateRange) {
+						keyword.dateEff = formatter.parse(params.dateRange.toString().split("-")[0].trim());
+						keyword.dateExp = formatter.parse(params.dateRange.toString().split("-")[1].trim());	
 					} else {
-						params.campaignType = "norm"
+						keyword.dateEff = new Date()	
+						keyword.endless = true
+						keyword.dateExp = formatter.parse("01/01/2999");	
 					}
 					
-					keyword.userID = session["userID"]					
-					keyword.promotionID = halfUUID					
-					keyword.save(flush:true)		
-					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addKeyword", keyword: keyword.keyword,  promotionID: params.promotionID, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
-	
+					if (params.endless) {
+						keyword.endless = true
+					} else {
+						keyword.endless = false			
+					}
+				
+						// Create a UUID and cut it in half
+						String uniqueID = UUID.randomUUID().toString().replace("-", "");
+						int midpoint = uniqueID.length() / 2;
+						String halfUUID = uniqueID.substring(0, midpoint)
+						
+						if (params.campaignSelected) {
+							keyword.campaignType = params.campaignSelected
+						} else {
+							params.campaignType = "norm"
+						}
+						
+						print "ENDLESS: " + keyword.endless 
+						
+						keyword.userID = session["userID"]					
+						keyword.promotionID = halfUUID					
+						keyword.save(flush:true)		
+						redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addKeyword", keyword: keyword.keyword,  promotionID: keyword.promotionID, endless: keyword.endless, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])	
+				} else {
+					displayUserError("Keyword Exist", "Your keyword '" + params.keyword.toString().trim() + "' already exist. Think of a new keyword or delete the old one to re-create it.", "keyword");
+				}
 			}
 		} else {
 			redirect(controller: "Home")
 		}	
 	}
+	
 
 	def suspendKeyword() {
 		Keyword keyword = Keyword.findByPromotionID(params.promotionID)
@@ -702,6 +709,15 @@ class DashboardController {
 		redirect(controller: "Dashboard", action: "confirmation", params: [conType: "suspendKeyword", keyword: keyword.keyword, promotionID: params.promotionID, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
 		
 	}
+	
+	def displayUserError(header, body, button) {
+		if (session["userID"]) {			
+			render(view:"dashboard_userError",  model: [accountInfo: getUserAccountInfo(), header: header, body: body, button: button])
+		} else {
+			redirect(controller: "Home")
+		}		
+	}
+	
 	
 	def reactivateKeyword() {
 		Keyword keyword = Keyword.findByPromotionID(params.promotionID)
