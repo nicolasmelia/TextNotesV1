@@ -314,6 +314,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                  
                   <g:else>
 	                  
+	                  
 	                  <g:link  class="btn btn-default"  action="dashboard"  type="button"  >            
 	                 	Home
 	                  </g:link>   

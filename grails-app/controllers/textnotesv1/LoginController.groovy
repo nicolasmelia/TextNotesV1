@@ -1,6 +1,10 @@
 package textnotesv1
 
 import java.text.SimpleDateFormat
+import java.util.Date;
+
+import org.joda.time.DateTime
+import org.joda.time.DateTimeZone
 import smsGate.smsGateOut
 
 class LoginController {
@@ -82,6 +86,7 @@ class LoginController {
 				String halfUUID = uniqueID.substring(0, midpoint)
 				
 				user.userID = halfUUID
+				user.timeZone = params.timeZone
 				
 				user.validated = true
 				user.save(flush:true)
@@ -89,25 +94,27 @@ class LoginController {
 				// create account info and set 14 day free trial
 				UserAccountInfo account = new UserAccountInfo()
 				account.userID = user.userID
-				account.accountType = "Trial"
-				account.monthlyTextBalance = 500
-				account.remainingMonthlyTextBalance = 500
-				
-				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-				String minDate = "11/10/1989";
-				
-				account.SubscriptionEff = sdf.parse(minDate);
-				account.SubscriptionExp = sdf.parse(minDate);
-				
-				
-				// Set trial date to 14 days in the future
-				Calendar c = Calendar.getInstance();
-				c.setTime(new Date()); // Now use today date.
-				c.add(Calendar.DATE, 14); // Adding 5 days
-				//String output = sdf.format(c.getTime());
-				
-				account.trialDateExp = c.getTime()
+				account.accountType = "Free"	
+				account.SubscriptionEff = new Date()
+				account.SubscriptionExp = new Date()
 				account.save(flush:true)
+				
+				// Create the balance
+				Balance balance = new Balance()
+				
+				balance.userID = user.userID
+								
+				DateTime now = DateTime.now().withZone(DateTimeZone.forID(user.timeZone));
+				DateTime nextMonth = now.plusMonths(1);
+				
+				balance.monthlyResetDate = nextMonth.toDate()
+				balance.lastUsedDate = new Date()
+				balance.unlimited = false
+				balance.currentBalance = 1000
+				balance.monthlyBalance = 1000
+				balance.totalBalanceSpent = 0
+				balance.MonthlyBalanceOverage = 0
+				balance.save(flush:true)
 
 				if (params.rememberme) {
 					// Create a cookie for the user

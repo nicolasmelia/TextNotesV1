@@ -34,67 +34,70 @@ class SmsGateInController {
 	
 	def gateIn(){	
 		String from = params.From.toString()
-		String body = params.Body.toString().trim()
+		String body = params.Body.toString().toLowerCase().trim()
 		String messageSid = params.MessageSid.toString() // Twilio message sid
 		
-		
-		if (from != null && body != null){
-			render(status:204)
-		} else {
-			render(status:404)
-		}
-
-	}
-	
-	def gateInTest(){
-		String from = params.From.toString()
-		String body = params.Body.toString().trim()
-		TwiMLResponse twiml = new TwiMLResponse();
-		
-		if (from == null) from = "No Number"
-		if (body == null) body = "No Message"
-							
-		
 		// test if this is a keyword.
-		Message message
-		Keyword keyword = Keyword.findByKeyword(body.toLowerCase())
-		
-		
-	//	6/30/2016 < 6/13/2016
-		
-		if (Keyword != null) {
-			Date todaysDate = new Date()
-			if (((keyword.dateEff > todaysDate) && (keyword.dateExp < todaysDate)) || keyword.endless == true) {
-				message = new Message(keyword.responceText);	
-			} else {
-				message = new Message("Sorry this keyword is currently not active.") ;			
-			}	
+		Keyword keyword = Keyword.findByKeyword(body)
+
+		if (keyword != null) {
 			
-			if (keyword.campaignType == "Coup") {
-				CouponIn coupon = new CouponIn()
-				coupon.keywordID =  keyword.promotionID
-				coupon.DateRedeemed = new Date()
-				// Create a UUID and cut it in half
-				String uniqueID = UUID.randomUUID().toString().replace("-", "");
-				int midpoint = uniqueID.length() / 4;
-				String halfUUID = uniqueID.substring(0, midpoint)			
-				coupon.couponCode = halfUUID	
+			// Create a UUID and cut it in half for MessageIn
+			String uniqueID = UUID.randomUUID().toString().replace("-", "");
+			int midpoint = uniqueID.length() / 2;
+			String halfUUID = uniqueID.substring(0, midpoint)
+			
+			MessageIn MI = new MessageIn()
+			MI.phoneNumber = from.substring(2, from.length()) // Remove first 2 characters from string
+			MI.messageID = halfUUID
+			MI.messageType = "keyword"
+			MI.userID = keyword.userID
+			MI.keyword = keyword.keyword
+			MI.promotionID = keyword.promotionID
+			MI.deleted = false
+			MI.date = new Date()
+			MI.save(flush:true);
+			
+			Date todaysDate = new Date()
+			if ((todaysDate >= keyword.dateEff) && ((keyword.dateExp >= todaysDate) || keyword.endless == true)) {
+
+				sendMessage(from, keyword.responceText)
+				
+				switch (keyword.campaignType) {
+					case "Coup":
+						CouponIn coupon = new CouponIn()
+						coupon.keywordID =  keyword.promotionID
+						coupon.DateRedeemed = new Date()
+						
+						// Create a UUID and cut it in half
+						String uniqueIDCoup = UUID.randomUUID().toString().replace("-", "");
+						int midpoint2 = uniqueIDCoup.length() / 4;
+						String couponCode = uniqueIDCoup.substring(0, midpoint)
+						
+						coupon.couponCode = couponCode
+						coupon.save(flush:true)
+					break; 
+					
+					default:
+					
+					break;
 			}
+
+			} else {
+				sendMessage(from, "It look likes this keyword (" + keyword.keyword + ") is currently not active. This service is Powered by TxtWolf.com!")	
+			}
+
 		
 		} else {
-			message = new Message("Sorry this is not a valis keyword. Try again?") ;	
-		}
-		
-		 
-		Media media = new Media("https://demo.twilio.com/owl.png")
-		try {
-			message.append(media);
-			twiml.append(message);
-		} catch (TwiMLException e) {
-			e.printStackTrace();
+				sendMessage(from, "It look likes this keyword (" + keyword.keyword + ") does not exist. Please try again! This service is Powered by TxtWolf.com!")	
 		}
 
-		render(text: twiml.toXML(), contentType: "application/xml", encoding: "UTF-8")
+		if (keyword != null){
+			render(status:204)
+		} else if (from.equals(null) && body.equals(null)) {
+			render(status:404)
+		} 
+
 	}
 	
 	def sendMessage(String number, String message) {		
@@ -110,7 +113,7 @@ class SmsGateInController {
 		try{
 			MessageFactory messageFactory = account.getMessageFactory();
 			List<NameValuePair> param = new ArrayList<NameValuePair>();
-			param.add(new BasicNameValuePair("To", "+1" + number)); // Replace with a valid phone number for your account.
+			param.add(new BasicNameValuePair("To", number)); // Replace with a valid phone number for your account.
 			param.add(new BasicNameValuePair("From", "+1" + FromNumber)); // Replace with a valid phone number for your account.
 			param.add(new BasicNameValuePair("Body", message));
 			//params.add(new BasicNameValuePair("MediaUrl", "https://static0.twilio.com/recources/logos/twilio-loco-circle-50x50.png"));

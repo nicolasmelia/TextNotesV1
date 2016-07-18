@@ -7,6 +7,7 @@ class MessageIn {
 	String userID
 	String messageID
 	String phoneNumber
+	String promotionID
 	String keyword
 	String messageType
 	
@@ -16,6 +17,9 @@ class MessageIn {
 
 	static constraints = {
 		image(nullable:true, maxSize: 1024 * 1024 * 5 /* 5MB */)
+		keyword(nullable:true)	
+		promotionID(nullable:true)
+		
 	}
 
 }

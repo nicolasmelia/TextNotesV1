@@ -10,11 +10,8 @@ class UserAccountInfo {
 	Date SubscriptionEff	
 	Date SubscriptionExp
 	
-	Date trialDateExp
-	int monthlyTextBalance
-	int remainingMonthlyTextBalance
-	
 
     static constraints = {
+
     }
 }

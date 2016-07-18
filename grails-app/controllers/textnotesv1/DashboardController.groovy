@@ -37,9 +37,7 @@ class DashboardController {
 			searchQuery = params.searchQuery
 			isSearch = true
 		}
-		
-		print isSearch
-	
+			
 		if (session["userID"]) {		
 			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery)])		 
 		} else {
@@ -47,6 +45,15 @@ class DashboardController {
 		}
 		
 	}
+	
+	def balance() {
+		if (session["userID"]) {
+			Balance balance = Balance.findByUserID(session["userID"])								
+			render(view:"dashboard_balance", model: [UAI: getUserAccountInfo(), bal:balance])		
+	   } else {
+		   redirect(controller: "Home")
+	   }
+}
 	
 	def contacts() {	
 		int offset = 0
@@ -76,14 +83,49 @@ class DashboardController {
 			searchQuery = params.searchQuery
 			isSearch = true
 		}
-		
-		print isSearch
-	
+			
 		if (session["userID"]) {		
 			 render(view:"dashboard_contacts",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery)])		 
 		} else {
 			redirect(controller: "Home")
 		}
+		
+	}
+	
+	def keywordInbox() {
+		int offset = 0
+		if (params.offset != null) {
+			offset = Integer.parseInt(params.offset)
+			if (params.up.toString().equals("true")) {
+				offset = offset + 10
+			} else {
+				if (offset > 0) {
+				offset = offset - 10
+				}
+			}
+		}
+		
+		// check to see if contacts exist
+		int clientCount = MessageIn.countByUserID(session.userID)
+		
+		// Get searchInfo if any
+		def searchQuery
+		boolean isSearch = false
+		if (!params.searchQuery && !params.searchQueryHidden) {
+			searchQuery = null
+		} else if (params.searchQueryHidden) {
+			searchQuery = params.searchQueryHidden
+			isSearch = true
+		} else if (params.searchQuery) {
+			searchQuery = params.searchQuery
+			isSearch = true
+		}
+
+	if (session["userID"]) {
+			render(view:"dashboard_keyword_inbox",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, messages: getKeywordInboxList(offset, searchQuery)])
+	   } else {
+		   redirect(controller: "Home")
+	   }
 		
 	}
 	
@@ -146,7 +188,6 @@ class DashboardController {
 				if (!params.firstName) {
 					Contact contact = Contact.findByContactID(params.contactID)
 					if (contact) {   
-						print  contact.firstName
 						render(view:"dashboard_editContact", model: [accountInfo: getUserAccountInfo(), contact: contact])
 					} else {
 						render "uh oh and error"
@@ -279,9 +320,7 @@ class DashboardController {
 		
 		// check to see if contacts exist
 		int keywordCount = Keyword.countByUserID(session.userID)
-			
 
-		
 		// Get searchInfo if any
 		def searchQuery
 		if (!params.searchQuery && !params.searchQueryHidden) {
@@ -467,6 +506,23 @@ class DashboardController {
 		}
 	}
 	
+	def getKeywordInboxList(offset, search){
+		def Messages
+		if (search == null) {
+			Messages =  MessageIn.findAll("from MessageIn as m where m.userID=? order by m.date DESC",
+					 [session.userID], [max: 10, offset: offset])
+		} else {
+			Messages = searchMessageIn(search, offset)
+		}
+		
+		if (Messages.size > 0) {
+			return Messages
+		} else {
+			return "NONE"
+		}
+	}
+	
+	
 	def getGroupList(offset, getAll){
 		def groups;
 		if (!getAll) {
@@ -512,7 +568,6 @@ class DashboardController {
 		List contacts = new ArrayList<Contact>()
 		if (search == null) {		
 			def members = GroupMember.findAllByGroupID(groupID, [max: 10, offset: offset])	
-			print groupID		
 			for (GroupMember member : members) {
 				if (member.contactID != null) {
 					Contact c = Contact.findByContactID(member.contactID)
@@ -558,6 +613,17 @@ class DashboardController {
 		}
 		
 		return contacts
+	}
+	
+	def searchMessageIn(searchString, offset) {
+		def message
+		if (!searchString.equals("") && !searchString.equals(" ") && searchString != "NONE") {
+			 message = MessageIn.findAll("from MessageIn as m where m.phoneNumber = ?", [searchString], [max: 10, offset: offset])
+		} else {
+		
+		}
+		
+		return message
 	}
 	
 	
@@ -682,7 +748,6 @@ class DashboardController {
 							params.campaignType = "norm"
 						}
 						
-						print "ENDLESS: " + keyword.endless 
 						
 						keyword.userID = session["userID"]					
 						keyword.promotionID = halfUUID					
@@ -731,9 +796,6 @@ class DashboardController {
 		
 	}
 	
-	
-	
-
 	def proccessTxtSend() {
 		render params.tags
 	}

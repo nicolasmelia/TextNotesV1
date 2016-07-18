@@ -62,7 +62,7 @@ environments {
 		dataSource {
 			pooled = true
 				dbCreate = "update"		
-				url = "jdbc:mysql://txtwolf.cgpcdyxuw1cf.us-west-2.rds.amazonaws.com:3306/txtwolf"
+				url = "jdbc:mysql://txtwolf.caircihif48y.us-west-2.rds.amazonaws.com:3306/txtwolf"
 				driverClassName = "com.mysql.jdbc.Driver"
 				dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 				username = "admin"

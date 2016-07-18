@@ -184,11 +184,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li >
               <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
+                <li><a class = ""   href="${createLink(controller: 'Dashboard', action: 'newContact')}"><b>New Contact</b></a></li>  
+                <li><a class = "" href="${createLink(controller: 'Dashboard', action: 'createGroup')}"> <b>New Group</b></a></li>  
                 <li><a href="${createLink(controller: 'Dashboard', action: 'contacts')}">View Contacts</a></li> 
                 <li><a href="${createLink(controller: 'Dashboard', action: 'groups')}">View Groups</a></li>   
-                <li><a class = ""   href="${createLink(controller: 'Dashboard', action: 'newContact')}"> New Contact</a></li>  
-                <li><a class = "" href="${createLink(controller: 'Dashboard', action: 'createGroup')}"> New Group</a></li>  
-
 			<!-- Do not display this at the moment
 
                 <li>
@@ -218,9 +217,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
              <li class="treeview">
               <a href="#"><i class="fa fa-inbox"></i> <span>Keywords</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
+                <li><a href="${createLink(controller: 'Dashboard', action: 'newKeyWord')}"><b>New Keyword</b></a></li>
                 <li><a href="${createLink(controller: 'Dashboard', action: 'keywords')}">View Keywords</a></li>
-                <li><a href="${createLink(controller: 'Dashboard', action: 'validatePromo')}">Keyword Inbox</a></li>       
-                <li><a href="${createLink(controller: 'Dashboard', action: 'newKeyWord')}">New Keyword</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'keywordInbox')}">Keyword Inbox</a></li>   
+                <li><a href="${createLink(controller: 'Dashboard', action: 'validatePromo')}">Validate Coupon Code</a></li>       
+                                    
               </ul>
             </li>
             
@@ -228,7 +229,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
              <li class="treeview">
               <a href="#"><i class="fa fa-paw"></i> <span>Account</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="${createLink(controller: 'Dashboard', action: 'history')}">My Balance</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'balance')}">My Balance</a></li>
                 <li><a href="${createLink(controller: 'Dashboard', action: 'history')}">My Activity</a></li>
               </ul>
             </li>
@@ -259,8 +260,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
       <g:if test="${clientCount == 0}">	
          <div class="callout callout-info" style="margin-bottom: 10px!important;">
-            <h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
-            It looks like you dont have any contacts yet. Get started by adding clients below!
+            <h4><i class="fa fa-paw"></i> Getting Started!</h4>
+            It looks like you dont have any contacts yet. Start reaching nore people by adding clients below! It's easy as that.
         </div>
         
         </g:if>       
@@ -306,7 +307,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="icon">
                   <i class="fa fa-inbox" style = " font-size: 0.85em;" ></i>
                 </div>
-                <a href="#" class="small-box-footer"> View <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="${createLink(controller: 'Dashboard', action: 'keywords')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"> </i></a>
               </div>
             </div><!-- ./col -->
             
@@ -320,7 +321,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="icon">
                   <i class="fa fa-balance-scale" style = " font-size: 0.8em;"></i>
                 </div>
-                <a href="#" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+                <a  href="${createLink(controller: 'Dashboard', action: 'balance')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
 

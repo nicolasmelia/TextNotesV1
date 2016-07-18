@@ -122,8 +122,8 @@ if(true && (groupCount > 0 || offset > 0)) {
 printHtmlPart(48)
 if(true && (groups != 'NONE')) {
 printHtmlPart(49)
-for( _it298045034 in (groups) ) {
-changeItVariable(_it298045034)
+for( _it1699756582 in (groups) ) {
+changeItVariable(_it1699756582)
 printHtmlPart(50)
 if(true && (addToGroup)) {
 printHtmlPart(51)
@@ -166,7 +166,7 @@ printHtmlPart(67)
 if(true && (offset > 0)) {
 printHtmlPart(68)
 createClosureForHtmlPart(69, 3)
-invokeTag('link','g',372,['action':("groups"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+invokeTag('link','g',373,['action':("groups"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(70)
 }
 else {
@@ -176,7 +176,7 @@ printHtmlPart(72)
 if(true && (offset <= groupCount)) {
 printHtmlPart(73)
 createClosureForHtmlPart(74, 3)
-invokeTag('link','g',379,['action':("groups"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+invokeTag('link','g',380,['action':("groups"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(75)
 }
 else {
@@ -185,42 +185,46 @@ printHtmlPart(76)
 printHtmlPart(77)
 expressionOut.print(currentPage)
 printHtmlPart(78)
-if(true && (addToGroup)) {
+if(true && (groups != 'NONE')) {
 printHtmlPart(79)
-for( _it440082302 in (groups) ) {
-changeItVariable(_it440082302)
+if(true && (addToGroup)) {
 printHtmlPart(80)
-expressionOut.print(it.groupID)
+for( _it329929969 in (groups) ) {
+changeItVariable(_it329929969)
 printHtmlPart(81)
-expressionOut.print(it.groupName)
+expressionOut.print(it.groupID)
 printHtmlPart(82)
-expressionOut.print(contactGroupAdd.fullName)
-printHtmlPart(83)
 expressionOut.print(it.groupName)
+printHtmlPart(83)
+expressionOut.print(contactGroupAdd.fullName)
 printHtmlPart(84)
-createClosureForHtmlPart(85, 4)
-invokeTag('link','g',492,['action':("addToGroup"),'params':([contactID: contactGroupAdd.contactID, groupID: it.groupID]),'type':("button"),'class':("btn btn-primary pull-left")],4)
-printHtmlPart(86)
-}
+expressionOut.print(it.groupName)
+printHtmlPart(85)
+createClosureForHtmlPart(86, 5)
+invokeTag('link','g',494,['action':("addToGroup"),'params':([contactID: contactGroupAdd.contactID, groupID: it.groupID]),'type':("button"),'class':("btn btn-primary pull-left")],5)
 printHtmlPart(87)
 }
 printHtmlPart(88)
-invokeTag('javascript','g',505,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+}
+printHtmlPart(88)
+}
 printHtmlPart(89)
-invokeTag('javascript','g',508,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+invokeTag('javascript','g',509,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(90)
-invokeTag('javascript','g',511,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',512,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(91)
-})
-invokeTag('captureBody','sitemesh',519,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('javascript','g',515,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(92)
+})
+invokeTag('captureBody','sitemesh',523,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(93)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1462046444097L
+public static final long LAST_MODIFIED = 1468173913972L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

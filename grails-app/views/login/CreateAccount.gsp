@@ -74,25 +74,41 @@
 		
 		
 								<label class = 'inputLabel' >First Name</label>	
-								<input type="text" name="firstname" id="firstname" value="" placeholder="Name" /> 
+								<input type="text" name="firstname" id="firstname" value="" placeholder="Required" /> 
 								
 								<label class = 'inputLabel' >Last Name</label>	
-								<input type="text" name="lastname" id="lastname" value="" placeholder="Last Name" /> 
+								<input type="text" name="lastname" id="lastname" value="" placeholder="Required" /> 
 			
-								<label class = 'inputLabel' >Bussiness Name</label>	
-								<input type="text" name="companyname" id="companyname" value="" placeholder="Company Name" /> 
+								<label class = 'inputLabel' >Business Name</label>	
+								<input type="text" name="companyname" id="companyname" value="" placeholder="Not Required" /> 
+								
+								<label class = 'inputLabel' >Time Zone</label>		
+			                      <select name = "timeZone" id  = "timeZoneSelected"  class="form-control">
+										<option value="Pacific/Honolulu">(GMT-10:00) Hawaii</option>
+										<option value="America/Anchorage">(GMT-09:00) Alaska</option>
+										<option value="America/Vancouver">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+										<option value="America/Phoenix">(GMT-07:00) Arizona</option>
+										<option value="America/Denver">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+										<option value="America/Chicago" >(GMT-06:00) Central Time (US &amp; Canada)</option>
+										<option value="America/New_York" selected="selected" >(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+										<option value="America/Indiana/Knox">(GMT-05:00) Indiana (East)</option><option value="" disabled="disabled">-------------</option>
+										<option value="America/Atka, US/Aleutian">(GMT-11:00) International Date Line West</option>
+										<option value="America/Atka, US/Aleutian">(GMT-11:00) Midway Island</option>
+										<option value="America/New_York">Other (Not Listed)</option>									
+			                      </select>
+								
 		
 								<hr>
 		
 								<label class = 'inputLabel' >Your Email (Login with email)</label>	
-								<input type="email" name="email" id="email" value="" placeholder="Email" /> 
+								<input type="email" name="email" id="email" value="" placeholder="Required" /> 
 
 								
 								<label class = 'inputLabel' >Password</label>
-								<input type="password" name="passwordtwo" id="passwordone" value="" placeholder="Password" />	
+								<input type="password" name="passwordtwo" id="passwordone" value="" placeholder=Required />	
 
 								<label class = 'inputLabel' >Re-enter Password</label>
-								<input type="password" name="passwordone" id="passwordtwo" value="" placeholder="Re-enter Password" />		
+								<input type="password" name="passwordone" id="passwordtwo" value="" placeholder="Required" />		
 
 									<div class="6u 12u$(small)" style = "margin-top: 15px;" >
 										<input type="checkbox" id="rememberme" name="rememberme">
@@ -251,10 +267,10 @@
 					errors.push("Please enter a valid last name.");
 				} 	
 
-				if (companyname.length < 1) {
-					hasErrors = true;
-					errors.push("Please enter a valid company name.");
-				} 	
+			//	if (companyname.length < 1) {
+			//		hasErrors = true;
+			//		errors.push("Please enter a valid company name.");
+			//	} 	
 		
 				if (hasErrors) {
 					$("#errorList").html("");

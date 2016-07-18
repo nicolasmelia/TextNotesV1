@@ -279,8 +279,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
       <g:if test="${groupCount == 0}">	
 	         <div class="callout callout-info" style="margin-bottom: 10px!important;">
-	            <h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
-	            It looks like you dont have any contacts yet. Get started by adding clients below!
+	            <h4><i class="fa fa-paw"></i> Getting started!</h4>
+	            It looks like you dont have any groups yet. Get started by adding a group below!
+	             You can use groups to reach certain employees, particular customers and more people in less time.
 	        </div>      
         </g:if>
         
@@ -473,6 +474,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div><!-- ./wrapper -->
     
 
+				 	<g:if test="${groups != 'NONE'}">						 			
 
 				 <g:if test="${addToGroup}">	
 	                    <g:each in="${groups}">
@@ -497,6 +499,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
 		</g:each>
+		
+		</g:if>
 		
 		</g:if>
      <!-- REQUIRED JS SCRIPTS -->

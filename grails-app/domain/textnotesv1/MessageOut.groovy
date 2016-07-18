@@ -20,7 +20,6 @@ class MessageOut {
 	
 	// Single sent time
 	Date scheduleTime
-	
 
     static constraints = {
 		message(maxSize: 2000) // Max from sms service is 1600

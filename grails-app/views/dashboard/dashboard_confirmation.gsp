@@ -582,7 +582,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="callout callout-info" style = "margin: 0px;" >
               <h4>Keyword Suspended</h4>
               <p>
-				<b>${params.keyword}</b> People are no longer able to send this keyword into your promotion. You can re-enable this keyword anytime.
+				People are no longer able to send your keyword "<b>${params.keyword}</b>" into your promotion. You can re-enable this keyword anytime.
 				 Click "Detailed View" to view more information on your keyword.
               </p>
               

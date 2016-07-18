@@ -112,44 +112,42 @@ expressionOut.print(offset)
 printHtmlPart(43)
 expressionOut.print(keywordCount)
 printHtmlPart(44)
-if(true && (offset > 0)) {
+expressionOut.print(header)
 printHtmlPart(45)
-createClosureForHtmlPart(46, 3)
-invokeTag('link','g',306,['action':("keywords"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+expressionOut.print(body)
+printHtmlPart(46)
+if(true && (button == 'keyword')) {
 printHtmlPart(47)
-}
-else {
-printHtmlPart(48)
-}
+createClosureForHtmlPart(48, 3)
+invokeTag('link','g',307,['class':("btn btn-default"),'action':("newKeyWord"),'type':("button")],3)
 printHtmlPart(49)
-if(true && (offset <= keywordCount)) {
-printHtmlPart(50)
-createClosureForHtmlPart(51, 3)
-invokeTag('link','g',313,['action':("keywords"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(52)
+createClosureForHtmlPart(50, 3)
+invokeTag('link','g',311,['class':("btn btn-default"),'action':("dashboard"),'type':("button")],3)
+printHtmlPart(51)
 }
 else {
-printHtmlPart(53)
+printHtmlPart(52)
+createClosureForHtmlPart(50, 3)
+invokeTag('link','g',320,['class':("btn btn-default"),'action':("dashboard"),'type':("button")],3)
+printHtmlPart(51)
 }
+printHtmlPart(53)
+invokeTag('javascript','g',416,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(54)
-expressionOut.print(currentPage)
+invokeTag('javascript','g',419,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(55)
-invokeTag('javascript','g',413,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+invokeTag('javascript','g',422,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(56)
-invokeTag('javascript','g',416,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
-printHtmlPart(57)
-invokeTag('javascript','g',419,['src':("dashboard/app.min.js")],-1)
-printHtmlPart(58)
 })
-invokeTag('captureBody','sitemesh',427,['class':("hold-transition skin-purple sidebar-mini")],1)
-printHtmlPart(59)
+invokeTag('captureBody','sitemesh',430,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(57)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1468118525739L
+public static final long LAST_MODIFIED = 1468170528082L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

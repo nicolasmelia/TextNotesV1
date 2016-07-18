@@ -9,6 +9,7 @@ class User {
 	String phoneNumber
 	Date signUpDate
 	Date lastLoginDate
+	String timeZone
 	
 	// Personal Information
 	String firstName
