@@ -140,8 +140,10 @@ class DashboardController {
 					preContactName = contact.fullName
 					preContactID = contact.contactID					
 				}
+				
+				Balance bal = Balance.findByUserID(session["userID"])
 								
-				render(view:"dashboard_SendTxt", model: [UAI: getUserAccountInfo(), preClientName: preContactName, preClientID: preContactID, groups: getGroupList(0, true) ])
+				render(view:"dashboard_SendTxt", model: [UAI: getUserAccountInfo(), bal: bal, preClientName: preContactName, preClientID: preContactID, groups: getGroupList(0, true) ])
 				
 		   } else {
 			   redirect(controller: "Home")
@@ -746,9 +748,7 @@ class DashboardController {
 							keyword.campaignType = params.campaignSelected
 						} else {
 							params.campaignType = "norm"
-						}
-						
-						
+						}				
 						keyword.userID = session["userID"]					
 						keyword.promotionID = halfUUID					
 						keyword.save(flush:true)		

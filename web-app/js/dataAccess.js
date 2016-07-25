@@ -126,6 +126,8 @@
 		    data: {tags : tags},
 		  }).done(function(result){
 				$("#attachedRecipientsCount").html(result);
+				$("#attachedRecipientsCountTwo").html(result);			
+				$("#recipCount").val(result) // Set the value to be returned to the server
 		  });
 		
 		  

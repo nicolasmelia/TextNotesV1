@@ -69,8 +69,17 @@ class SmsGateOutController {
 			}
 			
 				
-			if (success) {			
+			if (success) {		
+				// Create a history record for thr sent message
 				String messageID = logMessage(tags, message, title)
+				
+				//Update the users balance
+				Balance balance = Balance.findByUserID(session["userID"])
+				balance.currentBalance -= Integer.parseInt(params.recipCount);
+				balance.lastUsedDate = new Date()
+				balance.totalBalanceSpent += Integer.parseInt(params.recipCount)
+				balance.save(flush:true)
+				
 				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "Message", totalRecp: tags.size.toString(), messageID: messageID])
 			} else {
 				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "FAILEDtext"])

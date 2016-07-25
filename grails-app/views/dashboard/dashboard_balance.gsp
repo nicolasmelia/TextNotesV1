@@ -262,7 +262,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div>
 
 	              <div class="box-body">   
-	              <h4>Balance - ${bal.monthlyBalance} text per month</h4>
+	              <h4>Balance - <b>${bal.monthlyBalance}</b> text per month</h4>
 	              
   				<table class="table table-bordered">
 

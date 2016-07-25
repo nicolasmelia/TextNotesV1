@@ -308,6 +308,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		             
                   <div class="form-group">
                     <input type="hidden" name="allTags" value="">
+                    <input id = "recipCount" type="hidden" name="recipCount" value="">
+                    
 		            <input id = "tags"   name = "tags" placeholder = "Recipients" class="form-control"  type="text" data-role="tagsinput" />
 		          </div>		              
 		          
@@ -489,11 +491,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- /.box-header -->
                 <div class="box-body">
               
-              <input id = "remainingMonthlyTextBalance" type="hidden" value="${UAI.remainingMonthlyTextBalance}">
+              <input id = "remainingMonthlyTextBalance" type="hidden" value="${bal.currentBalance}">
  
                 Recipients Attached: <span id = "attachedRecipientsCount" >0</span> <br>
-				Remaining Text Balance: <span>${UAI.remainingMonthlyTextBalance}/${UAI.monthlyTextBalance}</span><br>
-				Scheduled Send Time: <span id = "ScheduledSendTime" ><b>Now</b></span>             
+				Remaining Text Balance: <span>${bal.currentBalance}/${bal.monthlyBalance}</span><br>
+				Scheduled Send Time: <span id = "ScheduledSendTime" ><b>Now</b></span>  
+				<hr>
+				
+				You will be spending a text balance of 
+				<b><span id = "attachedRecipientsCountTwo" >0</span></b> using your remaning balance of <b>${bal.currentBalance}</b>       
+				           
 
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
@@ -501,12 +508,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   </div>
                   <div class="modal-footer">
-                    <button onClick = "submitForm()" type="button" class="btn btn-primary pull-left" >SEND</button>
+                    <button onClick = "submitForm(${bal.currentBalance}, ${bal.monthlyBalance} )" type="button" class="btn btn-primary pull-left" >SEND</button>
                     <button onClick = "clearWarnings()"  type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->            
+            
+            <!-- DRAFT MODAL --> 
+        <div class="modal" id="noTypeModal" role="dialog" data-backdrop="static">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id = "modalHeading" class="modal-title">Help: How to add recipients...</h4>
+                  </div>
+
+                  <div class="modal-body">
+                 Please add recipients to your text message by using the <b>"Add Recipients"</b> tool menu. 
+                 WIth the tool menu you can add a <i>contact</i>, a <i>group</i>, or a <i>phone number</i>.
+				</div>
+
+
+                  <div class="modal-footer">
+                    <button onClick = "clearWarnings()"  type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->            
+            
             
    
                  <!-- DRAFT MODAL --> 
@@ -740,7 +770,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 $( document ).ready(function() {
 	addCustomNumberPrePick();
+		
+	$('.bootstrap-tagsinput > :input').keydown(function() {
+		// Dont allow user to type in the recip input field
+		$('#noTypeModal').modal('show');	
+	   return false;
+	});
+
+	
 });
+
 
   // initialize datamask for inputs
   $("[data-mask]").inputmask();
@@ -782,13 +821,29 @@ $( document ).ready(function() {
 		$("#submitBtn").prop("disabled",true);	
 	});
 
-	function submitForm(){
-		if (!errors.length) {
-			$('#submitBtn').click()			
+	function submitForm(currentBal, MonthlyBal){
+	
+	
+		if (parseInt($('#attachedRecipientsCountTwo').html()) > parseInt(currentBal)) {
+				$("#previewModalAlertText").html("The current amount of recipents exceeds your remaining balance. " +
+				"Increase your monthly balance in the subscription menu or remove recipents from this text.");  
+				$("#PreviewModalAlert").css("display","block");
+			    $("#PreviewModalAlert").effect("bounce", { times:3 }, 400);
 		} else {
-			$("#PreviewModalAlert").css("display","block");
-		    $("#PreviewModalAlert").effect("bounce", { times:3 }, 400);
+			if (!errors.length) {
+				// $('#submitBtn').click()	
+				
+				console.log(parseInt($('#attachedRecipientsCountTwo').html()) + " :: " + currentBal  );
+				
+						
+			} else {
+				$("#PreviewModalAlert").css("display","block");
+			    $("#PreviewModalAlert").effect("bounce", { times:3 }, 400);
+			}	
 		}
+	
+	
+
 	}
 	
 	function validateForm(){
@@ -808,6 +863,7 @@ $( document ).ready(function() {
 		} else {
 			$("#preMessageSubject").html("No Subject");		
 		}	
+
 		
 			getRecpCount(url, $('#tags').val());
 		
