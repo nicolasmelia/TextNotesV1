@@ -39,7 +39,7 @@ class DashboardController {
 		}
 			
 		if (session["userID"]) {		
-			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery)])		 
+			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), keywordsIn: getKeywordInboxList(0, 5, null), history: getHistoryList(0),  offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery)])		 
 		} else {
 			redirect(controller: "Home")
 		}
@@ -122,7 +122,7 @@ class DashboardController {
 		}
 
 	if (session["userID"]) {
-			render(view:"dashboard_keyword_inbox",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, messages: getKeywordInboxList(offset, searchQuery)])
+			render(view:"dashboard_keyword_inbox",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, messages: getKeywordInboxList(offset, 10, searchQuery)])
 	   } else {
 		   redirect(controller: "Home")
 	   }
@@ -508,11 +508,11 @@ class DashboardController {
 		}
 	}
 	
-	def getKeywordInboxList(offset, search){
+	def getKeywordInboxList(offset, max, search){
 		def Messages
 		if (search == null) {
 			Messages =  MessageIn.findAll("from MessageIn as m where m.userID=? order by m.date DESC",
-					 [session.userID], [max: 10, offset: offset])
+					 [session.userID], [max: max, offset: offset])
 		} else {
 			Messages = searchMessageIn(search, offset)
 		}

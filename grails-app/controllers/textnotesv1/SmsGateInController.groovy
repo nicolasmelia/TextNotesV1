@@ -64,7 +64,7 @@ class SmsGateInController {
 				sendMessage(from, keyword.responceText)
 				
 				switch (keyword.campaignType) {
-					case "Coup":
+					case "coup": // Coupon
 						CouponIn coupon = new CouponIn()
 						coupon.keywordID =  keyword.promotionID
 						coupon.DateRedeemed = new Date()
@@ -76,7 +76,19 @@ class SmsGateInController {
 						
 						coupon.couponCode = couponCode
 						coupon.save(flush:true)
+						
+						sendMessage(from, "Here is your coupon code for keyword " + keyword.keyword + ": " + coupon.couponCode + ". Use your code to redeem this offer. ")
+						
+						
 					break; 
+					
+					case "con": // Contest
+					
+					break;
+					
+					case "cust": // Custom
+					
+					break;
 					
 					default:
 					

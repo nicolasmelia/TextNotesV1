@@ -71,22 +71,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="dropdown notifications-menu">
                 <!-- Menu toggle button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">0</span>
+                  <i class="fa fa-envelope-o"></i>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">You have 0 notifications</li>
+                  <li class="header">Keyword Inbox (Recent)</li>
                   <li>
                     <!-- Inner Menu: contains the notifications -->
                     <ul class="menu">
                       <li><!-- start notification -->
-                        <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                      
+    				  <g:if test="${keywordsIn != 'NONE'}">	          
+	                     <g:each in="${keywordsIn}">
+	                        <a href="${createLink(controller: 'Dashboard', action: 'keywordInbox')}">
+	                          <i class="fa fa-paw text-aqua"></i> <b>${it.keyword}</b>: ${it.phoneNumber}, <i><g:formatDate format="MM-dd-yyyy" date="${it.date}"/> </i>                  
+	                        </a>
+	                     </g:each>                
+                      </g:if>
+                      
+                      <g:else>
+  
+                        <a href="${createLink(controller: 'Dashboard', action: 'keywordInbox')}">
+                          <i class="fa fa-paw text-aqua"></i> 0 keywords recieved.                   
                         </a>
+
+                      </g:else>
+
+                        
                       </li><!-- end notification -->
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">View all</a></li>
+                  <li class="footer"> <a href="${createLink(controller: 'Dashboard', action: 'keywordInbox')}">View all</a></li>
                 </ul>
               </li>   
 
@@ -210,7 +224,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="treeview-menu">
                 <li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}">Compose Text</a></li>
                 <li><a href="${createLink(controller: 'Dashboard', action: 'secheduledTxt')}">Secheduled Text</a></li>
-                <li><a href="${createLink(controller: 'Dashboard', action: 'txtHostory')}">History</a></li>       
               </ul>
             </li>
        
@@ -494,31 +507,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="tab-pane active" id="control-sidebar-home-tab">
             <h3 class="control-sidebar-heading">Recent Activity</h3>
             <ul class="control-sidebar-menu">
+            
+            
+          <g:each in="${history}">
               <li>
-                <a href="javascript::;">
-                  <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                <a href = "${createLink(controller: 'Dashboard', action: 'history')}">
+                  <i class="menu-icon fa fa-clock-o bg-blue"></i>
                   <div class="menu-info">
-                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-                    <p>Will be 23 on April 24th</p>
+                    <h4 class="control-sidebar-subheading"><g:formatDate format="MM-dd-yyyy" date="${it.date}"/></h4>
+                    <p>${it.description}</p>
                   </div>
                 </a>
-              </li>
+              </li>   
+			</g:each>
+            
+
+              
             </ul><!-- /.control-sidebar-menu -->
 
-            <h3 class="control-sidebar-heading">Tasks Progress</h3>
-            <ul class="control-sidebar-menu">
-              <li>
-                <a href="javascript::;">
-                  <h4 class="control-sidebar-subheading">
-                    Custom Template Design
-                    <span class="label label-danger pull-right">70%</span>
-                  </h4>
-                  <div class="progress progress-xxs">
-                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                  </div>
-                </a>
-              </li>
-            </ul><!-- /.control-sidebar-menu -->
 
           </div><!-- /.tab-pane -->
           <!-- Stats tab content -->
@@ -530,10 +536,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="form-group">
                 <label class="control-sidebar-subheading">
                   Report panel usage
-                  <input type="checkbox" class="pull-right" checked>
+                  <input type="checkbox" class="pull-right" checked disabled>
                 </label>
                 <p>
-                  Some information about this general settings option
+                  This panel gauges usage for today, as well as the total daily text quota across all users, groups and affiliates.
                 </p>
               </div><!-- /.form-group -->
             </form>
