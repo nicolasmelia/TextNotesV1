@@ -141,6 +141,8 @@ class SmsGateOutController {
 		
 		ms.recipients = saveableList	
 		
+		ms.recipientsParsed = getRecipsParsed
+		
 		// scheduled or recurring
 		ms.recurring = false
 		ms.scheduled = false
@@ -148,13 +150,13 @@ class SmsGateOutController {
 		ms.contactCount = getRecipCount(saveableList)
 		ms.save(flush:true)
 		
-		createHistoryLog("Message", ms.contactCount)
+		createHistoryLog("Message", ms.contactCount, ms.messageID)
 		
 		return ms.messageID 
 			
 	}
 	
-	def createHistoryLog(String type, int contactCount){
+	def createHistoryLog(String type, int contactCount, String messageID){
 		History history = new History()
 		
 		// Create a UUID and cut it in half
@@ -165,6 +167,7 @@ class SmsGateOutController {
 		history.userID = session["userID"]
 		history.historyID = halfUUID
 		history.description = "Message sent to " + contactCount.toString() + " recipients." 
+		history.hashOne = messageID // Hash one stores the messageID
 		history.type = type
 		history.date = new Date()
 		history.save(flush:true)
@@ -176,6 +179,8 @@ class SmsGateOutController {
 		int clientCount = 0
 		print tags
 		ArrayList<String> tagList = tags.split(",")
+		StringBuilder res = new StringBuilder();
+		
 		for (String tag : tagList)	 {
 			String contactType = tag.split(":")[0]
 			switch (contactType) {
@@ -196,6 +201,44 @@ class SmsGateOutController {
 		}
 		
 		return clientCount
+	}
+	
+	
+	int getRecipsParsed (String tags) {
+		ArrayList<String> tagList = tags.split(",")
+		StringBuilder res = new StringBuilder();
+		
+		for (String tag : tagList)	 {
+			String contactType = tag.split(":")[0]
+			switch (contactType) {
+				case "N":  // Single number
+					res.append(tag.split(":")[1]);
+					if (res.length() != 0) res.append(', ');
+					break;
+				case "ID":
+					String clientID = tag.split(":")[1]
+					Contact contact = Contact.findByContactID(clientID)
+					res.append(contact.fullName);
+					if (res.length() != 0) res.append(', ');
+					break;
+				case "G":
+					String groupID = tag.split(":")[1]
+					Groups group = Groups.findByGroupID(groupID)
+					def allMemebers = GroupMember.findAllByGroupIDAndUserID(group.groupID, session["userID"])
+					int loopCount = 0
+					for (GroupMember member : allMemebers){
+						Contact contact = Contact.findByContactID(member.contactID)
+						res.append(contact.fullName);
+						loopCount += 1
+						res.append(', ');
+					}
+					break;
+				default:
+					break;
+			}
+		}
+		
+		return res.toString()
 	}
 	
 	

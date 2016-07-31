@@ -251,7 +251,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	      </g:if>
 	    <g:else>
           <h1>
-            history
+            History
             <small>Group list</small>
           </h1>
 	     </g:else>        
@@ -308,27 +308,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </thead>
                     <tbody>
 
-				 <g:if test="${groupCount > 0 || offset > 0}">	
-				 
+				 <g:if test="${groupCount > 0 || offset > 0}">					 
 				 	<g:if test="${history != 'NONE'}">						 			
 	                    <g:each in="${history}">
-
 	                    
-	                        <td>${it.type}</td>
-	                        
+	                    <g:if test="${it.type != 'Message'}" >
+							<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'History',  historyID: it.historyID])}';" class = "pointer" >               
+	                    </g:if>  
+	                    <g:else>
+							<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: it.type, messageID: it.hashOne])}';" class = "pointer" >               
+	                    </g:else>
+	                     
+	                        <td>${it.type}</td>                     
 	                        <g:if test="${it.description}">
 								<td>${it.description}</td>
 							</g:if>
 							<g:else>
 								<td>None</td>						
-							</g:else>	
-							
-						<td><g:formatDate format="yyyy-MM-dd HH:mm" date="${it.date}"/></td>
-							
-							
-	                      </tr>
+							</g:else>							
+							<td><g:formatDate format="MM-dd-yyyy hh:mm a" date="${it.date}"/></td>				
+	                      </tr>  
 	                      
-	                      
+	                              
 						</g:each>
 					</g:if>
 					<g:else>

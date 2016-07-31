@@ -255,8 +255,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
   <section class="content">
           
-        
-        
          <input  id = 'searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
          <input  id = 'offset' type="hidden" value="${offset}">
          <input  id = 'groupCount' type="hidden" value="${clientCount}">
@@ -282,8 +280,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <span class="input-group-btn">
                       <g:actionSubmit  action="detailedGroup" class="btn btn-info btn-flat" type="button" value = "Search"></g:actionSubmit>             
                     </span>   
-                                      
-			                
+                                              
 			                 
 			            </g:else> 
 
@@ -293,13 +290,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                    
                              
                 </div><!-- /.box-header -->
-                
 
-                
   				<div class="box-body">
-
-  				
-                  <table id="example1" class="table table-bordered table-hover">
+				 <table id="example1" class="table table-bordered table-hover">
                     <thead>
                       <tr>
                         <th>Name</th>

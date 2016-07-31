@@ -313,12 +313,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				 
 				 	<g:if test="${groups != 'NONE'}">						 			
 	                    <g:each in="${groups}">
-	                    
+	                    <tr>
 	                    <g:if test="${addToGroup}">	                    
 	              			 <tr  data-toggle="modal" data-target="#myModal${it.groupID}" class = "pointer" >
 	                    </g:if>
 	                    <g:else>
-	                    	<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'detailedGroup', params: [groupID: it.groupID])}';"class = "pointer" >
+	                    	<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'detailedGroup', params: [groupID: it.groupID])}';" class = "pointer" >
 	                    </g:else>
 	                    
 	                        <td><a href = "#"><b>${it.groupName}</b></a></td>

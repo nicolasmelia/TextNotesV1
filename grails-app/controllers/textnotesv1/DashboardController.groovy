@@ -39,7 +39,7 @@ class DashboardController {
 		}
 			
 		if (session["userID"]) {		
-			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), keywordsIn: getKeywordInboxList(0, 5, null), history: getHistoryList(0),  offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery)])		 
+			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), keywordsIn: getKeywordInboxList(0, 5, null), history: getHistoryList(0),  offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery, true)])		 
 		} else {
 			redirect(controller: "Home")
 		}
@@ -85,7 +85,7 @@ class DashboardController {
 		}
 			
 		if (session["userID"]) {		
-			 render(view:"dashboard_contacts",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery)])		 
+			 render(view:"dashboard_contacts",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery, false)])		 
 		} else {
 			redirect(controller: "Home")
 		}
@@ -492,11 +492,16 @@ class DashboardController {
 		}
 	}
 	
-	def getContactList(offset, search){
+	def getContactList(offset, search, dateAdded){
 		def contacts
 		if (search == null) {
+			if (!dateAdded) {
 			contacts =  Contact.findAll("from Contact as c where c.userID=? order by c.firstName",
 					 [session.userID], [max: 10, offset: offset])
+			} else if (dateAdded) {
+			contacts =  Contact.findAll("from Contact as c where c.userID=? order by c.addDate",
+				[session.userID], [max: 10, offset: offset])
+			} 	
 		} else {
 			contacts = searchContact(search, offset)
 		}
@@ -642,6 +647,9 @@ class DashboardController {
 			if (params.conType == "Contact") {		
 				Contact contact = Contact.findByContactID(params.contactID)
 				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), contact: contact, conType:  params.conType])
+			} else if (params.conType == "History") {
+				History hist = History.findByHistoryID(params.historyID)
+				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), history: hist, conType:  params.conType])
 			} else if (params.conType == "Message") {
 				MessageOut message = MessageOut.findByMessageID(params.messageID)
 				ArrayList<String> tags = message.recipients.split("/")
@@ -677,16 +685,9 @@ class DashboardController {
 								int loopCount = 0
 								for (GroupMember member : allMemebers){
 									Contact contact = Contact.findByContactID(member.contactID)
-									res.append(contact.fullName);
-									
+									res.append(contact.fullName);								
 									loopCount += 1
-									
-								//	if ((loopCount < allMemebers.size()) && res.length() != 0) {
-								//	res.append(', ');
-								//	}
-									
-									res.append(', ');
-			
+									res.append(', ');	
 								}
 								contactCount += group.memberCount				
 								break;			
@@ -696,13 +697,15 @@ class DashboardController {
 					}
 				}
 								
-				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), message: message, conType:  params.conType, res: res.toString(), contactCount: contactCount])
+				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), message: message, conType:  params.conType, res: res.toString(), contactCount: message.contactCount])
 			} else if (params.conType == "keyword") {
 			Keyword keyword = Keyword.findByPromotionID(params.promotionID)
 			
 			render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), keyword: keyword, conType:  params.conType])
 			
-			}		
+			}	else {
+				render("Something went wrong. Please go back and try again.")
+			}	
 	   } else {
 		   redirect(controller: "Home")
 	   }	
@@ -830,7 +833,7 @@ class DashboardController {
 		return accountInfo
 	}
 	
-	def createHistoryLog(String description, String type){
+	def createHistoryLog(String description, String type) {
 		History history = new History()
 		
 		// Create a UUID and cut it in half

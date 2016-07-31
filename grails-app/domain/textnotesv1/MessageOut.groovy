@@ -12,6 +12,7 @@ class MessageOut {
 	// Creds yo
 	String userID
 	String messageID
+	String recipientsParsed
 	
 	int contactCount
 	
@@ -25,5 +26,6 @@ class MessageOut {
 		message(maxSize: 2000) // Max from sms service is 1600
 		scheduleTime(nullable:true)	
 		contactCount(nullable:true)	
+		recipientsParsed(nullable:true)
     }
 }

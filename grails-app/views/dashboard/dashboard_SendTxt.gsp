@@ -822,8 +822,6 @@ $( document ).ready(function() {
 	});
 
 	function submitForm(currentBal, MonthlyBal){
-	
-	
 		if (parseInt($('#attachedRecipientsCountTwo').html()) > parseInt(currentBal)) {
 				$("#previewModalAlertText").html("The current amount of recipents exceeds your remaining balance. " +
 				"Increase your monthly balance in the subscription menu or remove recipents from this text.");  
@@ -831,19 +829,13 @@ $( document ).ready(function() {
 			    $("#PreviewModalAlert").effect("bounce", { times:3 }, 400);
 		} else {
 			if (!errors.length) {
-				// $('#submitBtn').click()	
-				
-				console.log(parseInt($('#attachedRecipientsCountTwo').html()) + " :: " + currentBal  );
-				
-						
+				$('#submitBtn').click()		
+				//console.log(parseInt($('#attachedRecipientsCountTwo').html()) + " :: " + currentBal  );		
 			} else {
 				$("#PreviewModalAlert").css("display","block");
 			    $("#PreviewModalAlert").effect("bounce", { times:3 }, 400);
 			}	
 		}
-	
-	
-
 	}
 	
 	function validateForm(){

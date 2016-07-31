@@ -242,7 +242,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-           	Details ${conType}
+           	Details (${conType})
             <small>Current</small>
           </h1>
           <ol class="breadcrumb">
@@ -259,21 +259,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="box-header with-border">
                   <i class="fa fa-book"></i>
                 <h3 class="box-title">Details</h3>
-              </div>
-              
+              </div>         
                   
 			<g:if test="${conType == 'Contact'}" >
 	              <div class="box-body">   
 	              <h4>${contact.fullName}</h4>
 	              
-  <table class="table table-bordered">
-
+  			<table class="table table-bordered">
                     <tr>
                       <td>Phone Number</td>
                       <td>${contact.phoneNumber}</td>
                     </tr>
                     
-                    <g:if test="${State =! 'None'}" >
+                   	<g:if test="${State =! 'None'}" >
                     
                     <tr>
                       <td>Address</td>
@@ -325,7 +323,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                
                </g:else>
                
-               
                  <g:if test="${contact.subbed =! 'false'}" >
                
                     <tr>
@@ -343,9 +340,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     
                   </table>   
 	              
-	              
-	              
-	            
 	            <div style = "margin: 10px 0px 5px 0px;" >
 	            
                   <g:link  class="btn btn-default"  action="sendTxt"  params="[contactID: contact.contactID]"  type="button"  >            
@@ -355,20 +349,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <g:link class="btn btn-default" action="editContact"  params="[contactID: contact.contactID]"  type="button"  >            
                     Edit Contact
                   </g:link>
-                  
-
-                                    	                
+                                        	                
 	            </div>
 	
 	              </div><!-- /.box-body -->                      
 			</g:if>
-			
-                  
+			            
 			<g:if test="${conType == 'Message'}" >
 	              <div class="box-body">   
 	              <h4>Message  <g:formatDate format="MM-dd-yyyy" date="${message.lastSentDate}"/> </h4>
 	              
-  <table class="table table-bordered">
+  			<table class="table table-bordered">
 
                     <tr>
                       <td>Title</td>
@@ -396,30 +387,58 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <td>${contactCount}</td>
                     </tr>
                     
-
                     
                   </table>   
-	              
-	              
-	              
-	            
+
 	            <div style = "margin: 10px 0px 5px 0px;" >
 	            
                   <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
                  	All Message History
                   </g:link>       
-
 	            
-                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
-                 	View Balance
-                  </g:link>       
-
-
+                  <g:link class="btn btn-default"  action="dashboard"  params="[]"  type="button"  >            
+                 	Home
+                  </g:link>      
                                     	                
 	            </div>
 	
 	              </div><!-- /.box-body -->                      
 			</g:if>
+			   
+			<g:if test="${conType == 'History'}" >
+	              <div class="box-body">   
+	              <h4>History  </h4>
+	              
+  			<table class="table table-bordered">
+                    <tr>
+                      <td>History Type</td>
+                      <td>${history.type}</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Description</td>
+                      <td>${history.description}</td>
+                    </tr>  
+                    
+                    <tr>
+                      <td>Date</td>
+                      <td><g:formatDate format="MM-dd-yyyy hh:mm a" date="${history.date}"/></td>
+                    </tr>   
+                                   
+                  </table>   
+	              
+	            <div style = "margin: 10px 0px 5px 0px;" >
+	            
+                  <g:link  class="btn btn-default"  action="dashboard"  params="[]"  type="button" >            
+                 	Home
+                  </g:link>       
+                
+	            </div>
+	
+	              </div><!-- /.box-body -->                      
+			</g:if>
+			
+			
 			
 	<g:if test="${conType == 'keyword'}" >
 	              <div class="box-body">   
@@ -515,14 +534,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <td>${keyword.replys}</td>
                     </tr>              
 
-
-
- 
                   </table>   
-	              
-	              
-	              
-	            
+	                       
 	            <div style = "margin: 10px 0px 5px 0px;" >
 	            
                   <g:if test="${keyword.suspened}" >                	            

@@ -307,6 +307,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <label for="inputEmail3" class="col-sm-2 control-label">Date Range</label>   
                     <div class="input-group" style = "width:50%;">
                     
+                    
                    <div class="col-sm-10" style = "width:100%;">
                       <input placeholder="Click to select range" name = "dateRange" style = "width:100%;" type="text" class="form-control" id="reservation">
                       </div>

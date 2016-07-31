@@ -258,12 +258,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Contacts
-            <small>Full contact list</small>
+            TxtWolf
+            <small>Home</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Address Book</a></li>
-            <li class="active">Contacts</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> TxtWolf</a></li>
+            <li class="active">Home</li>
           </ol>
         </section>
 
@@ -300,7 +300,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="small-box bg-yellow">
                 <div class="inner" style = "padding-bottom: 20px;">
                   <h3 style = "font-size: 30px;" >Contacts</h3>
-                  <p>Your Contacts</p>
+                  <p>Full List</p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-users" style = " font-size: 0.8em;"></i>
