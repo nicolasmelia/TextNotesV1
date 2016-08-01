@@ -122,94 +122,105 @@ if(true && (groupCount > 0 || offset > 0)) {
 printHtmlPart(48)
 if(true && (history != 'NONE')) {
 printHtmlPart(49)
-for( _it355366659 in (history) ) {
-changeItVariable(_it355366659)
+for( _it1330981538 in (history) ) {
+changeItVariable(_it1330981538)
 printHtmlPart(50)
-expressionOut.print(it.type)
+if(true && (it.type != 'Message')) {
 printHtmlPart(51)
-if(true && (it.description)) {
+expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'History',  historyID: it.historyID]))
 printHtmlPart(52)
-expressionOut.print(it.description)
-printHtmlPart(53)
 }
 else {
-printHtmlPart(54)
+printHtmlPart(51)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: it.type, messageID: it.hashOne]))
+printHtmlPart(52)
 }
+printHtmlPart(53)
+expressionOut.print(it.type)
+printHtmlPart(54)
+if(true && (it.description)) {
 printHtmlPart(55)
-invokeTag('formatDate','g',326,['format':("yyyy-MM-dd HH:mm"),'date':(it.date)],-1)
+expressionOut.print(it.description)
 printHtmlPart(56)
 }
+else {
 printHtmlPart(57)
 }
-else {
 printHtmlPart(58)
-}
+invokeTag('formatDate','g',329,['format':("MM-dd-yyyy hh:mm a"),'date':(it.date)],-1)
 printHtmlPart(59)
 }
-else {
 printHtmlPart(60)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'createGroup'))
+}
+else {
 printHtmlPart(61)
 }
 printHtmlPart(62)
-if(true && (offset > 0)) {
+}
+else {
 printHtmlPart(63)
-createClosureForHtmlPart(64, 3)
-invokeTag('link','g',370,['action':("history"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'createGroup'))
+printHtmlPart(64)
+}
 printHtmlPart(65)
-}
-else {
+if(true && (offset > 0)) {
 printHtmlPart(66)
-}
-printHtmlPart(67)
-if(true && (offset <= groupCount)) {
+createClosureForHtmlPart(67, 3)
+invokeTag('link','g',371,['action':("history"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(68)
-createClosureForHtmlPart(69, 3)
-invokeTag('link','g',377,['action':("history"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(70)
 }
 else {
+printHtmlPart(69)
+}
+printHtmlPart(70)
+if(true && (offset <= groupCount)) {
 printHtmlPart(71)
-}
-printHtmlPart(72)
-expressionOut.print(currentPage)
+createClosureForHtmlPart(72, 3)
+invokeTag('link','g',378,['action':("history"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(73)
-if(true && (addToGroup)) {
+}
+else {
 printHtmlPart(74)
-for( _it459330340 in (history) ) {
-changeItVariable(_it459330340)
+}
 printHtmlPart(75)
-expressionOut.print(it.groupID)
+expressionOut.print(currentPage)
 printHtmlPart(76)
-expressionOut.print(it.groupName)
+if(true && (addToGroup)) {
 printHtmlPart(77)
-expressionOut.print(contactGroupAdd.fullName)
+for( _it1016064173 in (history) ) {
+changeItVariable(_it1016064173)
 printHtmlPart(78)
-expressionOut.print(it.groupName)
+expressionOut.print(it.groupID)
 printHtmlPart(79)
-createClosureForHtmlPart(80, 4)
-invokeTag('link','g',490,['action':("addToGroup"),'params':([contactID: contactGroupAdd.contactID, groupID: it.groupID]),'type':("button"),'class':("btn btn-primary pull-left")],4)
+expressionOut.print(it.groupName)
+printHtmlPart(80)
+expressionOut.print(contactGroupAdd.fullName)
 printHtmlPart(81)
-}
+expressionOut.print(it.groupName)
 printHtmlPart(82)
-}
-printHtmlPart(83)
-invokeTag('javascript','g',503,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+createClosureForHtmlPart(83, 4)
+invokeTag('link','g',491,['action':("addToGroup"),'params':([contactID: contactGroupAdd.contactID, groupID: it.groupID]),'type':("button"),'class':("btn btn-primary pull-left")],4)
 printHtmlPart(84)
-invokeTag('javascript','g',506,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+}
 printHtmlPart(85)
-invokeTag('javascript','g',509,['src':("dashboard/app.min.js")],-1)
+}
 printHtmlPart(86)
-})
-invokeTag('captureBody','sitemesh',517,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('javascript','g',504,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(87)
+invokeTag('javascript','g',507,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(88)
+invokeTag('javascript','g',510,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(89)
+})
+invokeTag('captureBody','sitemesh',518,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(90)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1462729686545L
+public static final long LAST_MODIFIED = 1469931135766L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

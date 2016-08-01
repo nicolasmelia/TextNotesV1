@@ -254,8 +254,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Keyword
-            <small>Create</small>
+            Coupon Code
+            <small>Validation</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Keyword</a></li>
@@ -270,124 +270,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Horizontal Form -->
               <div class="box box-info" style = "max-width: 600px;">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Create a keyword</h3>
+                  <h3 class="box-title">Enter a coupon code</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-               <g:form id = "txtForm" class="form-horizontal" controller="Dashboard" action="newKeyWord" enctype="multipart/form-data" >
+               <g:form id = "txtForm" class="form-horizontal" controller="Dashboard" action="validateCoup" enctype="multipart/form-data" >
                 
                   <div class="box-body">
-                  
                   
                   <div id = "ModalAlert"  style = "display: none;"  class="alert alert-danger alert-dismissable">
                     <h4><i class="icon fa fa-exclamation-circle"></i>Fix needed</h4>
                     <p id = "ModalAlertText"></p>
                   </div>
-                 
 
                     <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Keyword</label>
+                      <label for="inputEmail3" class="col-sm-2 control-label">Code</label>
                       <div class="col-sm-10">
-                        <input  name = "keyword"  id  = "keyword" type="text" class="form-control" placeholder="Required">
+                        <input  name = "coupCode"  id  = "coupCode" type="text" class="form-control" placeholder="Required">
                       </div>
                     </div>
                   
-                    <div class="form-group">        
-                      <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
-                      <div class="col-sm-10">
-                        <textarea  name = "desc"  id = "Desc" type="text" class="form-control" placeholder="Not Required"></textarea>
-                      </div>
-                    </div>
-                    
-                    
-
-				<hr>
-
-		                  <!-- Date range -->
-                  <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Date Range</label>   
-                    <div class="input-group" style = "width:50%;">
-                    
-                    
-                   <div class="col-sm-10" style = "width:100%;">
-                      <input placeholder="Click to select range" name = "dateRange" style = "width:100%;" type="text" class="form-control" id="reservation">
-                      </div>
-                    </div><!-- /.input group -->     
-                    
-                    
-                               
-                  </div><!-- /.form group --> 
+	
                   
-                  
-	                  <!-- Date range -->
-                  <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Never End</label>   
-                    <div class="input-group">                  
-                   <div class="col-sm-10" style = "width:100%;">  
-                    <label>
-                      <input name = "endless" id = "endlessChkBox"  type="checkbox" class="minimal">
-               
-                    </label>
-                    
-                    <i>(Campaign will not end until you expire it) </i>
-              		</div>
-                    </div><!-- /.input group -->                
-                  </div><!-- /.form group --> 
-                  
-                  
-                  <hr>     
-                    
-                    
-                    
-                    
-                                      <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Campaign Type</label>
-                         <div class="col-sm-10">                    
-                      <select name = "campaignSelected"  id  = "campaignSelected"  class="form-control">
-							<option value="cust">Custom</option>
-								<option value="coup">Coupon</option>
-								<option value="con">Contest</option>
-                      </select>
-                         </div>            
-                    </div>
-                            
-         <div class="callout callout-default" style="margin-bottom: 10px!important;">
-            <h4><i class="fa fa-flag-o"></i><span id = "campaignType" > Campaign: <b>Normal</b></span></h4>
-         <span id = "campaignDesc" >    It looks like you dont have any contacts yet. Get started by adding clients below! </span>
-        </div>
-
-		                  <!--************* Camp type *************-->
-
-                  
-                    <div class="form-group" id = "text" style = "display:none;">        
-                      <label for="inputEmail3" class="col-sm-2 control-label">Response Text</label>
-                      <div class="col-sm-10">
-                        <textarea  name = "responceText"  id = "responceText" type="text" class="form-control" placeholder="Required"></textarea>
-                     <p id = 'charCount' class="help-block">0/200 characters</p>
-                      </div>
-                    </div>
-                    
-                    
-                     <div class="form-group" id = "couponChkBox" style = "display:none;">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Multiple Use</label>  
-                       
-                    <div class="input-group">                   
-                   <div class="col-sm-10" style = "width:100%;">       
-                    <label>
-                      <input name = "couponChkBox" id = "endlessChkBox"  type="checkbox" class="minimal"> 
-                      
-                    </label>
-                        <i>(Allows for multiple uses of this coupon) </i>
-                    
-           			   </div>
-                    </div><!-- /.input group -->                
-                  </div><!-- /.form group --> 
-
-		                  <!--************* Camp type *************-->
-
- 
                   </div><!-- /.box-body -->
                   <div class="box-footer">
-                   <button  onClick = "return validateMainForm()" class="btn btn-info pull-right" id = "submitBtn" value = "Send"  action = "newKeyWord"/>Create</button>	
+                   <button  onClick = "return validateMainForm()" class="btn btn-info pull-right" id = "submitBtn" value = "Send"  action = "validateCoup"/>Validate</button>	
                     <a href = "${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" class="btn btn-default">Cancel</a>
                   </div><!-- /.box-footer -->
                   
@@ -563,85 +469,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script>
 
   $( document ).ready(function() {
-	  // Normal preset
-		$("#campaignType").html(" Campaign: " + "<b>Simple</b>");
-		$("#campaignDesc").html("A <i>'Simple'</i> keyword allows you to collect the phone number of an entry " +
-			"for your own personal business use. This type of keyword is not a contest or a coupon, but rather " +
-			"allows you to customize its use and need. ");  
-		
-		$("#couponChkBox").css("display","none")
-		$("#text").css("display","block")
+
 		
 	});
 
   // campaignSelected
 
-  $("[data-mask]").inputmask();
 
 
-  $('#campaignSelected').on('change', function() {
-		$("#campaignType").html(" Campaign: " + this.value);
-	
-		switch(this.value) {
-	    case "cust":
-			$("#campaignType").html(" Campaign: " + "<b>Simple</b>");
-			$("#campaignDesc").html("A <i>'Custom'</i> keyword allows you to collect the phone number of an entry " +
-				"for your own personal business use. This type of keyword is not a contest or a coupon, but rather " +
-				"allows you to customize its use and need. ");  		
-			$("#couponChkBox").css("display","none")
-			$("#text").css("display","block")		   
-	        break;
-	    case "coup":
-			$("#campaignType").html(" Campaign: " + "<b>Coupon</b>");		    
-			$("#campaignDesc").html("Enter text below that correlates to the coupon you are offering. " +
-			"For example <i>'Use this coupon code for an extra 25% off your next order!'</i>. " +
-			"Your custmer will be sent a coupon code that you can validate into the 'Validate Code' page " +
-			"located in the keyword menu.");  
-			$("#text").css("display","block")
-			$("#couponChkBox").css("display","block")
-			
-  
-	        break;
-	    case "con":
-			$("#campaignType").html(" Campaign: " + "<b>Contest</b>");		    
-			$("#campaignDesc").html("Enter text below to notify your customer they have been entered into your contest. For example " + 
-			"<i>'You have been entered into our contest for a free cake!'</i>. When your contest ends you can randomly select winners! " +
-			"from the 'My Contest' page under the keyword menu.");   
-			$("#couponChkBox").css("display","none")
-			break;
-		};
-		  
-	  
-	});
 
   function validateMainForm() {		  
 	  var error = false;
 	 // var desc = $('#desc').val();
-	  var keyword = $('#keyword').val();
-	 // var state = $('#state').val();
-	 	  var dateRange = $('#reservation').val();
-		  var responceText = $('#responceText').val();
-			
-	 	 var endlessBox = $('#endlessChkBox').prop('checked');  
+	  var coupCode = $('#coupCode').val();
 
-	   
 	  	//Clear old values
 	  	errors = [];
 		$("#ModalAlertText").html("");  
 				
-	  	if (keyword.length < 2) {
+	  	if (coupCode.length < 3) {
 			error = true;
-			errors.push("Please enter a valid keyword.");			
+			errors.push("Please enter a coupon code.");			
 		} 
-
-	  	if (responceText.length < 4) {
-			error = true;
-			errors.push("Please enter a valid responce.");			
-		} else if (responceText.length > 200) {
-			error = true;
-			errors.push("Responce can only be up to 200 characters.");			
-		}
-
+		
 		if (error){
 			for (i = 0; i < errors.length; i++) { 
 				$("#ModalAlertText").append("*" + errors[i] + "<br/>");		

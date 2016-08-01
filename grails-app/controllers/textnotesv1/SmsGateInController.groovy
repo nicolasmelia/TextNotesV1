@@ -17,8 +17,10 @@ import com.twilio.sdk.TwilioRestException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Formatter.DateTime
 import org.apache.http.NameValuePair
 import org.apache.http.message.BasicNameValuePair
+import org.joda.time.format.DateTimeFormatter
 
 import com.joestelmach.natty.*;
 
@@ -42,11 +44,12 @@ class SmsGateInController {
 
 		if (keyword != null) {
 			
-			// Create a UUID and cut it in half for MessageIn
+			// Create a UUID and cut it in half for MessageIn ID
 			String uniqueID = UUID.randomUUID().toString().replace("-", "");
 			int midpoint = uniqueID.length() / 2;
 			String halfUUID = uniqueID.substring(0, midpoint)
 			
+			// Log the incoming message
 			MessageIn MI = new MessageIn()
 			MI.phoneNumber = from.substring(2, from.length()) // Remove first 2 characters from string
 			MI.messageID = halfUUID
@@ -67,27 +70,29 @@ class SmsGateInController {
 					case "coup": // Coupon
 						CouponIn coupon = new CouponIn()
 						coupon.keywordID =  keyword.promotionID
-						coupon.DateRedeemed = new Date()
+						coupon.date = new Date()
 						
-						// Create a UUID and cut it in half
+						// Create a UUID and cut it in half for the COUPON CODE
 						String uniqueIDCoup = UUID.randomUUID().toString().replace("-", "");
 						int midpoint2 = uniqueIDCoup.length() / 4;
-						String couponCode = uniqueIDCoup.substring(0, midpoint)
+						String couponCode = uniqueIDCoup.substring(0, midpoint2)
 						
 						coupon.couponCode = couponCode
 						coupon.save(flush:true)
 						
-						sendMessage(from, "Here is your coupon code for keyword " + keyword.keyword + ": " + coupon.couponCode + ". Use your code to redeem this offer. ")
+						sendMessage(from, "Here is your coupon code for keyword " + keyword.keyword + ", " + coupon.couponCode + ". Use your code to redeem this offer.")
 						
 						
 					break; 
 					
-					case "con": // Contest
-					
+					case "con": // Contest				
+						SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");					
+						sendMessage(from, "You have been entered in a contest for keyword " + keyword.keyword + ". This contest is valid through " + dateFormatter.format(keyword.dateEff) +
+						" - " + dateFormatter.format(keyword.dateExp) + ", You will recieve a text if you win! Good Luck!")
 					break;
 					
 					case "cust": // Custom
-					
+					// Do nothing, just send the response text
 					break;
 					
 					default:

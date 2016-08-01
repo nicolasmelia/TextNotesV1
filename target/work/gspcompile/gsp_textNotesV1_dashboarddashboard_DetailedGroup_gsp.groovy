@@ -107,19 +107,19 @@ printHtmlPart(41)
 }
 else {
 printHtmlPart(42)
-invokeTag('actionSubmit','g',283,['action':("detailedGroup"),'class':("btn btn-info btn-flat"),'type':("button"),'value':("Search")],-1)
+invokeTag('actionSubmit','g',281,['action':("detailedGroup"),'class':("btn btn-info btn-flat"),'type':("button"),'value':("Search")],-1)
 printHtmlPart(43)
 }
 printHtmlPart(44)
 })
-invokeTag('form','g',292,['id':("searchForm"),'controller':("Dashboard"),'action':("dashboard"),'enctype':("multipart/form-data")],2)
+invokeTag('form','g',289,['id':("searchForm"),'controller':("Dashboard"),'action':("dashboard"),'enctype':("multipart/form-data")],2)
 printHtmlPart(45)
 if(true && (clientCount || contacts != 'NONE' || offset > 0)) {
 printHtmlPart(46)
 if(true && (contacts != 'NONE')) {
 printHtmlPart(47)
-for( _it740982099 in (contacts) ) {
-changeItVariable(_it740982099)
+for( _it73254846 in (contacts) ) {
+changeItVariable(_it73254846)
 printHtmlPart(48)
 expressionOut.print(it.firstName)
 printHtmlPart(14)
@@ -184,7 +184,7 @@ printHtmlPart(72)
 if(true && (offset > 0)) {
 printHtmlPart(73)
 createClosureForHtmlPart(74, 3)
-invokeTag('link','g',399,['action':("detailedGroup"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden, groupName: group.groupName, groupID: group.groupID]),'type':("button"),'class':("btn btn-default")],3)
+invokeTag('link','g',392,['action':("detailedGroup"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden, groupName: group.groupName, groupID: group.groupID]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(75)
 }
 else {
@@ -194,7 +194,7 @@ printHtmlPart(77)
 if(true && (offset <= clientCount)) {
 printHtmlPart(78)
 createClosureForHtmlPart(79, 3)
-invokeTag('link','g',406,['action':("detailedGroup"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden, groupName: group.groupName, groupID: group.groupID]),'type':("button"),'class':("btn btn-default")],3)
+invokeTag('link','g',399,['action':("detailedGroup"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden, groupName: group.groupName, groupID: group.groupID]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(80)
 }
 else {
@@ -205,8 +205,8 @@ expressionOut.print(currentPage)
 printHtmlPart(83)
 if(true && (contacts && contacts != 'NONE')) {
 printHtmlPart(84)
-for( _it1179799230 in (contacts) ) {
-changeItVariable(_it1179799230)
+for( _it759536602 in (contacts) ) {
+changeItVariable(_it759536602)
 printHtmlPart(85)
 expressionOut.print(it.contactID)
 printHtmlPart(86)
@@ -215,26 +215,26 @@ printHtmlPart(14)
 expressionOut.print(it.lastName)
 printHtmlPart(87)
 createClosureForHtmlPart(88, 4)
-invokeTag('link','g',517,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("sendTxt"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
+invokeTag('link','g',510,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("sendTxt"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(89)
 createClosureForHtmlPart(90, 4)
-invokeTag('link','g',524,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("editContact"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
+invokeTag('link','g',517,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("editContact"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(91)
 createClosureForHtmlPart(92, 4)
-invokeTag('link','g',528,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("details"),'params':([contactID: it.contactID, conType: 'Contact']),'type':("button"),'class':("btn btn-app")],4)
+invokeTag('link','g',521,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("details"),'params':([contactID: it.contactID, conType: 'Contact']),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(93)
 }
 printHtmlPart(94)
 }
 printHtmlPart(95)
-invokeTag('javascript','g',548,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+invokeTag('javascript','g',541,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(96)
-invokeTag('javascript','g',551,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+invokeTag('javascript','g',544,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(97)
-invokeTag('javascript','g',554,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',547,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(98)
 })
-invokeTag('captureBody','sitemesh',562,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('captureBody','sitemesh',555,['class':("hold-transition skin-purple sidebar-mini")],1)
 printHtmlPart(99)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -242,7 +242,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1460945289616L
+public static final long LAST_MODIFIED = 1469928799926L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -341,6 +341,36 @@ class DashboardController {
 		
 	}
 	
+	def validateCoup() {
+		print params.coupCode
+		if (params.coupCode == null) {
+			render(view:"dashboard_validateCoup",  model: [accountInfo: getUserAccountInfo()])
+		} else {
+			// CoupCode Recieved
+			CouponIn coupon = CouponIn.findByCouponCode(params.coupCode)
+			if (coupon != null) {		
+				if (coupon.dateRedeemed == null) {
+					coupon.dateRedeemed = new Date()
+					Date redeemDate = new Date()
+					Keyword keyword = Keyword.findByPromotionID(coupon.keywordID)
+					coupon.save(flush:true)
+					String histID = createHistoryLog("Coupon Code " + coupon.couponCode + " redeemed on " + redeemDate +
+						" for keyword " + keyword.keyword , "Coupon Code")
+					History hist = History.findByHistoryID(histID)
+					render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), conType: "Coupon Code", hist: hist ])
+				} else {
+					// Coupon code has been used
+				print "used"
+				}
+
+			} else {
+				// Coupon code does not exist
+			print "NONE"
+			}
+		
+		}
+
+	}
 	
 	def history() {
 		int offset = 0
@@ -833,7 +863,7 @@ class DashboardController {
 		return accountInfo
 	}
 	
-	def createHistoryLog(String description, String type) {
+	String createHistoryLog(String description, String type) {
 		History history = new History()
 		
 		// Create a UUID and cut it in half
@@ -847,6 +877,8 @@ class DashboardController {
 		history.type = type
 		history.date = new Date()
 		history.save(flush:true)
+		
+		return history.historyID
 		
 	}
 	

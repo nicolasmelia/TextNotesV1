@@ -233,7 +233,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li><a href="${createLink(controller: 'Dashboard', action: 'newKeyWord')}"><b>New Keyword</b></a></li>
                 <li><a href="${createLink(controller: 'Dashboard', action: 'keywords')}">View Keywords</a></li>
                 <li><a href="${createLink(controller: 'Dashboard', action: 'keywordInbox')}">Keyword Inbox</a></li>   
-                <li><a href="${createLink(controller: 'Dashboard', action: 'validatePromo')}">Validate Coupon Code</a></li>       
+                <li><a href="${createLink(controller: 'Dashboard', action: 'validateCoup')}">Validate Coupon Code</a></li>       
                                     
               </ul>
             </li>
@@ -508,10 +508,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <h3 class="control-sidebar-heading">Recent Activity</h3>
             <ul class="control-sidebar-menu">
             
+          <g:if test="${history != 'NONE'}">						 			
             
           <g:each in="${history}">
               <li>
-                <a href = "${createLink(controller: 'Dashboard', action: 'history')}">
+              
+	        <g:if test="${it.type != 'Message'}" >
+	       		<a href = "${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'History',  historyID: it.historyID])}">
+	         </g:if>  
+	          <g:else>
+	          <a href = "${createLink(controller: 'Dashboard', action: 'details', params: [conType: it.type, messageID: it.hashOne])}">
+	         </g:else>
+
                   <i class="menu-icon fa fa-clock-o bg-blue"></i>
                   <div class="menu-info">
                     <h4 class="control-sidebar-subheading"><g:formatDate format="MM-dd-yyyy" date="${it.date}"/></h4>
@@ -520,6 +528,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>   
 			</g:each>
+			</g:if>
+			<g:else>
+              <li>
+                <a href = "${createLink(controller: 'Dashboard', action: 'history')}">
+                  <i class="menu-icon fa fa-clock-o bg-blue"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Nothing here yet.</h4>
+                    <p>Get started!</p>
+                  </div>
+                </a>
+              </li>  
+			</g:else>
             
 
               

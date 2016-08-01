@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_textNotesV1_dashboarddashboard_addKeyword_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/dashboard/dashboard_addKeyword.gsp" }
+class gsp_textNotesV1_dashboarddashboard_validateCoup_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/dashboard/dashboard_validateCoup.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()

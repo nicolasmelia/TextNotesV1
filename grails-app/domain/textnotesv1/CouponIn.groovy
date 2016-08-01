@@ -4,7 +4,8 @@ class CouponIn {
 	String phoneNumber
 	String couponCode
 	String keywordID
-	Date DateRedeemed
+	Date dateRedeemed
+	Date date
 	int redeemAmount
 	
 	
@@ -13,5 +14,7 @@ class CouponIn {
 		couponCode(nullable:true)
 		keywordID(nullable:true)	
 		redeemAmount(nullable:true)		
+		dateRedeemed(nullable:true)
+		date(nullable:true)	
     }
 }

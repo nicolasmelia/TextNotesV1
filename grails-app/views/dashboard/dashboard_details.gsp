@@ -246,8 +246,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <small>Current</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Transactions</a></li>
-            <li class="active">Confirmation</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i>Details</a></li>
+            <li class="active">Current</li>
           </ol>
         </section>
 
@@ -374,7 +374,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     
                     <tr>
                       <td>Recipients</td>
-                      <td>${res}</td>
+                      <td>${message.recipientsParsed}</td>
                     </tr>
                     
                     <tr>
@@ -404,7 +404,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	
 	              </div><!-- /.box-body -->                      
 			</g:if>
-			   
+			
 			<g:if test="${conType == 'History'}" >
 	              <div class="box-body">   
 	              <h4>History  </h4>
@@ -423,6 +423,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <tr>
                       <td>Date</td>
                       <td><g:formatDate format="MM-dd-yyyy hh:mm a" date="${history.date}"/></td>
+                    </tr>   
+                                   
+                  </table>   
+	              
+	            <div style = "margin: 10px 0px 5px 0px;" >
+	            
+                  <g:link  class="btn btn-default"  action="dashboard"  params="[]"  type="button" >            
+                 	Home
+                  </g:link>       
+                
+	            </div>
+	
+	              </div><!-- /.box-body -->                      
+			</g:if>
+			
+		<g:if test="${conType == 'Coupon Code'}" >
+	              <div class="box-body">   
+	              <h4>History  </h4>
+	              
+  			<table class="table table-bordered">
+                    <tr>
+                      <td>History Type</td>
+                      <td>${hist.type}</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Description</td>
+                      <td>${hist.description}</td>
+                    </tr>  
+                    
+                    <tr>
+                      <td>Date</td>
+                      <td><g:formatDate format="MM-dd-yyyy hh:mm a" date="${hist.date}"/></td>
                     </tr>   
                                    
                   </table>   

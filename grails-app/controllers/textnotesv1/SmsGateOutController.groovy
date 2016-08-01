@@ -141,7 +141,7 @@ class SmsGateOutController {
 		
 		ms.recipients = saveableList	
 		
-		ms.recipientsParsed = getRecipsParsed
+		ms.recipientsParsed = getRecipsParsed(saveableList)
 		
 		// scheduled or recurring
 		ms.recurring = false
@@ -204,7 +204,7 @@ class SmsGateOutController {
 	}
 	
 	
-	int getRecipsParsed (String tags) {
+	String getRecipsParsed (String tags) {
 		ArrayList<String> tagList = tags.split(",")
 		StringBuilder res = new StringBuilder();
 		
