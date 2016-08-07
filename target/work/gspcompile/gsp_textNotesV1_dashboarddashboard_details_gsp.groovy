@@ -131,7 +131,7 @@ expressionOut.print(message.title)
 printHtmlPart(53)
 expressionOut.print(message.message)
 printHtmlPart(54)
-expressionOut.print(res)
+expressionOut.print(message.recipientsParsed)
 printHtmlPart(55)
 invokeTag('formatDate','g',382,['format':("MM-dd-yyyy, hh:mm a"),'date':(message.lastSentDate)],-1)
 printHtmlPart(56)
@@ -158,89 +158,102 @@ invokeTag('link','g',434,['class':("btn btn-default"),'action':("dashboard"),'pa
 printHtmlPart(67)
 }
 printHtmlPart(68)
-if(true && (conType == 'keyword')) {
-printHtmlPart(69)
-expressionOut.print(keyword.keyword)
-printHtmlPart(70)
-if(true && (keyword.suspened)) {
-printHtmlPart(71)
+if(true && (conType == 'Coupon Code')) {
+printHtmlPart(63)
+expressionOut.print(hist.type)
+printHtmlPart(64)
+expressionOut.print(hist.description)
+printHtmlPart(65)
+invokeTag('formatDate','g',458,['format':("MM-dd-yyyy hh:mm a"),'date':(hist.date)],-1)
+printHtmlPart(66)
+createClosureForHtmlPart(60, 3)
+invokeTag('link','g',467,['class':("btn btn-default"),'action':("dashboard"),'params':([]),'type':("button")],3)
+printHtmlPart(67)
 }
-printHtmlPart(72)
+printHtmlPart(69)
+if(true && (conType == 'keyword')) {
+printHtmlPart(70)
 expressionOut.print(keyword.keyword)
+printHtmlPart(71)
+if(true && (keyword.suspened)) {
+printHtmlPart(72)
+}
 printHtmlPart(73)
-expressionOut.print(keyword.description)
+expressionOut.print(keyword.keyword)
 printHtmlPart(74)
-invokeTag('formatDate','g',474,['format':("MM-dd-yyyy"),'date':(keyword.dateExp)],-1)
+expressionOut.print(keyword.description)
 printHtmlPart(75)
-if(true && (keyword.endless)) {
+invokeTag('formatDate','g',507,['format':("MM-dd-yyyy"),'date':(keyword.dateExp)],-1)
 printHtmlPart(76)
+if(true && (keyword.endless)) {
+printHtmlPart(77)
 }
 else {
-printHtmlPart(77)
-invokeTag('formatDate','g',480,['format':("MM-dd-yyyy"),'date':(keyword.dateExp)],-1)
 printHtmlPart(78)
-}
+invokeTag('formatDate','g',513,['format':("MM-dd-yyyy"),'date':(keyword.dateExp)],-1)
 printHtmlPart(79)
-if(true && (keyword.campaignType == 'con')) {
-printHtmlPart(80)
 }
-else if(true && (keyword.campaignType == 'cust')) {
+printHtmlPart(80)
+if(true && (keyword.campaignType == 'con')) {
 printHtmlPart(81)
 }
-else if(true && (keyword.campaignType == 'coup')) {
+else if(true && (keyword.campaignType == 'cust')) {
 printHtmlPart(82)
 }
-else {
+else if(true && (keyword.campaignType == 'coup')) {
 printHtmlPart(83)
 }
-printHtmlPart(84)
-expressionOut.print(keyword.responceText)
-printHtmlPart(85)
-if(true && (keyword.multipleEntries == 'true')) {
-printHtmlPart(86)
-}
 else {
+printHtmlPart(84)
+}
+printHtmlPart(85)
+expressionOut.print(keyword.responceText)
+printHtmlPart(86)
+if(true && (keyword.multipleEntries == 'true')) {
 printHtmlPart(87)
 }
-printHtmlPart(88)
-invokeTag('formatDate','g',528,['format':("MM-dd-yyyy"),'date':(keyword.dateCreated)],-1)
-printHtmlPart(89)
-expressionOut.print(keyword.replys)
-printHtmlPart(90)
-if(true && (keyword.suspened)) {
-printHtmlPart(91)
-}
 else {
+printHtmlPart(88)
+}
+printHtmlPart(89)
+invokeTag('formatDate','g',561,['format':("MM-dd-yyyy"),'date':(keyword.dateCreated)],-1)
+printHtmlPart(90)
+expressionOut.print(keyword.replys)
+printHtmlPart(91)
+if(true && (keyword.suspened)) {
 printHtmlPart(92)
 }
+else {
 printHtmlPart(93)
-createClosureForHtmlPart(94, 3)
-invokeTag('link','g',555,['class':("btn btn-default"),'action':("keywords"),'type':("button")],3)
-printHtmlPart(95)
-createClosureForHtmlPart(96, 3)
-invokeTag('link','g',579,['action':("suspendKeyword"),'params':([promotionID:params.promotionID]),'type':("button"),'class':("btn btn-warning pull-left")],3)
-printHtmlPart(97)
-createClosureForHtmlPart(98, 3)
-invokeTag('link','g',602,['action':("reactivateKeyword"),'params':([promotionID:params.promotionID]),'type':("button"),'class':("btn btn-default pull-left")],3)
-printHtmlPart(99)
 }
+printHtmlPart(94)
+createClosureForHtmlPart(95, 3)
+invokeTag('link','g',588,['class':("btn btn-default"),'action':("keywords"),'type':("button")],3)
+printHtmlPart(96)
+createClosureForHtmlPart(97, 3)
+invokeTag('link','g',612,['action':("suspendKeyword"),'params':([promotionID:params.promotionID]),'type':("button"),'class':("btn btn-warning pull-left")],3)
+printHtmlPart(98)
+createClosureForHtmlPart(99, 3)
+invokeTag('link','g',635,['action':("reactivateKeyword"),'params':([promotionID:params.promotionID]),'type':("button"),'class':("btn btn-default pull-left")],3)
 printHtmlPart(100)
-invokeTag('javascript','g',696,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+}
 printHtmlPart(101)
-invokeTag('javascript','g',699,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+invokeTag('javascript','g',729,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(102)
-invokeTag('javascript','g',702,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',732,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(103)
-})
-invokeTag('captureBody','sitemesh',741,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('javascript','g',735,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(104)
+})
+invokeTag('captureBody','sitemesh',774,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(105)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1469987144065L
+public static final long LAST_MODIFIED = 1469995567925L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

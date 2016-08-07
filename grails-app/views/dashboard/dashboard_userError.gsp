@@ -251,8 +251,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	      </g:if>
 	    <g:else>
           <h1>
-            UhOh!
-            <small>User Error</small>
+            Alert
+            <small></small>
           </h1>
 	     </g:else>        
 
@@ -275,17 +275,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
   <section class="content">
           
-      <g:if test="${keywordCount == 0}">	
-	         <div class="callout callout-info" style="margin-bottom: 10px!important;">
-	            <h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
-	            It looks like you dont have any contacts yet. Get started by adding clients below!
-	        </div>      
-        </g:if>
-        
-         <input  id = 'searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
-         <input  id = 'offset' type="hidden" value="${offset}">
-         <input  id = 'keywordCount' type="hidden" value="${keywordCount}">
-               
+
           <div class="row">
             <div class="col-xs-12">       
               <div class="box">
@@ -296,7 +286,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
                 <div class="box-body">     
                 
-            <div class="callout callout-info" style = "margin: 0px;" >
+            <div class="alert alert-warning alert-dismissable" style = "margin: 0px;" >
                  	${body}
               </div>
 	            <div style = "margin: 10px 0px 5px 0px;" >
@@ -304,14 +294,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	             <g:if test="${button == 'keyword'}">
 	                  <g:link  class="btn btn-default"  action="newKeyWord"   type="button"  >            
 	                 	Create New Keyword
+	                  </g:link>   
+	                  
+	                  </g:if>
+	                  
+	            
+	             <g:elseif test="${button == 'Coupon-None'}">
+	                  <g:link  class="btn btn-default"  action="validateCoup"   type="button"  >            
+	                 	Try Another Code
 	                  </g:link>    
+	                  
 	                   
 	                  <g:link  class="btn btn-default"  action="dashboard"  type="button"  >            
 	                 	Home
 	                  </g:link>   
-
-                  </g:if>    
-                 
+	                  
+                  	 </g:elseif>
+                  
                   <g:else>
 	                  
 	                  

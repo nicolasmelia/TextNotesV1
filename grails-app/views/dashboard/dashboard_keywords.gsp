@@ -251,8 +251,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	      </g:if>
 	    <g:else>
           <h1>
-            keywords
-            <small>Group list</small>
+            My Keywords
+            <small>All</small>
           </h1>
 	     </g:else>        
 

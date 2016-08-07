@@ -71,6 +71,7 @@ class SmsGateInController {
 						CouponIn coupon = new CouponIn()
 						coupon.keywordID =  keyword.promotionID
 						coupon.date = new Date()
+						coupon.phoneNumber = MI.phoneNumber 
 						
 						// Create a UUID and cut it in half for the COUPON CODE
 						String uniqueIDCoup = UUID.randomUUID().toString().replace("-", "");

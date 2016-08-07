@@ -311,12 +311,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				 <g:if test="${groupCount > 0 || offset > 0}">					 
 				 	<g:if test="${history != 'NONE'}">						 			
 	                    <g:each in="${history}">
-	                    
-	                    <g:if test="${it.type != 'Message'}" >
-							<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'History',  historyID: it.historyID])}';" class = "pointer" >               
-	                    </g:if>  
+	                   <g:if test="${it.type == 'Coupon Code'}" >	                    
+	                   		<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'History',  historyID: it.historyID, showNumber : true])}';" class = "pointer" >               	                    
+	                    </g:if>                      
+	                    <g:elseif test="${it.type == 'Message'}" >
+	                    	<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: it.type, messageID: it.hashOne])}';" class = "pointer" >               
+	                    </g:elseif>
 	                    <g:else>
-							<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: it.type, messageID: it.hashOne])}';" class = "pointer" >               
+							<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'History',  historyID: it.historyID])}';" class = "pointer" >               
 	                    </g:else>
 	                     
 	                        <td>${it.type}</td>                     

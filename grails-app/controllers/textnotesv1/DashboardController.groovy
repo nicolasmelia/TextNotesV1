@@ -199,7 +199,7 @@ class DashboardController {
 
 					Contact contact = Contact.findByContactID(params.contactID)
 					
-					createHistoryLog("Edited " + contact.fullName, "Edit Contact")
+					createHistoryLog("Edited " + contact.fullName, "Edit Contact", params.phoneNumber.toString().trim())
 					
 					contact.firstName = params.firstName.toString().trim()
 					contact.lastName = params.lastName.toString().trim()
@@ -255,7 +255,7 @@ class DashboardController {
 			
 			contact.save(flush:true)	
 			
-			createHistoryLog("Added " + contact.fullName + " to contact book", "Contact")
+			createHistoryLog("Added " + contact.fullName + " to contact book", "Contact", null)
 			
 			redirect(controller: "Dashboard", action: "confirmation", params: [accountInfo: getUserAccountInfo(), conType: "AddContact", name: contact.firstName, contactID: contact.contactID])			
 		} else {
@@ -342,7 +342,6 @@ class DashboardController {
 	}
 	
 	def validateCoup() {
-		print params.coupCode
 		if (params.coupCode == null) {
 			render(view:"dashboard_validateCoup",  model: [accountInfo: getUserAccountInfo()])
 		} else {
@@ -355,17 +354,19 @@ class DashboardController {
 					Keyword keyword = Keyword.findByPromotionID(coupon.keywordID)
 					coupon.save(flush:true)
 					String histID = createHistoryLog("Coupon Code " + coupon.couponCode + " redeemed on " + redeemDate +
-						" for keyword " + keyword.keyword , "Coupon Code")
+						" under keyword " + keyword.keyword + ". Redeemed for " + coupon.phoneNumber , "Coupon Code", coupon.phoneNumber)
 					History hist = History.findByHistoryID(histID)
-					render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), conType: "Coupon Code", hist: hist ])
+					render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), conType: "Coupon Code", hist: hist])
 				} else {
 					// Coupon code has been used
-				print "used"
+				
+					render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), conType: "Coupon Code Used", coupon: coupon ])
+
 				}
 
 			} else {
 				// Coupon code does not exist
-			print "NONE"
+					displayUserError("Code Not Found","This coupon code does not exist, please go back and try again.", "Coupon-None");
 			}
 		
 		}
@@ -471,7 +472,7 @@ class DashboardController {
 					group.groupID = halfUUID
 					group.save(flush:true) 
 					
-					createHistoryLog("Created group " + group.groupName, "Group")	
+					createHistoryLog("Created group " + group.groupName, "Group", null)	
 					
 					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addGroup", groupID: group.groupID, name: group.groupName])
 					
@@ -505,7 +506,7 @@ class DashboardController {
 				
 				group.save(flush:true)
 				
-				createHistoryLog("Added " + contact.fullName + " to group " + group.groupName, "Group")
+				createHistoryLog("Added " + contact.fullName + " to group " + group.groupName, "Group", null)
 							
 				groupMember.save(flush:true)
 				
@@ -679,7 +680,9 @@ class DashboardController {
 				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), contact: contact, conType:  params.conType])
 			} else if (params.conType == "History") {
 				History hist = History.findByHistoryID(params.historyID)
-				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), history: hist, conType:  params.conType])
+				boolean showNumber = (params.showNumber) ? true : false; // Display the histories phone number in the TR?		
+				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), history: hist, conType:  params.conType, showNumber: showNumber])
+			
 			} else if (params.conType == "Message") {
 				MessageOut message = MessageOut.findByMessageID(params.messageID)
 				ArrayList<String> tags = message.recipients.split("/")
@@ -863,7 +866,7 @@ class DashboardController {
 		return accountInfo
 	}
 	
-	String createHistoryLog(String description, String type) {
+	String createHistoryLog(String description, String type, String phoneNumber) {
 		History history = new History()
 		
 		// Create a UUID and cut it in half
@@ -877,6 +880,8 @@ class DashboardController {
 		history.type = type
 		history.date = new Date()
 		history.save(flush:true)
+		
+		if (phoneNumber != null) history.phoneNumber
 		
 		return history.historyID
 		

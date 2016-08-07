@@ -5,7 +5,7 @@ class History {
 	String historyID
 	String type
 	String description 
-	
+	String phoneNumber
 	String hashOne
 	String hashTwo
 	
@@ -18,5 +18,7 @@ class History {
 		date(nullable:true)
 		hashOne(nullable:true)		
 		hashTwo(nullable:true)		
+		phoneNumber(nullable:true)
+		
     }
 }

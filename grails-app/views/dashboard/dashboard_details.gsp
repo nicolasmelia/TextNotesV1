@@ -415,10 +415,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <td>${history.type}</td>
                     </tr>
                     
+                   <g:if test="${showNumber == true}" >
+	                    <tr>
+	                      <td>Phone Number</td>
+	                      <td>${hist.phoneNumber}</td>
+	                    </tr>                
+                    </g:if>
+                    
+
                     <tr>
                       <td>Description</td>
                       <td>${history.description}</td>
                     </tr>  
+                    
+                    
                     
                     <tr>
                       <td>Date</td>
@@ -440,8 +450,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			
 		<g:if test="${conType == 'Coupon Code'}" >
 	              <div class="box-body">   
-	              <h4>History  </h4>
 	              
+             <div class="alert alert-success alert-dismissable">
+                    <h4>	<i class="icon fa fa-check"></i> Code Redeemed!</h4>
+                    Coupon code has succesfuly been redeemed!
+        	 </div>
+        	 
+        	 <hr>
+                    
   			<table class="table table-bordered">
                     <tr>
                       <td>History Type</td>
@@ -454,13 +470,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </tr>  
                     
                     <tr>
+                      <td>Phone Number</td>
+                      <td>${hist.phoneNumber}</td>
+                    </tr>  
+                 
+                    <tr>
                       <td>Date</td>
                       <td><g:formatDate format="MM-dd-yyyy hh:mm a" date="${hist.date}"/></td>
                     </tr>   
                                    
                   </table>   
 	              
+	            <div style = "margin: 10px 0px 5px 0px;" >            
+                  <g:link  class="btn btn-default"  action="dashboard"  params="[]"  type="button" >            
+                 	Home
+                  </g:link>      
+                  <g:link  class="btn btn-default"  action="validateCoup"  params="[]"  type="button" >            
+                 	Enter Another Code
+                  </g:link>  
+	            </div>
+	            
+	
+	              </div><!-- /.box-body -->                      
+			</g:if>
+			
+	<g:if test="${conType == 'Coupon Code Used'}" >
+	              <div class="box-body">   	              
+                  <div class="alert alert-warning alert-dismissable">
+                    <h4><i class="icon fa fa-warning"></i> Coupon Used</h4>
+                    This coupon code was <b>already redeemed</b> on <g:formatDate format="MM-dd-yyyy" date="${coupon.dateRedeemed}"/> for phone number ${coupon.phoneNumber}. 
+                  </div>
+	              
 	            <div style = "margin: 10px 0px 5px 0px;" >
+	            
+                  <g:link  class="btn btn-default"  action="validateCoup"  params="[]"  type="button" >            
+                 	Try Another Code
+                  </g:link>  
 	            
                   <g:link  class="btn btn-default"  action="dashboard"  params="[]"  type="button" >            
                  	Home
@@ -472,8 +517,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			</g:if>
 			
 			
-			
-	<g:if test="${conType == 'keyword'}" >
+			<g:if test="${conType == 'keyword'}" >
 	              <div class="box-body">   
 	              <h4>Keyword ${keyword.keyword}
 	              

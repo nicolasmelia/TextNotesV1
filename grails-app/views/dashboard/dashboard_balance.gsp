@@ -289,13 +289,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	            
 	            <div style = "margin: 10px 0px 5px 0px;" >
 	            
-                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
-                 	All Message History
+                  <g:link  class="btn btn-default"  action="history"  params="[]"  type="button"  >            
+                 	View History
                   </g:link>       
 
 	            
-                  <g:link  class="btn btn-default"  action="sendTxt"  params="[]"  type="button"  >            
-                 	View Balance
+                  <g:link  class="btn btn-default"  action="dashboard"  params="[]"  type="button"  >            
+                 	Home
                   </g:link>       
 
 
