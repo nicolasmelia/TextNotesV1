@@ -96,10 +96,10 @@ printHtmlPart(35)
 invokeTag('formatDate','g',281,['format':("MM-dd-yyyy"),'date':(bal.monthlyResetDate)],-1)
 printHtmlPart(36)
 createClosureForHtmlPart(37, 2)
-invokeTag('link','g',294,['class':("btn btn-default"),'action':("sendTxt"),'params':([]),'type':("button")],2)
+invokeTag('link','g',294,['class':("btn btn-default"),'action':("history"),'params':([]),'type':("button")],2)
 printHtmlPart(38)
 createClosureForHtmlPart(39, 2)
-invokeTag('link','g',299,['class':("btn btn-default"),'action':("sendTxt"),'params':([]),'type':("button")],2)
+invokeTag('link','g',299,['class':("btn btn-default"),'action':("dashboard"),'params':([]),'type':("button")],2)
 printHtmlPart(40)
 createClosureForHtmlPart(41, 2)
 invokeTag('link','g',325,['action':("suspendKeyword"),'params':([promotionID:params.promotionID]),'type':("button"),'class':("btn btn-warning pull-left")],2)
@@ -119,7 +119,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1469411741335L
+public static final long LAST_MODIFIED = 1470514667275L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

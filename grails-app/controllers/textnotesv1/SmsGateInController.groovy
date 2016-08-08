@@ -35,6 +35,7 @@ class SmsGateInController {
 	
 	
 	def gateIn(){	
+		boolean messageSuccess = false
 		String from = params.From.toString()
 		String body = params.Body.toString().toLowerCase().trim()
 		String messageSid = params.MessageSid.toString() // Twilio message sid
@@ -102,23 +103,23 @@ class SmsGateInController {
 			}
 
 			} else {
-				sendMessage(from, "It look likes this keyword (" + keyword.keyword + ") is currently not active. This service is Powered by TxtWolf.com!")	
+				messageSuccess = sendMessage(from, "It look likes this keyword (" + keyword.keyword + ") is currently not active. This service is Powered by TxtWolf.com!")	
 			}
-
-		
 		} else {
-				sendMessage(from, "It look likes this keyword (" + keyword.keyword + ") does not exist. Please try again! This service is Powered by TxtWolf.com!")	
+				messageSuccess = sendMessage(from, "It look likes this keyword (" + keyword.keyword + ") does not exist. Please try again! This service is Powered by TxtWolf.com!")
 		}
 
-		if (keyword != null){
+		if (messageSuccess){
 			render(status:204)
 		} else if (from.equals(null) && body.equals(null)) {
 			render(status:404)
-		} 
+		} else {
+			render(status:404)
+		}
 
 	}
 	
-	def sendMessage(String number, String message) {		
+	boolean sendMessage(String number, String message) {		
 		/* Find your sid and token at twilio.com/user/account */
 		String ACCOUNT_SID = "AC37b4c98359cd408db79405a07a46cb65";
 		String AUTH_TOKEN = "7d7d0d2d95fa8d535ab844ef1f081ec2"
@@ -141,7 +142,6 @@ class SmsGateInController {
 			return false
 		}
 		
-		render "SUCCESS"
 	}
 
 
