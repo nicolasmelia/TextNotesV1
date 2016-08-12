@@ -332,9 +332,12 @@ class DashboardController {
 		} else if (params.searchQuery) {
 			searchQuery = params.searchQuery
 		}
-					
+		
+		// Type of detail to display on the keywords page
+		String type = (params.type == null) ? "All" : params.type;
+		
 		if (session["userID"]) {
-			 render(view:"dashboard_keywords",  model: [accountInfo: getUserAccountInfo(), dateNow: new Date(), offset: offset, up: params.up, keywordCount: keywordCount, keywords: getKeywordList(offset)])
+			 render(view:"dashboard_keywords",  model: [accountInfo: getUserAccountInfo(), dateNow: new Date(), type: type, offset: offset, up: params.up, keywordCount: keywordCount, keywords: getKeywordList(offset, type)])
 		} else {
 			redirect(controller: "Home")
 		}
@@ -371,6 +374,11 @@ class DashboardController {
 		
 		}
 
+	}
+	
+	def contestSelect () {
+		 Keyword keyword = Keyword.findByPromotionID(params.promotionID)
+		 render keyword.keyword	
 	}
 	
 	def history() {
@@ -578,9 +586,16 @@ class DashboardController {
 		}
 	}
 	
-	def getKeywordList(offset){
-		def keywords =  Keyword.findAll("from Keyword as k where k.userID=? order by k.dateEff DESC",
-					 [session.userID], [max: 10, offset: offset])
+	def getKeywordList(offset, type){
+		def keywords
+		if (type == "contestSelect") {
+			keywords =  Keyword.findAll("from Keyword as k where k.userID=? AND k.campaignType = 'con' order by k.dateEff DESC",
+				[session.userID], [max: 10, offset: offset])	
+		} else {
+			 keywords =  Keyword.findAll("from Keyword as k where k.userID=? order by k.dateEff DESC",
+				[session.userID], [max: 10, offset: offset])
+		}
+
 		if (keywords.size > 0) {
 			return keywords
 		} else {

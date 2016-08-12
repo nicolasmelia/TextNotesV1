@@ -233,8 +233,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li><a href="${createLink(controller: 'Dashboard', action: 'newKeyWord')}"><b>New Keyword</b></a></li>
                 <li><a href="${createLink(controller: 'Dashboard', action: 'keywords')}">View Keywords</a></li>
                 <li><a href="${createLink(controller: 'Dashboard', action: 'keywordInbox')}">Keyword Inbox</a></li>   
-                <li><a href="${createLink(controller: 'Dashboard', action: 'validateCoup')}">Validate Coupon Code</a></li>       
-                                    
+                <li><a href="${createLink(controller: 'Dashboard', action: 'validateCoup')}">Validate Coupon Code</a></li>    
+                <li><a href="${createLink(controller: 'Dashboard', action: 'keywords', params: [type: 'contestSelect'])}">Contest Winner Select</a></li>                                                    
               </ul>
             </li>
             

@@ -243,10 +243,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content-header">
         
       
-	    <g:if test="${addToGroup}">	                    
+	    <g:if test="${type == 'contestSelect'}">	                    
           <h1>
-            Add to Group
-            <small>Group list</small>
+            Contest (Winner Select)
+            <small>All</small>
           </h1>
 	      </g:if>
 	    <g:else>
@@ -255,19 +255,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <small>All</small>
           </h1>
 	     </g:else>        
-
-	                    <g:if test="${addToGroup}">	                    
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Add to Group</a></li>
-            <li class="active">All keywords</li>
-          </ol>
-	                    </g:if>
-	                    <g:else>    
+  
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> keywords</a></li>
-            <li class="active">All keywords</li>
+            <li class="active">All</li>
           </ol>
-			            </g:else> 
           
         </section>
 
@@ -294,10 +286,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="box-header">      
    
                 </div><!-- /.box-header -->
-                <div class="box-body">     
-	                    <g:if test="${addToGroup}">	                    
-	              			<p style = "margin-top: -25px; margin-bottom: 15px;">Add <b>${contactGroupAdd.fullName}</b> to a group.</p> 
-	                    </g:if>          
+                <div class="box-body">            
                   <table id="example1" class="table table-bordered table-hover">
                     <thead>
                       <tr>
@@ -319,7 +308,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				 	<g:if test="${keywords != 'NONE'}">						 			
 	                    <g:each in="${keywords}">
        
-	                    	<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:it.promotionID])}';"class = "pointer" >
+       				 	<g:if test="${type == 'All'}">	
+       				 		<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:it.promotionID])}';"class = "pointer" >					 			
+       					</g:if>
+       					
+       				 	<g:if test="${type == 'contestSelect'}">	
+       				 		<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'contestSelect', params: [promotionID:it.promotionID])}';" class = "pointer" >					 			
+       					</g:if>
+       					
 	                    
 	                        <td><a href = "#"><b>${it.keyword}</b></a></td>
 	                        
