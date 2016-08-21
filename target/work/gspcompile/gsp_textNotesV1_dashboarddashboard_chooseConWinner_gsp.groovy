@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_textNotesV1_dashboarddashboard_validateCoup_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/dashboard/dashboard_validateCoup.gsp" }
+class gsp_textNotesV1_dashboarddashboard_chooseConWinner_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/dashboard/dashboard_chooseConWinner.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()
@@ -97,51 +97,55 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'createPromo'))
 printHtmlPart(34)
 createTagBody(2, {->
 printHtmlPart(35)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
+expressionOut.print(keyword.promotionID)
 printHtmlPart(36)
-})
-invokeTag('form','g',301,['id':("txtForm"),'class':("form-horizontal"),'controller':("Dashboard"),'action':("validateCoup"),'enctype':("multipart/form-data")],2)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
 printHtmlPart(37)
-invokeTag('javascript','g',388,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'contestSelect', params: [promotionID:keyword.promotionID]))
 printHtmlPart(38)
-invokeTag('javascript','g',391,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
-printHtmlPart(39)
-invokeTag('javascript','g',394,['src':("dashboard/app.min.js")],-1)
-printHtmlPart(40)
-invokeTag('javascript','g',396,['src':("dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")],-1)
-printHtmlPart(41)
-invokeTag('javascript','g',398,['src':("dashboard/plugins/select2/select2.full.min.js")],-1)
-printHtmlPart(40)
-invokeTag('javascript','g',400,['src':("tagsinput/dist/bootstrap-tagsinput.min.js")],-1)
-printHtmlPart(42)
-invokeTag('javascript','g',404,['src':("dashboard/plugins/input-mask/jquery.inputmask.js")],-1)
-printHtmlPart(43)
-invokeTag('javascript','g',405,['src':("dashboard/plugins/input-mask/jquery.inputmask.date.extensions.js")],-1)
-printHtmlPart(43)
-invokeTag('javascript','g',406,['src':("dashboard/plugins/input-mask/jquery.inputmask.extensions.js")],-1)
-printHtmlPart(44)
-invokeTag('javascript','g',411,['src':("dashboard/plugins/daterangepicker/daterangepicker.js")],-1)
-printHtmlPart(45)
-invokeTag('javascript','g',414,['src':("dashboard/plugins/colorpicker/bootstrap-colorpicker.min.js")],-1)
-printHtmlPart(46)
-invokeTag('javascript','g',417,['src':("dashboard/plugins/timepicker/bootstrap-timepicker.min.js")],-1)
-printHtmlPart(47)
-invokeTag('javascript','g',420,['src':("dashboard/plugins/slimScroll/jquery.slimscroll.min.js")],-1)
-printHtmlPart(48)
-invokeTag('javascript','g',423,['src':("dashboard/plugins/iCheck/icheck.min.js")],-1)
-printHtmlPart(49)
-invokeTag('javascript','g',426,['src':("dashboard/plugins/fastclick/fastclick.min.js")],-1)
-printHtmlPart(50)
 })
-invokeTag('captureBody','sitemesh',467,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('form','g',329,['id':("txtForm"),'class':("form-horizontal"),'controller':("Dashboard"),'action':("contestSelect"),'style':("margin: auto;"),'enctype':("multipart/form-data")],2)
+printHtmlPart(39)
+invokeTag('javascript','g',416,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(40)
+invokeTag('javascript','g',419,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(41)
+invokeTag('javascript','g',422,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(42)
+invokeTag('javascript','g',424,['src':("dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")],-1)
+printHtmlPart(43)
+invokeTag('javascript','g',426,['src':("dashboard/plugins/select2/select2.full.min.js")],-1)
+printHtmlPart(42)
+invokeTag('javascript','g',428,['src':("tagsinput/dist/bootstrap-tagsinput.min.js")],-1)
+printHtmlPart(44)
+invokeTag('javascript','g',432,['src':("dashboard/plugins/input-mask/jquery.inputmask.js")],-1)
+printHtmlPart(45)
+invokeTag('javascript','g',433,['src':("dashboard/plugins/input-mask/jquery.inputmask.date.extensions.js")],-1)
+printHtmlPart(45)
+invokeTag('javascript','g',434,['src':("dashboard/plugins/input-mask/jquery.inputmask.extensions.js")],-1)
+printHtmlPart(46)
+invokeTag('javascript','g',439,['src':("dashboard/plugins/daterangepicker/daterangepicker.js")],-1)
+printHtmlPart(47)
+invokeTag('javascript','g',442,['src':("dashboard/plugins/colorpicker/bootstrap-colorpicker.min.js")],-1)
+printHtmlPart(48)
+invokeTag('javascript','g',445,['src':("dashboard/plugins/timepicker/bootstrap-timepicker.min.js")],-1)
+printHtmlPart(49)
+invokeTag('javascript','g',448,['src':("dashboard/plugins/slimScroll/jquery.slimscroll.min.js")],-1)
+printHtmlPart(50)
+invokeTag('javascript','g',451,['src':("dashboard/plugins/iCheck/icheck.min.js")],-1)
 printHtmlPart(51)
+invokeTag('javascript','g',454,['src':("dashboard/plugins/fastclick/fastclick.min.js")],-1)
+printHtmlPart(52)
+})
+invokeTag('captureBody','sitemesh',495,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(53)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1471024172198L
+public static final long LAST_MODIFIED = 1471720942760L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

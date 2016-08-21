@@ -521,9 +521,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	              <div class="box-body">   
 	              <h4>Keyword ${keyword.keyword}
 	              
-	              <g:if test="${keyword.suspened}" >
-	              <span style = "color: red;"><b>Suspended: Not Active</b></span>
-	              </g:if>
+	              
+	              
+	             <g:if test="${keyword.winners != null}" >
+	              - <span style = "color: red;" ><b> Contest Has Ended</b></span>
+	             </g:if>
+	              <g:elseif test="${keyword.suspened}" >
+	              - <span style = "color: red;"><b> Keyword Suspended</b></span>
+	              </g:elseif>
 	              
 	              
 	               </h4>
@@ -579,7 +584,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                      </td>
                       
                       
-                    </tr>              
+                    </tr>  
+                    
+                    <g:if test="${keyword.campaignType == 'con'}">
+                    <tr>
+                      <td>Winners</td>
+                     <g:if test="${keyword.winners == null}">                   
+                      	<td><b>Winners have not yet been selected.</b></td>
+                      </g:if>
+                      <g:else>
+                      	<td>${keyword.winners}</td>
+                      </g:else>
+                      
+                    </tr>      
+	                </g:if>        
 
                     
                     <tr>
@@ -615,6 +633,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                       
 	            <div style = "margin: 10px 0px 5px 0px;" >
 	            
+	            <g:if test="${keyword.winners == null}" >
+	            
                   <g:if test="${keyword.suspened}" >                	            
 					<a data-toggle="modal" data-target="#reactivateModal"   class="btn btn-default"  type="button"  >            
 	                 	Reactivate
@@ -625,6 +645,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                 	Suspend
 	                  </a>    
                   </g:else> 
+                  
+                  </g:if>
 
 	            
                   <g:link  class="btn btn-default"  action="keywords" type="button"  >            

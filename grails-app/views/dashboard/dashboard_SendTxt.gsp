@@ -990,9 +990,14 @@ $( document ).ready(function() {
 	  	errors = [];
 		$("#previewModalAlertText").html("");  
 		
-	  	if ($("#compose-textarea").val() < 10) {
+	  	if ($("#compose-textarea").val().length < 10) {
 			error = true;
-			errors.push("Please enter a valid or longer message.");			
+			errors.push("Please enter a message longer than 10 characters.");			
+	  	}
+	
+	  	if ($("#compose-textarea").val().length > 260) {
+			error = true;
+			errors.push("Your message can not be longer than 260 characters.");			
 	  	}
 	  	
 		if (!$("#tags").val()) {

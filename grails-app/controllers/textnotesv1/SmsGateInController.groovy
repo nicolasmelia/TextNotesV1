@@ -62,6 +62,9 @@ class SmsGateInController {
 			MI.date = new Date()
 			MI.save(flush:true);
 			
+			keyword.replys += 1
+			keyword.save(save:true)
+			
 			Date todaysDate = new Date()
 			if ((todaysDate >= keyword.dateEff) && ((keyword.dateExp >= todaysDate) || keyword.endless == true)) {
 

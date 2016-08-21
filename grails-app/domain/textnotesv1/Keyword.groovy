@@ -13,12 +13,18 @@ class Keyword {
 	String campaignType
 	String responceText
 	
+	// If contest winners will be delimted by a comma
+	String winners
+	
+	
 	boolean endless
 	boolean multipleEntries
 	int replys
 	
 	boolean deleted
 	boolean suspened
+	boolean eligible
+	
 	
     static constraints = {
 		dateEff(nullable:true)
@@ -33,6 +39,8 @@ class Keyword {
 		deleted(nullable:true)
 		multipleEntries(nullable:true)	
 		responceText(nullable:true)
+		winners(nullable:true)	
+		eligible(nullable:true)
 		
     }
 	

@@ -376,9 +376,48 @@ class DashboardController {
 
 	}
 	
-	def contestSelect () {
-		 Keyword keyword = Keyword.findByPromotionID(params.promotionID)
-		 render keyword.keyword	
+	def contestSelect () {		
+		if (params.winnerAmt == null){
+		 Keyword keyword = Keyword.findByPromotionID(params.promotionID)		 
+		 render(view:"dashboard_chooseConWinner",  model: [accountInfo: getUserAccountInfo(), keyword: keyword])
+		} else {	
+			Keyword keyword = Keyword.findByPromotionID(params.promotionID);
+			def contestMessages = MessageIn.findAllByPromotionID(params.promotionID)	
+					
+			// Get random numbers
+			Random random = new Random();
+			ArrayList selectedNumbers =  new ArrayList<MessageIn>()
+			int winnerCount = 0
+			int breakCount = contestMessages.size    
+			StringBuilder winnersSB = new StringBuilder();
+			
+			for (int i; i < Integer.parseInt(params.winnerAmt); i++) {
+			int index = random.nextInt(contestMessages.size);
+					selectedNumbers.add(contestMessages[index])
+					breakCount--	
+					winnerCount++
+					winnersSB.append(contestMessages[index].phoneNumber)					
+					contestMessages[index].dateWon = new Date()
+					contestMessages[index].winner = true
+					contestMessages[index].save(flush:true)
+					
+					if (breakCount > 1) {
+						contestMessages.remove(index)
+						winnersSB.append(", ")
+					} else if (breakCount == 1) {
+						break;
+					}	
+			}
+			
+			
+			keyword.winners = winnersSB.toString()
+			keyword.suspened = true
+			keyword.eligible = false
+			keyword.save(flush:true)
+			
+			render(view:"dashboard_conWinners",  model: [accountInfo: getUserAccountInfo(), winners: selectedNumbers, winnerCount: winnerCount, keyword: keyword])
+
+		}
 	}
 	
 	def history() {
@@ -770,6 +809,9 @@ class DashboardController {
 					keyword.keyword = params.keyword.toString().trim()
 					keyword.description = params.desc.toString().trim()
 					keyword.dateCreated = new Date()
+					keyword.suspened = false
+					keyword.eligible = true
+					
 					keyword.replys = 0
 					keyword.responceText = params.responceText.toString().trim()
 					

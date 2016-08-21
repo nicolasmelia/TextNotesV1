@@ -245,13 +245,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
 	    <g:if test="${type == 'contestSelect'}">	                    
           <h1>
-            Contest (Winner Select)
-            <small>All</small>
+            Choose a Contest by Keyword
+            <small>Keywords</small>
           </h1>
 	      </g:if>
 	    <g:else>
           <h1>
-            My Keywords
+            Contest
             <small>All</small>
           </h1>
 	     </g:else>        
@@ -313,7 +313,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
        					</g:if>
        					
        				 	<g:if test="${type == 'contestSelect'}">	
-       				 		<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'contestSelect', params: [promotionID:it.promotionID])}';" class = "pointer" >					 			
+       				
+  				 	
+	       				 	 <g:if test="${it.winners == null}">			 	
+	       				 		<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'contestSelect', params: [promotionID:it.promotionID])}';" class = "pointer" >					 			
+							</g:if>
+	       				 	 <g:else>		
+       				 			<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:it.promotionID])}';" class = "pointer" >					 			
+	       					</g:else>
+       				
        					</g:if>
        					
 	                    

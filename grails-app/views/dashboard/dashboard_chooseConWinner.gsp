@@ -254,12 +254,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Coupon Code
-            <small>Validation</small>
+            Keyword
+            <small>Contest</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Keyword</a></li>
-            <li class="active">New</li>
+            <li class="active">Contest</li>
           </ol>
         </section>
 
@@ -268,33 +268,90 @@ scratch. This page gets rid of all links and provides the needed markup only.
        
        
     <!-- Horizontal Form -->
-              <div class="box box-info" style = "max-width: 600px;">
+              <div class="box box-info" style = "max-width: 540px;">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Enter a coupon code</h3>
+                  <h3 class="box-title">Winner Selection: <b>${keyword.keyword}</b></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-               <g:form id = "txtForm" class="form-horizontal" controller="Dashboard" action="validateCoup" enctype="multipart/form-data" >
+               <g:form id = "txtForm" class="form-horizontal" controller="Dashboard" action="contestSelect" style = "margin: auto;" enctype="multipart/form-data" >
+                  <input type="hidden" name="promotionID" value="${keyword.promotionID}">
                 
-                  <div class="box-body">
+                  <div class="box-body" style = "margin: auto; max-width: 800px;">
+                  
+                  <g:if test="${keyword.replys < 1}">
+                  <div id = "ModalAlert"   class="alert alert-warning  alert-dismissable">
+                    <h4><i class="icon fa fa-exclamation-circle"></i>Warning</h4>
+                    <p id = "ModalAlertText">This contest has <b>(0)</b> receipts. You will not be able to select winners at this time.
+                    Try to advertise your contest and share it with friends or customers!</p>
+                  </div>
+                  
+                  </g:if>
+                  
+                  
                   
                   <div id = "ModalAlert"  style = "display: none;"  class="alert alert-danger alert-dismissable">
                     <h4><i class="icon fa fa-exclamation-circle"></i>Fix needed</h4>
                     <p id = "ModalAlertText"></p>
                   </div>
+                  
 
-                    <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Code</label>
-                      <div class="col-sm-10">
-                        <input  name = "coupCode"  id  = "coupCode" type="text" class="form-control" placeholder="Required">
-                      </div>
+
+                    <div class="form-group" style = "margin: auto; width: 100%;">
+
+                      
+                      <label>How many winners?</label>
+                      <select name = "winnerAmt" class="form-control">
+                        <option value = "1" >1</option>
+                        <option value = "2">2</option>
+                        <option value = "3">3</option>
+                        <option value = "4">4</option>
+                        <option value = "5">5</option>
+                        <option value = "6">6</option>
+                        <option value = "7">7</option>
+                        <option value = "8">8</option>
+                        <option value = "9">9</option>
+                        <option value = "10">10</option>                       
+                      </select>
+                      
+                   <label style = "margin-top: 7px;">Message to winner/s</label>          
+                  <textarea placeholder="Message"  id="compose-textarea" name = "body" class="form-control" style=" height: 80px;"></textarea>
+                   <p style = "margin: 0px;" id = 'charCount' class="help-block">0/260 characters</p>
+                      
+                      
+                      
+                    <g:if test="${keyword.replys > 1}">
+               
+	                     <button  onClick = "return validateMainForm()" value = "Send"  action = "contestSelect" style = "margin-top: 8px; width: 100%;" class="btn btn-info " id = "selectWinnerBtn"  >
+	                     Select Random Winners
+	                     </button>	
+                     
+                     </g:if>
+                     
+                     <g:else>
+                     
+	                     <button  onClick = "return validateMainForm()"  disabled = "true"  style = "margin-top: 8px; width: 100%;" class="btn btn-info "  >
+	                     Select Random Winners
+	                     </button>	
+	                     
+                     </g:else>
+  
+
                     </div>
+                    
+                    <hr>
+                    
+                   Randomly selecting winners will end the contest and receipts will no longer be able to text in this keyword.
+                   Receipts will be notifed immediately after submiting the above form. 
+                    
                   
 	
                   
                   </div><!-- /.box-body -->
                   <div class="box-footer">
-                   <button  onClick = "return validateMainForm()" class="btn btn-info pull-right" id = "submitBtn" value = "Send"  action = "validateCoup">Validate</button>	
+                  
                     <a href = "${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" class="btn btn-default">Cancel</a>
+                    <a href = "${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:keyword.promotionID])}" type="submit" class="btn btn-default">Keyword Details</a>
+
                   </div><!-- /.box-footer -->
                   
                 
@@ -468,20 +525,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   <script>
 
-  $( document ).ready(function() {
-
-		
-	});
-
-  // campaignSelected
-
-
-
-
   function validateMainForm() {		  
 	  var error = false;
 	 // var desc = $('#desc').val();
 	  var coupCode = $('#coupCode').val();
+      var cs = $("#compose-textarea").val().length;
 
 	  	//Clear old values
 	  	errors = [];
@@ -491,7 +539,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			error = true;
 			errors.push("Please enter a coupon code.");			
 		} 
+
+	  	if ($("#compose-textarea").val().length < 10) {
+			error = true;
+			errors.push("Please enter a message longer than 10 characters.");			
+	  	}
+
 		
+	  	if ($("#compose-textarea").val().length > 260) {
+			error = true;
+			errors.push("Your message can not be longer than 260 characters.");			
+	  	}
+
 		if (error){
 			for (i = 0; i < errors.length; i++) { 
 				$("#ModalAlertText").append("*" + errors[i] + "<br/>");		
@@ -505,79 +564,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			
   }
 
-  $(function () {
  
-      //Initialize Select2 Elements
-      $(".select2").select2();
-
-      //Datemask dd/mm/yyyy
-      $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-      //Datemask2 mm/dd/yyyy
-      $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
-      //Money Euro
-      $("[data-mask]").inputmask();
-
-      //Date range picker
-      $('#reservation').daterangepicker();
-      //Date range picker with time picker
-      $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
-      //Date range as a button
-      $('#daterange-btn').daterangepicker(
-          {
-            ranges: {
-              'Today': [moment(), moment()],
-              'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-              'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-              'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-              'This Month': [moment().startOf('month'), moment().endOf('month')],
-              'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            },
-            startDate: moment().subtract(29, 'days'),
-            endDate: moment()
-          },
-      function (start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-      }
-      );
-
-      //iCheck for checkbox and radio inputs
-      $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-        checkboxClass: 'icheckbox_minimal-blue',
-        radioClass: 'iradio_minimal-blue'
-      });
-      //Red color scheme for iCheck
-      $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-        checkboxClass: 'icheckbox_minimal-red',
-        radioClass: 'iradio_minimal-red'
-      });
-      //Flat red color scheme for iCheck
-      $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-        checkboxClass: 'icheckbox_flat-green',
-        radioClass: 'iradio_flat-green'
-      });
-
-      //Colorpicker
-      $(".my-colorpicker1").colorpicker();
-      //color picker with addon
-      $(".my-colorpicker2").colorpicker();
-
-      //Timepicker
-      $(".timepicker").timepicker({
-        showInputs: false
-      });
-    });
 
 
-  $('#responceText').keydown(updateCount);
-  $('#responceText').keyup(updateCount);
-  
+  $('#compose-textarea').keyup(updateCount);
+  $('#compose-textarea').keydown(updateCount);
   function updateCount() {
-      var cs = $("#responceText").val().length;
-      var count = cs;
-      $('#charCount').text(count + '/200 characters');
-     // $( "#txtForm" ).submit();
+      var cs = $("#compose-textarea").val().length;
+      $('#charCount').text(cs + '/260 characters');
   }
 
+  
   
 
   </script>

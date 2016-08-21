@@ -31,19 +31,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     -->
     <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='dashboard/skins/skin-purple.min.css'/>">
     
-    <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'/>">
-    
-    <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/select2/select2.min.css'/>">
-      
-    <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='tagsinput/dist/bootstrap-tagsinput.css'/>">
-    
-    
-    <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/timepicker/bootstrap-timepicker.min.css'/>">
-    
-     <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/daterangepicker/daterangepicker-bs3.css'/>">
-    
-    
-     <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/iCheck/all.css'/>">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,16 +38,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
   </head>
+
   <body class="hold-transition skin-purple sidebar-mini">
     <div class="wrapper">
+    
 
       <!-- Main Header -->
       <header class="main-header">
+      
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a  href="${createLink(controller: 'Dashboard', action: 'dashboard')}"  class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>W</b>olf</span>
           <!-- logo for regular state and mobile devices -->
@@ -198,29 +187,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="#"><i class="fa fa-circle text-success"></i> Active</a>
             </div>
           </div>
-
+          
           <!-- search form (Optional) -->
-          <form action="#" method="get" class="sidebar-form">
+           <g:form   controller="Dashboard" action="dashboard" enctype="multipart/form-data" class="sidebar-form">           
             <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search Contacts...">
+              <input type="text" name = "searchQuery"  class="form-control" placeholder="Search Contacts...">
               <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+              <button action="dashboard" name="search" id="search-btn" class="btn btn-flat" ><i class="fa fa-search"></i></button>
               </span>
             </div>
-          </form>
+            </g:form> 
+   
           <!-- /.search form -->
 
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
             <li class="header">Tools</li>
             <!-- Optionally, you can add icons to the links -->
-            
-                    
+             
             <li class="active">
               <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="${createLink(controller: 'Dashboard', action: 'dashboard')}">Contacts</a></li> 
-                <li><a href="${createLink(controller: 'Dashboard', action: 'groups')}">Groups</a></li>                
+                <li><a href="${createLink(controller: 'Dashboard', action: 'keywords')}">keywords</a></li>                
                 <li><a class = "fa fa-plus" href="${createLink(controller: 'Dashboard', action: 'newContact')}"> New Contact</a></li>    
               </ul>
             </li>
@@ -243,7 +232,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </ul>
             </li>
 
-            
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -253,59 +241,98 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
+        
+
           <h1>
-            Coupon Code
-            <small>Validation</small>
+            Winners (Random)
+            <small>All</small>
           </h1>
+  
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Keyword</a></li>
-            <li class="active">New</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Winners</a></li>
+            <li class="active">All</li>
           </ol>
+          
         </section>
+
 
         <!-- Main content -->
   <section class="content">
-       
-       
-    <!-- Horizontal Form -->
-              <div class="box box-info" style = "max-width: 600px;">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Enter a coupon code</h3>
-                </div><!-- /.box-header -->
-                <!-- form start -->
-               <g:form id = "txtForm" class="form-horizontal" controller="Dashboard" action="validateCoup" enctype="multipart/form-data" >
-                
-                  <div class="box-body">
-                  
-                  <div id = "ModalAlert"  style = "display: none;"  class="alert alert-danger alert-dismissable">
-                    <h4><i class="icon fa fa-exclamation-circle"></i>Fix needed</h4>
-                    <p id = "ModalAlertText"></p>
-                  </div>
 
-                    <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Code</label>
-                      <div class="col-sm-10">
-                        <input  name = "coupCode"  id  = "coupCode" type="text" class="form-control" placeholder="Required">
-                      </div>
-                    </div>
-                  
-	
-                  
-                  </div><!-- /.box-body -->
-                  <div class="box-footer">
-                   <button  onClick = "return validateMainForm()" class="btn btn-info pull-right" id = "submitBtn" value = "Send"  action = "validateCoup">Validate</button>	
-                    <a href = "${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" class="btn btn-default">Cancel</a>
-                  </div><!-- /.box-footer -->
-                  
+               
+          <div class="row">
+            <div class="col-xs-12">       
+              <div class="box">
+                <div class="box-header">      
+   
+                </div><!-- /.box-header -->
+                <div class="box-body">            
+                  <table id="example1" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Phone Number</th>
+                        <th>Date Entered</th>
+                        <th>Date Won</th>
+ 
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+
+				 <g:if test="${winnerCount > 0}">	
+				 
+	                    <g:each in="${winners}">
+       
+       				 		<tr >					 			
+       					
+   
+							
+							<td>${it.phoneNumber}</td>	
+							<td><g:formatDate format="MM-dd-yyyy" date="${it.date}"/></td>	
+							<td><g:formatDate format="MM-dd-yyyy" date="${it.dateWon}"/></td>	
+							
+							
+							
+	                      </tr>
+	                      
+	                      
+						</g:each>
+					</g:if>
+					<g:else>
+                 
+                      <tr class = "pointer" >
+                        <td><a href = "#"><b>-</b></a></td>
+                        <td>-</td>
+						<td>-</td>
+                      </tr>
+                      
+					</g:else>
+					
+  
+                    </tbody>
+                    
+                    
+                    
+                    <tfoot>
+
+                    </tfoot>
+                  </table>
+                </div><!-- /.box-body -->
+                                        
+  
+                        <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
+                        		<button disabled  type="button" class="btn btn-default">Next</button>
+                        </div>
+                        
+
                 
-               </g:form>
                 
-              </div><!-- /.box -->
-         
-  </section><!-- /.content -->
+              </div> <!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section> 
         
       </div><!-- /.content-wrapper -->
-
 
       <!-- Main Footer -->
       <footer class="main-footer">
@@ -316,7 +343,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Default to the left -->
         <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
       </footer>
-      
+
       <!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-dark">
         <!-- Create the tabs -->
@@ -380,9 +407,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
            immediately after the control sidebar -->
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
+    
 
-
-    <!-- REQUIRED JS SCRIPTS -->
+     <!-- REQUIRED JS SCRIPTS -->
 
     <!-- jQuery 2.1.4 -->
     <g:javascript src="dashboard/plugins/jQuery/jQuery-2.1.4.min.js" /> 
@@ -393,196 +420,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE App -->
     <g:javascript src="dashboard/app.min.js" /> 
     
-    <g:javascript src="dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" /> 
-
-    <g:javascript src="dashboard/plugins/select2/select2.full.min.js" /> 
-    
-    <g:javascript src="tagsinput/dist/bootstrap-tagsinput.min.js"/>
-    
-      
-    <!-- InputMask -->    
-    <g:javascript src="dashboard/plugins/input-mask/jquery.inputmask.js" /> 
-    <g:javascript src="dashboard/plugins/input-mask/jquery.inputmask.date.extensions.js" /> 
-    <g:javascript src="dashboard/plugins/input-mask/jquery.inputmask.extensions.js" /> 
-
-    
-    <!-- date-range-picker -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-    <g:javascript src="dashboard/plugins/daterangepicker/daterangepicker.js" /> 
-    
-    <!-- bootstrap color picker -->
-    <g:javascript src="dashboard/plugins/colorpicker/bootstrap-colorpicker.min.js" /> 
-    
-    <!-- bootstrap time picker -->
-    <g:javascript src="dashboard/plugins/timepicker/bootstrap-timepicker.min.js" /> 
-    
-    <!-- SlimScroll 1.3.0 -->
-    <g:javascript src="dashboard/plugins/slimScroll/jquery.slimscroll.min.js" /> 
-    
-    <!-- iCheck 1.0.1 -->
-    <g:javascript src="dashboard/plugins/iCheck/icheck.min.js" /> 
-    
-    <!-- FastClick -->
-    <g:javascript src="dashboard/plugins/fastclick/fastclick.min.js" /> 
-   
-     <!-- JQUERY UI -->
-	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-
-  
-    
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
          
-            <div class="modal" id="myModal" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 id = "modalHeading" class="modal-title">Modal Default</h4>
-                  </div>
-                  <div class="modal-body">
-                  
- 				 <a class="btn btn-app" style = "margin-bottom:0px;" >
-                    <i class="fa fa-comment"></i> Send Text
-                  </a>
-                  <a class="btn btn-app" style = "margin-bottom:0px;">
-                    <i class="fa fa-users"></i> Add to Group
-                  </a>
-                  <a class="btn btn-app" style = "margin-bottom:0px;">
-                    <i class="fa fa-edit"></i> Edit
-                  </a>
-                    
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
-                  </div>
-                </div><!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-
          
   </body>
   
   <script>
 
-  $( document ).ready(function() {
 
+  
+
+  $( document ).ready(function() {
+		// Set pageinfo
+		var totalClientCount = $("#keywordCount").val();
+		var offset = $("#offset").val();
+		var offsetTop = (parseInt(offset) + 10);
+		$("#pageInfo").html("Viewing " + offset + "-" + offsetTop + " of " + totalClientCount);
 		
 	});
 
-  // campaignSelected
+  function test(number) {
+	  return true;
+	}
 
-
-
-
-  function validateMainForm() {		  
-	  var error = false;
-	 // var desc = $('#desc').val();
-	  var coupCode = $('#coupCode').val();
-
-	  	//Clear old values
-	  	errors = [];
-		$("#ModalAlertText").html("");  
-				
-	  	if (coupCode.length < 3) {
-			error = true;
-			errors.push("Please enter a coupon code.");			
-		} 
-		
-		if (error){
-			for (i = 0; i < errors.length; i++) { 
-				$("#ModalAlertText").append("*" + errors[i] + "<br/>");		
-			}			
-			$("#ModalAlert").slideDown();
-			return false;
-		} else {
-			$("#ModalAlert").css("display","none");		
-			return true;
-		}
-			
-  }
-
-  $(function () {
- 
-      //Initialize Select2 Elements
-      $(".select2").select2();
-
-      //Datemask dd/mm/yyyy
-      $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-      //Datemask2 mm/dd/yyyy
-      $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
-      //Money Euro
-      $("[data-mask]").inputmask();
-
-      //Date range picker
-      $('#reservation').daterangepicker();
-      //Date range picker with time picker
-      $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
-      //Date range as a button
-      $('#daterange-btn').daterangepicker(
-          {
-            ranges: {
-              'Today': [moment(), moment()],
-              'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-              'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-              'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-              'This Month': [moment().startOf('month'), moment().endOf('month')],
-              'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            },
-            startDate: moment().subtract(29, 'days'),
-            endDate: moment()
-          },
-      function (start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-      }
-      );
-
-      //iCheck for checkbox and radio inputs
-      $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-        checkboxClass: 'icheckbox_minimal-blue',
-        radioClass: 'iradio_minimal-blue'
-      });
-      //Red color scheme for iCheck
-      $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-        checkboxClass: 'icheckbox_minimal-red',
-        radioClass: 'iradio_minimal-red'
-      });
-      //Flat red color scheme for iCheck
-      $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-        checkboxClass: 'icheckbox_flat-green',
-        radioClass: 'iradio_flat-green'
-      });
-
-      //Colorpicker
-      $(".my-colorpicker1").colorpicker();
-      //color picker with addon
-      $(".my-colorpicker2").colorpicker();
-
-      //Timepicker
-      $(".timepicker").timepicker({
-        showInputs: false
-      });
-    });
-
-
-  $('#responceText').keydown(updateCount);
-  $('#responceText').keyup(updateCount);
-  
-  function updateCount() {
-      var cs = $("#responceText").val().length;
-      var count = cs;
-      $('#charCount').text(count + '/200 characters');
-     // $( "#txtForm" ).submit();
-  }
-
-  
 
   </script>
   
   
 </html>
-
-

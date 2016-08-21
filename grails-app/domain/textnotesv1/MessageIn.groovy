@@ -10,16 +10,21 @@ class MessageIn {
 	String promotionID
 	String keyword
 	String messageType
-	
-	byte[] image
-	boolean deleted
 	Date date
+	byte[] image
+	
+	// For contest Keywords
+	Date dateWon
+	boolean winner
+		
+	boolean deleted
 
 	static constraints = {
 		image(nullable:true, maxSize: 1024 * 1024 * 5 /* 5MB */)
 		keyword(nullable:true)	
 		promotionID(nullable:true)
-		
+		dateWon(nullable:true)
+		winner(nullable:true)	
 	}
 
 }
