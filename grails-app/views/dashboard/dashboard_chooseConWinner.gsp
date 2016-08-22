@@ -319,7 +319,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       
                       
                       
-                    <g:if test="${keyword.replys > 1}">
+                    <g:if test="${keyword.replys > 0}">
                
 	                     <button  onClick = "return validateMainForm()" value = "Send"  action = "contestSelect" style = "margin-top: 8px; width: 100%;" class="btn btn-info " id = "selectWinnerBtn"  >
 	                     Select Random Winners

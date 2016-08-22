@@ -62,8 +62,8 @@ class SmsGateInController {
 			MI.date = new Date()
 			MI.save(flush:true);
 			
-			keyword.replys += 1
-			keyword.save(save:true)
+			keyword.replys = new Integer(keyword.replys.intValue() + 1);
+			keyword.save(flush:true)
 			
 			Date todaysDate = new Date()
 			if ((todaysDate >= keyword.dateEff) && ((keyword.dateExp >= todaysDate) && keyword.suspened == false || keyword.endless == true)) {
@@ -86,8 +86,7 @@ class SmsGateInController {
 						coupon.save(flush:true)
 						
 						sendMessage(from, "Here is your coupon code for keyword " + keyword.keyword + ", " + coupon.couponCode + ". Use your code to redeem this offer.")
-						
-						
+										
 					break; 
 					
 					case "con": // Contest				
