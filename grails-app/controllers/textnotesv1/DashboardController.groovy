@@ -383,7 +383,7 @@ class DashboardController {
 		} else {	
 			Keyword keyword = Keyword.findByPromotionID(params.promotionID);
 			def contestMessages = MessageIn.findAllByPromotionID(params.promotionID)	
-					
+			SmsGateOutController gateOut = new SmsGateOutController()
 			// Get random numbers
 			Random random = new Random();
 			ArrayList selectedNumbers =  new ArrayList<MessageIn>()
@@ -401,6 +401,9 @@ class DashboardController {
 					contestMessages[index].winner = true
 					contestMessages[index].save(flush:true)
 					
+					// Notify the winners and send them the message
+					gateOut.sendMessage(contestMessages[index].phoneNumber, params.body)
+										
 					if (breakCount > 1) {
 						contestMessages.remove(index)
 						winnersSB.append(", ")
@@ -634,6 +637,16 @@ class DashboardController {
 			 keywords =  Keyword.findAll("from Keyword as k where k.userID=? order by k.dateEff DESC",
 				[session.userID], [max: 10, offset: offset])
 		}
+		
+		// Expire keywords that are expired
+		for (Keyword keyword : keywords) {
+			Date todaysDate = new Date()
+			if ((todaysDate < keyword.dateEff) || ((keyword.dateExp <= todaysDate) && keyword.endless == false) && keyword.suspened == false) {
+				// Keyword is expired
+				keyword.suspened = true
+				keyword.save(flush:true)
+			}		
+		}
 
 		if (keywords.size > 0) {
 			return keywords
@@ -806,7 +819,7 @@ class DashboardController {
 				if (!Keyword.findByKeywordAndUserID(params.keyword.toString().trim(),session["userID"])) {
 					Keyword keyword = new Keyword()
 					
-					keyword.keyword = params.keyword.toString().trim()
+					keyword.keyword = params.keyword.toString().toLowerCase().trim()
 					keyword.description = params.desc.toString().trim()
 					keyword.dateCreated = new Date()
 					keyword.suspened = false
@@ -884,9 +897,13 @@ class DashboardController {
 		keyword.save(flush:true)
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-		
-		redirect(controller: "Dashboard", action: "confirmation", params: [conType: "reactivateKeyword", keyword: keyword.keyword, promotionID: params.promotionID, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
-		
+		Date todaysDate = new Date();
+		if (keyword.dateExp > todaysDate) {
+			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "reactivateKeyword", keyword: keyword.keyword, promotionID: params.promotionID, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
+		} else {
+			// Can't reactivate an expired keyword
+			displayUserError("Cant Reactivate", "You can't reactivate an expired keyword. This keyword expired on " + formatter.format(keyword.dateExp).toString() + ". Create a new keyword or delete this one.", "Home")		
+		}
 	}
 	
 	def proccessTxtSend() {

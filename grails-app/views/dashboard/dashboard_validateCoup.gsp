@@ -288,9 +288,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <input  name = "coupCode"  id  = "coupCode" type="text" class="form-control" placeholder="Required">
                       </div>
                     </div>
+                    
+                    <hr>
+                    
+                   <span class="fa fa-check"> </span> Redeeming a valid coupon code will automatily set the recipients code to ineligible, unless the keyword allows for 
+                    multiple uses.
                   
-	
-                  
+   
                   </div><!-- /.box-body -->
                   <div class="box-footer">
                    <button  onClick = "return validateMainForm()" class="btn btn-info pull-right" id = "submitBtn" value = "Send"  action = "validateCoup">Validate</button>	

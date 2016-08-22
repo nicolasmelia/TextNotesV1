@@ -109,8 +109,8 @@ if(true && (keywordCount > 0 || offset > 0)) {
 printHtmlPart(42)
 if(true && (keywords != 'NONE')) {
 printHtmlPart(43)
-for( _it114499348 in (keywords) ) {
-changeItVariable(_it114499348)
+for( _it1324552737 in (keywords) ) {
+changeItVariable(_it1324552737)
 printHtmlPart(44)
 if(true && (type == 'All')) {
 printHtmlPart(45)
@@ -119,107 +119,136 @@ printHtmlPart(46)
 }
 printHtmlPart(47)
 if(true && (type == 'contestSelect')) {
-printHtmlPart(45)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'contestSelect', params: [promotionID:it.promotionID]))
 printHtmlPart(48)
-}
+if(true && (it.winners == null && it.suspened == false)) {
 printHtmlPart(49)
-expressionOut.print(it.keyword)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'contestSelect', params: [promotionID:it.promotionID]))
 printHtmlPart(50)
-if(true && (it.campaignType == 'con')) {
-printHtmlPart(51)
 }
-else if(true && (it.campaignType == 'cust')) {
+else {
+printHtmlPart(51)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:it.promotionID]))
 printHtmlPart(52)
 }
-else if(true && (it.campaignType == 'coup')) {
 printHtmlPart(53)
 }
-else {
 printHtmlPart(54)
-}
+expressionOut.print(it.keyword)
 printHtmlPart(55)
-invokeTag('formatDate','g',337,['format':("MM-dd-yyyy"),'date':(it.dateEff)],-1)
+if(true && (it.campaignType == 'con')) {
 printHtmlPart(56)
-if(true && (it.endless)) {
+}
+else if(true && (it.campaignType == 'cust')) {
 printHtmlPart(57)
 }
-else {
+else if(true && (it.campaignType == 'coup')) {
 printHtmlPart(58)
-invokeTag('formatDate','g',344,['format':("MM-dd-yyyy"),'date':(it.dateExp)],-1)
+}
+else {
 printHtmlPart(59)
 }
 printHtmlPart(60)
-if(true && (it.description)) {
+invokeTag('formatDate','g',345,['format':("MM-dd-yyyy"),'date':(it.dateEff)],-1)
 printHtmlPart(61)
-expressionOut.print(it.description)
+if(true && (it.endless)) {
 printHtmlPart(62)
 }
 else {
 printHtmlPart(63)
-}
+invokeTag('formatDate','g',352,['format':("MM-dd-yyyy"),'date':(it.dateExp)],-1)
 printHtmlPart(64)
-expressionOut.print(it.replys)
-printHtmlPart(65)
-if(true && (it.suspened)) {
-printHtmlPart(66)
 }
-else {
+printHtmlPart(65)
+if(true && (it.description)) {
+printHtmlPart(66)
+expressionOut.print(it.description)
 printHtmlPart(67)
 }
+else {
 printHtmlPart(68)
 }
 printHtmlPart(69)
-}
-else {
+expressionOut.print(it.replys)
 printHtmlPart(70)
-}
+if(true && (it.suspened == true)) {
 printHtmlPart(71)
 }
 else {
 printHtmlPart(72)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'newKeyWord'))
+}
 printHtmlPart(73)
 }
 printHtmlPart(74)
-if(true && (offset > 0)) {
-printHtmlPart(75)
-createClosureForHtmlPart(76, 3)
-invokeTag('link','g',409,['action':("keywords"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(77)
 }
 else {
+printHtmlPart(75)
+}
+printHtmlPart(76)
+}
+else {
+printHtmlPart(77)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newKeyWord'))
 printHtmlPart(78)
 }
 printHtmlPart(79)
-if(true && (offset <= keywordCount)) {
+if(true && (offset > 0)) {
 printHtmlPart(80)
-createClosureForHtmlPart(81, 3)
-invokeTag('link','g',416,['action':("keywords"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(82)
-}
-else {
+if(true && (type == 'contestSelect')) {
+printHtmlPart(81)
+createClosureForHtmlPart(82, 4)
+invokeTag('link','g',419,['action':("keywords"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden, type:'contestSelect']),'type':("button"),'class':("btn btn-default")],4)
 printHtmlPart(83)
 }
+else {
 printHtmlPart(84)
-expressionOut.print(currentPage)
+createClosureForHtmlPart(82, 4)
+invokeTag('link','g',422,['action':("keywords"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],4)
+printHtmlPart(83)
+}
 printHtmlPart(85)
-invokeTag('javascript','g',516,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+}
+else {
 printHtmlPart(86)
-invokeTag('javascript','g',519,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+}
 printHtmlPart(87)
-invokeTag('javascript','g',522,['src':("dashboard/app.min.js")],-1)
+if(true && (offset <= keywordCount)) {
 printHtmlPart(88)
-})
-invokeTag('captureBody','sitemesh',530,['class':("hold-transition skin-purple sidebar-mini")],1)
+if(true && (type == 'contestSelect')) {
 printHtmlPart(89)
+createClosureForHtmlPart(90, 4)
+invokeTag('link','g',435,['action':("keywords"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden, type:'contestSelect']),'type':("button"),'class':("btn btn-default")],4)
+printHtmlPart(83)
+}
+else {
+printHtmlPart(91)
+createClosureForHtmlPart(90, 4)
+invokeTag('link','g',438,['action':("keywords"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],4)
+printHtmlPart(83)
+}
+printHtmlPart(92)
+}
+else {
+printHtmlPart(93)
+}
+printHtmlPart(94)
+expressionOut.print(currentPage)
+printHtmlPart(95)
+invokeTag('javascript','g',540,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(96)
+invokeTag('javascript','g',543,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(97)
+invokeTag('javascript','g',546,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(98)
+})
+invokeTag('captureBody','sitemesh',554,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(99)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1471049047676L
+public static final long LAST_MODIFIED = 1471832950556L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

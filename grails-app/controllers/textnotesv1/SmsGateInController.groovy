@@ -66,7 +66,7 @@ class SmsGateInController {
 			keyword.save(save:true)
 			
 			Date todaysDate = new Date()
-			if ((todaysDate >= keyword.dateEff) && ((keyword.dateExp >= todaysDate) || keyword.endless == true)) {
+			if ((todaysDate >= keyword.dateEff) && ((keyword.dateExp >= todaysDate) && keyword.suspened == false || keyword.endless == true)) {
 
 				sendMessage(from, keyword.responceText)
 				

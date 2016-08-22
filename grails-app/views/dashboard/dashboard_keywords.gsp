@@ -315,7 +315,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
        				 	<g:if test="${type == 'contestSelect'}">	
        				
   				 	
-	       				 	 <g:if test="${it.winners == null}">			 	
+	       				 	 <g:if test="${it.winners == null && it.suspened == false}">			 	
 	       				 		<tr  onclick="document.location = '${createLink(controller: 'Dashboard', action: 'contestSelect', params: [promotionID:it.promotionID])}';" class = "pointer" >					 			
 							</g:if>
 	       				 	 <g:else>		
@@ -366,7 +366,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							
 							
 
-	                        <g:if test="${it.suspened}">
+	                        <g:if test="${it.suspened == true}">
 								<td style = "color: red;">No</td>
 							</g:if>
 							<g:else>
@@ -414,14 +414,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
                         <div class="btn-group" style = "margin: 0px 0px 10px 10px; " >
                       <g:if test="${offset > 0}">	  
-	                        <g:link  action="dashboard" action = "keywords"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
+                      
+      						  <g:if test="${type == 'contestSelect'}">	
+	                       			 <g:link  action="dashboard" action = "keywords"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden, type:'contestSelect']"  type="button" class="btn btn-default">Back</g:link>
+                        	  </g:if>
+                        	  <g:else>
+	                       			 <g:link  action="dashboard" action = "keywords"  params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Back</g:link>
+                        	  </g:else>
+                      
+                       	
                        	</g:if>
                        	<g:else>
                        	   <button disabled  type="button" class="btn btn-default">Back</button>                 	
                        	</g:else>
                         
                         	<g:if test="${offset <= keywordCount}">	
-                        		<g:link  action="dashboard" action = "keywords"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
+                        	
+                        	
+      						  <g:if test="${type == 'contestSelect'}">	
+                        			<g:link  action="dashboard" action = "keywords"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden, type:'contestSelect']"  type="button" class="btn btn-default">Next</g:link>
+                        	  </g:if>
+                        	  <g:else>
+                        			<g:link  action="dashboard" action = "keywords"  params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]"  type="button" class="btn btn-default">Next</g:link>
+                        	  </g:else>
+
                         	</g:if>
                         	<g:else>
                         		<button disabled  type="button" class="btn btn-default">Next</button>

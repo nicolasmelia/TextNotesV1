@@ -341,7 +341,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <hr>
                     
                    Randomly selecting winners will end the contest and receipts will no longer be able to text in this keyword.
-                   Receipts will be notifed immediately after submiting the above form. 
+                   Winning receipts will be notifed immediately after submiting the above form. 
                     
                   
 	

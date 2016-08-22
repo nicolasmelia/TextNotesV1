@@ -89,7 +89,7 @@ class SmsGateOutController {
 		}
 	}
 	
-	def sendMessage(String number, String message) {
+	public boolean sendMessage(String number, String message) {
 		/* Find your sid and token at twilio.com/user/account */
 		String ACCOUNT_SID = "AC37b4c98359cd408db79405a07a46cb65";
 		String AUTH_TOKEN = "7d7d0d2d95fa8d535ab844ef1f081ec2"

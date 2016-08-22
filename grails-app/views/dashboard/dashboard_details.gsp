@@ -553,7 +553,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <td>Date Effective</td>
                       <td>
                       
-                      <g:formatDate format="MM-dd-yyyy" date="${keyword.dateExp}"/> - 
+                      <g:formatDate format="MM-dd-yyyy" date="${keyword.dateEff}"/> - 
                       
 	                         <g:if test="${keyword.endless}">
 	                          Endless
