@@ -3,7 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html>
+<html style = "min-width: 450px;">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" fcontent="IE=edge">
@@ -72,6 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Menu toggle button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
+                  <span class="label label-success">${notiCount}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <li class="header">Keyword Inbox (Recent)</li>
@@ -103,6 +104,46 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <li class="footer"> <a href="${createLink(controller: 'Dashboard', action: 'keywordInbox')}">View all</a></li>
                 </ul>
               </li>   
+              
+              
+
+
+              <!-- User Account Menu -->
+              <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <!-- The user image in the navbar-->
+                  <i class="fa fa-question-circle"></i>
+                  <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                  <span class="hidden-xs">Help</span>
+                </a>
+                <ul  class="dropdown-menu">
+                  <!-- The user image in the menu -->
+                  <li style = "height: 90px;"class="user-header">
+                    <p>
+                      Help? Give us a call. <br>
+                      (330) 540-8023
+                    </p>
+                  </li>
+                  <!-- Menu Body -->
+                  <li class="user-body">
+                    <div class="col-xs-4 text-center">
+                      <a href="${createLink(controller: 'dashboard')}">Home</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="${createLink(controller: 'tips')}">Tips</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="${createLink(controller: 'help')}">Help</a>
+                    </div>
+                  </li>
+                  <!-- Menu Footer-->
+
+                </ul>
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+              
+              
 
               <!-- User Account Menu -->
               <li class="dropdown user user-menu">
@@ -111,7 +152,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <!-- The user image in the navbar-->
                   <img src="${resource(dir: 'images', file: 'dashboard/default_avatar.png')}" class="user-image" alt="User Image">
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                  <span class="hidden-xs">${session.firstName} ${session.lastName}</span>
+                  <span class="hidden-xs">My Account</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
@@ -122,22 +163,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <small>Member since <g:formatDate format="yyyy" date="${session.signUpDate}"/></small>
                     </p>
                   </li>
-                  <!-- Menu Body -->
-                  <li class="user-body">
-                    <div class="col-xs-4 text-center">
-                      <a href="${createLink(controller: 'Home')}">Home</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Blog</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Help</a>
-                    </div>
-                  </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
                     <!--  <a href="#" class="btn btn-default btn-flat">Profile</a> -->
+                    </div>    
+                    <div class="pull-left">
+                      <a href="${createLink(controller: 'login', action: 'userSettings')}" class="btn btn-default btn-flat">Settings</a>
                     </div>
                     <div class="pull-right">
                       <a href="${createLink(controller: 'login', action: 'logout')}" class="btn btn-default btn-flat">Sign out</a>
@@ -146,9 +178,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </ul>
               </li>
               <!-- Control Sidebar Toggle Button -->
-              <li>
-                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-              </li>
+
             </ul>
           </div>
         </nav>
@@ -172,11 +202,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           
           <!-- search form (Optional) -->
-           <g:form   controller="Dashboard" action="dashboard" enctype="multipart/form-data" class="sidebar-form">           
+           <g:form   controller="Dashboard" action="contacts" enctype="multipart/form-data" class="sidebar-form">           
             <div class="input-group">
               <input type="text" name = "searchQuery"  class="form-control" placeholder="Search Contacts...">
               <span class="input-group-btn">
-              <button action="dashboard" name="search" id="search-btn" class="btn btn-flat" ><i class="fa fa-search"></i></button>
+              <button action="contacts" name="search" id="search-btn" class="btn btn-flat" ><i class="fa fa-search"></i></button>
               </span>
             </div>
             </g:form> 
@@ -185,7 +215,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
-            <li class="header">Tools</li>
+            <li class="header">Menu</li>
             <!-- Optionally, you can add icons to the links -->
             
            <li class = "active">
@@ -224,6 +254,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="treeview-menu">
                 <li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}">Compose Text</a></li>
                 <li><a href="${createLink(controller: 'Dashboard', action: 'secheduledTxt')}">Secheduled Text</a></li>
+                
+                <li>
+                  <a href="#">Quick Tools (External) <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">                                    
+                <li> <a href="${createLink(controller: 'tips')}">TxtWolf Tips</a></li> 
+                <li><a href="http://www.dictionary.com/" target="_blank">Dictionary</a></li>
+                <li><a href="http://www.thesaurus.com/" target="_blank">Thesaurus</a></li>             
+                <li><a href="https://goo.gl/" target="_blank">Google Link Shortner</a></li>
+                <li><a href="https://maps.google.com" target="_blank">Google Maps</a></li>
+                <li><a href="https://wordcounter.net/" target="_blank">Word Counter</a></li>
+				</ul></li>                
+                
               </ul>
             </li>
        
@@ -244,6 +286,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="treeview-menu">
                 <li><a href="${createLink(controller: 'Dashboard', action: 'balance')}">My Balance</a></li>
                 <li><a href="${createLink(controller: 'Dashboard', action: 'history')}">My Activity</a></li>
+                <li><a href="${createLink(controller: 'Dashboard', action: 'account')}">My Account</a></li>            
               </ul>
             </li>
             
@@ -274,7 +317,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <g:if test="${clientCount == 0}">	
          <div class="callout callout-info" style="margin-bottom: 10px!important;">
             <h4><i class="fa fa-paw"></i> Getting Started!</h4>
-            It looks like you dont have any contacts yet. Start reaching nore people by adding clients below! It's easy as that.
+            It looks like you dont have any contacts yet. Start reaching more people by adding clients below! It's easy as that.
         </div>
         
         </g:if>       
@@ -284,12 +327,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-aqua">
-                <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Text</h3>
-                  <p>Compose a text</p>
+     
+                <div class="inner" style = "padding-bottom: 20px; min-height: 145px;">
+                  <h3 style = "font-size: 30px;" ><span  class="fa fa-envelope-o" > </span> Compose</h3>
+                  <p style = "">Compose and send text messages to your groups or single subscribers in two easy steps.</p>
                 </div>
-                <div class="icon" >
-                  <i class="fa fa-envelope-o" style = " font-size: 0.85em;"></i>
+                <div class="icon">
+                  <i class="fa fa-" style = " font-size: 0.8em;"></i>
                 </div>
                 <a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="small-box-footer">Send Now <i class="fa fa-arrow-circle-right"> </i></a>
               </div>
@@ -297,14 +341,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Contacts</h3>
-                  <p>Full List</p>
+              <div class="small-box bg-yellow"    >
+                <div class="inner" style = "padding-bottom: 20px; min-height: 145px;">
+                  <h3 style = "font-size: 30px;" ><span  class="fa fa-users" > </span> Contacts</h3>
+                  <p>Add, view and manage your lists of opted-in subscribers with just a few clicks.</p>
                 </div>
-                <div class="icon">
-                  <i class="fa fa-users" style = " font-size: 0.8em;"></i>
-                </div>
+
                 <a href="${createLink(controller: 'Dashboard', action: 'contacts')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"> </i></a>
               </div>
             </div><!-- ./col -->
@@ -312,14 +354,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-red">
-                <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Keywords</h3>
-                  <p>Inbox and Keywords</p>
+                <div class="inner" style = "padding-bottom: 20px; min-height: 145px;">
+                  <h3 style = "font-size: 30px;" ><span  class="fa fa-inbox" > </span> Inbox</h3>
+                  <p>Check out which of your subscribers have replied to your messages or sent in your Keywords.</p>
                   
                 </div>
-                <div class="icon">
-                  <i class="fa fa-inbox" style = " font-size: 0.85em;" ></i>
-                </div>
+
                 <a href="${createLink(controller: 'Dashboard', action: 'keywords')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"> </i></a>
               </div>
             </div><!-- ./col -->
@@ -327,14 +367,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-green">
-                <div class="inner" style = "padding-bottom: 20px;">
-                  <h3 style = "font-size: 30px;" >Balance</h3>
-                  <p>Your Balance</p>
+                <div class="inner" style = "padding-bottom: 20px; min-height: 145px;">
+                  <h3 style = "font-size: 30px;" ><span  class="fa fa-balance-scale" > </span> Balance</h3>
+                  <p>View your ramining balance, your subscription or upgrade to an afforadble All-In-One plan.</p>
                 </div>
-                <div class="icon">
-                  <i class="fa fa-balance-scale" style = " font-size: 0.8em;"></i>
-                </div>
-                <a  href="${createLink(controller: 'Dashboard', action: 'balance')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+
+                <a  href="${createLink(controller: 'Dashboard', action: 'balance')}"  style = "" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
 
@@ -345,7 +383,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Main row -->
         
         
-        
+                  <div class="callout callout-info">
+                  
+                  <h4 style = "font-size: 23px; margin: 0px;"> <span class = "fa fa-phone-square"></span> Your Keyword Number </h4>
+                  
+                  <p style = "font-size: 20px; margin: 0px;"> <a href = "#">(330) 540-8023 </a></p>
+                    	 
+                    	 
+                  </div>   
         
            
          <input  id = 'searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
@@ -355,7 +400,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="row">
             <div class="col-xs-12">       
               <div class="box">
-                <div class="box-header">      
+                <div class="box-header">   
+                
+                
+
          
         <h3 style = "margin: 10px 0px 0px 0px" >Recent Contacts</h3> 
                        
@@ -494,81 +542,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
       </footer>
 
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-          <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <!-- Home tab content -->
-          <div class="tab-pane active" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Recent Activity</h3>
-            <ul class="control-sidebar-menu">
-            
-          <g:if test="${history != 'NONE'}">						 			
-            
-          <g:each in="${history}">
-              <li>
-              
-	        <g:if test="${it.type != 'Message'}" >
-	       		<a href = "${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'History',  historyID: it.historyID])}">
-	         </g:if>  
-	          <g:else>
-	          <a href = "${createLink(controller: 'Dashboard', action: 'details', params: [conType: it.type, messageID: it.hashOne])}">
-	         </g:else>
-
-                  <i class="menu-icon fa fa-clock-o bg-blue"></i>
-                  <div class="menu-info">
-                    <h4 class="control-sidebar-subheading"><g:formatDate format="MM-dd-yyyy" date="${it.date}"/></h4>
-                    <p>${it.description}</p>
-                  </div>
-                </a>
-              </li>   
-			</g:each>
-			</g:if>
-			<g:else>
-              <li>
-                <a href = "${createLink(controller: 'Dashboard', action: 'history')}">
-                  <i class="menu-icon fa fa-clock-o bg-blue"></i>
-                  <div class="menu-info">
-                    <h4 class="control-sidebar-subheading">Nothing here yet.</h4>
-                    <p>Get started!</p>
-                  </div>
-                </a>
-              </li>  
-			</g:else>
-            
-
-              
-            </ul><!-- /.control-sidebar-menu -->
-
-
-          </div><!-- /.tab-pane -->
-          <!-- Stats tab content -->
-          <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
-          <!-- Settings tab content -->
-          <div class="tab-pane" id="control-sidebar-settings-tab">
-            <form method="post">
-              <h3 class="control-sidebar-heading">General Settings</h3>
-              <div class="form-group">
-                <label class="control-sidebar-subheading">
-                  Report panel usage
-                  <input type="checkbox" class="pull-right" checked disabled>
-                </label>
-                <p>
-                  This panel gauges usage for today, as well as the total daily text quota across all users, groups and affiliates.
-                </p>
-              </div><!-- /.form-group -->
-            </form>
-          </div><!-- /.tab-pane -->
-        </div>
-      </aside><!-- /.control-sidebar -->
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
-      <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
     
 

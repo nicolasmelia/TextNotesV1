@@ -574,8 +574,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		
 	});
 
-  // campaignSelected
-
   $("[data-mask]").inputmask();
 
 
@@ -609,9 +607,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			"from the 'My Contest' page under the keyword menu.");   
 			$("#couponChkBox").css("display","none")
 			break;
-		};
-		  
-	  
+		};  
 	});
 
   function validateMainForm() {		  
@@ -641,6 +637,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			error = true;
 			errors.push("Responce can only be up to 200 characters.");			
 		}
+
+	  //	keywordAvalCheck()
 
 		if (error){
 			for (i = 0; i < errors.length; i++) { 
@@ -720,6 +718,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   $('#responceText').keydown(updateCount);
   $('#responceText').keyup(updateCount);
+  
   
   function updateCount() {
       var cs = $("#responceText").val().length;

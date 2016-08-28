@@ -39,7 +39,7 @@ class DashboardController {
 		}
 			
 		if (session["userID"]) {		
-			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), keywordsIn: getKeywordInboxList(0, 5, null), history: getHistoryList(0),  offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery, true)])		 
+			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery, true)])		 
 		} else {
 			redirect(controller: "Home")
 		}
@@ -120,9 +120,9 @@ class DashboardController {
 			searchQuery = params.searchQuery
 			isSearch = true
 		}
-
-	if (session["userID"]) {
-			render(view:"dashboard_keyword_inbox",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, messages: getKeywordInboxList(offset, 10, searchQuery)])
+		
+		if (session["userID"]) {
+			render(view:"dashboard_keyword_inbox",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, messages: getKeywordInboxList(offset, 10, searchQuery, false)])
 	   } else {
 		   redirect(controller: "Home")
 	   }
@@ -370,10 +370,8 @@ class DashboardController {
 			} else {
 				// Coupon code does not exist
 					displayUserError("Code Not Found","This coupon code does not exist, please go back and try again.", "Coupon-None");
-			}
-		
+			}		
 		}
-
 	}
 	
 	def contestSelect () {		
@@ -594,11 +592,20 @@ class DashboardController {
 		}
 	}
 	
-	def getKeywordInboxList(offset, max, search){
+	def getKeywordInboxList(offset, max, search, notifacation){
 		def Messages
 		if (search == null) {
-			Messages =  MessageIn.findAll("from MessageIn as m where m.userID=? order by m.date DESC",
-					 [session.userID], [max: max, offset: offset])
+			if (notifacation == false) {
+				Messages =  MessageIn.findAll("from MessageIn as m where m.userID=? order by m.date DESC",
+						 [session.userID], [max: max, offset: offset])	
+				
+				// Getting all keywords, set noti count to 0
+				resetNotificationCount();
+						
+			} else {
+				Messages =  MessageIn.findAll("from MessageIn as m where viewed = false and m.userID=? order by m.date DESC",
+					[session.userID], [max: max, offset: offset])
+			}
 		} else {
 			Messages = searchMessageIn(search, offset)
 		}
@@ -868,6 +875,15 @@ class DashboardController {
 		}	
 	}
 	
+	def keywordAvalCheck(){
+		Keyword keyword = Keyword.findByKeyword(params.keyword)
+		if (keyword == null) {
+			render "true"		
+		} else {
+			render "false"
+		}
+	}
+	
 
 	def suspendKeyword() {
 		Keyword keyword = Keyword.findByPromotionID(params.promotionID)
@@ -889,7 +905,6 @@ class DashboardController {
 		}		
 	}
 	
-	
 	def reactivateKeyword() {
 		Keyword keyword = Keyword.findByPromotionID(params.promotionID)
 		keyword.suspened = false
@@ -905,6 +920,23 @@ class DashboardController {
 			displayUserError("Cant Reactivate", "You can't reactivate an expired keyword. This keyword expired on " + formatter.format(keyword.dateExp).toString() + ". Create a new keyword or delete this one.", "Home")		
 		}
 	}
+	
+	
+	def resetNotificationCount() {
+		Notification noti = Notification.findByNotiTypeAndUserID("keywordNoti",session["userID"])
+		
+		if (noti.incrementCount > 0) {
+			
+			 MessageIn.executeUpdate("UPDATE MessageIn SET viewed = true WHERE userID = ? AND viewed = false", session["userID"])
+		
+			 }
+		
+		noti.incrementCount = 0
+		noti.lastIncrementDate = new Date()
+		noti.save(flush:true)
+				
+	}
+	
 	
 	def proccessTxtSend() {
 		render params.tags
@@ -938,6 +970,11 @@ class DashboardController {
 	def getUserAccountInfo(){
 		UserAccountInfo accountInfo = UserAccountInfo.findByUserID(session["userID"])
 		return accountInfo
+	}
+	
+	def getNotificationCount(){
+		Notification noti = Notification.findByUserIDAndNotiType(session["userID"], "keywordNoti")
+		return noti.incrementCount
 	}
 	
 	String createHistoryLog(String description, String type, String phoneNumber) {

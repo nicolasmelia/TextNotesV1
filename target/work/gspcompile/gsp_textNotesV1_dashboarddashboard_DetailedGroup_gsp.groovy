@@ -118,8 +118,8 @@ if(true && (clientCount || contacts != 'NONE' || offset > 0)) {
 printHtmlPart(46)
 if(true && (contacts != 'NONE')) {
 printHtmlPart(47)
-for( _it73254846 in (contacts) ) {
-changeItVariable(_it73254846)
+for( _it1674824156 in (contacts) ) {
+changeItVariable(_it1674824156)
 printHtmlPart(48)
 expressionOut.print(it.firstName)
 printHtmlPart(14)
@@ -205,8 +205,8 @@ expressionOut.print(currentPage)
 printHtmlPart(83)
 if(true && (contacts && contacts != 'NONE')) {
 printHtmlPart(84)
-for( _it759536602 in (contacts) ) {
-changeItVariable(_it759536602)
+for( _it60924092 in (contacts) ) {
+changeItVariable(_it60924092)
 printHtmlPart(85)
 expressionOut.print(it.contactID)
 printHtmlPart(86)
@@ -242,7 +242,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1469928799926L
+public static final long LAST_MODIFIED = 1472264499255L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -128,8 +128,27 @@
 				$("#attachedRecipientsCount").html(result);
 				$("#attachedRecipientsCountTwo").html(result);			
 				$("#recipCount").val(result) // Set the value to be returned to the server
-		  });
-		
-		  
+		  });  
+	}
+	
+	function keywordAvalCheck(url){		
+		$.ajax({
+		    url: url,
+		    type: "post",
+		    async: true,
+		    data: {tags : tags},
+		  }).done(function(result){
+				if (result == "true") {
+					
+					
+				} else if (result == "false") {
+					
+					
+				} else {
+					// No result					
+				}
+			  
+			  
+		  });  
 	}
 		  

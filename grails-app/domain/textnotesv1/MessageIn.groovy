@@ -16,12 +16,14 @@ class MessageIn {
 	// For contest Keywords
 	Date dateWon
 	boolean winner
-		
+	boolean viewed
 	boolean deleted
 
 	static constraints = {
 		image(nullable:true, maxSize: 1024 * 1024 * 5 /* 5MB */)
 		keyword(nullable:true)	
+		viewed(nullable:true)
+		
 		promotionID(nullable:true)
 		dateWon(nullable:true)
 		winner(nullable:true)	

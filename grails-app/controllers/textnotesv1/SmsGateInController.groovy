@@ -32,8 +32,7 @@ class SmsGateInController {
     def index() { 
 		render "TEST"	
 	}
-	
-	
+		
 	def gateIn(){	
 		boolean messageSuccess = false
 		String from = params.From.toString()
@@ -59,11 +58,15 @@ class SmsGateInController {
 			MI.keyword = keyword.keyword
 			MI.promotionID = keyword.promotionID
 			MI.deleted = false
+			MI.viewed = false
 			MI.date = new Date()
 			MI.save(flush:true);
 			
 			keyword.replys = new Integer(keyword.replys.intValue() + 1);
 			keyword.save(flush:true)
+			
+			// Increment the counter
+			incrementNoti(keyword)
 			
 			Date todaysDate = new Date()
 			if ((todaysDate >= keyword.dateEff) && ((keyword.dateExp >= todaysDate) && keyword.suspened == false || keyword.endless == true)) {
@@ -105,10 +108,10 @@ class SmsGateInController {
 			}
 
 			} else {
-				messageSuccess = sendMessage(from, "It look likes this keyword (" + keyword.keyword + ") is currently not active. This service is Powered by TxtWolf.com!")	
+				messageSuccess = sendMessage(from, "It look likes this keyword (" + keyword.keyword + ") is currently not active. This service is powered by TxtWolf.com!")	
 			}
 		} else {
-				messageSuccess = sendMessage(from, "It look likes this keyword (" + keyword.keyword + ") does not exist. Please try again! This service is Powered by TxtWolf.com!")
+				messageSuccess = sendMessage(from, "It look likes this keyword (" + params.Body.toString().toLowerCase().trim() + ") does not exist. Please try again! This service is powered by TxtWolf.com!")
 		}
 
 		if (messageSuccess){
@@ -144,6 +147,13 @@ class SmsGateInController {
 			return false
 		}
 		
+	}
+	
+	public void incrementNoti(Keyword keyword) {
+		Notification noti = Notification.findByNotiTypeAndUserID("keywordNoti",keyword.userID)
+			noti.incrementCount = noti.incrementCount + 1
+			noti.lastIncrementDate = new Date()
+			noti.save(flush:true)	
 	}
 
 

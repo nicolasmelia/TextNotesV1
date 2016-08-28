@@ -252,21 +252,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
          <input  id = 'searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
          <input  id = 'offset' type="hidden" value="${offset}">
          <input  id = 'clientCount' type="hidden" value="${clientCount}">
-                          
+                       
+
           <div class="row">
             <div class="col-xs-12">       
               <div class="box">
-                <div class="box-header">      
+                <div class="box-header"> 
+                  
+                  <a href = "${createLink(controller: 'Dashboard', action: 'newContact')}"><b> <span class = "fa fa-plus-square"></span> New Contact</b></a>
+                   
                  <g:form id = "searchForm" controller="Dashboard" action="dashboard" enctype="multipart/form-data" >
                 <div class="input-group margin" style = "width: 250px; margin: 10px 0px 0px 0px;">
                 
                     <input id = "seachQueryInput" name = "searchQuery" placeholder="Name, address..." type="text" class="form-control">
                     <span class="input-group-btn">
-                      <g:actionSubmit  action="dashboard" class="btn btn-info btn-flat" type="button" value = "Search"></g:actionSubmit>             
+                      <g:actionSubmit  action="contacts" class="btn btn-info btn-flat" type="button" value = "Search"></g:actionSubmit>             
                     </span>   
                                      
                   </div><!-- /input-group -->   
               </g:form>
+              
                        
                 </div><!-- /.box-header -->
                 <div class="box-body">

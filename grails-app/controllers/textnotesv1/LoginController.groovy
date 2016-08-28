@@ -115,7 +115,15 @@ class LoginController {
 				balance.totalBalanceSpent = 0
 				balance.MonthlyBalanceOverage = 0
 				balance.save(flush:true)
-
+				
+				// Create the keyword notification
+				Notification noti = new Notification()
+				noti.notiType = "keywordNoti"
+				noti.incrementCount = 0
+				noti.userID = user.userID
+				noti.save(flush:true)
+				
+ 
 				if (params.rememberme) {
 					// Create a cookie for the user
 					response.setCookie('user', user.userID.toString(), 604800) // 1 week
