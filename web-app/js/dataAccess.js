@@ -117,8 +117,7 @@
 			}
 	}
 	
-	function getRecpCount(url, tags){
-		
+	function getRecpCount(url, tags){		
 		$.ajax({
 		    url: url,
 		    type: "post",
@@ -131,24 +130,26 @@
 		  });  
 	}
 	
-	function keywordAvalCheck(url){		
+	function keywordAvalCheck(url, keyword){			
 		$.ajax({
 		    url: url,
 		    type: "post",
 		    async: true,
-		    data: {tags : tags},
-		  }).done(function(result){
-				if (result == "true") {
-					
-					
-				} else if (result == "false") {
-					
-					
-				} else {
-					// No result					
-				}
-			  
-			  
+		    data: {keyword : keyword},
+		  }).done(function(result){					  
+			  setTimeout(function(){
+				  $('#keywordCheckModal').modal('hide');				  
+					if (result == "true") {
+						 if (validateMainForm(true)) {
+							 $('#submitBtn').click();	
+						 }
+					} else if (result == "false") {
+						validateMainForm(false)
+					} else {
+						// No result, huh?!		
+						return false
+					}						
+				}, 800);				
 		  });  
 	}
 		  

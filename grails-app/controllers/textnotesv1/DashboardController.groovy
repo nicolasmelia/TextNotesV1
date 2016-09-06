@@ -23,7 +23,7 @@ class DashboardController {
 		}
 		
 		// check to see if contacts exist
-		int clientCount = Contact.countByUserID(session.userID)
+		int clientCount = Contact.countByUserID(session["userID"])
 		
 		// Get searchInfo if any
 		def searchQuery
@@ -48,8 +48,8 @@ class DashboardController {
 	
 	def balance() {
 		if (session["userID"]) {
-			Balance balance = Balance.findByUserID(session["userID"])								
-			render(view:"dashboard_balance", model: [UAI: getUserAccountInfo(), bal:balance])		
+			Balance balance = Balance.findByUserID(session["userID"])	
+			render(view:"dashboard_balance", model: [UAI: getUserAccountInfo(), bal:balance, notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), number: getUserKeywordNum()])		
 	   } else {
 		   redirect(controller: "Home")
 	   }
@@ -69,7 +69,7 @@ class DashboardController {
 		}
 		
 		// check to see if contacts exist
-		int clientCount = Contact.countByUserID(session.userID)
+		int clientCount = Contact.countByUserID(session["userID"])
 		
 		// Get searchInfo if any
 		def searchQuery
@@ -85,7 +85,7 @@ class DashboardController {
 		}
 			
 		if (session["userID"]) {		
-			 render(view:"dashboard_contacts",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery, false)])		 
+			 render(view:"dashboard_contacts",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery, false)])		 
 		} else {
 			redirect(controller: "Home")
 		}
@@ -106,7 +106,7 @@ class DashboardController {
 		}
 		
 		// check to see if contacts exist
-		int clientCount = MessageIn.countByUserID(session.userID)
+		int clientCount = MessageIn.countByUserID(session["userID"])
 		
 		// Get searchInfo if any
 		def searchQuery
@@ -122,7 +122,7 @@ class DashboardController {
 		}
 		
 		if (session["userID"]) {
-			render(view:"dashboard_keyword_inbox",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, messages: getKeywordInboxList(offset, 10, searchQuery, false)])
+			render(view:"dashboard_keyword_inbox",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, messages: getKeywordInboxList(offset, 10, searchQuery, false)])
 	   } else {
 		   redirect(controller: "Home")
 	   }
@@ -143,7 +143,7 @@ class DashboardController {
 				
 				Balance bal = Balance.findByUserID(session["userID"])
 								
-				render(view:"dashboard_SendTxt", model: [UAI: getUserAccountInfo(), bal: bal, preClientName: preContactName, preClientID: preContactID, groups: getGroupList(0, true) ])
+				render(view:"dashboard_SendTxt", model: [UAI: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), bal: bal, preClientName: preContactName, preClientID: preContactID, groups: getGroupList(0, true) ])
 				
 		   } else {
 			   redirect(controller: "Home")
@@ -177,7 +177,7 @@ class DashboardController {
 	
 	def newContact() {
 			if (session["userID"]) {
-				render(view:"dashboard_addContact", model: [accountInfo: getUserAccountInfo()])	
+				render(view:"dashboard_addContact", model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true)])	
 		   } else {
 			   redirect(controller: "Home")
 		   }
@@ -190,7 +190,7 @@ class DashboardController {
 				if (!params.firstName) {
 					Contact contact = Contact.findByContactID(params.contactID)
 					if (contact) {   
-						render(view:"dashboard_editContact", model: [accountInfo: getUserAccountInfo(), contact: contact])
+						render(view:"dashboard_editContact", model: [accountInfo: getUserAccountInfo(), contact: contact,  notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true)])
 					} else {
 						render "uh oh and error"
 					}					
@@ -216,7 +216,7 @@ class DashboardController {
 					
 					
 					contact.save(flush:true)
-					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "editContact", name: contact.fullName.toString(), number: contact.phoneNumber.toString(), contactID: contact.contactID])
+					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "editContact", name: contact.fullName.toString(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), number: contact.phoneNumber.toString(), contactID: contact.contactID])
 	
 				}
 	
@@ -257,10 +257,10 @@ class DashboardController {
 			
 			createHistoryLog("Added " + contact.fullName + " to contact book", "Contact", null)
 			
-			redirect(controller: "Dashboard", action: "confirmation", params: [accountInfo: getUserAccountInfo(), conType: "AddContact", name: contact.firstName, contactID: contact.contactID])			
+			redirect(controller: "Dashboard", action: "confirmation", params: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), conType: "AddContact", name: contact.firstName, contactID: contact.contactID])			
 		} else {
 			// User exist with the same number and name under this usersID
-			redirect(controller: "Dashboard", action: "confirmation", params: [accountInfo: getUserAccountInfo(), conType: "FAILEDAddContact"])		
+			redirect(controller: "Dashboard", action: "confirmation", params: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), conType: "FAILEDAddContact"])		
 		}
 		
 	}
@@ -279,7 +279,7 @@ class DashboardController {
 		}
 		
 		// check to see if contacts exist
-		int groupCount = Groups.countByUserID(session.userID)
+		int groupCount = Groups.countByUserID(session["userID"])
 			
 		// Check if a user is being added to a group
 		boolean addToGroup = false
@@ -300,7 +300,7 @@ class DashboardController {
 		}
 					
 		if (session["userID"]) {
-			 render(view:"dashboard_groups",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, addToGroup: addToGroup, contactGroupAdd: contactGroupAdd, groupCount: groupCount, groups: getGroupList(offset, false)])
+			 render(view:"dashboard_groups",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), offset: offset, up: params.up, addToGroup: addToGroup, contactGroupAdd: contactGroupAdd, groupCount: groupCount, groups: getGroupList(offset, false)])
 		} else {
 			redirect(controller: "Home")
 		}
@@ -321,7 +321,7 @@ class DashboardController {
 		}
 		
 		// check to see if contacts exist
-		int keywordCount = Keyword.countByUserID(session.userID)
+		int keywordCount = Keyword.countByUserID(session["userID"])
 
 		// Get searchInfo if any
 		def searchQuery
@@ -335,9 +335,9 @@ class DashboardController {
 		
 		// Type of detail to display on the keywords page
 		String type = (params.type == null) ? "All" : params.type;
-		
+				
 		if (session["userID"]) {
-			 render(view:"dashboard_keywords",  model: [accountInfo: getUserAccountInfo(), dateNow: new Date(), type: type, offset: offset, up: params.up, keywordCount: keywordCount, keywords: getKeywordList(offset, type)])
+			 render(view:"dashboard_keywords",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), dateNow: new Date(), type: type, offset: offset, up: params.up, number:getUserKeywordNum(), keywordCount: keywordCount, keywords: getKeywordList(offset, type)])
 		} else {
 			redirect(controller: "Home")
 		}
@@ -359,11 +359,11 @@ class DashboardController {
 					String histID = createHistoryLog("Coupon Code " + coupon.couponCode + " redeemed on " + redeemDate +
 						" under keyword " + keyword.keyword + ". Redeemed for " + coupon.phoneNumber , "Coupon Code", coupon.phoneNumber)
 					History hist = History.findByHistoryID(histID)
-					render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), conType: "Coupon Code", hist: hist])
+					render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), conType: "Coupon Code", hist: hist])
 				} else {
 					// Coupon code has been used
 				
-					render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), conType: "Coupon Code Used", coupon: coupon ])
+					render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), conType: "Coupon Code Used", coupon: coupon ])
 
 				}
 
@@ -416,7 +416,7 @@ class DashboardController {
 			keyword.eligible = false
 			keyword.save(flush:true)
 			
-			render(view:"dashboard_conWinners",  model: [accountInfo: getUserAccountInfo(), winners: selectedNumbers, winnerCount: winnerCount, keyword: keyword])
+			render(view:"dashboard_conWinners",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), winners: selectedNumbers, winnerCount: winnerCount, keyword: keyword])
 
 		}
 	}
@@ -435,7 +435,7 @@ class DashboardController {
 		}
 		
 		// check to see if contacts exist
-		int groupCount = History.countByUserID(session.userID)
+		int groupCount = History.countByUserID(session["userID"])
 			
 		// Check if a user is being added to a group
 		boolean addToGroup = false
@@ -451,7 +451,7 @@ class DashboardController {
 		}
 		
 		if (session["userID"]) {
-			 render(view:"dashboard_history",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, addToGroup: addToGroup, groupCount: groupCount, history: getHistoryList(offset)])
+			 render(view:"dashboard_history",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), offset: offset, up: params.up, addToGroup: addToGroup, groupCount: groupCount, history: getHistoryList(offset)])
 		} else {
 			redirect(controller: "Home")
 		}
@@ -472,7 +472,7 @@ class DashboardController {
 		}
 		
 		// check to see if contacts exist
-		int clientCount = Contact.countByUserID(session.userID)
+		int clientCount = Contact.countByUserID(session["userID"])
 	
 		// Get searchInfo if any
 		def searchQuery
@@ -491,7 +491,7 @@ class DashboardController {
 		Groups group = Groups.findByGroupID(params.groupID)
 	
 		if (session["userID"]) {
-			 render(view:"dashboard_DetailedGroup",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch: isSearch, contacts: getContactListByGroup(offset, searchQuery, params.groupID), group: group])
+			 render(view:"dashboard_DetailedGroup",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch: isSearch, contacts: getContactListByGroup(offset, searchQuery, params.groupID), group: group])
 		} else {
 			redirect(controller: "Home")
 		}
@@ -501,7 +501,7 @@ class DashboardController {
 	def createGroup() {
 		if (session["userID"]) {			
 			if (!params.name) {
-				render(view:"dashboard_addGroup",  model: [accountInfo: getUserAccountInfo()])
+				render(view:"dashboard_addGroup",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true)])
 			} else {
 				Groups testGroup = Groups.findByGroupNameAndUserID(params.name, session["userID"]); 			
 				if (!testGroup) {
@@ -522,11 +522,11 @@ class DashboardController {
 					
 					createHistoryLog("Created group " + group.groupName, "Group", null)	
 					
-					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addGroup", groupID: group.groupID, name: group.groupName])
+					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addGroup", notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), groupID: group.groupID, name: group.groupName])
 					
 				} else {
 					//Group exist 
-					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "FAILEDaddGroup", groupID: testGroup.groupID, name: testGroup.groupName])	
+					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "FAILEDaddGroup", notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true),groupID: testGroup.groupID, name: testGroup.groupName])	
 				}
 			}		
 		} else {
@@ -558,9 +558,9 @@ class DashboardController {
 							
 				groupMember.save(flush:true)
 				
-				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContactToGroupSuccess", groupName: group.groupName, name: contact.fullName])		
+				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContactToGroupSuccess", notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), groupName: group.groupName, name: contact.fullName])		
 			} else {
-				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContactToGroupFail", groupName: group.groupName, name: contact.fullName])			
+				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContactToGroupFail", notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), groupName: group.groupName, name: contact.fullName])			
 			}
 			
 
@@ -576,10 +576,10 @@ class DashboardController {
 		if (search == null) {
 			if (!dateAdded) {
 			contacts =  Contact.findAll("from Contact as c where c.userID=? order by c.firstName",
-					 [session.userID], [max: 10, offset: offset])
+					 [session["userID"]], [max: 10, offset: offset])
 			} else if (dateAdded) {
 			contacts =  Contact.findAll("from Contact as c where c.userID=? order by c.addDate",
-				[session.userID], [max: 10, offset: offset])
+				[session["userID"]], [max: 10, offset: offset])
 			} 	
 		} else {
 			contacts = searchContact(search, offset)
@@ -597,14 +597,14 @@ class DashboardController {
 		if (search == null) {
 			if (notifacation == false) {
 				Messages =  MessageIn.findAll("from MessageIn as m where m.userID=? order by m.date DESC",
-						 [session.userID], [max: max, offset: offset])	
+						 [session["userID"]], [max: max, offset: offset])	
 				
 				// Getting all keywords, set noti count to 0
 				resetNotificationCount();
 						
 			} else {
-				Messages =  MessageIn.findAll("from MessageIn as m where viewed = false and m.userID=? order by m.date DESC",
-					[session.userID], [max: max, offset: offset])
+				Messages =  MessageIn.findAll("from MessageIn as m where viewed = FALSE and m.userID=? order by m.date DESC",
+					[session["userID"]], [max: max, offset: offset])
 			}
 		} else {
 			Messages = searchMessageIn(search, offset)
@@ -622,10 +622,10 @@ class DashboardController {
 		def groups;
 		if (!getAll) {
 			groups =  Groups.findAll("from Groups as g where g.userID=? order by g.groupName",
-					 [session.userID], [max: 10, offset: offset])
+					 [session["userID"]], [max: 10, offset: offset])
 		} else {
 			groups =  Groups.findAll("from Groups as g where g.userID=? order by g.groupName",
-			[session.userID], [max: 50])
+			[session["userID"]], [max: 50])
 		}
 		
 		if (groups.size > 0) {
@@ -639,10 +639,10 @@ class DashboardController {
 		def keywords
 		if (type == "contestSelect") {
 			keywords =  Keyword.findAll("from Keyword as k where k.userID=? AND k.campaignType = 'con' order by k.dateEff DESC",
-				[session.userID], [max: 10, offset: offset])	
+				[session["userID"]], [max: 10, offset: offset])	
 		} else {
 			 keywords =  Keyword.findAll("from Keyword as k where k.userID=? order by k.dateEff DESC",
-				[session.userID], [max: 10, offset: offset])
+				[session["userID"]], [max: 10, offset: offset])
 		}
 		
 		// Expire keywords that are expired
@@ -666,7 +666,7 @@ class DashboardController {
 		def history;
 		
 			history =  History.findAll("from History as h where h.userID=? order by h.date DESC",
-					 [session.userID], [max: 10, offset: offset])
+					 [session["userID"]], [max: 10, offset: offset])
 
 		
 		if (history.size > 0) {
@@ -736,12 +736,11 @@ class DashboardController {
 		}
 		
 		return message
-	}
-	
+	}	
 	
 	def confirmation() {				
 		 if (session["userID"]) {			 
-			 render(view:"dashboard_confirmation",  model: [accountInfo: getUserAccountInfo(), conType:  params.conType])		 
+			 render(view:"dashboard_confirmation",  model: [accountInfo: getUserAccountInfo(), number:getUserKeywordNum(), conType:  params.conType])		 
 		} else {
 			redirect(controller: "Home")
 		}
@@ -808,7 +807,7 @@ class DashboardController {
 			} else if (params.conType == "keyword") {
 			Keyword keyword = Keyword.findByPromotionID(params.promotionID)
 			
-			render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), keyword: keyword, conType:  params.conType])
+			render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), keyword: keyword, number:getUserKeywordNum(), conType:  params.conType])
 			
 			}	else {
 				render("Something went wrong. Please go back and try again.")
@@ -820,14 +819,20 @@ class DashboardController {
 	
 	def newKeyWord() {
 		if (session["userID"]) {
-			if (!params.keyword) {
-				render(view:"dashboard_addKeyword",  model: [accountInfo: getUserAccountInfo()])
+			if (!params.keyword) {				
+				render(view:"dashboard_addKeyword",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), number:getUserKeywordNum()])
 			} else {			
 				if (!Keyword.findByKeywordAndUserID(params.keyword.toString().trim(),session["userID"])) {
 					Keyword keyword = new Keyword()
 					
 					keyword.keyword = params.keyword.toString().toLowerCase().trim()
+					
+					if (params.desc != null) {
 					keyword.description = params.desc.toString().trim()
+					} else {
+					keyword.description = "None"
+					}
+					
 					keyword.dateCreated = new Date()
 					keyword.suspened = false
 					keyword.eligible = true
@@ -865,7 +870,7 @@ class DashboardController {
 						keyword.userID = session["userID"]					
 						keyword.promotionID = halfUUID					
 						keyword.save(flush:true)		
-						redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addKeyword", keyword: keyword.keyword,  promotionID: keyword.promotionID, endless: keyword.endless, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])	
+						redirect(controller: "Dashboard", action: "confirmation", params: [conType: "addKeyword", notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true),keyword: keyword.keyword,  promotionID: keyword.promotionID, endless: keyword.endless, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), number:getUserKeywordNum()])	
 				} else {
 					displayUserError("Keyword Exist", "Your keyword '" + params.keyword.toString().trim() + "' already exist. Think of a new keyword or delete the old one to re-create it.", "keyword");
 				}
@@ -884,7 +889,6 @@ class DashboardController {
 		}
 	}
 	
-
 	def suspendKeyword() {
 		Keyword keyword = Keyword.findByPromotionID(params.promotionID)
 		keyword.suspened = true
@@ -893,13 +897,13 @@ class DashboardController {
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		
-		redirect(controller: "Dashboard", action: "confirmation", params: [conType: "suspendKeyword", keyword: keyword.keyword, promotionID: params.promotionID, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
+		redirect(controller: "Dashboard", action: "confirmation", params: [conType: "suspendKeyword", notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), keyword: keyword.keyword, promotionID: params.promotionID, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
 		
 	}
 	
 	def displayUserError(header, body, button) {
 		if (session["userID"]) {			
-			render(view:"dashboard_userError",  model: [accountInfo: getUserAccountInfo(), header: header, body: body, button: button])
+			render(view:"dashboard_userError",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), header: header, body: body, button: button])
 		} else {
 			redirect(controller: "Home")
 		}		
@@ -914,7 +918,7 @@ class DashboardController {
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		Date todaysDate = new Date();
 		if (keyword.dateExp > todaysDate) {
-			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "reactivateKeyword", keyword: keyword.keyword, promotionID: params.promotionID, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
+			redirect(controller: "Dashboard", action: "confirmation", params: [conType: "reactivateKeyword", notiCount: getNotificationCount(), keywordsIn: getKeywordInboxList(0, 5, null, true), keyword: keyword.keyword, promotionID: params.promotionID, dateEff: formatter.format(keyword.dateEff), dateExp: formatter.format(keyword.dateExp), phoneNumber: session["phoneNumber"]])
 		} else {
 			// Can't reactivate an expired keyword
 			displayUserError("Cant Reactivate", "You can't reactivate an expired keyword. This keyword expired on " + formatter.format(keyword.dateExp).toString() + ". Create a new keyword or delete this one.", "Home")		
@@ -925,12 +929,12 @@ class DashboardController {
 	def resetNotificationCount() {
 		Notification noti = Notification.findByNotiTypeAndUserID("keywordNoti",session["userID"])
 		
-		if (noti.incrementCount > 0) {
-			
-			 MessageIn.executeUpdate("UPDATE MessageIn SET viewed = true WHERE userID = ? AND viewed = false", session["userID"])
-		
-			 }
-		
+			MessageIn MI = MessageIn.findByUserIDAndViewed(session["userID"], false)
+			for (MessageIn message : MI) {
+				message.viewed = true
+				message.save(flush:true)
+			}
+
 		noti.incrementCount = 0
 		noti.lastIncrementDate = new Date()
 		noti.save(flush:true)
@@ -970,6 +974,11 @@ class DashboardController {
 	def getUserAccountInfo(){
 		UserAccountInfo accountInfo = UserAccountInfo.findByUserID(session["userID"])
 		return accountInfo
+	}
+	
+	def getUserKeywordNum(){
+		PhoneNumber ph = PhoneNumber.findByAccountType('free')
+		return ph		
 	}
 	
 	def getNotificationCount(){

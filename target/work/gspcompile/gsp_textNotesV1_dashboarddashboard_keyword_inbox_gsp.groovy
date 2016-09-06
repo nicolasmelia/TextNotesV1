@@ -14,184 +14,222 @@ registerSitemeshPreprocessMode()
 printHtmlPart(0)
 createTagBody(1, {->
 printHtmlPart(1)
-invokeTag('captureMeta','sitemesh',8,['gsp_sm_xmlClosingForEmptyTag':(""),'charset':("utf-8")],-1)
+invokeTag('captureMeta','sitemesh',9,['gsp_sm_xmlClosingForEmptyTag':(""),'charset':("utf-8")],-1)
 printHtmlPart(1)
-invokeTag('captureMeta','sitemesh',9,['gsp_sm_xmlClosingForEmptyTag':(""),'http-equiv':("X-UA-Compatible"),'fcontent':("IE=edge")],-1)
+invokeTag('captureMeta','sitemesh',10,['gsp_sm_xmlClosingForEmptyTag':(""),'http-equiv':("X-UA-Compatible"),'fcontent':("IE=edge")],-1)
 printHtmlPart(1)
 createTagBody(2, {->
 createClosureForHtmlPart(2, 3)
-invokeTag('captureTitle','sitemesh',10,[:],3)
+invokeTag('captureTitle','sitemesh',11,[:],3)
 })
-invokeTag('wrapTitleTag','sitemesh',10,[:],2)
+invokeTag('wrapTitleTag','sitemesh',11,[:],2)
 printHtmlPart(3)
-invokeTag('captureMeta','sitemesh',14,['gsp_sm_xmlClosingForEmptyTag':(""),'content':("width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"),'name':("viewport")],-1)
+expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(4)
-invokeTag('resource','g',18,['dir':("css"),'file':("dashboard/bootstrap/css/bootstrap.min.css")],-1)
+invokeTag('captureMeta','sitemesh',14,['gsp_sm_xmlClosingForEmptyTag':(""),'content':("width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"),'name':("viewport")],-1)
 printHtmlPart(5)
-invokeTag('resource','g',30,['dir':("css"),'file':("dashboard/AdminLTE.min.css")],-1)
+invokeTag('resource','g',16,['dir':("css"),'file':("dashboard/bootstrap/css/bootstrap.min.css")],-1)
 printHtmlPart(6)
-invokeTag('resource','g',33,['dir':("css"),'file':("dashboard/CustomCSS.css")],-1)
+invokeTag('resource','g',22,['dir':("css"),'file':("dashboard/AdminLTE.min.css")],-1)
 printHtmlPart(7)
-invokeTag('resource','g',40,['dir':("css"),'file':("dashboard/skins/skin-purple.min.css")],-1)
+invokeTag('resource','g',23,['dir':("css"),'file':("dashboard/CustomCSS.css")],-1)
 printHtmlPart(8)
-})
-invokeTag('captureHead','sitemesh',49,[:],1)
+invokeTag('resource','g',28,['dir':("css"),'file':("dashboard/skins/skin-purple.min.css")],-1)
 printHtmlPart(9)
-createTagBody(1, {->
-printHtmlPart(10)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
-printHtmlPart(11)
-expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
-printHtmlPart(12)
-expressionOut.print(session.firstName)
-printHtmlPart(13)
-expressionOut.print(session.lastName)
-printHtmlPart(14)
-expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
-printHtmlPart(15)
-expressionOut.print(session.firstName)
-printHtmlPart(13)
-expressionOut.print(session.lastName)
-printHtmlPart(16)
-invokeTag('formatDate','g',118,['format':("yyyy"),'date':(session.signUpDate)],-1)
-printHtmlPart(17)
-expressionOut.print(createLink(controller: 'Home'))
-printHtmlPart(18)
-expressionOut.print(createLink(controller: 'login', action: 'logout'))
-printHtmlPart(19)
-expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
-printHtmlPart(20)
-expressionOut.print(session.firstName)
-printHtmlPart(13)
-expressionOut.print(session.lastName)
-printHtmlPart(21)
-createClosureForHtmlPart(22, 2)
-invokeTag('form','g',178,['controller':("Dashboard"),'action':("dashboard"),'enctype':("multipart/form-data"),'class':("sidebar-form")],2)
-printHtmlPart(23)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
-printHtmlPart(24)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'groups'))
-printHtmlPart(25)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
-printHtmlPart(26)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'createGroup'))
-printHtmlPart(27)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
-printHtmlPart(28)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'createGroup'))
-printHtmlPart(29)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
-printHtmlPart(30)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'secheduledTxt'))
-printHtmlPart(31)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'txtHostory'))
-printHtmlPart(32)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'ViewPromos'))
-printHtmlPart(33)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'validatePromo'))
-printHtmlPart(34)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'createPromo'))
-printHtmlPart(35)
-if(true && (clientCount == 0)) {
-printHtmlPart(36)
-}
-printHtmlPart(37)
-expressionOut.print(searchQueryHidden)
-printHtmlPart(38)
-expressionOut.print(offset)
-printHtmlPart(39)
-expressionOut.print(clientCount)
-printHtmlPart(40)
-createTagBody(2, {->
-printHtmlPart(41)
-invokeTag('actionSubmit','g',275,['action':("keywordInbox"),'class':("btn btn-info btn-flat"),'type':("button"),'value':("Search")],-1)
-printHtmlPart(42)
 })
-invokeTag('form','g',279,['id':("searchForm"),'controller':("Dashboard"),'action':("dashboard"),'enctype':("multipart/form-data")],2)
-printHtmlPart(43)
-if(true && (clientCount > 0 || offset > 0)) {
-printHtmlPart(44)
-if(true && (messages != 'NONE')) {
-printHtmlPart(45)
-for( _it397284309 in (messages) ) {
-changeItVariable(_it397284309)
-printHtmlPart(46)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:it.promotionID]))
-printHtmlPart(47)
+invokeTag('captureHead','sitemesh',35,[:],1)
+printHtmlPart(10)
+createTagBody(1, {->
+printHtmlPart(11)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
+printHtmlPart(12)
+expressionOut.print(notiCount)
+printHtmlPart(13)
+if(true && (keywordsIn != 'NONE')) {
+printHtmlPart(14)
+for( _it1669417918 in (keywordsIn) ) {
+changeItVariable(_it1669417918)
+printHtmlPart(15)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
+printHtmlPart(16)
 expressionOut.print(it.keyword)
-printHtmlPart(48)
+printHtmlPart(17)
 expressionOut.print(it.phoneNumber)
+printHtmlPart(18)
+invokeTag('formatDate','g',69,['format':("MM-dd-yyyy"),'date':(it.date)],-1)
+printHtmlPart(19)
+}
+printHtmlPart(20)
+}
+else {
+printHtmlPart(21)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
+printHtmlPart(22)
+}
+printHtmlPart(23)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
+printHtmlPart(24)
+expressionOut.print(createLink(controller: 'dashboard'))
+printHtmlPart(25)
+expressionOut.print(createLink(controller: 'tips'))
+printHtmlPart(26)
+expressionOut.print(createLink(controller: 'help'))
+printHtmlPart(27)
+expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
+printHtmlPart(28)
+expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
+printHtmlPart(29)
+expressionOut.print(session.firstName)
+printHtmlPart(30)
+expressionOut.print(session.lastName)
+printHtmlPart(31)
+invokeTag('formatDate','g',122,['format':("yyyy"),'date':(session.signUpDate)],-1)
+printHtmlPart(32)
+expressionOut.print(createLink(controller: 'login', action: 'accountSettings'))
+printHtmlPart(33)
+expressionOut.print(createLink(controller: 'login', action: 'logout'))
+printHtmlPart(34)
+expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
+printHtmlPart(35)
+expressionOut.print(session.firstName)
+printHtmlPart(30)
+expressionOut.print(session.lastName)
+printHtmlPart(36)
+createClosureForHtmlPart(37, 2)
+invokeTag('form','g',163,['controller':("Dashboard"),'action':("contacts"),'enctype':("multipart/form-data"),'class':("sidebar-form")],2)
+printHtmlPart(38)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'Dashboard'))
+printHtmlPart(39)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newContact'))
+printHtmlPart(40)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'createGroup'))
+printHtmlPart(41)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'contacts'))
+printHtmlPart(42)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'groups'))
+printHtmlPart(43)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
+printHtmlPart(44)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'secheduledTxt'))
+printHtmlPart(45)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'tips'))
+printHtmlPart(46)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newKeyWord'))
+printHtmlPart(47)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywords'))
+printHtmlPart(48)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(49)
-invokeTag('formatDate','g',301,['format':("MM-dd-yyyy"),'date':(it.date)],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'validateCoup'))
 printHtmlPart(50)
-}
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywords', params: [type: 'contestSelect']))
 printHtmlPart(51)
-}
-else {
+expressionOut.print(createLink(controller: 'Dashboard', action: 'balance'))
 printHtmlPart(52)
-if(true && (isSearch)) {
+expressionOut.print(createLink(controller: 'Dashboard', action: 'history'))
 printHtmlPart(53)
-expressionOut.print(createLink(controller: 'Dashboard'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'accountSettings'))
 printHtmlPart(54)
-}
-else {
+if(true && (clientCount == 0)) {
 printHtmlPart(55)
 }
 printHtmlPart(56)
-}
+expressionOut.print(searchQueryHidden)
 printHtmlPart(57)
-}
-else {
+expressionOut.print(offset)
 printHtmlPart(58)
-if(true && (isSearch)) {
-printHtmlPart(53)
-expressionOut.print(createLink(controller: 'Dashboard'))
+expressionOut.print(clientCount)
 printHtmlPart(59)
-}
-else {
+createTagBody(2, {->
 printHtmlPart(60)
-}
+invokeTag('actionSubmit','g',271,['action':("keywordInbox"),'class':("btn btn-info btn-flat"),'type':("button"),'value':("Search")],-1)
 printHtmlPart(61)
-}
+})
+invokeTag('form','g',275,['id':("searchForm"),'controller':("Dashboard"),'action':("dashboard"),'enctype':("multipart/form-data")],2)
 printHtmlPart(62)
-if(true && (offset > 0)) {
+if(true && (clientCount > 0 || offset > 0)) {
+printHtmlPart(20)
+if(true && (messages != 'NONE')) {
+printHtmlPart(14)
+for( _it1018271197 in (messages) ) {
+changeItVariable(_it1018271197)
 printHtmlPart(63)
-createClosureForHtmlPart(64, 3)
-invokeTag('link','g',364,['action':("keywordInbox"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:it.promotionID]))
+printHtmlPart(64)
+expressionOut.print(it.keyword)
 printHtmlPart(65)
+expressionOut.print(it.phoneNumber)
+printHtmlPart(66)
+invokeTag('formatDate','g',296,['format':("MM-dd-yyyy"),'date':(it.date)],-1)
+printHtmlPart(67)
+}
+printHtmlPart(20)
 }
 else {
-printHtmlPart(66)
-}
-printHtmlPart(67)
-if(true && (offset <= clientCount)) {
+printHtmlPart(14)
+if(true && (isSearch)) {
+printHtmlPart(63)
+expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(68)
-createClosureForHtmlPart(69, 3)
-invokeTag('link','g',371,['action':("keywordInbox"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+}
+else {
+printHtmlPart(69)
+}
+printHtmlPart(20)
+}
 printHtmlPart(70)
 }
 else {
+printHtmlPart(20)
+if(true && (isSearch)) {
 printHtmlPart(71)
-}
+expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(72)
-expressionOut.print(currentPage)
+}
+else {
 printHtmlPart(73)
-invokeTag('javascript','g',472,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+}
+printHtmlPart(70)
+}
 printHtmlPart(74)
-invokeTag('javascript','g',475,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+if(true && (offset > 0)) {
 printHtmlPart(75)
-invokeTag('javascript','g',478,['src':("dashboard/app.min.js")],-1)
-printHtmlPart(76)
-})
-invokeTag('captureBody','sitemesh',486,['class':("hold-transition skin-purple sidebar-mini")],1)
+createClosureForHtmlPart(76, 3)
+invokeTag('link','g',348,['action':("keywordInbox"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(77)
+}
+else {
+printHtmlPart(78)
+}
+printHtmlPart(77)
+if(true && (offset <= clientCount)) {
+printHtmlPart(75)
+createClosureForHtmlPart(79, 3)
+invokeTag('link','g',354,['action':("keywordInbox"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+printHtmlPart(77)
+}
+else {
+printHtmlPart(80)
+}
+printHtmlPart(81)
+expressionOut.print(currentPage)
+printHtmlPart(82)
+invokeTag('javascript','g',445,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(83)
+invokeTag('javascript','g',447,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(84)
+invokeTag('javascript','g',449,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(85)
+})
+invokeTag('captureBody','sitemesh',454,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(86)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1470514062767L
+public static final long LAST_MODIFIED = 1473114903602L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
