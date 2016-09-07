@@ -242,13 +242,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-            TxtWolf
-            <small>Home</small>
+            Details
+            <small>Current</small>
           </h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> TxtWolf</a>
+					<li><a href="#"><i class="fa fa-dashboard"></i> Details</a>
 					</li>
-					<li class="active">Home</li>
+					<li class="active">Current</li>
 				</ol>
 			</section>
 			<!-- Main content -->
@@ -266,7 +266,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<td>Phone Number</td>
 									<td>${contact.phoneNumber}</td>
 								</tr>
-								<g:if test="${State =! 'None'}">
+								<g:if test="${State != 'None'}">
 									<tr>
 										<td>Address</td>
 										<td>${contact.address}</td>
@@ -282,10 +282,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<tr>
 										<td>Zip</td>
 										<td>${contact.zip}</td>
-									</tr>
-									<tr>
-										<td>Subbed</td>
-										<td>${contact.subbed}</td>
 									</tr>
 								</g:if>
 								<g:else>

@@ -53,8 +53,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1765747849 in (keywordsIn) ) {
-changeItVariable(_it1765747849)
+for( _it1729995001 in (keywordsIn) ) {
+changeItVariable(_it1729995001)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -163,8 +163,8 @@ expressionOut.print(bal.monthlyBalance)
 printHtmlPart(66)
 if(true && (groups != 'NONE')) {
 printHtmlPart(67)
-for( _it84624228 in (groups) ) {
-changeItVariable(_it84624228)
+for( _it1294966332 in (groups) ) {
+changeItVariable(_it1294966332)
 printHtmlPart(68)
 if(true && (addToGroup)) {
 printHtmlPart(69)
@@ -232,17 +232,15 @@ invokeTag('javascript','g',684,['src':("dashboard/plugins/colorpicker/bootstrap-
 printHtmlPart(92)
 invokeTag('javascript','g',686,['src':("dashboard/plugins/timepicker/bootstrap-timepicker.min.js")],-1)
 printHtmlPart(93)
-invokeTag('javascript','g',688,['src':("dashboard/plugins/slimScroll/jquery.slimscroll.min.js")],-1)
+invokeTag('javascript','g',688,['src':("dashboard/plugins/iCheck/icheck.min.js")],-1)
 printHtmlPart(94)
-invokeTag('javascript','g',690,['src':("dashboard/plugins/iCheck/icheck.min.js")],-1)
-printHtmlPart(95)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1473130053773L
+public static final long LAST_MODIFIED = 1473211717233L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -243,12 +243,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<section class="content-header">
 				<h1>
             TxtWolf
-            <small>Home</small>
+            <small>Uh-Oh</small>
           </h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> TxtWolf</a>
 					</li>
-					<li class="active">Home</li>
+					<li class="active">Uh-Oh</li>
 				</ol>
 			</section>
 			<!-- Main content -->

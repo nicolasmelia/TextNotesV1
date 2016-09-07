@@ -241,14 +241,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
+			<g:if test="${type != 'contestSelect'}">
+				<h1>	
+           			Keywords
+           		    <small>All</small>          		
+           		</h1> 
+			</g:if>
+			<g:else >
 				<h1>
-            TxtWolf
-            <small>Home</small>
-          </h1>
+            		Contest Winner Select
+            	   <small>By Keyword</small>          	
+            	</h1>
+			</g:else>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> TxtWolf</a>
+					<li><a href="#"><i class="fa fa-dashboard"></i> Keywords</a>
 					</li>
-					<li class="active">Home</li>
+					<li class="active">View Keywords</li>
 				</ol>
 			</section>
 			<!-- Main content -->

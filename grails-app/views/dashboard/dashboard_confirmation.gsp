@@ -242,13 +242,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-            TxtWolf
-            <small>Home</small>
+            Confirmation
+            <small>Recent</small>
           </h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> TxtWolf</a>
+					<li><a href="#"><i class="fa fa-dashboard"></i> Confirmation</a>
 					</li>
-					<li class="active">Home</li>
+					<li class="active">Recent</li>
 				</ol>
 			</section>
 			<!-- Main content -->
@@ -365,8 +365,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<h4>Group Added.</h4>
 								<p>${params.name} has been successfully added as a group. Click "Details" to view detailed information on this group.</p>
 							</div>
-							<div style="margin: 10px 0px 5px 0px;">	<a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn btn-default">New Message</a>
-								<g:link class="btn btn-default" action="details" params="[groupID: params.groupID]" type="button">Details</g:link>
+							<div style="margin: 10px 0px 5px 0px;">	<a href="${createLink(controller: 'Dashboard', action: 'contacts')}" class="btn btn-default">Contacts</a>
+								<g:link class="btn btn-default" action="detailedGroup" params="[groupID: params.groupID]" type="button">Details</g:link>
 							</div>
 						</div>
 						<!-- /.box-body -->

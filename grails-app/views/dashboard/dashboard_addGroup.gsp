@@ -166,11 +166,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">Menu</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active">
+					<li>
 						<a href="${createLink(controller: 'Dashboard', action: 'Dashboard')}"> <i class="fa fa-home"></i>  <span>Home</span>
 						</a>
 					</li>
-					<li> <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="active" > <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a class="" href="${createLink(controller: 'Dashboard', action: 'newContact')}"><b>New Contact</b></a>
 							</li>
@@ -242,13 +242,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-            TxtWolf
-            <small>Home</small>
+            Groups
+            <small>Create</small>
           </h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> TxtWolf</a>
+					<li><a href="#"><i class="fa fa-dashboard"></i>Address Book</a>
 					</li>
-					<li class="active">Home</li>
+					<li class="active">New Group</li>
 				</ol>
 			</section>
 			<!-- Main content -->

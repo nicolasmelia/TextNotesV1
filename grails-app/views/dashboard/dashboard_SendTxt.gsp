@@ -245,13 +245,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-            TxtWolf
-            <small>Home</small>
+            Compose
+            <small>New Text</small>
           </h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> TxtWolf</a>
+					<li><a href="#"><i class="fa fa-dashboard"></i> Send Text</a>
 					</li>
-					<li class="active">Home</li>
+					<li class="active">Compose Text</li>
 				</ol>
 			</section>
 			<!-- Main content -->

@@ -161,22 +161,20 @@ invokeTag('javascript','g',474,['src':("dashboard/plugins/colorpicker/bootstrap-
 printHtmlPart(63)
 invokeTag('javascript','g',476,['src':("dashboard/plugins/timepicker/bootstrap-timepicker.min.js")],-1)
 printHtmlPart(64)
-invokeTag('javascript','g',478,['src':("dashboard/plugins/slimScroll/jquery.slimscroll.min.js")],-1)
+invokeTag('javascript','g',478,['src':("dashboard/plugins/iCheck/icheck.min.js")],-1)
 printHtmlPart(65)
-invokeTag('javascript','g',480,['src':("dashboard/plugins/iCheck/icheck.min.js")],-1)
+invokeTag('javascript','g',480,['src':("dashboard/plugins/fastclick/fastclick.min.js")],-1)
 printHtmlPart(66)
-invokeTag('javascript','g',482,['src':("dashboard/plugins/fastclick/fastclick.min.js")],-1)
-printHtmlPart(67)
 })
-invokeTag('captureBody','sitemesh',512,['class':("hold-transition skin-purple sidebar-mini")],1)
-printHtmlPart(68)
+invokeTag('captureBody','sitemesh',510,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(67)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1473110999084L
+public static final long LAST_MODIFIED = 1473208576826L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

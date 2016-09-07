@@ -242,13 +242,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-            TxtWolf
-            <small>Home</small>
+                  ${group.groupName}
+            <small>Group</small>
           </h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> TxtWolf</a>
+					<li><a href="#"><i class="fa fa-dashboard"></i> Address Book</a>
 					</li>
-					<li class="active">Home</li>
+					<li class="active">View Groups</li>
 				</ol>
 			</section>
 			<!-- Main content -->
@@ -259,8 +259,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
-							<div class="box-header">
-								<h3>Group: ${group.groupName}</h3> 
+							<div class="box-header">					
+							<a href="${createLink(controller: 'Dashboard', action: 'contacts')}"><b> <span class = "fa fa-plus-square"></span> Add Contact to ${group.groupName}</b></a>
 								<g:form id="searchForm" controller="Dashboard" action="dashboard" enctype="multipart/form-data">
 									<div class="input-group margin" style="width: 250px; margin: 10px 0px 0px 0px;">
 										<input name="groupID" id='idSrch' type="hidden" value="${group.groupID}">
@@ -268,7 +268,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<!-- /NOTHING -->
 										</g:if>
 										<g:else>
-											<input id="seachQueryInput" name="searchQuery" placeholder="Group Name..." type="text" class="form-control"> <span class="input-group-btn">
+											<input id="seachQueryInput" name="searchQuery" placeholder="Name, Address..." type="text" class="form-control"> <span class="input-group-btn">
                       <g:actionSubmit  action="detailedGroup" class="btn btn-info btn-flat" type="button" value = "Search"></g:actionSubmit>             
                     </span> 
 										</g:else>
@@ -276,8 +276,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<!-- /input-group -->
 								</g:form>
 							</div>
+							
 							<!-- /.box-header -->
-							<div class="box-body">
+							<div class="box-body">														
 								<table id="example1" class="table table-bordered table-hover">
 									<thead>
 										<tr>
