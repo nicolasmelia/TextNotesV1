@@ -166,11 +166,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">Menu</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active">
+					<li>
 						<a href="${createLink(controller: 'Dashboard', action: 'Dashboard')}"> <i class="fa fa-home"></i>  <span>Home</span>
 						</a>
 					</li>
-					<li> <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="active" > <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a class="" href="${createLink(controller: 'Dashboard', action: 'newContact')}"><b>New Contact</b></a>
 							</li>
@@ -386,8 +386,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<!-- Main Footer -->
 		<footer class="main-footer">
 			<!-- To the right -->
-			<div class="pull-right hidden-xs">Anything you want</div>
-			<!-- Default to the left --> <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.</footer>
+			<div class="pull-right hidden-xs">Powered by TxtWolf</div>
+			<!-- Default to the left --> <strong>Copyright &copy; 2017 <a href="http://www.TxtWolf.com">TxtWolf LLC</a>.</strong>
+		</footer>
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
 			<!-- Create the tabs -->
@@ -511,6 +512,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<!-- /.modal -->
 </body>
 <script>
+
 	$( document ).ready(function() {
 		  // Set state dropdown value   
 		  if ($("#stateSelected").val() != "") {
@@ -518,7 +520,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		  }
 		});
 	
-	
+	  // initialize datamask for inputs
+	  $("[data-mask]").inputmask();
 	
 	  function validateMainForm() {		  
 		  var error = false;

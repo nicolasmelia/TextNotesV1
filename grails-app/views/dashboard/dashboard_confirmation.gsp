@@ -166,11 +166,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">Menu</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active">
+					<li>
 						<a href="${createLink(controller: 'Dashboard', action: 'Dashboard')}"> <i class="fa fa-home"></i>  <span>Home</span>
 						</a>
 					</li>
-					<li> <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
+						<g:if test="${conType == 'AddContact' || conType == 'editContact' || conType == 'AddContactToGroupSuccess'}">				
+							<li class="active"> <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
+						</g:if>
+						<g:else>
+							<li> <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
+						</g:else>	
 						<ul class="treeview-menu">
 							<li><a class="" href="${createLink(controller: 'Dashboard', action: 'newContact')}"><b>New Contact</b></a>
 							</li>
@@ -184,7 +189,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</li>
 						</ul>
 					</li>
-					<li class="treeview"> <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<g:if test="${conType == 'Message'}">				
+						<li class="active" class="treeview"> <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
+					</g:if>
+					<g:else>
+						<li class="treeview"> <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
+					</g:else>
 						<ul class="treeview-menu">
 							<li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}">Compose Text</a>
 							</li>
@@ -208,7 +218,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</li>
 						</ul>
 					</li>
-					<li class="treeview"> <a href="#"><i class="fa fa-inbox"></i> <span>Keywords</span> <i class="fa fa-angle-left pull-right"></i></a>
+						<g:if test="${conType == 'addKeyword' || conType == 'reactivateKeyword'}">				
+							<li  class="active" class="treeview"> <a href="#"><i class="fa fa-inbox"></i> <span>Keywords</span> <i class="fa fa-angle-left pull-right"></i></a>
+						</g:if>
+						<g:else>
+							<li class="treeview"> <a href="#"><i class="fa fa-inbox"></i> <span>Keywords</span> <i class="fa fa-angle-left pull-right"></i></a>
+						</g:else>				
 						<ul class="treeview-menu">
 							<li><a href="${createLink(controller: 'Dashboard', action: 'newKeyWord')}"><b>New Keyword</b></a>
 							</li>
@@ -264,7 +279,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<h4>Message sent</h4>
 								<p>Your message has been successfully sent to <b>${params.totalRecp}</b> recipient(s). View detailed information about this message by clicking "Details" below.</p>
 							</div>
-							<div style="margin: 10px 0px 5px 0px;"> <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn   btn-default">Address Book</a>
+							<div style="margin: 10px 0px 5px 0px;"> <a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="btn btn-default">New Message</a>
 								<g:link class="btn btn-default" action="details" params="[conType: 'Message', messageID: params.messageID]" type="button">Details</g:link>
 							</div>
 						</div>
@@ -284,9 +299,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<h4>Contact added</h4>
 								<p>${params.name} has been successfully added to your address book. Click "Details" to view detailed information on your new contact.</p>
 							</div>
-							<div style="margin: 10px 0px 5px 0px;"> <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Address Book</a>
+							<div style="margin: 10px 0px 5px 0px;">
+								<g:link class="btn btn-default" action="sendTxt" params="[contactID: params.contactID]" type="button">Send New Text</g:link>
 								<g:link class="btn btn-default" action="details" params="[contactID: params.contactID, conType: 'Contact']" type="button">Details</g:link>
-								<g:link class="btn btn-default" action="sendTxt" params="[contactID: params.contactID]" type="button">Send Text</g:link>
 							</div>
 						</div>
 						<!-- /.box-body -->
@@ -305,9 +320,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<h4>Contact edit saved</h4>
 								<p>${params.name} has been successfully edited. Click "Details" to view detailed information on this contact.</p>
 							</div>
-							<div style="margin: 10px 0px 5px 0px;"> <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Address Book</a>
-								<g:link class="btn btn-default" action="details" params="[contactID: params.contactID, conType: 'Contact']" type="button">Details</g:link>
+							<div style="margin: 10px 0px 5px 0px;"> 
 								<g:link class="btn btn-default" action="sendTxt" params="[contactID: params.contactID]" type="button">Send Text</g:link>
+								<g:link class="btn btn-default" action="details" params="[contactID: params.contactID, conType: 'Contact']" type="button">Details</g:link>
 							</div>
 						</div>
 						<!-- /.box-body -->
@@ -407,7 +422,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								</p>
 							</div>
 							<div style="margin: 10px 0px 5px 0px;">	<a href="${createLink(controller: 'Dashboard', action: 'groups')}" class="btn btn-default">Groups</a>
-								<a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">Contact List</a>
+								<a href="${createLink(controller: 'Dashboard', action: 'contacts')}" class="btn btn-default">Address Book</a>
 							</div>
 							<!-- /.box-body -->
 						</div>
@@ -504,8 +519,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Main Footer -->
 			<footer class="main-footer">
 				<!-- To the right -->
-				<div class="pull-right hidden-xs">Anything you want</div>
-				<!-- Default to the left --> <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.</footer>
+				<div class="pull-right hidden-xs">Powered by TxtWolf</div>
+				<!-- Default to the left --> <strong>Copyright &copy; 2017 <a href="http://www.TxtWolf.com">TxtWolf LLC</a>.</strong>
+			</footer>
 			<!-- Control Sidebar -->
 			<aside class="control-sidebar control-sidebar-dark">
 				<!-- Create the tabs -->

@@ -15,7 +15,7 @@ import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
 
 
-
+import textnotesv1.DashboardController
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +29,7 @@ class SmsGateOutController {
 		render("You do not have permission to view this page.")
 	}
 	
-	def messageOut(){
-		
+	def messageOut(){		
 		if (session["userID"]) {
 			String message = "NO BODY"
 			String title = "NO TITLE"
@@ -44,15 +43,16 @@ class SmsGateOutController {
 			
 			ArrayList<String> tags = params.tags.toString().split(",")	
 			for (String tag : tags)	 {
+				boolean messageSuccess = false
 				String contactType = tag.split(":")[0]
 				switch (contactType) {
 					case "N":  // Single number	
-						success = sendMessage(tag.split(":")[1], message)
+						messageSuccess = sendMessage(tag.split(":")[1], message)
 						break;
 					case "ID":
 						String clientID = tag.split(":")[1]
 						Contact contact = Contact.findByContactID(clientID)
-						success = sendMessage(contact.phoneNumber, message)				
+						messageSuccess = sendMessage(contact.phoneNumber, message)				
 						break;
 					case "G":
 						String groupID = tag.split(":")[1]
@@ -60,12 +60,15 @@ class SmsGateOutController {
 						def allMemebers = GroupMember.findAllByGroupIDAndUserID(group.groupID, session["userID"])
 						for (GroupMember member : allMemebers){
 							Contact contact = Contact.findByContactID(member.contactID)
-							success = sendMessage(contact.phoneNumber, message)
+							messageSuccess = sendMessage(contact.phoneNumber, message)
 						}
 						break;
 					default: 
 						break;
-				}				
+				}	
+								
+				success = (success == false) ? messageSuccess : true; 
+					
 			}
 			
 				
@@ -80,7 +83,7 @@ class SmsGateOutController {
 				balance.totalBalanceSpent += Integer.parseInt(params.recipCount)
 				balance.save(flush:true)
 				
-				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "Message", totalRecp: tags.size.toString(), messageID: messageID])
+				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "Message", totalRecp: getRecipCount(params.tags), messageID: messageID])        
 			} else {
 				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "FAILEDtext"])
 			}
@@ -177,10 +180,11 @@ class SmsGateOutController {
 	
 	int getRecipCount (String tags) {
 		int clientCount = 0
-		print tags
 		ArrayList<String> tagList = tags.split(",")
-		StringBuilder res = new StringBuilder();
 		
+		if (tagList.isEmpty()) tagList.add(tags);		
+		
+		StringBuilder res = new StringBuilder();	
 		for (String tag : tagList)	 {
 			String contactType = tag.split(":")[0]
 			switch (contactType) {
@@ -240,9 +244,5 @@ class SmsGateOutController {
 		
 		return res.toString()
 	}
-	
-	
 
-	
-	
 }

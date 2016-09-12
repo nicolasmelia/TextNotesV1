@@ -387,8 +387,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<!-- Main Footer -->
 		<footer class="main-footer">
 			<!-- To the right -->
-			<div class="pull-right hidden-xs">Anything you want</div>
-			<!-- Default to the left --> <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.</footer>
+			<div class="pull-right hidden-xs">Powered by TxtWolf</div>
+			<!-- Default to the left --> <strong>Copyright &copy; 2017 <a href="http://www.TxtWolf.com">TxtWolf LLC</a>.</strong>
+		</footer>
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
 			<!-- Create the tabs -->
@@ -471,7 +472,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<a href=""></a>
 							<g:link style="margin-bottom:0px; margin-top: 15px; " action="editContact" params="[contactID: it.contactID]" type="button" class="btn btn-app"> <i class="fa fa-edit"></i> Edit Contact</g:link>
 							<g:link style="margin-bottom:0px; margin-top: 15px; " action="details" params="[contactID: it.contactID, conType: 'Contact']" type="button" class="btn btn-app"> <i class="fa fa-user"></i> Contact Details</g:link>
-							<a class="btn btn-app" style="margin-bottom:0px; margin-top: 15px;"> <i class="fa fa-users"></i> Add to Group</a>
+							<g:link style="margin-bottom:0px; margin-top: 15px; " action="groups" params="[contactID: it.contactID, addToGroup: 'True']" type="button" class="btn btn-app"> <i class="fa fa-users"></i> Add to Group</g:link>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

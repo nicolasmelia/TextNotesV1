@@ -258,18 +258,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
 						It looks like you dont have any contacts yet. Get started by adding clients below!</div>
 				</g:if>
+				
 				<input id='searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
 				<input id='offset' type="hidden" value="${offset}">
-				<input id='groupCount' type="hidden" value="${groupCount}">
+				<input id='groupCount' type="hidden" value="${groupCount}">				
+				
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header"></div>
 							<!-- /.box-header -->
 							<div class="box-body">
-								<g:if test="${addToGroup}">
-									<p style="margin-top: -25px; margin-bottom: 15px;">Add <b>${contactGroupAdd.fullName}</b> to a group.</p>
-								</g:if>
+										
+								<g:form id="searchForm" controller="Dashboard" action="history" enctype="multipart/form-data">				
+										<div class="form-group">
+											<label style = "display:inline-block;" for="inputEmail3" class="">Action: </label>
+												<select style = "display:inline-block; width: 300px;" name="activityType" id="activityType" class="form-control">
+												<g:if test = "${activityType == 'all' || activityType == null}">
+													<option value="all" selected="selected">All</option>				
+													<option value="messages">Messages</option>											
+												</g:if>
+												<g:else>
+													<option value="all">All</option>				
+													<option value="messages" selected="selected">Messages</option>	
+												</g:else>			
+											</select>
+										</div>
+									<g:actionSubmit id = "selectTypeForm" style = "display:none;" action="history" class="btn btn-info btn-flat" type="button" value = "selectTypeForm"></g:actionSubmit>             
+								</g:form>
+													
 								<table id="example1" class="table table-bordered table-hover">
 									<thead>
 										<tr>
@@ -329,13 +346,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<!-- /.box-body -->
 							<div class="btn-group" style="margin: 0px 0px 10px 10px; ">
 								<g:if test="${offset > 0}">
-									<g:link action="dashboard" action="history" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Back</g:link>
+									<g:link action="dashboard" action="history" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden, activityType: activityType]" type="button" class="btn btn-default">Back</g:link>
 								</g:if>
 								<g:else>
 									<button disabled type="button" class="btn btn-default">Back</button>
 								</g:else>
 								<g:if test="${offset <= groupCount}">
-									<g:link action="dashboard" action="history" params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Next</g:link>
+									<g:link action="dashboard" action="history" params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden, activityType: activityType]" type="button" class="btn btn-default">Next</g:link>
 								</g:if>
 								<g:else>
 									<button disabled type="button" class="btn btn-default">Next</button>
@@ -355,8 +372,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<!-- Main Footer -->
 		<footer class="main-footer">
 			<!-- To the right -->
-			<div class="pull-right hidden-xs">Anything you want</div>
-			<!-- Default to the left --> <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.</footer>
+			<div class="pull-right hidden-xs">Powered by TxtWolf</div>
+			<!-- Default to the left --> <strong>Copyright &copy; 2017 <a href="http://www.TxtWolf.com">TxtWolf LLC</a>.</strong>
+		</footer>
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
 			<!-- Create the tabs -->
@@ -468,6 +486,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			var offsetTop = (parseInt(offset) + 10);
 			$("#pageInfo").html("Viewing " + offset + "-" + offsetTop + " of " + totalClientCount);
 			
+		});
+
+	$('#activityType').on('change', function() {
+		 $( "#selectTypeForm" ).click();		  
 		});
 	
 	  function test(number) {

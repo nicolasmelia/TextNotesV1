@@ -350,8 +350,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<!-- Main Footer -->
 		<footer class="main-footer">
 			<!-- To the right -->
-			<div class="pull-right hidden-xs">Anything you want</div>
-			<!-- Default to the left --> <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.</footer>
+			<div class="pull-right hidden-xs">Powered by TxtWolf</div>
+			<!-- Default to the left --> <strong>Copyright &copy; 2017 <a href="http://www.TxtWolf.com">TxtWolf LLC</a>.</strong>
+		</footer>
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
 			<!-- Create the tabs -->
@@ -689,7 +690,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- JQUERY UI -->
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
 <script>
+
 	$( document ).ready(function() {
 		addCustomNumberPrePick();
 			

@@ -21,10 +21,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<!-- Theme style -->
 	<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='dashboard/AdminLTE.min.css'/>">
 	<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='dashboard/CustomCSS.css'/>">
+	<link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/iCheck/all.css'/>">
+	
 	<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
+       
+    <!-- DATE RANGE PICKER  -->
+   	<link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/timepicker/bootstrap-timepicker.css'/>">
+    <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/select2/select2.min.css'/>">
+    <link rel="stylesheet" type="text/css" href="<g:resource dir='js' file='dashboard/plugins/daterangepicker/daterangepicker-bs3.css'/>">
+    
 	<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='dashboard/skins/skin-purple.min.css'/>">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -358,8 +366,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<!-- Main Footer -->
 		<footer class="main-footer">
 			<!-- To the right -->
-			<div class="pull-right hidden-xs">Anything you want</div>
-			<!-- Default to the left --> <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.</footer>
+			<div class="pull-right hidden-xs">Powered by TxtWolf</div>
+			<!-- Default to the left --> <strong>Copyright &copy; 2017 <a href="http://www.TxtWolf.com">TxtWolf LLC</a>.</strong>
+		</footer>
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
 			<!-- Create the tabs -->
@@ -427,35 +436,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<div class="control-sidebar-bg"></div>
 	</div>
 	<!-- ./wrapper -->
-	<!-- REQUIRED JS SCRIPTS -->
-	<g:javascript src="dataAccess.js" />
-	<!-- jQuery 2.1.4 -->
-	<g:javascript src="dashboard/plugins/jQuery/jQuery-2.1.4.min.js" />
-	<!-- Bootstrap 3.3.5 -->
-	<g:javascript src="dashboard/bootstrap/js/bootstrap.min.js" />
-	<!-- AdminLTE App -->
-	<g:javascript src="dashboard/app.min.js" />
-	<g:javascript src="dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" />
-	<g:javascript src="dashboard/plugins/select2/select2.full.min.js" />
-	<g:javascript src="tagsinput/dist/bootstrap-tagsinput.min.js" />
-	<!-- InputMask -->
-	<g:javascript src="dashboard/plugins/input-mask/jquery.inputmask.js" />
-	<g:javascript src="dashboard/plugins/input-mask/jquery.inputmask.date.extensions.js" />
-	<g:javascript src="dashboard/plugins/input-mask/jquery.inputmask.extensions.js" />
-	<!-- date-range-picker -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-	<g:javascript src="dashboard/plugins/daterangepicker/daterangepicker.js" />
-	<!-- bootstrap color picker -->
-	<g:javascript src="dashboard/plugins/colorpicker/bootstrap-colorpicker.min.js" />
-	<!-- bootstrap time picker -->
-	<g:javascript src="dashboard/plugins/timepicker/bootstrap-timepicker.min.js" />
-	<!-- iCheck 1.0.1 -->
-	<g:javascript src="dashboard/plugins/iCheck/icheck.min.js" />
-	<!-- FastClick -->
-	<g:javascript src="dashboard/plugins/fastclick/fastclick.min.js" />
-	<!-- JQUERY UI -->
-	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
@@ -501,13 +481,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	</div>
 	<!-- /.modal -->
 </body>
+
+<!-- REQUIRED JS SCRIPTS -->
+<!-- jQuery 2.1.4 -->
+<g:javascript src="dashboard/plugins/jQuery/jQuery-2.1.4.min.js" />
+
+<!-- JQUERY UI -->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<!-- Bootstrap 3.3.5 -->
+<g:javascript src="dashboard/bootstrap/js/bootstrap.min.js" />
+<!-- AdminLTE App -->
+<g:javascript src="dashboard/app.min.js" />
+<g:javascript src="dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" />
+<g:javascript src="dashboard/plugins/select2/select2.full.min.js" />
+<g:javascript src="tagsinput/dist/bootstrap-tagsinput.min.js" />
+<g:javascript src="dataAccess.js" />
+<!-- InputMask -->
+<g:javascript src="dashboard/plugins/input-mask/jquery.inputmask.js" />
+<g:javascript src="dashboard/plugins/input-mask/jquery.inputmask.date.extensions.js" />
+<g:javascript src="dashboard/plugins/input-mask/jquery.inputmask.extensions.js" />
+<!-- date-range-picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<g:javascript src="dashboard/plugins/daterangepicker/daterangepicker.js" />
+<!-- bootstrap color picker -->
+<g:javascript src="dashboard/plugins/colorpicker/bootstrap-colorpicker.min.js" />
+<!-- bootstrap time picker -->
+<g:javascript src="dashboard/plugins/timepicker/bootstrap-timepicker.min.js" />
+<!-- iCheck 1.0.1 -->
+<g:javascript src="dashboard/plugins/iCheck/icheck.min.js" />
+
+
 <script>
 	$( document ).ready(function() {
 		  // Normal preset
-			$("#campaignType").html(" Campaign: " + "<b>Simple</b>");
-			$("#campaignDesc").html("A <i>'Simple'</i> keyword allows you to collect the phone number of an entry " +
-				"for your own personal business use. This type of keyword is not a contest or a coupon, but rather " +
-				"allows you to customize its use and need. ");  
+			$("#campaignType").html(" Campaign: " + "<b>Custom</b>");
+			$("#campaignDesc").html("A <i>'Custom'</i> keyword is not a contest or a coupon, but rather " +
+				"allows you to customize its use and need by responding with custom text.");  
 			
 			$("#couponChkBox").css("display","none")
 			$("#text").css("display","block")
@@ -527,30 +538,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		
 			switch(this.value) {
 		    case "cust":
-				$("#campaignType").html(" Campaign: " + "<b>Simple</b>");
-				$("#campaignDesc").html("A <i>'Custom'</i> keyword allows you to collect the phone number of an entry " +
-					"for your own personal business use. This type of keyword is not a contest or a coupon, but rather " +
-					"allows you to customize its use and need. ");  		
-				$("#couponChkBox").css("display","none")
-				$("#text").css("display","block")		   
+				$("#campaignType").html(" Campaign: " + "<b>Custom</b>");
+				$("#campaignDesc").html("A <i>'Custom'</i> keyword is not a contest or a coupon, but rather " +
+						"allows you to customize its use and need by responding with custom text.");  		
+				$("#couponChkBox").css("display","none");
+				$("#text").css("display","block");   
 		        break;
 		    case "coup":
 				$("#campaignType").html(" Campaign: " + "<b>Coupon</b>");		    
 				$("#campaignDesc").html("Enter text below that correlates to the coupon you are offering. " +
 				"For example <i>'Use this coupon code for an extra 25% off your next order!'</i>. " +
-				"Your custmer will be sent a coupon code that you can validate into the 'Validate Code' page " +
+				"Your custmer will be sent a coupon code that you can validate in the 'Validate Code' page " +
 				"located in the keyword menu.");  
 				$("#text").css("display","block")
-				$("#couponChkBox").css("display","block")
-				
-	  
+				$("#couponChkBox").css("display","block");
 		        break;
 		    case "con":
 				$("#campaignType").html(" Campaign: " + "<b>Contest</b>");		    
 				$("#campaignDesc").html("Enter text below to notify your customer they have been entered into your contest. For example " + 
 				"<i>'You have been entered into our contest for a free cake!'</i>. When your contest ends you can randomly select winners! " +
 				"from the 'My Contest' page under the keyword menu.");   
-				$("#couponChkBox").css("display","none")
+				$("#couponChkBox").css("display","none");
 				break;
 			};  
 		});
