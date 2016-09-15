@@ -60,8 +60,7 @@ class SmsGateInController {
 			MI.deleted = false
 			MI.viewed = false
 			MI.date = new Date()
-			MI.save(flush:true);
-			
+
 			keyword.replys = new Integer(keyword.replys.intValue() + 1);
 			keyword.save(flush:true)
 			
@@ -69,12 +68,12 @@ class SmsGateInController {
 			incrementNoti(keyword)
 			
 			Date todaysDate = new Date()
-			if ((todaysDate >= keyword.dateEff) && ((keyword.dateExp >= todaysDate) && keyword.suspened == false || keyword.endless == true)) {
-
-				sendMessage(from, keyword.responceText)
-				
+			if ((todaysDate >= keyword.dateEff) && ((keyword.dateExp >= todaysDate) && keyword.suspened == false || keyword.endless == true)) {				
 				switch (keyword.campaignType) {
 					case "coup": // Coupon
+					
+						sendMessage(from, keyword.responceText)
+					
 						CouponIn coupon = new CouponIn()
 						coupon.keywordID =  keyword.promotionID
 						coupon.date = new Date()
@@ -89,17 +88,28 @@ class SmsGateInController {
 						coupon.save(flush:true)
 						
 						sendMessage(from, "Here is your coupon code for keyword " + keyword.keyword + ", " + coupon.couponCode + ". Use your code to redeem this offer.")
-										
+						MI.save(flush:true);
+						
 					break; 
 					
-					case "con": // Contest				
-						SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");					
-						sendMessage(from, "You have been entered in a contest for keyword " + keyword.keyword + ". This contest is valid through " + dateFormatter.format(keyword.dateEff) +
-						" - " + dateFormatter.format(keyword.dateExp) + ", You will recieve a text if you win! Good Luck!")
+					case "con": // Contest					
+						// check to see if this number already sent into this contest			
+						MessageIn MITest = MessageIn.findByPromotionIDAndPhoneNumber(MI.promotionID, MI.phoneNumber)
+						if (MITest == null) {
+							sendMessage(from, keyword.responceText)
+							SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");					
+							sendMessage(from, "You have been entered in a contest for keyword " + keyword.keyword + ". This contest ends on " + dateFormatter.format(keyword.dateExp) + ". You will recieve a text if you win! Good Luck!")
+							MI.save(flush:true);
+						} else {
+							SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+							sendMessage(from, "You have already entered a submission for this contest. This contest ends on " + dateFormatter.format(keyword.dateExp) + ".")
+							MI.save(flush:true);
+						}						
 					break;
 					
 					case "cust": // Custom
-					// Do nothing, just send the response text
+						sendMessage(from, keyword.responceText)				
+						MI.save(flush:true);
 					break;
 					
 					default:

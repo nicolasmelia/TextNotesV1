@@ -150,6 +150,72 @@ class DashboardController {
 		   }		
 	}
 	
+	def newDraft() {
+		if (session["userID"]) {
+			if (params.body != null) {
+				MessageDraft MD = new MessageDraft()
+				MD.title = params.subject
+				MD.message = params.body
+				MD.draftName = params.draftName
+				MD.dateCreated = new Date()
+				MD.userID = session["userID"]
+				
+				// Create a UUID and cut it in half
+				String uniqueID = UUID.randomUUID().toString().replace("-", "");
+				int midpoint = uniqueID.length() / 2;
+				String halfUUID = uniqueID.substring(0, midpoint)
+				
+				MD.draftID = halfUUID
+				MD.save()		
+				
+				render "success"
+				
+			} else {
+				render(view:"dashboard_newDraft", model: [UAI: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true)])		
+			}		
+	   } else {
+		   redirect(controller: "Home")
+	   }
+	}
+	
+	def drafts() {
+		int offset = 0
+		if (params.offset != null) {
+			offset = Integer.parseInt(params.offset)
+			if (params.up.toString().equals("true")) {
+				offset = offset + 10
+			} else {
+				if (offset > 0) {
+				offset = offset - 10
+				}
+			}
+		}
+		
+		// check to see if contacts exist
+		int clientCount = MessageDraft.countByUserID(session["userID"])
+		
+		// Get searchInfo if any
+		def searchQuery
+		boolean isSearch = false
+		if (!params.searchQuery && !params.searchQueryHidden) {
+			searchQuery = null
+		} else if (params.searchQueryHidden) {
+			searchQuery = params.searchQueryHidden
+			isSearch = true
+		} else if (params.searchQuery) {
+			searchQuery = params.searchQuery
+			isSearch = true
+		}
+		
+		if (session["userID"]) {
+			render(view:"dashboard_drafts",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), clientCount: clientCount, draftList: getDraftList(offset, 10)])
+	   } else {
+		   redirect(controller: "Home")
+	   }
+		
+	}
+	
+	
 	def getRecipCount () {
 		int clientCount = 0 
 		ArrayList<String> tags = params.tags.toString().split(",")
@@ -612,6 +678,17 @@ class DashboardController {
 		
 		if (Messages.size > 0) {
 			return Messages
+		} else {
+			return "NONE"
+		}
+	}
+	
+	def getDraftList(offset, max){
+				def drafts =  MessageDraft.findAll("from MessageDraft as m where m.userID=? order by m.dateCreated DESC",
+						 [session["userID"]], [max: max, offset: offset])
+
+		if (drafts.size > 0) {
+			return drafts
 		} else {
 			return "NONE"
 		}

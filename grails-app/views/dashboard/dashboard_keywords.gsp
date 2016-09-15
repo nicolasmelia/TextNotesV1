@@ -285,6 +285,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<th>Description</th>
 											<th>Total Replys</th>
 											<th>Active</th>
+											
+											<g:if test="${type == 'contestSelect'}">
+												<th>Winners Selected</th>
+											</g:if>
+											
 										</tr>
 									</thead>
 									<tbody>
@@ -295,7 +300,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 														<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:it.promotionID])}';" class="pointer">
 													</g:if>
 													<g:if test="${type == 'contestSelect'}">
-														<g:if test="${it.winners == null && it.suspened == false}">
+														<g:if test="${it.winners == null}">
 															<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'contestSelect', params: [promotionID:it.promotionID])}';" class="pointer">
 														</g:if>
 														<g:else>
@@ -335,8 +340,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 													</g:if>
 													<g:else>
 														<td style="color: green;">Yes</td>
-													</g:else>
-													</tr>
+													</g:else>												
+													
+													<g:if test="${type == 'contestSelect'}">
+														<g:if test="${it.winners == null}">
+															<td style="color: red;">No</td>
+														</g:if>
+														<g:else>
+															<td style="color: green;">Yes</td>
+														</g:else>
+													</g:if>		
+													
+													</tr>							
 												</g:each>
 											</g:if>
 											<g:else>

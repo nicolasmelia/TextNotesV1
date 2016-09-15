@@ -189,7 +189,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<ul class="treeview-menu">
 							<li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}">Compose Text</a>
 							</li>
-							<li><a href="${createLink(controller: 'Dashboard', action: 'secheduledTxt')}">Secheduled Text</a>
+							<li><a href="${createLink(controller: 'Dashboard', action: 'drafts')}">Compose Draft</a>
+							</li>
+							<li><a href="${createLink(controller: 'Dashboard', action: 'newDraft')}">View Drafts</a>
+							</li>
+							<li><a href="${createLink(controller: 'Dashboard', action: 'secheduledTxt')}">View Secheduled</a>
 							</li>
 							<li> <a href="#">Quick Tools (External) <i class="fa fa-angle-left pull-right"></i></a>
 								<ul class="treeview-menu">

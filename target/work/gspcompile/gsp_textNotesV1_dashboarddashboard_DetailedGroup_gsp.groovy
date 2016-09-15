@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1825856364 in (keywordsIn) ) {
-changeItVariable(_it1825856364)
+for( _it303888116 in (keywordsIn) ) {
+changeItVariable(_it303888116)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -162,8 +162,8 @@ if(true && (clientCount || contacts != 'NONE' || offset > 0)) {
 printHtmlPart(20)
 if(true && (contacts != 'NONE')) {
 printHtmlPart(14)
-for( _it979074430 in (contacts) ) {
-changeItVariable(_it979074430)
+for( _it2094809200 in (contacts) ) {
+changeItVariable(_it2094809200)
 printHtmlPart(68)
 expressionOut.print(it.firstName)
 printHtmlPart(30)
@@ -249,8 +249,8 @@ expressionOut.print(currentPage)
 printHtmlPart(95)
 if(true && (contacts && contacts != 'NONE')) {
 printHtmlPart(96)
-for( _it332149166 in (contacts) ) {
-changeItVariable(_it332149166)
+for( _it1430240916 in (contacts) ) {
+changeItVariable(_it1430240916)
 printHtmlPart(97)
 expressionOut.print(it.contactID)
 printHtmlPart(98)
@@ -259,34 +259,37 @@ printHtmlPart(30)
 expressionOut.print(it.lastName)
 printHtmlPart(99)
 createClosureForHtmlPart(100, 4)
-invokeTag('link','g',470,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("sendTxt"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
+invokeTag('link','g',471,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("sendTxt"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(101)
 createClosureForHtmlPart(102, 4)
-invokeTag('link','g',472,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("editContact"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
+invokeTag('link','g',473,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("editContact"),'params':([contactID: it.contactID]),'type':("button"),'class':("btn btn-app")],4)
 printHtmlPart(103)
 createClosureForHtmlPart(104, 4)
-invokeTag('link','g',473,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("details"),'params':([contactID: it.contactID, conType: 'Contact']),'type':("button"),'class':("btn btn-app")],4)
-printHtmlPart(105)
+invokeTag('link','g',474,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("details"),'params':([contactID: it.contactID, conType: 'Contact']),'type':("button"),'class':("btn btn-app")],4)
+printHtmlPart(103)
+createClosureForHtmlPart(105, 4)
+invokeTag('link','g',475,['style':("margin-bottom:0px; margin-top: 15px; "),'action':("groups"),'params':([contactID: it.contactID, addToGroup: 'True']),'type':("button"),'class':("btn btn-app")],4)
+printHtmlPart(106)
 }
 printHtmlPart(1)
 }
-printHtmlPart(106)
-invokeTag('javascript','g',489,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(107)
-invokeTag('javascript','g',491,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+invokeTag('javascript','g',490,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(108)
-invokeTag('javascript','g',493,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',492,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(109)
-})
-invokeTag('captureBody','sitemesh',498,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('javascript','g',494,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(110)
+})
+invokeTag('captureBody','sitemesh',499,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(111)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1473218057861L
+public static final long LAST_MODIFIED = 1473642310268L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
