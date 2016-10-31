@@ -134,16 +134,21 @@ class DashboardController {
 				// Check is a preuser was added from address book					
 				String preContactName = "NONE"
 				String preContactID = "NONE"
+				
 				Contact contact
 				if (params.contactID) {
 					contact = Contact.findByContactID(params.contactID)
 					preContactName = contact.fullName
 					preContactID = contact.contactID					
 				}
+							
+				MessageDraft draft
+				if (params.draftID) {
+					draft = MessageDraft.findByDraftID(params.draftID)				
+				} 
 				
-				Balance bal = Balance.findByUserID(session["userID"])
-								
-				render(view:"dashboard_SendTxt", model: [UAI: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), bal: bal, preClientName: preContactName, preClientID: preContactID, groups: getGroupList(0, true) ])
+				Balance bal = Balance.findByUserID(session["userID"])				
+				render(view:"dashboard_SendTxt", model: [UAI: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), bal: bal, preClientName: preContactName, draft : draft, preClientID: preContactID, groups: getGroupList(0, true)])
 				
 		   } else {
 			   redirect(controller: "Home")
@@ -168,7 +173,7 @@ class DashboardController {
 				MD.draftID = halfUUID
 				MD.save()		
 				
-				render "success"
+				redirect(action: "drafts", params: [added: true])				
 				
 			} else {
 				render(view:"dashboard_newDraft", model: [UAI: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true)])		
@@ -191,6 +196,9 @@ class DashboardController {
 			}
 		}
 		
+		// Checks if a draft has newly been added (from a redirect)
+		boolean added = (params.added) ? true : false;
+		
 		// check to see if contacts exist
 		int clientCount = MessageDraft.countByUserID(session["userID"])
 		
@@ -208,7 +216,7 @@ class DashboardController {
 		}
 		
 		if (session["userID"]) {
-			render(view:"dashboard_drafts",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), clientCount: clientCount, draftList: getDraftList(offset, 10)])
+			render(view:"dashboard_drafts",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), newlyAdded: added, clientCount: clientCount, draftList: getDraftList(offset, 10)])
 	   } else {
 		   redirect(controller: "Home")
 	   }
@@ -515,6 +523,9 @@ class DashboardController {
 		} else if (params.searchQuery) {
 			searchQuery = params.searchQuery
 		}
+		
+		
+		println params.activityType
 		
 		if (session["userID"]) {
 			 render(view:"dashboard_history",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), offset: offset, up: params.up, addToGroup: addToGroup, groupCount: groupCount, history: getHistoryList(offset, params.activityType), activityType: params.activityType])

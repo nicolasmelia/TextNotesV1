@@ -255,14 +255,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</ol>
 			</section>
 				<!-- /.col -->
-					<div style = "margin-top: 7px; "class="col-md-9">
-						<div class="box box-primary">
-							<div class="box-header with-border">
-								<h3 class="box-title">Compose Draft</h3>
-							</div>
-							<!-- /.box-header -->
+				
+			<!-- Main content -->
+			<section class="content">
+				<!-- Horizontal Form -->
+				<div class="box box-info" style="max-width: 600px;">
+					<div class="box-header with-border">
+						<h3 class="box-title">Compose Draft</h3>
+					</div>
+					<!-- /.box-header -->
+					<!-- form start -->
 							<g:form id="txtForm" class="form-signin" controller="Dashboard" action="newDraft" enctype="multipart/form-data">
 								<div class="box-body">
+							
+								<div id="ModalAlert" style="display: none;" class="alert alert-danger alert-dismissable">
+									<h4><i class="icon fa fa-exclamation-circle"></i>Fix needed</h4>
+									<p id="ModalAlertText"></p>
+								</div>		
+								
 									<div class="form-group">
 										<input id="draftName" name="draftName" class="form-control" placeholder="Draft Name">
 									</div>
@@ -283,21 +293,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<!-- hidden to hide ro send via modal! -->
 							<div class="box-footer">
 								<div class="pull-right">
-								<button class=" btn btn-primary" id="submitBtn" value="Send" action="newDraft" /><i class="fa fa-save"> </i> Save Draft</button>
+								<button class=" btn btn-primary" onclick = "return validateMainForm()" id="submitBtn" value="Send" action="newDraft" /> <i class="fa fa-save"> </i> Save Draft</button>
 								</div> <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" class="btn btn-default">Cancel</a>
 							</div>
-							</g:form>
-
-							<!-- /.box-footer -->
-						</div>
-						<!-- /. box -->
-					</div>
-					<!-- /.col -->
+						</g:form>
 				</div>
-				<!-- /.row -->
+				<!-- /.box -->
 			</section>
 			<!-- /.content -->
 		</div>
+			
+			<!-- /.content -->
 		<!-- /.content-wrapper -->
 		<!-- Main Footer -->
 		<footer class="main-footer">
@@ -339,75 +345,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script>
 
 	$( document ).ready(function() {
-		addCustomNumberPrePick();
-			
-		$('.bootstrap-tagsinput > :input').keydown(function() {
-			// Dont allow user to type in the recip input field
-			$('#noTypeModal').modal('show');	
-		   return false;
-		});
-	
 		
 	});
 	
-	
-	  // initialize datamask for inputs
-	  $("[data-mask]").inputmask();
-	
-		$('#tags').tagsinput({
-			 tagClass: function(item) {
-				    switch (item.optionType) {
-				      case 'Pick'   : return 'label label-info';
-				      case 'none'  : return 'label label-important';
-				      case 'custom': return 'label label-success';
-				      case 'group'   : return 'badge badge-inverse';
-				      case 'Asia'     : return 'badge badge-warning';
-				    }
-				  },
-					    
-			itemValue: 'value',	
-			itemText: 'text',							  
-			trimValue: true,
-		  	freeInput: false
-		  	
-		});
-		
-		// on search box enter
-		$("#searchInput").keypress(function(event) {
-		    if (event.which == 13) {
-		   	 $( "#searchContactBtn" ).trigger( "click" );
-		    }
-		});
+
 		
 		$('#searchInput').on('input', function() {
 	    	$( "#searchContactBtn" ).trigger( "click" );
 		});
 	
 		// When the form is submitted disable the resend button
-		$('form').submit(function() {
-			$('#loadingModal').modal('show');	
-			$('#previewModal').modal('hide');	
-			
+		$('form').submit(function() {			
 			$("#submitBtn").prop("disabled",true);	
 		});
 	
-		function submitForm(currentBal, MonthlyBal){
-			if (parseInt($('#attachedRecipientsCountTwo').html()) > parseInt(currentBal)) {
-					$("#previewModalAlertText").html("The current amount of recipents exceeds your remaining balance. " +
-					"Increase your monthly balance in the subscription menu or remove recipents from this text.");  
-					$("#PreviewModalAlert").css("display","block");
-				    $("#PreviewModalAlert").effect("bounce", { times:3 }, 400);
-			} else {
-				if (!errors.length) {
-					$('#submitBtn').click()		
-					//console.log(parseInt($('#attachedRecipientsCountTwo').html()) + " :: " + currentBal  );		
-				} else {
-					$("#PreviewModalAlert").css("display","block");
-				    $("#PreviewModalAlert").effect("bounce", { times:3 }, 400);
-				}	
-			}
-		}
-		
+
 		function validateForm(){
 			return true;
 		}
@@ -427,8 +379,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			}	
 	
 			
-				getRecpCount(url, $('#tags').val());
-			
+				getRecpCount(url, $('#tags').val());		
 			
 		}
 		
@@ -438,78 +389,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		    return event.keyCode != 13;
 		});
 	
-	
-	
-	  // ******* CUSTOM NUMBER MODAL ******* 
-		function addCustomNumber() {
-			// Number set from addNumber modal for custom numbers not in address book.
-			if (validateAddNumber()) {
-				var number = $('#customNumber').val();
-				$('#tags').tagsinput('add', { "value":  'N:' + number , "text": number, "optionType": "custom"});	
-				$('#customNumber').val(""); // Clear the input field
-				$('#addNumberModal').modal("hide");
-				removeToPlaceHolder();			 
-			}
-		}
-	
-		  // ******* CUSTOM CONTACT ******* 
-		function addCustomNumberPrePick() {
-			// Number set from addNumber modal for custom numbers not in address book.	
-				var name = $('#preClientName').val();
-				var clientID = $('#preClientID').val();
-				if (name != "NONE") {
-					$('#tags').tagsinput('add', { "value":  'ID:' + clientID , "text": name, "optionType": "Pick"});	
-					removeToPlaceHolder();	
-					return true;
-				} else {
-					return false;
-				}		 
-		}
-		
-			  // ******* CUSTOM NUMBER MODAL ******* 
-		function addNumberPick(name, clientID) {
-			// Number set from addNumber modal for custom numbers not in address book.	
-				if (name != "NONE") {
-					$('#tags').tagsinput('add', { "value":  'ID:' + clientID , "text": name, "optionType": "Pick"});	
-					removeToPlaceHolder();	
-					$('#addContactModal').modal("hide");
-					return true;
-				} else {
-					return false;
-				}		 
-		}
-	
-		  // ******* CUSTOM CONTACT ******* 
-		function addGroupPrePick(groupID, groupName) {
-			// Number set from addNumber modal for custom numbers not in address book.	
-				if (groupName != "NONE") {
-					$('#tags').tagsinput('add', { "value":  'G:' + groupID , "text": groupName, "optionType": "group"});	
-					removeToPlaceHolder();	
-					$('#addGroupModal').modal("hide");		
-					return true;
-				} else {
-					return false;
-				}		 
-		}
-	
-	  	// Set focus to number input
-		$('#addNumberModal').on('shown.bs.modal', function () {
-		    $('#customNumber').focus();
-		})
-		
-	  	// Set focus to anme input
-		$('#addContactModal').on('shown.bs.modal', function () {
-		    $('#searchInput').focus();
-		    $('#searchInput').val("");
-		    $("#example1 > tbody").html("");
-		    
-		$('#contactTable').append("<tr class = 'pointer' >" +
-			"<td>Please enter a search.</td>" +
-			"<td>-</td>" +
-			"<td>-</td>" +
-			"</tr>");	
-			$("#resultOver").css("display","none");		 
-		})
 		
 		// ******* CUSTOM NUMBER MODAL ******* 
 		
@@ -530,37 +409,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	
 	  // Form Validation
 	    var errors = [];
-	  
-	  function validateAddNumber() {
-		  var error = false;
-		  var number = $('#customNumber').val();
-		  	if (number.length < 10) {
-				error = true;
-				$("#addNumberModalAlertText").html("Please enter a <b>10</b> digit phone number.")
-			} else if (number.replace(/[^0-9]/g,"").length < 10) {
-				error = true;
-				$("#addNumberModalAlertText").html("Please enter a valid phone number");			
-			}
-	
-			if (error){
-				$("#addNumberModalAlert").slideDown();
-				return false;
-			} else {
-				return true;
-			}
-				
-	  }
-	
+
 	  
 	  function validateMainForm() {		  
-		  var error = false;
-		  var number = $('#customNumber').val();
-	
+		  	var error = false;	
+		  	
 		  	//Clear old values
 		  	errors = [];
-			$("#previewModalAlertText").html("");  
+			$("#ModalAlertText").html("");  
+			$("#ModalAlert").css("display","none");
 			
-		  	if ($("#compose-textarea").val().length < 10) {
+						
+		  	if ($("#compose-textarea").val().length < 11) {
 				error = true;
 				errors.push("Please enter a message longer than 10 characters.");			
 		  	}
@@ -570,19 +430,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				errors.push("Your message can not be longer than 260 characters.");			
 		  	}
 		  	
-			if (!$("#tags").val()) {
+			if ($("#draftName").val().length < 1) {
 				error = true;
-				errors.push("Please add atleast (1) recipient.");						
+				errors.push("Please enter a name for this draft.");						
 			}
 	
 			if (error){
+			
 				for (i = 0; i < errors.length; i++) { 
-					$("#previewModalAlertText").append("*" + errors[i] + "<br/>");		
-				}			
-				$("#PreviewModalAlert").css("display","block");
+					$("#ModalAlertText").append("*" + errors[i] + "<br/>");		
+				}		
+				
+				$("#ModalAlert").slideDown();
+			
 				return false;
 			} else {
-				$("#PreviewModalAlert").css("display","none");		
 				return true;
 			}
 				

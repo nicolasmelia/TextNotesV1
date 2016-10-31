@@ -184,7 +184,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</li>
 						</ul>
 					</li>
-					<li class="treeview"> <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="active"  class="treeview"> <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}">Compose Text</a>
 							</li>
@@ -208,7 +208,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</li>
 						</ul>
 					</li>
-					<li class="active" class="treeview"> <a href="#"><i class="fa fa-inbox"></i> <span>Keywords</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="treeview"> <a href="#"><i class="fa fa-inbox"></i> <span>Keywords</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a href="${createLink(controller: 'Dashboard', action: 'newKeyWord')}"><b>New Keyword</b></a>
 							</li>
@@ -242,21 +242,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-            Inbox
-            <small>Keywords</small>
+             Text
+            <small>Drafts</small>
           </h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Keywords</a>
+					<li><a href="#"><i class="fa fa-dashboard"></i> Send Text</a>
 					</li>
-					<li class="active">Keyword Inbox</li>
+					<li class="active">View Drafts</li>
 				</ol>
 			</section>
 			<!-- Main content -->
 			<section class="content">
-				<g:if test="${clientCount == 0}">
+				<g:if test="${newlyAdded}">
 					<div class="callout callout-info" style="margin-bottom: 10px!important;">
-						<h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
-						It looks like no one sent in your keywords yet. Get started by adding a keyword below!</div>
+						<h4><i class="fa fa-paw"></i> Success </h4>
+						Draft added to draft list.</div>
 				</g:if>
 				<input id='searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
 				<input id='offset' type="hidden" value="${offset}">
@@ -264,29 +264,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
-							<div class="box-header">
-							
-							<div class="box-header" style = "padding:0px 0px 0px 10px;"> <a href="${createLink(controller: 'Dashboard', action: 'newDraft')}"><b> <span class = "fa fa-plus-square"></span> New Draft</b></a>
-
+							<div class="box-header">							
+								<div class="box-header" style = "padding:0px 0px 0px 10px;"> <a href="${createLink(controller: 'Dashboard', action: 'newDraft')}"><b> <span class = "fa fa-plus-square"></span> New Draft</b></a>
 							</div>
-							
-							
-							
+								
 							<!-- /.box-header -->
 							<div class="box-body">
 								<table id="example1" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th>Keyword</th>
-											<th>Phone Number</th>
-											<th>Date Received</th>
+											<th>Draft Name</th>
+											<th>Message</th>
+											<th>Date Created</th>
 										</tr>
 									</thead>
 									<tbody>
 										<g:if test="${clientCount > 0 || offset > 0}">
 											<g:if test="${draftList != 'NONE'}">
 												<g:each in="${draftList}">
-													<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'draft',  promotionID:it.draftID])}';" class="pointer">
+													<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'sendTxt', params: [draftID:it.draftID])}';" class="pointer">
 														<td><a href="#"><b>${it.draftName}</b></a></td>
 														<td>${it.message}</td>
 														<td>

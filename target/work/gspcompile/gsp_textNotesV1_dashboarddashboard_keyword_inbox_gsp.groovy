@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1999583807 in (keywordsIn) ) {
-changeItVariable(_it1999583807)
+for( _it455548983 in (keywordsIn) ) {
+changeItVariable(_it455548983)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -151,8 +151,8 @@ if(true && (clientCount > 0 || offset > 0)) {
 printHtmlPart(20)
 if(true && (messages != 'NONE')) {
 printHtmlPart(14)
-for( _it1017793925 in (messages) ) {
-changeItVariable(_it1017793925)
+for( _it743109550 in (messages) ) {
+changeItVariable(_it743109550)
 printHtmlPart(63)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:it.promotionID]))
 printHtmlPart(64)

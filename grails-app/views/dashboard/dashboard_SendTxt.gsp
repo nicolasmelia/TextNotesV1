@@ -257,7 +257,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Main content -->
 			<section class="content">
 				<div class="row">
-					<div class="col-md-3"> <a href="mailbox.html" class="btn btn-primary btn-block margin-bottom">Address Book</a>
+					<div class="col-md-3"> <a onclick = "return false" href="${createLink(controller: 'Dashboard', action: 'contacts')}" class="btn btn-primary btn-block margin-bottom">Address Book</a>
 						<div class="box box-solid">
 							<div class="box-header with-border">
 								<h3 class="box-title">Add Recipients</h3>
@@ -281,7 +281,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<!-- /. box -->
 						<div class="box box-solid">
 							<div class="box-header with-border">
-								<h3 class="box-title">Labels</h3>
+								<h3 class="box-title">Messages</h3>
 								<div class="box-tools">
 									<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 									</button>
@@ -290,9 +290,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<!-- /.box-header -->
 							<div class="box-body no-padding">
 								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a>
-									</li>
-									<li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a>
+									<li> <a href="${createLink(controller: 'Dashboard', action: 'drafts')}"><i class="fa fa-file-text-o"></i> Drafts</a>
+									</li>									
+									<li><a href="${createLink(controller: 'Dashboard', action: 'history', params:[activityType: 'messages'])}" ><i class="fa fa-envelope-o"></i> Sent</a>
 									</li>
 								</ul>
 							</div>
@@ -318,10 +318,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<input id="tags" name="tags" placeholder="Recipients" class="form-control" type="text" data-role="tagsinput" />
 									</div>
 									<div class="form-group">
-										<input id="subject" name="subject" class="form-control" placeholder="Subject: Not Required">
+										<input id="subject"  value = "<g:if test="${draft}">${draft.title}</g:if>" name="subject" class="form-control" placeholder="Subject: Not Required">
 									</div>
 									<div class="form-group">
-										<textarea placeholder="Message" id="compose-textarea" name="body" class="form-control" style="height: 150px"></textarea>
+										<textarea placeholder="Message" id="compose-textarea" name="body" class="form-control" style="height: 150px"><g:if test="${draft}">${draft.message}</g:if></textarea>
 									</div>
 									<div class="form-group">
 										<p style="margin: 0px;" id='charCount' class="help-block">0/260 characters</p>
@@ -780,11 +780,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			} else {
 				$("#preMessageSubject").html("No Subject");		
 			}	
-	
-			
 				getRecpCount(url, $('#tags').val());
-			
-			
 		}
 		
 	
@@ -915,7 +911,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		  	errors = [];
 			$("#previewModalAlertText").html("");  
 			
-		  	if ($("#compose-textarea").val().length < 10) {
+		  	if ($("#compose-textarea").val().length < 11) {
 				error = true;
 				errors.push("Please enter a message longer than 10 characters.");			
 		  	}

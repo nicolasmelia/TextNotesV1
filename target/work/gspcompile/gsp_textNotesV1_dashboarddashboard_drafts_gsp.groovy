@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it165443629 in (keywordsIn) ) {
-changeItVariable(_it165443629)
+for( _it1658166624 in (keywordsIn) ) {
+changeItVariable(_it1658166624)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -140,96 +140,91 @@ expressionOut.print(offset)
 printHtmlPart(58)
 expressionOut.print(clientCount)
 printHtmlPart(59)
-createTagBody(2, {->
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newDraft'))
 printHtmlPart(60)
-invokeTag('actionSubmit','g',271,['action':("keywordInbox"),'class':("btn btn-info btn-flat"),'type':("button"),'value':("Search")],-1)
-printHtmlPart(61)
-})
-invokeTag('form','g',275,['id':("searchForm"),'controller':("Dashboard"),'action':("dashboard"),'enctype':("multipart/form-data")],2)
-printHtmlPart(62)
 if(true && (clientCount > 0 || offset > 0)) {
 printHtmlPart(20)
-if(true && (messages != 'NONE')) {
+if(true && (draftList != 'NONE')) {
 printHtmlPart(14)
-for( _it463688018 in (messages) ) {
-changeItVariable(_it463688018)
+for( _it1012083607 in (draftList) ) {
+changeItVariable(_it1012083607)
+printHtmlPart(61)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'draft',  promotionID:it.draftID]))
+printHtmlPart(62)
+expressionOut.print(it.draftName)
 printHtmlPart(63)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:it.promotionID]))
+expressionOut.print(it.message)
 printHtmlPart(64)
-expressionOut.print(it.keyword)
+invokeTag('formatDate','g',293,['format':("MM-dd-yyyy"),'date':(it.dateCreated)],-1)
 printHtmlPart(65)
-expressionOut.print(it.phoneNumber)
+}
+printHtmlPart(20)
+}
+else {
+printHtmlPart(14)
+if(true && (isSearch)) {
+printHtmlPart(61)
+expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(66)
-invokeTag('formatDate','g',296,['format':("MM-dd-yyyy"),'date':(it.date)],-1)
+}
+else {
 printHtmlPart(67)
 }
 printHtmlPart(20)
 }
-else {
-printHtmlPart(14)
-if(true && (isSearch)) {
-printHtmlPart(63)
-expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(68)
 }
 else {
-printHtmlPart(69)
-}
-printHtmlPart(20)
-}
-printHtmlPart(70)
-}
-else {
 printHtmlPart(20)
 if(true && (isSearch)) {
-printHtmlPart(71)
+printHtmlPart(69)
 expressionOut.print(createLink(controller: 'Dashboard'))
-printHtmlPart(72)
-}
-else {
-printHtmlPart(73)
-}
 printHtmlPart(70)
 }
-printHtmlPart(74)
+else {
+printHtmlPart(71)
+}
+printHtmlPart(68)
+}
+printHtmlPart(72)
 if(true && (offset > 0)) {
+printHtmlPart(73)
+createClosureForHtmlPart(74, 3)
+invokeTag('link','g',345,['action':("keywordInbox"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(75)
-createClosureForHtmlPart(76, 3)
-invokeTag('link','g',348,['action':("keywordInbox"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(77)
+}
+else {
+printHtmlPart(76)
+}
+printHtmlPart(75)
+if(true && (offset <= clientCount)) {
+printHtmlPart(73)
+createClosureForHtmlPart(77, 3)
+invokeTag('link','g',351,['action':("keywordInbox"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+printHtmlPart(75)
 }
 else {
 printHtmlPart(78)
 }
-printHtmlPart(77)
-if(true && (offset <= clientCount)) {
-printHtmlPart(75)
-createClosureForHtmlPart(79, 3)
-invokeTag('link','g',354,['action':("keywordInbox"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(77)
-}
-else {
-printHtmlPart(80)
-}
-printHtmlPart(81)
+printHtmlPart(79)
 expressionOut.print(currentPage)
+printHtmlPart(80)
+invokeTag('javascript','g',443,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(81)
+invokeTag('javascript','g',445,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(82)
-invokeTag('javascript','g',446,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+invokeTag('javascript','g',447,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(83)
-invokeTag('javascript','g',448,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
-printHtmlPart(84)
-invokeTag('javascript','g',450,['src':("dashboard/app.min.js")],-1)
-printHtmlPart(85)
 })
-invokeTag('captureBody','sitemesh',455,['class':("hold-transition skin-purple sidebar-mini")],1)
-printHtmlPart(86)
+invokeTag('captureBody','sitemesh',452,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(84)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1473642310052L
+public static final long LAST_MODIFIED = 1477848273940L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

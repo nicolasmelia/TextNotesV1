@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it217679065 in (keywordsIn) ) {
-changeItVariable(_it217679065)
+for( _it1923614312 in (keywordsIn) ) {
+changeItVariable(_it1923614312)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -132,8 +132,8 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'accountSettings
 printHtmlPart(54)
 if(true && (winnerCount > 0)) {
 printHtmlPart(20)
-for( _it531204642 in (winners) ) {
-changeItVariable(_it531204642)
+for( _it1120633204 in (winners) ) {
+changeItVariable(_it1120633204)
 printHtmlPart(55)
 expressionOut.print(it.phoneNumber)
 printHtmlPart(56)
