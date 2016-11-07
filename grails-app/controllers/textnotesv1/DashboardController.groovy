@@ -39,11 +39,10 @@ class DashboardController {
 		}
 			
 		if (session["userID"]) {		
-			 render(view:"dashboard_home",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery, true)])		 
+			 render(view:"home",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery, true)])		 
 		} else {
 			redirect(controller: "Home")
-		}
-		
+		}	
 	}
 	
 	def balance() {
@@ -53,7 +52,7 @@ class DashboardController {
 	   } else {
 		   redirect(controller: "Home")
 	   }
-}
+	}
 	
 	def contacts() {	
 		int offset = 0
@@ -88,8 +87,7 @@ class DashboardController {
 			 render(view:"dashboard_contacts",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, contacts: getContactList(offset, searchQuery, false)])		 
 		} else {
 			redirect(controller: "Home")
-		}
-		
+		}	
 	}
 	
 	def keywordInbox() {
@@ -147,12 +145,25 @@ class DashboardController {
 					draft = MessageDraft.findByDraftID(params.draftID)				
 				} 
 				
-				Balance bal = Balance.findByUserID(session["userID"])				
-				render(view:"dashboard_SendTxt", model: [UAI: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), bal: bal, preClientName: preContactName, draft : draft, preClientID: preContactID, groups: getGroupList(0, true)])
+				Balance bal = Balance.findByUserID(session["userID"])
 				
+				// Check if user has a remaining balance
+				if (bal.totalBalanceSpent < bal.monthlyBalance) {		
+					render(view:"dashboard_SendTxt", model: [UAI: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), bal: bal, preClientName: preContactName, draft : draft, preClientID: preContactID, groups: getGroupList(0, true)])
+				} else {
+					// Remaining balance is 0
+					String monthlyResetDate = new SimpleDateFormat("MM/dd/yyyy").format(bal.monthlyResetDate);			
+					displayUserError("Empty Text Balance","Your current remaning text balance is 0. Your balance will reset to " + 
+						bal.monthlyBalance + " on " + monthlyResetDate + "." + 
+							" You can increase your monthly balance by upgrading to a paid subscription on the 'My Balance' page.", "");			
+				}	
 		   } else {
 			   redirect(controller: "Home")
 		   }		
+	}
+	
+	def secheduledTxt() {
+		displayUserError("Coming Soon...","Secheduled text are coming soon! We are working hard to bring you this feature and will notifty you via TxtWolf when its ready!", "");	
 	}
 	
 	def newDraft() {
@@ -172,6 +183,9 @@ class DashboardController {
 				
 				MD.draftID = halfUUID
 				MD.save()		
+				
+				// Log this into history
+				createHistoryLog("Created draft " + MD.draftName, "Draft", null)				
 				
 				redirect(action: "drafts", params: [added: true])				
 				
@@ -222,8 +236,7 @@ class DashboardController {
 	   }
 		
 	}
-	
-	
+		
 	def getRecipCount () {
 		int clientCount = 0 
 		ArrayList<String> tags = params.tags.toString().split(",")
@@ -244,8 +257,7 @@ class DashboardController {
 				default:
 					break;
 			}
-		}
-		
+		}		
 		render clientCount.toString()
 	}
 	
@@ -256,8 +268,7 @@ class DashboardController {
 			   redirect(controller: "Home")
 		   }
 	}
-	
-	
+		
 	def editContact() {
 			if (session["userID"]) {
 				
@@ -286,12 +297,8 @@ class DashboardController {
 					contact.address = params.address.toString().trim()
 
 					contact.userID = session["userID"]
-					
-					
-					
 					contact.save(flush:true)
 					redirect(controller: "Dashboard", action: "confirmation", params: [conType: "editContact", name: contact.fullName.toString(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), number: contact.phoneNumber.toString(), contactID: contact.contactID])
-	
 				}
 	
 		   } else {
@@ -436,9 +443,7 @@ class DashboardController {
 					render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), conType: "Coupon Code", hist: hist])
 				} else {
 					// Coupon code has been used
-				
 					render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), conType: "Coupon Code Used", coupon: coupon ])
-
 				}
 
 			} else {
@@ -523,10 +528,7 @@ class DashboardController {
 		} else if (params.searchQuery) {
 			searchQuery = params.searchQuery
 		}
-		
-		
-		println params.activityType
-		
+				
 		if (session["userID"]) {
 			 render(view:"dashboard_history",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), offset: offset, up: params.up, addToGroup: addToGroup, groupCount: groupCount, history: getHistoryList(offset, params.activityType), activityType: params.activityType])
 		} else {
@@ -550,7 +552,8 @@ class DashboardController {
 		
 		// check to see if contacts exist
 		int clientCount = Contact.countByUserID(session["userID"])
-	
+		int groupMemberCount = GroupMember.countByGroupID(params.groupID)
+
 		// Get searchInfo if any
 		def searchQuery
 		boolean isSearch = false
@@ -568,7 +571,7 @@ class DashboardController {
 		Groups group = Groups.findByGroupID(params.groupID)
 	
 		if (session["userID"]) {
-			 render(view:"dashboard_DetailedGroup",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), offset: offset, up: params.up, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch: isSearch, contacts: getContactListByGroup(offset, searchQuery, params.groupID), group: group])
+			 render(view:"dashboard_DetailedGroup",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), offset: offset, up: params.up, groupMemberCount : groupMemberCount, clientCount: clientCount, searchQueryHidden: searchQuery, isSearch: isSearch, contacts: getContactListByGroup(offset, searchQuery, params.groupID), group: group])
 		} else {
 			redirect(controller: "Home")
 		}
@@ -856,11 +859,11 @@ class DashboardController {
 		if (session["userID"]) {
 			if (params.conType == "Contact") {		
 				Contact contact = Contact.findByContactID(params.contactID)
-				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), contact: contact, conType:  params.conType])
+				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), contact: contact, conType:  params.conType])
 			} else if (params.conType == "History") {
 				History hist = History.findByHistoryID(params.historyID)
 				boolean showNumber = (params.showNumber) ? true : false; // Display the histories phone number in the TR?		
-				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), history: hist, conType:  params.conType, showNumber: showNumber])
+				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), history: hist, conType:  params.conType, showNumber: showNumber])
 			
 			} else if (params.conType == "Message") {
 				MessageOut message = MessageOut.findByMessageID(params.messageID)
@@ -907,14 +910,11 @@ class DashboardController {
 								break;
 						}
 					}
-				}
-								
-				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), message: message, conType:  params.conType, res: res.toString(), contactCount: message.contactCount])
+				}			
+				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), message: message, conType:  params.conType, res: res.toString(), contactCount: message.contactCount])
 			} else if (params.conType == "keyword") {
-			Keyword keyword = Keyword.findByPromotionID(params.promotionID)
-			
-			render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), keyword: keyword, number:getUserKeywordNum(), conType:  params.conType])
-			
+				Keyword keyword = Keyword.findByPromotionID(params.promotionID)
+				render(view:"dashboard_details",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), keyword: keyword, number:getUserKeywordNum(), conType:  params.conType])			
 			}	else {
 				render("Something went wrong. Please go back and try again.")
 			}	
@@ -1030,8 +1030,7 @@ class DashboardController {
 			displayUserError("Cant Reactivate", "You can't reactivate an expired keyword. This keyword expired on " + formatter.format(keyword.dateExp).toString() + ". Create a new keyword or delete this one.", "Home")		
 		}
 	}
-	
-	
+		
 	def resetNotificationCount() {
 		Notification noti = Notification.findByNotiTypeAndUserID("keywordNoti",session["userID"])
 		
@@ -1046,8 +1045,7 @@ class DashboardController {
 		noti.save(flush:true)
 				
 	}
-	
-	
+		
 	def proccessTxtSend() {
 		render params.tags
 	}
@@ -1107,8 +1105,7 @@ class DashboardController {
 		history.date = new Date()
 		history.save(flush:true)
 		
-		if (phoneNumber != null) history.phoneNumber
-		
+		if (phoneNumber != null) history.phoneNumber		
 		return history.historyID
 		
 	}

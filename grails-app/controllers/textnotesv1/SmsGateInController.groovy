@@ -155,8 +155,7 @@ class SmsGateInController {
 			return true // Success 
 		} catch (Exception ex) {
 			return false
-		}
-		
+		}		
 	}
 	
 	public void incrementNoti(Keyword keyword) {

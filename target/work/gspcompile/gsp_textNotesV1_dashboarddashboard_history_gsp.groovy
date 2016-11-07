@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1367226395 in (keywordsIn) ) {
-changeItVariable(_it1367226395)
+for( _it759536602 in (keywordsIn) ) {
+changeItVariable(_it759536602)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -110,158 +110,162 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'groups'))
 printHtmlPart(43)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
 printHtmlPart(44)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'secheduledTxt'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newDraft'))
 printHtmlPart(45)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'tips'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'drafts'))
 printHtmlPart(46)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'newKeyWord'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'secheduledTxt'))
 printHtmlPart(47)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'keywords'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'tips'))
 printHtmlPart(48)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newKeyWord'))
 printHtmlPart(49)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'validateCoup'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywords'))
 printHtmlPart(50)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'keywords', params: [type: 'contestSelect']))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(51)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'balance'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'validateCoup'))
 printHtmlPart(52)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'history'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywords', params: [type: 'contestSelect']))
 printHtmlPart(53)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'accountSettings'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'balance'))
 printHtmlPart(54)
-if(true && (groupCount == 0)) {
+expressionOut.print(createLink(controller: 'Dashboard', action: 'history'))
 printHtmlPart(55)
-}
+expressionOut.print(createLink(controller: 'Dashboard', action: 'accountSettings'))
 printHtmlPart(56)
-expressionOut.print(searchQueryHidden)
+if(true && (groupCount == 0)) {
 printHtmlPart(57)
-expressionOut.print(offset)
+}
 printHtmlPart(58)
-expressionOut.print(groupCount)
+expressionOut.print(searchQueryHidden)
 printHtmlPart(59)
-createTagBody(2, {->
+expressionOut.print(offset)
 printHtmlPart(60)
-if(true && (activityType == 'all' || activityType == null)) {
+expressionOut.print(groupCount)
 printHtmlPart(61)
+createTagBody(2, {->
+printHtmlPart(62)
+if(true && (activityType == 'all' || activityType == null)) {
+printHtmlPart(63)
 }
 else {
-printHtmlPart(62)
-}
-printHtmlPart(63)
-invokeTag('actionSubmit','g',287,['id':("selectTypeForm"),'style':("display:none;"),'action':("history"),'class':("btn btn-info btn-flat"),'type':("button"),'value':("selectTypeForm")],-1)
 printHtmlPart(64)
-})
-invokeTag('form','g',288,['id':("searchForm"),'controller':("Dashboard"),'action':("history"),'enctype':("multipart/form-data")],2)
+}
 printHtmlPart(65)
+invokeTag('actionSubmit','g',291,['id':("selectTypeForm"),'style':("display:none;"),'action':("history"),'class':("btn btn-info btn-flat"),'type':("button"),'value':("selectTypeForm")],-1)
+printHtmlPart(66)
+})
+invokeTag('form','g',292,['id':("searchForm"),'controller':("Dashboard"),'action':("history"),'enctype':("multipart/form-data")],2)
+printHtmlPart(67)
 if(true && (groupCount > 0 || offset > 0)) {
 printHtmlPart(20)
 if(true && (history != 'NONE')) {
 printHtmlPart(14)
-for( _it1635300287 in (history) ) {
-changeItVariable(_it1635300287)
-printHtmlPart(66)
-if(true && (it.type == 'Coupon Code')) {
-printHtmlPart(67)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'History',  historyID: it.historyID, showNumber : true]))
+for( _it1827344889 in (history) ) {
+changeItVariable(_it1827344889)
 printHtmlPart(68)
+if(true && (it.type == 'Coupon Code')) {
+printHtmlPart(69)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'History',  historyID: it.historyID, showNumber : true]))
+printHtmlPart(70)
 }
 else if(true && (it.type == 'Message')) {
-printHtmlPart(67)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: it.type, messageID: it.hashOne]))
-printHtmlPart(68)
-}
-else {
-printHtmlPart(67)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'History',  historyID: it.historyID]))
-printHtmlPart(68)
-}
 printHtmlPart(69)
-expressionOut.print(it.type)
-printHtmlPart(70)
-if(true && (it.description)) {
-printHtmlPart(71)
-expressionOut.print(it.description)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: it.type, messageID: it.hashOne]))
 printHtmlPart(70)
 }
 else {
+printHtmlPart(69)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'History',  historyID: it.historyID]))
+printHtmlPart(70)
+}
+printHtmlPart(71)
+expressionOut.print(it.type)
+printHtmlPart(72)
+if(true && (it.description)) {
+printHtmlPart(73)
+expressionOut.print(it.description)
 printHtmlPart(72)
 }
-printHtmlPart(73)
-invokeTag('formatDate','g',319,['format':("MM-dd-yyyy hh:mm a"),'date':(it.date)],-1)
+else {
 printHtmlPart(74)
+}
+printHtmlPart(75)
+invokeTag('formatDate','g',323,['format':("MM-dd-yyyy hh:mm a"),'date':(it.date)],-1)
+printHtmlPart(76)
 }
 printHtmlPart(20)
 }
 else {
-printHtmlPart(75)
-}
-printHtmlPart(76)
-}
-else {
 printHtmlPart(77)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'createGroup'))
+}
 printHtmlPart(78)
 }
-printHtmlPart(79)
-if(true && (offset > 0)) {
-printHtmlPart(80)
-createClosureForHtmlPart(81, 3)
-invokeTag('link','g',349,['action':("history"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden, activityType: activityType]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(82)
-}
 else {
-printHtmlPart(83)
-}
-printHtmlPart(82)
-if(true && (offset <= groupCount)) {
+printHtmlPart(79)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'createGroup'))
 printHtmlPart(80)
-createClosureForHtmlPart(84, 3)
-invokeTag('link','g',355,['action':("history"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden, activityType: activityType]),'type':("button"),'class':("btn btn-default")],3)
+}
+printHtmlPart(81)
+if(true && (offset > 0)) {
 printHtmlPart(82)
+createClosureForHtmlPart(83, 3)
+invokeTag('link','g',353,['action':("history"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden, activityType: activityType]),'type':("button"),'class':("btn btn-default")],3)
+printHtmlPart(84)
 }
 else {
 printHtmlPart(85)
 }
-printHtmlPart(86)
-expressionOut.print(currentPage)
+printHtmlPart(84)
+if(true && (offset <= groupCount)) {
+printHtmlPart(82)
+createClosureForHtmlPart(86, 3)
+invokeTag('link','g',359,['action':("history"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden, activityType: activityType]),'type':("button"),'class':("btn btn-default")],3)
+printHtmlPart(84)
+}
+else {
 printHtmlPart(87)
-if(true && (addToGroup)) {
+}
 printHtmlPart(88)
-for( _it2011457497 in (history) ) {
-changeItVariable(_it2011457497)
+expressionOut.print(currentPage)
 printHtmlPart(89)
-expressionOut.print(it.groupID)
+if(true && (addToGroup)) {
 printHtmlPart(90)
-expressionOut.print(it.groupName)
+for( _it1298547491 in (history) ) {
+changeItVariable(_it1298547491)
 printHtmlPart(91)
-expressionOut.print(contactGroupAdd.fullName)
+expressionOut.print(it.groupID)
 printHtmlPart(92)
 expressionOut.print(it.groupName)
 printHtmlPart(93)
-createClosureForHtmlPart(94, 4)
-invokeTag('link','g',458,['action':("addToGroup"),'params':([contactID: contactGroupAdd.contactID, groupID: it.groupID]),'type':("button"),'class':("btn btn-primary pull-left")],4)
+expressionOut.print(contactGroupAdd.fullName)
+printHtmlPart(94)
+expressionOut.print(it.groupName)
 printHtmlPart(95)
+createClosureForHtmlPart(96, 4)
+invokeTag('link','g',462,['action':("addToGroup"),'params':([contactID: contactGroupAdd.contactID, groupID: it.groupID]),'type':("button"),'class':("btn btn-primary pull-left")],4)
+printHtmlPart(97)
 }
 printHtmlPart(1)
 }
-printHtmlPart(96)
-invokeTag('javascript','g',471,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
-printHtmlPart(97)
-invokeTag('javascript','g',473,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(98)
-invokeTag('javascript','g',475,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',475,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(99)
-})
-invokeTag('captureBody','sitemesh',480,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('javascript','g',477,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(100)
+invokeTag('javascript','g',479,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(101)
+})
+invokeTag('captureBody','sitemesh',484,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(102)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1473642310119L
+public static final long LAST_MODIFIED = 1478476080503L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

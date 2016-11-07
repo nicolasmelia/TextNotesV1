@@ -186,9 +186,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</li>
 					<li class="treeview"> <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}">Compose Text</a>
+							<li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}"><b>Compose Text</b></a>
 							</li>
-							<li><a href="${createLink(controller: 'Dashboard', action: 'secheduledTxt')}">Secheduled Text</a>
+							<li><a href="${createLink(controller: 'Dashboard', action: 'newDraft')}"><b>Compose Draft</b></a>
+							</li>
+							<li><a href="${createLink(controller: 'Dashboard', action: 'drafts')}">View Drafts</a>
+							</li>
+							<li><a href="${createLink(controller: 'Dashboard', action: 'secheduledTxt')}">View Secheduled</a>
 							</li>
 							<li> <a href="#">Quick Tools (External) <i class="fa fa-angle-left pull-right"></i></a>
 								<ul class="treeview-menu">
@@ -253,6 +257,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			</section>
 			<!-- Main content -->
 			<section class="content">
+				<g:if test="${groupMemberCount == 0}">
+					<div class="callout callout-info" style="margin-bottom: 10px!important;">
+						<h4><i class="fa fa-paw"></i> Add some contacts!</h4>
+						It looks like this group dosnt have any contacts yet. Get started by adding contacts below!</div>
+				</g:if>
 				<input id='searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
 				<input id='offset' type="hidden" value="${offset}">
 				<input id='groupCount' type="hidden" value="${clientCount}">

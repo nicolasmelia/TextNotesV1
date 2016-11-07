@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1658166624 in (keywordsIn) ) {
-changeItVariable(_it1658166624)
+for( _it1880527972 in (keywordsIn) ) {
+changeItVariable(_it1880527972)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -110,121 +110,125 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'groups'))
 printHtmlPart(43)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
 printHtmlPart(44)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'secheduledTxt'))
-printHtmlPart(45)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'tips'))
-printHtmlPart(46)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'newKeyWord'))
-printHtmlPart(47)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'keywords'))
-printHtmlPart(48)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
-printHtmlPart(49)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'validateCoup'))
-printHtmlPart(50)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'keywords', params: [type: 'contestSelect']))
-printHtmlPart(51)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'balance'))
-printHtmlPart(52)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'history'))
-printHtmlPart(53)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'accountSettings'))
-printHtmlPart(54)
-if(true && (clientCount == 0)) {
-printHtmlPart(55)
-}
-printHtmlPart(56)
-expressionOut.print(searchQueryHidden)
-printHtmlPart(57)
-expressionOut.print(offset)
-printHtmlPart(58)
-expressionOut.print(clientCount)
-printHtmlPart(59)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'newDraft'))
+printHtmlPart(45)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'drafts'))
+printHtmlPart(46)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'secheduledTxt'))
+printHtmlPart(47)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'tips'))
+printHtmlPart(48)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newKeyWord'))
+printHtmlPart(49)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywords'))
+printHtmlPart(50)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
+printHtmlPart(51)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'validateCoup'))
+printHtmlPart(52)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywords', params: [type: 'contestSelect']))
+printHtmlPart(53)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'balance'))
+printHtmlPart(54)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'history'))
+printHtmlPart(55)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'accountSettings'))
+printHtmlPart(56)
+if(true && (newlyAdded)) {
+printHtmlPart(57)
+}
+printHtmlPart(58)
+expressionOut.print(searchQueryHidden)
+printHtmlPart(59)
+expressionOut.print(offset)
 printHtmlPart(60)
+expressionOut.print(clientCount)
+printHtmlPart(61)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newDraft'))
+printHtmlPart(62)
 if(true && (clientCount > 0 || offset > 0)) {
 printHtmlPart(20)
 if(true && (draftList != 'NONE')) {
 printHtmlPart(14)
-for( _it1012083607 in (draftList) ) {
-changeItVariable(_it1012083607)
-printHtmlPart(61)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'draft',  promotionID:it.draftID]))
-printHtmlPart(62)
-expressionOut.print(it.draftName)
+for( _it286637708 in (draftList) ) {
+changeItVariable(_it286637708)
 printHtmlPart(63)
-expressionOut.print(it.message)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt', params: [draftID:it.draftID]))
 printHtmlPart(64)
-invokeTag('formatDate','g',293,['format':("MM-dd-yyyy"),'date':(it.dateCreated)],-1)
+expressionOut.print(it.draftName)
 printHtmlPart(65)
+expressionOut.print(it.message)
+printHtmlPart(66)
+invokeTag('formatDate','g',293,['format':("MM-dd-yyyy"),'date':(it.dateCreated)],-1)
+printHtmlPart(67)
 }
 printHtmlPart(20)
 }
 else {
 printHtmlPart(14)
 if(true && (isSearch)) {
-printHtmlPart(61)
+printHtmlPart(63)
 expressionOut.print(createLink(controller: 'Dashboard'))
-printHtmlPart(66)
+printHtmlPart(68)
 }
 else {
-printHtmlPart(67)
+printHtmlPart(69)
 }
 printHtmlPart(20)
 }
-printHtmlPart(68)
+printHtmlPart(70)
 }
 else {
 printHtmlPart(20)
 if(true && (isSearch)) {
-printHtmlPart(69)
+printHtmlPart(71)
 expressionOut.print(createLink(controller: 'Dashboard'))
+printHtmlPart(72)
+}
+else {
+printHtmlPart(73)
+}
 printHtmlPart(70)
 }
-else {
-printHtmlPart(71)
-}
-printHtmlPart(68)
-}
-printHtmlPart(72)
+printHtmlPart(74)
 if(true && (offset > 0)) {
-printHtmlPart(73)
-createClosureForHtmlPart(74, 3)
-invokeTag('link','g',345,['action':("keywordInbox"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(75)
-}
-else {
-printHtmlPart(76)
-}
-printHtmlPart(75)
-if(true && (offset <= clientCount)) {
-printHtmlPart(73)
-createClosureForHtmlPart(77, 3)
-invokeTag('link','g',351,['action':("keywordInbox"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(75)
+createClosureForHtmlPart(76, 3)
+invokeTag('link','g',345,['action':("drafts"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+printHtmlPart(77)
 }
 else {
 printHtmlPart(78)
 }
-printHtmlPart(79)
-expressionOut.print(currentPage)
+printHtmlPart(77)
+if(true && (offset <= clientCount)) {
+printHtmlPart(75)
+createClosureForHtmlPart(79, 3)
+invokeTag('link','g',351,['action':("drafts"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+printHtmlPart(77)
+}
+else {
 printHtmlPart(80)
-invokeTag('javascript','g',443,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+}
 printHtmlPart(81)
-invokeTag('javascript','g',445,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+expressionOut.print(currentPage)
 printHtmlPart(82)
-invokeTag('javascript','g',447,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',443,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(83)
+invokeTag('javascript','g',445,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(84)
+invokeTag('javascript','g',447,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(85)
 })
 invokeTag('captureBody','sitemesh',452,['class':("hold-transition skin-purple sidebar-mini")],1)
-printHtmlPart(84)
+printHtmlPart(86)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1477848273940L
+public static final long LAST_MODIFIED = 1478476080738L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

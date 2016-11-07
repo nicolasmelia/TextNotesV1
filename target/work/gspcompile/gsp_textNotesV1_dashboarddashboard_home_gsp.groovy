@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it230805470 in (keywordsIn) ) {
-changeItVariable(_it230805470)
+for( _it1519451306 in (keywordsIn) ) {
+changeItVariable(_it1519451306)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -110,9 +110,9 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'groups'))
 printHtmlPart(43)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt'))
 printHtmlPart(44)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'drafts'))
-printHtmlPart(45)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'newDraft'))
+printHtmlPart(45)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'drafts'))
 printHtmlPart(46)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'secheduledTxt'))
 printHtmlPart(47)
@@ -156,8 +156,8 @@ if(true && (clientCount > 0 || offset > 0)) {
 printHtmlPart(20)
 if(true && (contacts != 'NONE')) {
 printHtmlPart(14)
-for( _it719866697 in (contacts) ) {
-changeItVariable(_it719866697)
+for( _it403041430 in (contacts) ) {
+changeItVariable(_it403041430)
 printHtmlPart(66)
 expressionOut.print(it.contactID)
 printHtmlPart(67)
@@ -241,8 +241,8 @@ expressionOut.print(currentPage)
 printHtmlPart(92)
 if(true && (contacts && contacts != 'NONE')) {
 printHtmlPart(93)
-for( _it1711095486 in (contacts) ) {
-changeItVariable(_it1711095486)
+for( _it851074149 in (contacts) ) {
+changeItVariable(_it851074149)
 printHtmlPart(94)
 expressionOut.print(it.contactID)
 printHtmlPart(95)
@@ -281,7 +281,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1473913438449L
+public static final long LAST_MODIFIED = 1477857876302L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

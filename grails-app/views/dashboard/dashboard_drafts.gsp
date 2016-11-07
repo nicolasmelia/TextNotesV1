@@ -186,9 +186,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</li>
 					<li class="active"  class="treeview"> <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}">Compose Text</a>
+							<li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}"><b>Compose Text</b></a>
 							</li>
-							<li><a href="${createLink(controller: 'Dashboard', action: 'secheduledTxt')}">Secheduled Text</a>
+							<li><a href="${createLink(controller: 'Dashboard', action: 'newDraft')}"><b>Compose Draft</b></a>
+							</li>
+							<li><a href="${createLink(controller: 'Dashboard', action: 'drafts')}">View Drafts</a>
+							</li>
+							<li><a href="${createLink(controller: 'Dashboard', action: 'secheduledTxt')}">View Secheduled</a>
 							</li>
 							<li> <a href="#">Quick Tools (External) <i class="fa fa-angle-left pull-right"></i></a>
 								<ul class="treeview-menu">
@@ -338,13 +342,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<!-- /.box-body -->
 							<div class="btn-group" style="margin: 0px 0px 10px 10px; ">
 								<g:if test="${offset > 0}">
-									<g:link action="keywordInbox" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Back</g:link>
+									<g:link action="drafts" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Back</g:link>
 								</g:if>
 								<g:else>
 									<button disabled type="button" class="btn btn-default">Back</button>
 								</g:else>
 								<g:if test="${offset <= clientCount}">
-									<g:link action="keywordInbox" params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Next</g:link>
+									<g:link action="drafts" params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Next</g:link>
 								</g:if>
 								<g:else>
 									<button disabled type="button" class="btn btn-default">Next</button>
