@@ -46,8 +46,8 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 				<h1 id="logo"><a href="index.html">TxtWolf LLC</a></h1>
 				<nav id="nav">
 					<ul>
-						<li><a href="${createLink(controller: 'Blog')}">Blog</a></li>			
-						<li><a href="index.html">Pricing</a></li>
+						<li><a href="https://txtwolf.wordpress.com/">Blog</a></li>			
+						<li><a href="${createLink(controller: 'Home', action: 'pricing')}">Pricing</a></li>
 						
 						<g:if test="${session.userID}">
 							<li><a href="${createLink(controller: 'Dashboard')}">Dashboard</a></li>				

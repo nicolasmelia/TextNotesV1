@@ -41,7 +41,7 @@
 	<body>
 
 		<!-- Header -->
-			<header id="header" class="alt">
+			<header id="header" class="">
 				<h1 id="logo"><a href="index.html">TxtWolf LLC</a></h1>
 				<nav id="nav">
 					<ul>
