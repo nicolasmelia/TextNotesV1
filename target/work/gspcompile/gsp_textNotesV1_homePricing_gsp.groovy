@@ -24,54 +24,90 @@ invokeTag('captureMeta','sitemesh',10,['gsp_sm_xmlClosingForEmptyTag':("/"),'cha
 printHtmlPart(1)
 invokeTag('captureMeta','sitemesh',11,['gsp_sm_xmlClosingForEmptyTag':("/"),'name':("viewport"),'content':("width=device-width, initial-scale=1")],-1)
 printHtmlPart(3)
-invokeTag('resource','g',12,['dir':("css"),'file':("main.boot.css")],-1)
+expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(4)
-invokeTag('resource','g',13,['dir':("css"),'file':("main.pricing.css")],-1)
+invokeTag('resource','g',13,['dir':("css"),'file':("main.boot.css")],-1)
+printHtmlPart(4)
+invokeTag('resource','g',14,['dir':("css"),'file':("pricing/main.pricing.css")],-1)
 printHtmlPart(5)
-invokeTag('javascript','g',17,['src':("ie/html5shiv.js")],-1)
+invokeTag('javascript','g',18,['src':("ie/html5shiv.js")],-1)
 printHtmlPart(6)
-invokeTag('resource','g',18,['dir':("css"),'file':("ie8.css")],-1)
+invokeTag('resource','g',19,['dir':("css"),'file':("ie8.css")],-1)
 printHtmlPart(7)
 })
-invokeTag('captureHead','sitemesh',19,[:],1)
+invokeTag('captureHead','sitemesh',20,[:],1)
 printHtmlPart(8)
 createTagBody(1, {->
 printHtmlPart(9)
-if(true && (error)) {
+expressionOut.print(createLink(controller: 'Home'))
 printHtmlPart(10)
-expressionOut.print(error)
+expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
 printHtmlPart(11)
+expressionOut.print(createLink(controller: 'Home', action: 'pricing'))
+printHtmlPart(12)
+if(true && (session.userID)) {
+printHtmlPart(13)
+expressionOut.print(createLink(controller: 'Dashboard'))
+printHtmlPart(14)
 }
 else {
-printHtmlPart(12)
-}
 printHtmlPart(13)
-invokeTag('javascript','g',181,['src':("jquery.min.js")],-1)
-printHtmlPart(14)
-invokeTag('javascript','g',182,['src':("jquery.dropotron.min.js")],-1)
+expressionOut.print(createLink(controller: 'login'))
 printHtmlPart(15)
-invokeTag('javascript','g',183,['src':("jquery.scrollgress.min.js")],-1)
-printHtmlPart(14)
-invokeTag('javascript','g',184,['src':("skel.min.js")],-1)
-printHtmlPart(14)
-invokeTag('javascript','g',185,['src':("util.js")],-1)
+}
 printHtmlPart(16)
-invokeTag('javascript','g',186,['src':("main.js")],-1)
-printHtmlPart(16)
-invokeTag('javascript','g',187,['src':("jquery.scrolly.min.js")],-1)
+if(true && (session.userID)) {
+printHtmlPart(13)
+expressionOut.print(createLink(controller: 'Login', action: 'logout'))
 printHtmlPart(17)
-invokeTag('javascript','g',188,['src':("ie/respond.min.js")],-1)
+}
+else {
+printHtmlPart(13)
+expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
 printHtmlPart(18)
-})
-invokeTag('captureBody','sitemesh',195,[:],1)
+}
 printHtmlPart(19)
+if(true && (error)) {
+printHtmlPart(20)
+expressionOut.print(error)
+printHtmlPart(21)
+}
+else {
+printHtmlPart(22)
+}
+printHtmlPart(23)
+expressionOut.print(createLink(controller: 'login'))
+printHtmlPart(24)
+expressionOut.print(createLink(controller: 'login'))
+printHtmlPart(25)
+expressionOut.print(createLink(controller: 'login'))
+printHtmlPart(26)
+invokeTag('javascript','g',177,['src':("jquery.min.js")],-1)
+printHtmlPart(27)
+invokeTag('javascript','g',178,['src':("jquery.dropotron.min.js")],-1)
+printHtmlPart(28)
+invokeTag('javascript','g',179,['src':("jquery.scrollgress.min.js")],-1)
+printHtmlPart(27)
+invokeTag('javascript','g',180,['src':("skel.min.js")],-1)
+printHtmlPart(27)
+invokeTag('javascript','g',181,['src':("util.js")],-1)
+printHtmlPart(29)
+invokeTag('javascript','g',182,['src':("main.js")],-1)
+printHtmlPart(29)
+invokeTag('javascript','g',183,['src':("jquery.scrolly.min.js")],-1)
+printHtmlPart(30)
+invokeTag('javascript','g',184,['src':("ie/respond.min.js")],-1)
+printHtmlPart(31)
+})
+invokeTag('captureBody','sitemesh',191,[:],1)
+printHtmlPart(32)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1479354964615L
+public static final long LAST_MODIFIED = 1479696835955L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

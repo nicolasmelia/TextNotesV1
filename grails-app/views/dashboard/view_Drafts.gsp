@@ -170,7 +170,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<a href="${createLink(controller: 'Dashboard', action: 'Dashboard')}"> <i class="fa fa-home"></i>  <span>Home</span>
 						</a>
 					</li>
-					<li class="active" > <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li> <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a class="" href="${createLink(controller: 'Dashboard', action: 'newContact')}"><b>New Contact</b></a>
 							</li>
@@ -184,7 +184,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</li>
 						</ul>
 					</li>
-					<li class="treeview"> <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="active"  class="treeview"> <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}"><b>Compose Text</b></a>
 							</li>
@@ -246,21 +246,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-            Contacts
-            <small>All</small>
+             Text
+            <small>Drafts</small>
           </h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Address Book</a>
+					<li><a href="#"><i class="fa fa-dashboard"></i> Send Text</a>
 					</li>
-					<li class="active">View Contacts</li>
+					<li class="active">View Drafts</li>
 				</ol>
 			</section>
 			<!-- Main content -->
 			<section class="content">
-				<g:if test="${clientCount == 0}">
+				<g:if test="${newlyAdded}">
 					<div class="callout callout-info" style="margin-bottom: 10px!important;">
-						<h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
-						It looks like you dont have any contacts yet. Get started by adding clients below!</div>
+						<h4><i class="fa fa-paw"></i> Success </h4>
+						Draft added to draft list.</div>
 				</g:if>
 				<input id='searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
 				<input id='offset' type="hidden" value="${offset}">
@@ -268,49 +268,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
-							<div class="box-header"> <a href="${createLink(controller: 'Dashboard', action: 'newContact')}"><b> <span class = "fa fa-plus-square"></span> New Contact</b></a>
-								<g:form id="searchForm" controller="Dashboard" action="dashboard" enctype="multipart/form-data">
-									<div class="input-group margin" style="width: 250px; margin: 10px 0px 0px 0px;">
-										<input id="seachQueryInput" name="searchQuery" placeholder="Name, address..." type="text" class="form-control"> <span class="input-group-btn">
-                      <g:actionSubmit  action="contacts" class="btn btn-info btn-flat" type="button" value = "Search"></g:actionSubmit>             
-                    </span> 
-									</div>
-									<!-- /input-group -->
-								</g:form>
+							<div class="box-header">							
+								<div class="box-header" style = "padding:0px 0px 0px 10px;"> <a href="${createLink(controller: 'Dashboard', action: 'newDraft')}"><b> <span class = "fa fa-plus-square"></span> New Draft</b></a>
 							</div>
+								
 							<!-- /.box-header -->
 							<div class="box-body">
 								<table id="example1" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th>Number</th>
-											<th>Location</th>
-											<th>Subbed</th>
+											<th>Draft Name</th>
+											<th>Message</th>
+											<th>Date Created</th>
 										</tr>
 									</thead>
 									<tbody>
 										<g:if test="${clientCount > 0 || offset > 0}">
-											<g:if test="${contacts != 'NONE'}">
-												<g:each in="${contacts}">
-													<tr data-toggle="modal" data-target="#myModal${it.contactID}" class="pointer">
-														<td><a href="#"><b>${it.firstName} ${it.lastName}</b></a>
+											<g:if test="${draftList != 'NONE'}">
+												<g:each in="${draftList}">
+													<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'sendTxt', params: [draftID:it.draftID])}';" class="pointer">
+														<td><a href="#"><b>${it.draftName}</b></a></td>
+														<td>${it.message}</td>
+														<td>
+															<g:formatDate format="MM-dd-yyyy" date="${it.dateCreated}" />
 														</td>
-														<td>${it.phoneNumber}</td>
-														<g:if test="${it.city}">
-															<td>${it.city,}, ${it.state}</td>
-														</g:if>
-														<g:else>
-															<td>None</td>
-														</g:else>
-														<g:if test="${it.subbed =! 'false'}">
-															<td><span style="color: green;"><b>Yes</b></span>
-															</td>
-														</g:if>
-														<g:else>
-															<td><span style="color: purple;">No</span>
-															</td>
-														</g:else>
 													</tr>
 												</g:each>
 											</g:if>
@@ -338,7 +319,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<g:else>
 											<g:if test="${isSearch}">
 												<tr onclick="document.location = '${createLink(controller: 'Dashboard')}';" class="pointer">
-													<td><a href="#"><b>No Results, try another search or go back.</b></a>
+													<td><a href="#"><b>No Results, try another search or go home.</b></a>
 													</td>
 													<td>-</td>
 													<td>-</td>
@@ -346,9 +327,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												</tr>
 											</g:if>
 											<g:else>
-												<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'newContact')}';" class="pointer">
-													<td><a href="#"><b>Click here to add your first contact!</b></a>
-													</td>
+												<tr class="pointer">
+													<td>-</td>
 													<td>-</td>
 													<td>-</td>
 													<td>-</td>
@@ -362,13 +342,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<!-- /.box-body -->
 							<div class="btn-group" style="margin: 0px 0px 10px 10px; ">
 								<g:if test="${offset > 0}">
-									<g:link action="contacts" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Back</g:link>
+									<g:link action="view_Drafts" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Back</g:link>
 								</g:if>
 								<g:else>
 									<button disabled type="button" class="btn btn-default">Back</button>
 								</g:else>
 								<g:if test="${offset <= clientCount}">
-									<g:link action="contacts" params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Next</g:link>
+									<g:link action="view_Drafts" params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Next</g:link>
 								</g:if>
 								<g:else>
 									<button disabled type="button" class="btn btn-default">Next</button>
@@ -458,34 +438,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<div class="control-sidebar-bg"></div>
 	</div>
 	<!-- ./wrapper -->
-	<g:if test="${contacts && contacts != 'NONE'}">
-		<g:each in="${contacts}">
-			<div class="modal" id="myModal${it.contactID}" role="dialog">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-							</button>
-							<h4 id="modalHeading" class="modal-title">Select an option: <b>${it.firstName} ${it.lastName}</b></h4>
-						</div>
-						<div class="modal-body" style="padding-top: 0px;">
-							<g:link style="margin-bottom:0px; margin-top: 15px; " action="sendTxt" params="[contactID: it.contactID]" type="button" class="btn btn-app">	<i class="fa fa-envelope-o"></i>Send Text</g:link>
-							<a href=""></a>
-							<g:link style="margin-bottom:0px; margin-top: 15px; " action="editContact" params="[contactID: it.contactID]" type="button" class="btn btn-app"> <i class="fa fa-edit"></i> Edit Contact</g:link>
-							<g:link style="margin-bottom:0px; margin-top: 15px; " action="details" params="[contactID: it.contactID, conType: 'Contact']" type="button" class="btn btn-app"> <i class="fa fa-user"></i> Contact Details</g:link>
-							<g:link style="margin-bottom:0px; margin-top: 15px; " action="groups" params="[contactID: it.contactID, addToGroup: 'True']" type="button" class="btn btn-app"> <i class="fa fa-users"></i> Add to Group</g:link>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
-			<!-- /.modal -->
-		</g:each>
-	</g:if>
 	<!-- REQUIRED JS SCRIPTS -->
 	<!-- jQuery 2.1.4 -->
 	<g:javascript src="dashboard/plugins/jQuery/jQuery-2.1.4.min.js" />

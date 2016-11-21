@@ -6,11 +6,12 @@
 -->
 <html>
 	<head>
-		<title>Untitled</title>
+		<title>TxtWolf - Pricing</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="${resource(dir: 'images', file: 'dashboard/default_avatar.png')}">
 		<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='main.boot.css'/>">
-		<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='main.pricing.css'/>">
+		<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='pricing/main.pricing.css'/>">
 		
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		
@@ -22,29 +23,25 @@
 
 		<!-- Header -->
 			<header id="header">
-				<h1 id="logo"><a href="index.html">TxtWolf</a></h1>
+				<h1 id="logo"><a href="${createLink(controller: 'Home')}">TxtWolf</a></h1>
 				<nav id="nav">
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li>
-							<a href="#">Layouts</a>
-							<ul>
-								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<li><a href="right-sidebar.html">Right Sidebar</a></li>
-								<li><a href="no-sidebar.html">No Sidebar</a></li>
-								<li>
-									<a href="#">Submenu</a>
-									<ul>
-										<li><a href="#">Option 1</a></li>
-										<li><a href="#">Option 2</a></li>
-										<li><a href="#">Option 3</a></li>
-										<li><a href="#">Option 4</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li><a href="elements.html">Elements</a></li>
-						<li><a href="#" class="button alt">Sign Up</a></li>
+						<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}">Blog</a></li>			
+						<li><a href="${createLink(controller: 'Home', action: 'pricing')}">Pricing</a></li>
+						
+						<g:if test="${session.userID}">
+							<li><a href="${createLink(controller: 'Dashboard')}">Dashboard</a></li>				
+						</g:if>
+						<g:else>
+							<li><a href="${createLink(controller: 'login')}">Login</a></li>
+						</g:else>
+						
+						<g:if test="${session.userID}">
+							<li><a href="${createLink(controller: 'Login', action: 'logout')}" class="button alt">Sign Out</a></li>
+						</g:if>
+						<g:else>
+							<li><a href="${createLink(controller: 'login', action: 'newAccount')}" class="button alt">Sign Up</a></li>
+						</g:else>						
 					</ul>
 				</nav>
 			</header>
@@ -54,9 +51,9 @@
 				<div class="container box big bordered">
 					<header class="major special" style = "padding: 0px;" >
 					
-						<h2>Login to TxtWolf</h2>
+						<h2>It's Free.</h2>
 						<br>
-						<p> Welcome back. Enter your credentials below to get started.</p>
+						<p> TxtWolf offers its full feature set for free, up to 500 text a month.</p>
 							
 						<g:if test="${error}">
 							<div class="alert" id="errorList" style="margin: 10px auto 0px auto; display: block; max-width: 450px; ">${error}</div>
@@ -74,37 +71,37 @@
 								
 					<div class="columns">
 					  <ul class="price">
-					    <li class="header">Free</li>
-					    <li class="grey">$ 9.99 / year</li>
-					    <li>10GB Storage</li>
-					    <li>10 Emails</li>
-					    <li>10 Domains</li>
-					    <li>1GB Bandwidth</li>
-					    <li class="grey"><a href="#" class="columnBtn">Sign Up</a></li>
+					    <li class="header" style="background-color:#56b6da" >Free</li>
+					    <li class="grey">$ 0 / year</li>
+					    <li>500 SMS</li>
+					    <li>Unlimited Keywords!</li>
+					    <li>Unlimited Contacts</li>
+					    <li>Unlimited Promotions</li>
+					    <li class="grey"><a href="${createLink(controller: 'login')}" style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
 					  </ul>
 					</div>
 					
 					<div class="columns">
 					  <ul class="price">
-					    <li class="header" style="background-color:#4CAF50">Pro</li>
-					    <li class="grey">$ 24.99 / year</li>
-					    <li>25GB Storage</li>
-					    <li>25 Emails</li>
-					    <li>25 Domains</li>
-					    <li>2GB Bandwidth</li>
-					    <li class="grey"><a href="#" class="columnBtn">Sign Up</a></li>
+					    <li class="header" style="background-color:#605ca8">Pro</li>
+					    <li class="grey">$ 39.99 / month</li>
+					    <li>3000 SMS</li>
+					    <li>Unlimited Keywords!</li>
+					    <li>Unlimited Contacts</li>
+					    <li>Unlimited Promotions</li>
+					    <li class="grey"><a href="${createLink(controller: 'login')}"  style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
 					  </ul>
 					</div>
 					
 					<div class="columns">
 					  <ul class="price">
-					    <li class="header">Premium</li>
-					    <li class="grey">$ 49.99 / year</li>
-					    <li>50GB Storage</li>
-					    <li>50 Emails</li>
-					    <li>50 Domains</li>
-					    <li>5GB Bandwidth</li>
-					    <li class="grey"><a href="#" class="columnBtn">Sign Up</a></li>
+					    <li class="header" style="background-color:#4998b6" >Premium</li>
+					    <li class="grey">Contact Us</li>
+					    <li>*Unlimited SMS</li>				    
+					    <li>Unlimited Keywords!</li>
+					    <li>Unlimited Contacts</li>
+					    <li>Unlimited Promotions</li>
+					    <li class="grey"><a href="${createLink(controller: 'login')}" style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
 					  </ul>
 					</div>
 					

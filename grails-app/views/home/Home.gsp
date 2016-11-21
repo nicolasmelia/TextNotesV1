@@ -6,9 +6,10 @@
 -->
 <html>
 	<head>
-		<title>Untitled</title>
+		<title>TxtWolf - Home</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="${resource(dir: 'images', file: 'dashboard/default_avatar.png')}">
 		<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='main.boot.css'/>">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		
@@ -40,13 +41,12 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 	
 	
 	<body class="landing">
-
 		<!-- Header -->
 			<header id="header" class="alt">
 				<h1 id="logo"><a href="index.html">TxtWolf LLC</a></h1>
 				<nav id="nav">
 					<ul>
-						<li><a href="https://txtwolf.wordpress.com/">Blog</a></li>			
+						<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}">Blog</a></li>			
 						<li><a href="${createLink(controller: 'Home', action: 'pricing')}">Pricing</a></li>
 						
 						<g:if test="${session.userID}">
@@ -87,23 +87,23 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 					<ul class="icons-grid">
 						<li>
 							<span class="icon major style4 fa-paw"></span>
-							<h3>KeyWords</h3>
+							<h3>Keywords</h3>
 							<p>Create a keyword and have people join your promotion by texting in your keyword. Build your <b>customer list</b> quickly with a small campaign. <a href = '#' >Learn More</a></p>
 						</li>
 						<li>
 							<span class="icon major style3 fa-paper-plane"></span>
 							<h3>Mass Text</h3>
-							<p>Reach and retain your customers by sending updates and promotions to thousands instantly! Send individual or group text.</p>
+							<p>Reach and retain your customers by sending updates and promotions to thousands instantly! Send individual or group text, quickly and easily.</p>
 						</li>
 						<li>
-							<span class="icon major style2 fa-ticket"></span>
+							<span class="icon major style2 fa-credit-card-alt"></span>
 							<h3>Affordable</h3>
-							<p>At only pennies per text, SMS marketing is not only the most effective form of communication, it’s also the most affordable.</p>
+							<p><b>TxtWolf is Free!</b> SMS marketing is not only the most effective form of communication, it’s also the most affordable.</p>
 						</li>
 						<li>
-							<span class="icon major style1 fa-calendar-check-o"></span>
-							<h3>Notifications</h3>
-							<p>Want to send a message next week and already know what you're going to say? Contact Groups of customers with scheduled messages.</p>
+							<span class="icon major style1 fa-bar-chart"></span>
+							<h3>Grow Your Business</h3>
+							<p>More engagement, more leads, more business! TxtWolf offers text coupons, contest and custom campaigns!</p>
 						</li>
 					</ul>
 				</div>
@@ -114,20 +114,20 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 				<div class="container">
 					<header class="major">
 						<h2>Some Awesome Stats</h2>
-						<p>TextWolf is growing fast and so is our stats! Affordable success never looked so good. <b><a href = '#'>Learn More</a></b></p>
+						<p>Your business is growing fast and affordable success never looked so good. <br> More than 95% of text messages are read within five minutes of receipt. <b><a href = '#'></a></b></p>
 					</header>
 					<ul class="counters">
 						<li class="style1">
 							<strong>80%</strong> Cust. Return Rate
 						</li>
 						<li class="style2">
-							<strong>96%</strong> Text Read
+							<strong>98%</strong> Text Read
 						</li>
 						<li class="style3">
-							<strong>90%</strong> Keyword Optin 
+							<strong>85%</strong> Keyword Optin 
 						</li>
 						<li class="style4">
-							<strong>75%</strong> Optin Rate
+							<strong>90%</strong> Promo Optin
 						</li>
 					</ul>
 				</div>
@@ -140,17 +140,17 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 						<section class="4u 12u$(medium) 12u$(small)">
 							<div class="box style1">
 								<span class="image full"><img src="images/pic01.jpg" alt="" /></span>
-								<h3>Lorem ipsum</h3>
+								<h3>Using Keywords</h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque esse quas dolores, unde!</p>
 								<ul class="actions">
-									<li><a href="#" class="button alt">More</a></li>
+									<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}" class="button alt">More</a></li>
 								</ul>
 							</div>
 						</section>
 						<section class="4u 6u(medium) 12u$(small)">
 							<div class="box style2">
 								<span class="image full"><img src="images/pic02.jpg" alt="" /></span>
-								<h3>Minima odio</h3>
+								<h3>Growing with TxtWolf</h3>
 								<p>Tempora, dignissimos maxime quis reprehenderit, quos quia, blanditiis facilis totam iure dolor vel unde.</p>
 								<ul class="actions">
 									<li><a href="#" class="button alt">More</a></li>
@@ -160,7 +160,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 						<section class="4u$ 6u$(medium) 12u$(small)">
 							<div class="box style4">
 								<span class="image full"><img src="images/pic03.jpg" alt="" /></span>
-								<h3>Consequuntur odit</h3>
+								<h3>Engagement 101</h3>
 								<p>Porro, cupiditate soluta quam maxime reiciendis ut, molestias itaque eum assumenda veritatis?</p>
 								<ul class="actions">
 									<li><a href="#" class="button alt">More</a></li>
@@ -176,10 +176,11 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 				<div class="container">
 					<header class="major">
 						<h2>Join Us</h2>
-						<p>We work for your business.</p>
+						<p>Tired of paying a monthly subscription 'per keyword'?  <br> Well you can officially cancel
+							your current subscription, as TxtWolf is completely free & it always will be.</p>
 					</header>
 					<ul class="actions uniform">
-						<li><a href="#" class="button special">Sign Up</a></li>
+						<li><a href="${createLink(controller: 'login', action: 'newAccount')}"class="button special">Sign Up</a></li>
 						<li><a href="#" class="button alt">Learn More</a></li>
 					</ul>
 				</div>
@@ -190,8 +191,9 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 				<div class="container">
 					<div class="row 200% uniform">
 						<section class="4u 12u$(medium) 12u$(xsmall) footer-info">
-							<h2>Ipsum dolor sed consequat</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta molestiae eius dolorem quod deserunt esse libero, dolorum temporibus, aliquid nemo vitae sit enim quas ipsam dicta et veritatis excepturi suscipit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio incidunt, tempora quasi, impedit laudantium totam.</p>
+							<h2>Nonprofit</h2>
+							<p>Nonprofit Organizations are eligible for the "At Cost" subscription plan, up to 60,000 text. If you are a Nonprofit, please contact us today.
+							We are more than happy to accommodate your organization.</p>
 							<ul class="actions">
 								<li><a href="#" class="button alt">Learn more</a></li>
 							</ul>
@@ -201,15 +203,11 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 							<ul class="updates">
 								<li>
 									<p><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum tenetur sequi eos porro minima laborum!</a></p>
-									<span class="timestamp">Posted 2 hours ago</span>
+									<span class="timestamp">- TxtWolf Blogs</span>
 								</li>
 								<li>
 									<p><a href="#">Perferendis deserunt, iure ipsum animi quidem molestiae esse quisquam rerum quas placeat.</a></p>
-									<span class="timestamp">Posted 6 hours ago</span>
-								</li>
-								<li>
-									<p><a href="#">Ex est veniam, ratione voluptas quidem eveniet accusantium impedit explicabo error, commodi.</a></p>
-									<span class="timestamp">Posted 8 hours ago</span>
+									<span class="timestamp">- TxtWolf Blogs</span>
 								</li>
 							</ul>
 						</section>
@@ -218,31 +216,26 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 							<ul class="labeled-icons">
 								<li>
 									<h4 class="icon fa-home"><span class="label">Address</span></h4>
-									1234 Somewhere Road #5403<br />
-									Nashville, TN 00000
+									Cleveland, OH<br />
 								</li>
 								<li>
 									<h4 class="icon fa-phone"><span class="label">Phone</span></h4>
-									(000) 555-0000 x12345
+									(330) 540-8023
 								</li>
 								<li>
 									<h4 class="icon fa-envelope"><span class="label">Email</span></h4>
-									<a href="#">hello@untitled.tld</a>
+									<a href="mailto:Support@TxtWolf.com">Support@TxtWolf.com </a>
 								</li>
 								<li>
 									<h4 class="icon fa-facebook"><span class="label">Facebook</span></h4>
-									<a href="#">facebook.com/untitled-tld</a>
-								</li>
-								<li>
-									<h4 class="icon fa-twitter"><span class="label">Twitter</span></h4>
-									<a href="#">twitter.com/untitled-tld</a>
+									<a href="https://www.facebook.com/TxtWolf">www.facebook.com/TxtWolf</a>
 								</li>
 							</ul>
 						</section>
 					</div>
 				</div>
 				<div class="copyright">
-					&copy; Untitled. All rights reserved.
+					&copy; 2017, TxtWolf LLC.
 				</div>
 			</div>
 

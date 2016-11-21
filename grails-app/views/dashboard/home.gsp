@@ -282,7 +282,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="small-box bg-yellow">
 							<div class="inner" style="padding-bottom: 20px; min-height: 150px; max-height: 145px; ">
 								<h3 style="font-size: 30px;"><span  class="fa fa-users" > </span> Contacts</h3>
-								<p>Add, view and manage your lists of opted-in subscribers with just a few clicks.</p>
+								<p>Add, view and manage your lists of subscribers with just a few clicks.</p>
 							</div> <a href="${createLink(controller: 'Dashboard', action: 'contacts')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"> </i></a>
 						</div>
 					</div>
@@ -292,7 +292,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="small-box bg-red">
 							<div class="inner" style="padding-bottom: 20px; min-height: 150px; max-height: 145px;">
 								<h3 style="font-size: 30px;"><span  class="fa fa-inbox" > </span> Inbox</h3>
-								<p>Check out which of your subscribers have replied to your messages or sent in your Keywords.</p>
+								<p>Check out which of your subscribers have sent in your Keywords.</p>
 							</div> <a href="${createLink(controller: 'Dashboard', action: 'keywords')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"> </i></a>
 						</div>
 					</div>
@@ -302,7 +302,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="small-box bg-green">
 							<div class="inner" style="padding-bottom: 20px; min-height: 150px; max-height: 145px;">
 								<h3 style="font-size: 30px;"><span  class="fa fa-balance-scale" > </span> Balance</h3>
-								<p>View your ramining balance, your subscription or upgrade to an afforadble All-In-One plan.</p>
+								<p>View your ramining balance, your subscription or upgrade your plan.</p>
 							</div> <a href="${createLink(controller: 'Dashboard', action: 'balance')}" style="" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>

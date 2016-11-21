@@ -6,9 +6,10 @@
 -->
 <html>
 	<head>
-		<title>Untitled</title>
+		<title>TxtWolf - Pricing</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="${resource(dir: 'images', file: 'dashboard/default_avatar.png')}">
 		<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='main.boot.css'/>">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		
@@ -42,11 +43,11 @@
 
 		<!-- Header -->
 			<header id="header" class="">
-				<h1 id="logo"><a href="index.html">TxtWolf LLC</a></h1>
+				<h1 id="logo"><a href="${createLink(controller: 'Home')}">TxtWolf</a></h1>
 				<nav id="nav">
 					<ul>
-						<li><a href="${createLink(controller: 'blog')}">Blog</a></li>			
-						<li><a href="index.html">Pricing</a></li>
+						<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}">Blog</a></li>			
+						<li><a href="${createLink(controller: 'Home', action: 'pricing')}">Pricing</a></li>
 						
 						<g:if test="${session.userID}">
 							<li><a href="${createLink(controller: 'Dashboard')}">Dashboard</a></li>				
@@ -60,8 +61,7 @@
 						</g:if>
 						<g:else>
 							<li><a href="${createLink(controller: 'login', action: 'newAccount')}" class="button alt">Sign Up</a></li>
-						</g:else>
-									
+						</g:else>						
 					</ul>
 				</nav>
 			</header>

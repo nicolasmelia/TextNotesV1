@@ -184,7 +184,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</li>
 						</ul>
 					</li>
-					<li class="active"  class="treeview"> <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="treeview"> <a href="#"><i class="fa fa-comment"></i> <span>Send Text</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}"><b>Compose Text</b></a>
 							</li>
@@ -226,7 +226,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</li>
 						</ul>
 					</li>
-					<li class="treeview"> <a href="#"><i class="fa fa-paw"></i> <span>Account</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="active" class="treeview"> <a href="#"><i class="fa fa-paw"></i> <span>Account</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a href="${createLink(controller: 'Dashboard', action: 'balance')}">My Balance</a>
 							</li>
@@ -246,123 +246,81 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-             Text
-            <small>Drafts</small>
+            Balance
+            <small>Recent</small>
           </h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Send Text</a>
+					<li><a href="#"><i class="fa fa-dashboard"></i> Account</a>
 					</li>
-					<li class="active">View Drafts</li>
+					<li class="active">Balance</li>
 				</ol>
 			</section>
 			<!-- Main content -->
 			<section class="content">
-				<g:if test="${newlyAdded}">
-					<div class="callout callout-info" style="margin-bottom: 10px!important;">
-						<h4><i class="fa fa-paw"></i> Success </h4>
-						Draft added to draft list.</div>
-				</g:if>
-				<input id='searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
-				<input id='offset' type="hidden" value="${offset}">
-				<input id='clientCount' type="hidden" value="${clientCount}">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="box">
-							<div class="box-header">							
-								<div class="box-header" style = "padding:0px 0px 0px 10px;"> <a href="${createLink(controller: 'Dashboard', action: 'newDraft')}"><b> <span class = "fa fa-plus-square"></span> New Draft</b></a>
-							</div>
-								
-							<!-- /.box-header -->
-							<div class="box-body">
-								<table id="example1" class="table table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>Draft Name</th>
-											<th>Message</th>
-											<th>Date Created</th>
-										</tr>
-									</thead>
-									<tbody>
-										<g:if test="${clientCount > 0 || offset > 0}">
-											<g:if test="${draftList != 'NONE'}">
-												<g:each in="${draftList}">
-													<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'sendTxt', params: [draftID:it.draftID])}';" class="pointer">
-														<td><a href="#"><b>${it.draftName}</b></a></td>
-														<td>${it.message}</td>
-														<td>
-															<g:formatDate format="MM-dd-yyyy" date="${it.dateCreated}" />
-														</td>
-													</tr>
-												</g:each>
-											</g:if>
-											<g:else>
-												<g:if test="${isSearch}">
-													<tr onclick="document.location = '${createLink(controller: 'Dashboard')}';" class="pointer">
-														<td><a href="#"><b>No Results, try another search or go back.</b></a>
-														</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-													</tr>
-												</g:if>
-												<g:else>
-													<tr class="pointer">
-														<td><a href="#"><b>-</b></a>
-														</td>
-														<td>-</td>
-														<td>-</td>
-														<td>-</td>
-													</tr>
-												</g:else>
-											</g:else>
-										</g:if>
-										<g:else>
-											<g:if test="${isSearch}">
-												<tr onclick="document.location = '${createLink(controller: 'Dashboard')}';" class="pointer">
-													<td><a href="#"><b>No Results, try another search or go home.</b></a>
-													</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-												</tr>
-											</g:if>
-											<g:else>
-												<tr class="pointer">
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-												</tr>
-											</g:else>
-										</g:else>
-									</tbody>
-									<tfoot></tfoot>
-								</table>
-							</div>
-							<!-- /.box-body -->
-							<div class="btn-group" style="margin: 0px 0px 10px 10px; ">
-								<g:if test="${offset > 0}">
-									<g:link action="drafts" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Back</g:link>
-								</g:if>
-								<g:else>
-									<button disabled type="button" class="btn btn-default">Back</button>
-								</g:else>
-								<g:if test="${offset <= clientCount}">
-									<g:link action="drafts" params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Next</g:link>
-								</g:if>
-								<g:else>
-									<button disabled type="button" class="btn btn-default">Next</button>
-								</g:else>
-							</div>
-							<p style="float: right; text-align: right; margin: 15px; display: inline-block;"> <span id="pageInfo">${currentPage} of 0</span>
-							</p>
-						</div>
-						<!-- /.box -->
+				<!-- Contact added SUCCESS -->
+				<div class="box box-default">
+					<div class="box-header with-border"> <i class="fa fa-book"></i>
+						<h3 class="box-title">Balance</h3>
 					</div>
-					<!-- /.col -->
+					<div class="box-body">
+					<h4 style = "margin-top: 0px;" ><a href = "${createLink(controller: 'Dashboard', action: 'upgradeSub')}" >Upgrade my Subscription</a></h4>
+						<table class="table table-bordered">
+							<tr>
+								<td>Subscription</td>
+								<td><b>${UAI.accountType}, ${bal.monthlyBalance} text per month</b>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>Keyword Number</td>
+								<td><b>${number.number}</b>
+								</td>
+							</tr>
+							<tr>
+								<td>Remaining Balance</td>
+								<td><b>${bal.currentBalance}</b> out of <b>${bal.monthlyBalance}</b>
+								</td>
+							</tr>
+							<tr>
+								<td>Balance Reset Date</td>
+								<td><b><g:formatDate format="MM-dd-yyyy" date="${bal.monthlyResetDate}"/></b>
+								</td>
+							</tr>
+						</table>
+						<div style="margin: 10px 0px 5px 0px;">
+							<g:link class="btn btn-default" action="history" params="[]" type="button">View History</g:link>
+							<g:link class="btn btn-default" action="dashboard" params="[]" type="button">Home</g:link>
+						</div>
+					</div>
+					<!-- /.box-body -->
+					<!-- addNumberModal -->
+					<div class="modal" id="suspendModal" role="dialog" data-backdrop="static">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+									</button>
+									<h4 id="modalHeading" class="modal-title">Change keyword stauts</h4>
+								</div>
+								<div class="modal-body">
+									<!-- phone mask -->
+									<p>Are you sure you want to suspend this keyword? People will no longer be able to send this keyword into your promotion. You can re-enable this keyword anytime.</p>
+								</div>
+								<div class="modal-footer">
+									<g:link action="suspendKeyword" params="[promotionID:params.promotionID]" type="button" class="btn btn-warning pull-left">Suspend</g:link>
+									<button onClick="clearWarnings()" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
 				</div>
-				<!-- /.row -->
+				<!-- /.box -->
+				<!-- Contact added SUCCESS -->
 			</section>
+			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
 		<!-- Main Footer -->
@@ -449,23 +407,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
+	<div class="modal" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+					</button>
+					<h4 id="modalHeading" class="modal-title">Modal Default</h4>
+				</div>
+				<div class="modal-body">
+					<a class="btn btn-app" style="margin-bottom:0px;"> <i class="fa fa-comment"></i> Send Text</a>
+					<a class="btn btn-app" style="margin-bottom:0px;"> <i class="fa fa-users"></i> Add to Group</a>
+					<a class="btn btn-app" style="margin-bottom:0px;"> <i class="fa fa-edit"></i> Edit</a>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 </body>
 <script>
-	$( document ).ready(function() {
-		  if($("#searchQueryHiddenField").val() != "") {
-				$("#seachQueryInput").val($("#searchQueryHiddenField").val().toString());
-			}
-	
-			// Set pageinfo
-			var totalClientCount = $("#clientCount").val();
-			var offset = $("#offset").val();
-			var offsetTop = (parseInt(offset) + 10);
-			$("#pageInfo").html("Viewing " + offset + "-" + offsetTop + " of " + totalClientCount);
-			
-		});
-	
-	  function test(number) {
-		  return true;
+	function test(number) {
+		  $("#modalHeading").text(number);
 		}
 </script>
 
