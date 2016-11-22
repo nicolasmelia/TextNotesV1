@@ -120,6 +120,7 @@ class DashboardController {
 		}
 		
 		if (session["userID"]) {
+			resetKeywordNotificationCount();
 			render(view:"Keyword_Inbox",  model: [accountInfo: getUserAccountInfo(), offset: offset, up: params.up, notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), clientCount: clientCount, searchQueryHidden: searchQuery, isSearch:isSearch, messages: getKeywordInboxList(offset, 10, searchQuery, false)])
 	   } else {
 		   redirect(controller: "Home")
@@ -452,6 +453,12 @@ class DashboardController {
 		}
 	}
 	
+	
+	def testk() {
+		List contestMessages = MessageIn.findAllByPromotionID("36c8af3d13724712")
+		print contestMessages.size()		
+	}
+	
 	def contestSelect () {		
 		if (params.winnerAmt == null){
 		 Keyword keyword = Keyword.findByPromotionID(params.promotionID)		 
@@ -464,29 +471,40 @@ class DashboardController {
 			Random random = new Random();
 			ArrayList selectedNumbers =  new ArrayList<MessageIn>()
 			int winnerCount = 0
-			int breakCount = contestMessages.size    
+			int winnerAmt = Integer.parseInt(params.winnerAmt);   
 			StringBuilder winnersSB = new StringBuilder();
 			
 			if (!contestMessages.isEmpty()) {
-				for (int i; i <= Integer.parseInt(params.winnerAmt); i++) {
-				int index = random.nextInt(contestMessages.size - 1);
-						selectedNumbers.add(contestMessages[index])
-						breakCount--	
-						winnerCount++
-						winnersSB.append(contestMessages[index].phoneNumber)					
-						contestMessages[index].dateWon = new Date()
-						contestMessages[index].winner = true
-						contestMessages[index].save(flush:true)
+				while (winnerCount <= winnerAmt) {
+					for (int i; i <= winnerAmt; i++) {
 						
-						// Notify the winners and send them the message
-						gateOut.sendMessage(contestMessages[index].phoneNumber, params.body)
-											
-						if (breakCount > 1) {
-							contestMessages.remove(index)
-							winnersSB.append(", ")
-						} else if (breakCount == 1) {
-							break;
-						}	
+						if (winnerCount == winnerAmt) break;
+						
+						int index = 0;
+						if (contestMessages.size() >= 2) {
+							index = random.nextInt(contestMessages.size);				
+						}
+						
+						if (!selectedNumbers.contains(contestMessages[index])) {
+							selectedNumbers.add(contestMessages[index])
+							winnerCount++
+							
+							winnersSB.append(contestMessages[index].phoneNumber)
+							
+							if (contestMessages.size() > winnerAmt && winnerCount < winnerAmt) {
+								winnersSB.append(", ");
+							}
+												
+							contestMessages[index].dateWon = new Date()
+							contestMessages[index].winner = true
+							contestMessages[index].save(flush:true)
+								
+							// Notify the winners and send them the message
+							gateOut.sendMessage(contestMessages[index].phoneNumber, params.body)
+													
+						}
+					}					
+					if (winnerCount == winnerAmt || contestMessages.size() == winnerCount) break;				
 				}
 							
 				keyword.winners = winnersSB.toString()
@@ -499,6 +517,11 @@ class DashboardController {
 				render("Something went wrong, please contact TxtWolf Support with error code 'TW501'.");
 			}
 		}
+	}
+	
+	def upgradeSub() {
+		displayUserError("Coming Soon...","Accont upgrades are coming soon. If you are in need of a higher text balance!" + 
+			" please contact support@txtwolf.com to submit a request. As of now, TxtWolf is a free service.", "");		
 	}
 	
 	def history() {
@@ -678,7 +701,7 @@ class DashboardController {
 						 [session["userID"]], [max: max, offset: offset])	
 				
 				// Getting all keywords, set noti count to 0
-				resetNotificationCount();
+				resetKeywordNotificationCount();
 						
 			} else {
 				Messages =  MessageIn.findAll("from MessageIn as m where viewed = FALSE and m.userID=? order by m.date DESC",
@@ -1024,18 +1047,18 @@ class DashboardController {
 		}
 	}
 		
-	def resetNotificationCount() {
-		Notification noti = Notification.findByNotiTypeAndUserID("keywordNoti",session["userID"])
-		
-			MessageIn MI = MessageIn.findByUserIDAndViewed(session["userID"], false)
-			for (MessageIn message : MI) {
-				message.viewed = true
-				message.save(flush:true)
-			}
-
+	def resetKeywordNotificationCount() {
+		Notification noti = Notification.findByNotiTypeAndUserID("keywordNoti",session["userID"])	
 		noti.incrementCount = 0
 		noti.lastIncrementDate = new Date()
 		noti.save(flush:true)
+		
+		// Reset all messages in that are keywords
+		List MI = MessageIn.findAllByUserIDAndViewed(session["userID"], false)
+		for (MessageIn message : MI) {
+			message.viewed = true
+			message.save(flush:true)
+		}
 				
 	}
 		
@@ -1045,6 +1068,10 @@ class DashboardController {
 	
 	def help() {
 		render (view:"view_Help")
+	}
+	
+	def accountSettings () {
+			render(view:"account_Settings",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true)])		
 	}
 	
 	def getUserContent(String userID, String requestType) {

@@ -60,68 +60,90 @@ class SmsGateInController {
 			MI.deleted = false
 			MI.viewed = false
 			MI.date = new Date()
+			
+			// Decrement users balance by 1,
+			Balance balance = Balance.findByUserID(keyword.userID);
+			balance.currentBalance = balance.currentBalance - 1;
+			balance.totalBalanceSpent = balance.totalBalanceSpent + 1;
+			balance.save(flush:true);
 
 			keyword.replys = new Integer(keyword.replys.intValue() + 1);
 			keyword.save(flush:true)
 			
-			// Increment the counter
-			incrementNoti(keyword)
-			
-			Date todaysDate = new Date()
-			if ((todaysDate >= keyword.dateEff) && ((keyword.dateExp >= todaysDate) && keyword.suspened == false || keyword.endless == true)) {				
-				switch (keyword.campaignType) {
-					case "coup": // Coupon
-					
-						sendMessage(from, keyword.responceText)
-					
-						CouponIn coupon = new CouponIn()
-						coupon.keywordID =  keyword.promotionID
-						coupon.date = new Date()
-						coupon.phoneNumber = MI.phoneNumber 
-						
-						// Create a UUID and cut it in half for the COUPON CODE
-						String uniqueIDCoup = UUID.randomUUID().toString().replace("-", "");
-						int midpoint2 = uniqueIDCoup.length() / 4;
-						String couponCode = uniqueIDCoup.substring(0, midpoint2)
-						
-						coupon.couponCode = couponCode
-						coupon.save(flush:true)
-						
-						sendMessage(from, "Here is your coupon code for keyword " + keyword.keyword + ", " + coupon.couponCode + ". Use your code to redeem this offer.")
-						MI.save(flush:true);
-						
-					break; 
-					
-					case "con": // Contest					
-						// check to see if this number already sent into this contest			
-						MessageIn MITest = MessageIn.findByPromotionIDAndPhoneNumber(MI.promotionID, MI.phoneNumber)
-						if (MITest == null) {
-							sendMessage(from, keyword.responceText)
-							SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");					
-							sendMessage(from, "You have been entered in a contest for keyword " + keyword.keyword + ". This contest ends on " + dateFormatter.format(keyword.dateExp) + ". You will recieve a text if you win! Good Luck!")
-							MI.save(flush:true);
-						} else {
-							SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
-							sendMessage(from, "You have already entered a submission for this contest. This contest ends on " + dateFormatter.format(keyword.dateExp) + ".")
-							MI.save(flush:true);
-						}						
-					break;
-					
-					case "cust": // Custom
-						sendMessage(from, keyword.responceText)				
-						MI.save(flush:true);
-					break;
-					
-					default:
-					
-					break;
-			}
 
+			
+			if (balance.currentBalance <= balance.monthlyBalance) {				
+				Date todaysDate = new Date()
+				if ((todaysDate >= keyword.dateEff) && ((keyword.dateExp >= todaysDate) && keyword.suspened == false || keyword.endless == true)) {				
+					switch (keyword.campaignType) {
+						case "coup": // Coupon
+						
+							sendMessage(from, keyword.responceText)
+						
+							CouponIn coupon = new CouponIn()
+							coupon.keywordID =  keyword.promotionID
+							coupon.date = new Date()
+							coupon.phoneNumber = MI.phoneNumber 
+							
+							// Create a UUID and cut it in half for the COUPON CODE
+							String uniqueIDCoup = UUID.randomUUID().toString().replace("-", "");
+							int midpoint2 = uniqueIDCoup.length() / 4;
+							String couponCode = uniqueIDCoup.substring(0, midpoint2)
+							
+							coupon.couponCode = couponCode
+							coupon.save(flush:true)
+							
+							sendMessage(from, "Here is your coupon code for keyword " + keyword.keyword + ", " + coupon.couponCode + ". Use your code to redeem this offer.")
+							MI.save(flush:true);
+							
+							// Increment the counter
+							incrementNoti(keyword)
+							
+						break; 
+						
+						case "con": // Contest					
+							// check to see if this number already sent into this contest			
+							MessageIn MITest = MessageIn.findByPromotionIDAndPhoneNumber(MI.promotionID, MI.phoneNumber)
+							if (MITest == null) {
+								sendMessage(from, keyword.responceText)
+								SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");					
+								sendMessage(from, "You have been entered in a contest for keyword " + keyword.keyword + ". This contest ends on " + dateFormatter.format(keyword.dateExp) + ". You will recieve a text if you win! Good Luck!")
+								MI.save(flush:true);
+								
+								// Increment the counter
+								incrementNoti(keyword)
+								
+							} else {
+								SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+								sendMessage(from, "You have already entered a submission for this contest. This contest ends on " + dateFormatter.format(keyword.dateExp) + ".")
+								// MI.save(flush:true); Multiple text by the same person, do not save
+							}						
+						break;
+						
+						case "cust": // Custom
+							sendMessage(from, keyword.responceText)				
+							MI.save(flush:true);
+							
+							// Increment the counter
+							incrementNoti(keyword)
+							
+						break;
+						
+						default:
+						
+						break;
+				}
+	
+				} else {
+					messageSuccess = sendMessage(from, "It look likes this keyword (" + keyword.keyword + ") is currently not active. This service is powered by TxtWolf.com!")	
+				}
 			} else {
-				messageSuccess = sendMessage(from, "It look likes this keyword (" + keyword.keyword + ") is currently not active. This service is powered by TxtWolf.com!")	
+					messageSuccess = sendMessage(from, "It look likes this keyword (" + params.Body.toString().toLowerCase().trim() + ") does not exist. Please try again! This service is powered by TxtWolf.com!")
 			}
+		
 		} else {
-				messageSuccess = sendMessage(from, "It look likes this keyword (" + params.Body.toString().toLowerCase().trim() + ") does not exist. Please try again! This service is powered by TxtWolf.com!")
+			// TODO: Users monthly balance is in overage, notify them!!!
+			//messageSuccess = sendMessage(from, "It look likes this keyword (" + params.Body.toString().toLowerCase().trim() + ") does not exist. Please try again! This service is powered by TxtWolf.com!")
 		}
 
 		if (messageSuccess){

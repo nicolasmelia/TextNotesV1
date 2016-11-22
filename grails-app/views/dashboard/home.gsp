@@ -99,9 +99,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<li class="user-body">
 									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'dashboard')}">Home</a>
 									</div>
-									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'tips')}">Tips</a>
+									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'Blog')}">Tips</a>
 									</div>
-									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'help')}">Help</a>
+									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'dashboard', action: 'help')}">Help</a>
 									</div>
 								</li>
 								<!-- Menu Footer-->
@@ -128,7 +128,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<div class="pull-left">
 										<!--  <a href="#" class="btn btn-default btn-flat">Profile</a> -->
 									</div>
-									<div class="pull-left"> <a href="${createLink(controller: 'login', action: 'accountSettings')}" class="btn btn-default btn-flat">Settings</a>
+									<div class="pull-left"> <a href="${createLink(controller: 'dashboard', action: 'accountSettings')}" class="btn btn-default btn-flat">Settings</a>
 									</div>
 									<div class="pull-right"> <a href="${createLink(controller: 'login', action: 'logout')}" class="btn btn-default btn-flat">Sign out</a>
 									</div>
