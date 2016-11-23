@@ -520,10 +520,44 @@ class DashboardController {
 	}
 	
 	def upgradeSub() {
-		displayUserError("Coming Soon...","Accont upgrades are coming soon. If you are in need of a higher text balance!" + 
-			" please contact support@txtwolf.com to submit a request. As of now, TxtWolf is a free service.", "");		
+		displayUserError("Coming Soon...","Account upgrades are coming soon. If you require a higher text balance" + 
+			" please contact Support@TxtWolf.com to submit a request. As of now, TxtWolf is a free service.", "");		
 	}
 	
+	def toggleIncomingText() {
+		displayUserError("You need permission.","This account does not have permission to toggle incoming text. Please contact Support@TxtWolf.com for more" + 
+			" information on the incoming text toggle feature.", "");
+	}
+	
+	def addAdmins() {
+		displayUserError("Add an admin.","This account does not have permission to add multiple admins. You may request aceess for multiple" + 
+			" admins by contacting Support@TxtWolf.com.", "");
+	}
+	
+	def changePassword() {
+		if (session["userID"] != null) {
+			if (params.passwordone != null) {
+				if (params.passwordone.toString().equals(params.passwordtwo.toString())) {
+					User user = User.findByUserID(session["userID"])
+					if (params.passwordold.toString().equals(user.password)) {
+						user.password = params.passwordone 
+						user.save(flush:true)
+						render(view:"view_Confirmation",  model: [accountInfo: getUserAccountInfo(), conType:  "passwordChangeSuccess", notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true)])			
+					} else {
+						// old password does not match					
+						render(view:"view_Confirmation",  model: [accountInfo: getUserAccountInfo(), conType:  "passwordChangeFail", notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true)])			
+					} 				
+				} else {
+					render("ERROR.")
+				}
+			} else {
+				render(view:"account_changePassword",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true)])
+			}	
+		} else {
+			dashboard();
+		}
+	}
+		
 	def history() {
 		int offset = 0
 		if (params.offset != null) {
@@ -666,7 +700,6 @@ class DashboardController {
 			} else {
 				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "AddContactToGroupFail", notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true), groupName: group.groupName, name: contact.fullName])			
 			}		
-			render "SUCCESS"
 		} else {
 			redirect(controller: "Home")	
 		}

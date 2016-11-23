@@ -560,7 +560,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				errors.push("Please enter a valid last name.");			
 		  	}
 	
-		  	console.log(state);
 		  	if (address.length > 0 || city.length > 0 || state != "None" || zip.length > 0) {
 			  	if (address.length == 0 || city.length == 0 || state == "None" || zip.length == 0) {	
 					error = true;		  	

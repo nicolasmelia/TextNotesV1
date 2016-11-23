@@ -345,7 +345,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<h4>Contact Already Exist</h4>
 								<p>It looks like this contact already exist in your address book. Please go back or view your adress book for more information.</p>
 							</div>
-							<div style="margin: 10px 0px 5px 0px;"> <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Address Book</a>
+							<div style="margin: 10px 0px 5px 0px;"> <a href="${createLink(controller: 'Dashboard', action: 'contacts')}" class="btn btn-default">Address Book</a>
 							</div>
 						</div>
 						<!-- /.box-body -->
@@ -516,6 +516,67 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<!-- /.box -->
 						<!-- Contact added SUCCESS -->
 				</g:elseif>
+				<g:elseif test="${conType == 'suspendKeyword'}">
+					<!-- SUCCESS -->
+					<div class="box box-info">
+						<div class="box-header with-border"> <i class="fa fa-bell-o"></i>
+							<h3 class="box-title">Success!</h3>
+						</div>
+						<div class="box-body">
+							<div class="callout callout-info" style="margin: 0px;">
+								<h4>Keyword Suspended</h4>
+								<p>People are no longer able to send your keyword "<b>${params.keyword}</b>" into your promotion. You can re-enable this keyword anytime. Click "Detailed View" to view more information on your keyword.</p>
+							</div>
+							<div style="margin: 10px 0px 5px 0px;">
+								<g:link action="details" params="[conType:'keyword', promotionID:params.promotionID]" class="btn btn-default">Detailed View</g:link>	<a href="${createLink(controller: 'Dashboard', action: 'keywords')}" class="btn btn-default">All Keywords</a>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+						<!-- Contact added SUCCESS -->
+				</g:elseif>
+				<g:elseif test="${conType == 'passwordChangeSuccess'}">
+					<!-- SUCCESS -->
+					<div class="box box-info">
+						<div class="box-header with-border"> <i class="fa fa-bell-o"></i>
+							<h3 class="box-title">Success!</h3>
+						</div>
+						<div class="box-body">
+							<div class="callout callout-info" style="margin: 0px;">
+								<h4>Password Changed</h4>
+								<p>	Your password has been updated succesfully! This change will become effective on your <b>next</b> login.</p>
+
+							</div>
+							<div style="margin: 10px 0px 5px 0px;">
+								 <a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Home</a>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+						<!-- Contact added SUCCESS -->
+				</g:elseif>
+				<g:elseif test="${conType == 'passwordChangeFail'}">
+					<!-- SUCCESS -->
+					<div class="box box-info">
+						<div class="box-header with-border"> <i class="fa fa-warning"></i>
+							<h3 class="box-title">Failed</h3>
+						</div>
+						<div class="box-body">
+							<div class="callout callout-warning" style="margin: 0px;">
+								<h4>Password update failed.</h4>
+								<p>Your current password was incorrect. Please go back and try again.</p>
+							</div>
+							<div style="margin: 10px 0px 5px 0px;">
+								 <a style = "margin-right: 5px;" href="${createLink(controller: 'Dashboard', action: 'dashboard')}" class="btn btn-default">Home</a>
+								 <a href="${createLink(controller: 'Dashboard', action: 'changePassword')}" class="btn btn-default">Change Password</a>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+						<!-- Contact added SUCCESS -->
+				</g:elseif>
+				
+				
 			</section>
 			<!-- /.content -->
 			</div>

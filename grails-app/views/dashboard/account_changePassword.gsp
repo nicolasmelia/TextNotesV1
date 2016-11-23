@@ -247,12 +247,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<section class="content-header">
 				<h1>
             Settings
-            <small>View</small>
+            <small>Change Password</small>
           </h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Account </a>
 					</li>
-					<li class="active">Settings</li>
+					<li class="active">Password</li>
 				</ol>
 			</section>
 			<!-- Main content -->
@@ -260,38 +260,50 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<!-- Horizontal Form -->
 				<div class="box box-info" style="max-width: 600px;">
 					<div class="box-header with-border">
-						<h3 class="box-title">Account Settings</h3>
+						<h3 class="box-title">Change Password</h3>
 					</div>
 					<!-- /.box-header -->
 					<!-- form start -->
+					<g:form id="txtForm" class="form-horizontal" controller="Dashboard" action="changePassword" enctype="multipart/form-data">
+						<div class="box-body">
+							<div id="ModalAlert" style="display: none;" class="alert alert-danger alert-dismissable">
+								<h4><i class="icon fa fa-exclamation-circle"></i>Fix needed</h4>
+								<p id="ModalAlertText"></p>
+							</div>
+							
+							<div class="form-group">
+								<label for="inputEmail3" class="col-sm-3 control-label">Old Password</label>
+								<div class="col-sm-5">
+									<input name="passwordold" value="" id="passwordold" type="text" class="form-control" placeholder="Required">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="inputEmail3" class="col-sm-3 control-label">New Password</label>
+								<div class="col-sm-5">
+									<input name="passwordone" value="" id="passwordone" type="text" class="form-control" placeholder="Required">
+								</div>
+							</div>
+														
+							<div class="form-group">
+								<label for="inputEmail3" class="col-sm-3 control-label">Retype New Password</label>
+								<div class="col-sm-5">
+									<input name="passwordtwo" value="" id="passwordtwo" type="text" class="form-control" placeholder="Required">
+								</div>
+							</div>
+							
+							<hr>
+							
+							<p style = "margin-left: 20px; ">Please  Note: Your password change will become effective on your <b>next</b> login.</p>
+							
+						</div>
+						<div class="box-footer">
+							<button onClick="return validateMainForm()" class="btn btn-info pull-right" id="submitBtn" value="Send" action="changePassword" />Change</button> 
+							<a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" class="btn btn-default">Cancel</a>
+						</div>
 					
-					<table class="table table-bordered">
-						<tr>
-							<td><b>Account Holder</b></td>
-							<td>${session.firstName} ${session.lastName}</td>
-						</tr>
-						
-						<tr>
-							<td><b>Subscription</b></td>
-							<td><a href = "${createLink(controller: 'Dashboard', action: 'upgradeSub')}" ><b>Upgrade</b></a></td>
-						</tr>
-						
-						<tr>
-							<td><b>Password</b></td>
-							<td><a href = "${createLink(controller: 'Dashboard', action: 'changePassword')}" ><b>Change</b></a></td>
-						</tr>
-						
-						<tr>
-							<td><b>Incoming Text</b></td>
-							<td><a href = "${createLink(controller: 'Dashboard', action: 'toggleIncomingText')}" ><b>Disable</b></a></td>
-						</tr>
-						
-						<tr>
-							<td><b>Add Admins</b></td>
-							<td><a href = "${createLink(controller: 'Dashboard', action: 'addAdmins')}" ><b>Add</b></a></td>
-						</tr>	
-	
-					</table>
+					</g:form>					
+
 					
 				</div>
 				<!-- /.box -->
@@ -429,9 +441,58 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </body>
 <script>
 	  
-	  function test(number) {
-		  $("#modalHeading").text(number);
-		}
+	function test(number) {
+		$("#modalHeading").text(number);
+	}
+
+	
+	  function validateMainForm() {		  
+		  var error = false;
+		  var passwordone = $('#passwordone').val();
+		  var passwordtwo = $('#passwordtwo').val();
+		  var oldPassword = $('#passwordold').val();
+
+		  	//Clear old values
+		  	errors = [];
+			$("#ModalAlertText").html("");  
+	
+			if (passwordone.length > 0 && passwordtwo.length > 0)  {
+				
+				if (oldPassword.length < 6) {
+					error = true;
+					errors.push("Please enter your old password. Password must be atleast 6 characters.");
+				} 
+				
+				if (passwordone.length < 6) {
+					error = true;
+					errors.push("Password too short. Password must be atleast 6 characters.");
+				} 
+
+				if (passwordone.length > 16) {
+					error = true;
+					errors.push("Password too long. 16 character max.");
+				} 
+
+				if (passwordone != passwordtwo) {
+					error = true;
+					errors.push("Passwords dont match. Please re-enter your password.");
+				}
+			} else {
+				error = true;
+				errors.push("Please enter a new password in both new password fields.");
+			}
+
+			if (error){
+				for (i = 0; i < errors.length; i++) { 
+					$("#ModalAlertText").append("*" + errors[i] + "<br/>");		
+				}			
+				$("#ModalAlert").slideDown();
+				return false;
+			} else {
+				$("#ModalAlert").css("display","none");		
+				return true;
+			}
+	  }
 
 </script>
 

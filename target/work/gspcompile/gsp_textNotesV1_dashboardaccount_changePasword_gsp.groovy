@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_textNotesV1_dashboardaccount_Settings_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/dashboard/account_Settings.gsp" }
+class gsp_textNotesV1_dashboardaccount_changePasword_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/dashboard/account_changePasword.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()
@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1582571257 in (keywordsIn) ) {
-changeItVariable(_it1582571257)
+for( _it71322219 in (keywordsIn) ) {
+changeItVariable(_it71322219)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -134,56 +134,51 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'history'))
 printHtmlPart(55)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'accountSettings'))
 printHtmlPart(56)
-expressionOut.print(session.firstName)
-printHtmlPart(30)
-expressionOut.print(session.lastName)
+createTagBody(2, {->
 printHtmlPart(57)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'upgradeSub'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
 printHtmlPart(58)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'changePassword'))
-printHtmlPart(59)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'toggleIncomingText'))
-printHtmlPart(60)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'addAdmins'))
-printHtmlPart(61)
-invokeTag('javascript','g',377,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
-printHtmlPart(62)
-invokeTag('javascript','g',379,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
-printHtmlPart(63)
-invokeTag('javascript','g',381,['src':("dashboard/app.min.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',382,['src':("dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',383,['src':("dashboard/plugins/select2/select2.full.min.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',384,['src':("tagsinput/dist/bootstrap-tagsinput.min.js")],-1)
-printHtmlPart(64)
-invokeTag('javascript','g',386,['src':("dashboard/plugins/input-mask/jquery.inputmask.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',387,['src':("dashboard/plugins/input-mask/jquery.inputmask.date.extensions.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',388,['src':("dashboard/plugins/input-mask/jquery.inputmask.extensions.js")],-1)
-printHtmlPart(65)
-invokeTag('javascript','g',391,['src':("dashboard/plugins/daterangepicker/daterangepicker.js")],-1)
-printHtmlPart(66)
-invokeTag('javascript','g',393,['src':("dashboard/plugins/colorpicker/bootstrap-colorpicker.min.js")],-1)
-printHtmlPart(67)
-invokeTag('javascript','g',395,['src':("dashboard/plugins/timepicker/bootstrap-timepicker.min.js")],-1)
-printHtmlPart(68)
-invokeTag('javascript','g',397,['src':("dashboard/plugins/iCheck/icheck.min.js")],-1)
-printHtmlPart(69)
-invokeTag('javascript','g',399,['src':("dashboard/plugins/fastclick/fastclick.min.js")],-1)
-printHtmlPart(70)
 })
-invokeTag('captureBody','sitemesh',429,['class':("hold-transition skin-purple sidebar-mini")],1)
-printHtmlPart(71)
+invokeTag('form','g',278,['id':("txtForm"),'class':("form-horizontal"),'controller':("Dashboard"),'action':("changePassword"),'enctype':("multipart/form-data")],2)
+printHtmlPart(59)
+invokeTag('javascript','g',362,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(60)
+invokeTag('javascript','g',364,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(61)
+invokeTag('javascript','g',366,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',367,['src':("dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',368,['src':("dashboard/plugins/select2/select2.full.min.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',369,['src':("tagsinput/dist/bootstrap-tagsinput.min.js")],-1)
+printHtmlPart(62)
+invokeTag('javascript','g',371,['src':("dashboard/plugins/input-mask/jquery.inputmask.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',372,['src':("dashboard/plugins/input-mask/jquery.inputmask.date.extensions.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',373,['src':("dashboard/plugins/input-mask/jquery.inputmask.extensions.js")],-1)
+printHtmlPart(63)
+invokeTag('javascript','g',376,['src':("dashboard/plugins/daterangepicker/daterangepicker.js")],-1)
+printHtmlPart(64)
+invokeTag('javascript','g',378,['src':("dashboard/plugins/colorpicker/bootstrap-colorpicker.min.js")],-1)
+printHtmlPart(65)
+invokeTag('javascript','g',380,['src':("dashboard/plugins/timepicker/bootstrap-timepicker.min.js")],-1)
+printHtmlPart(66)
+invokeTag('javascript','g',382,['src':("dashboard/plugins/iCheck/icheck.min.js")],-1)
+printHtmlPart(67)
+invokeTag('javascript','g',384,['src':("dashboard/plugins/fastclick/fastclick.min.js")],-1)
+printHtmlPart(68)
+})
+invokeTag('captureBody','sitemesh',414,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(69)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1479865648127L
+public static final long LAST_MODIFIED = 1479865648089L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
