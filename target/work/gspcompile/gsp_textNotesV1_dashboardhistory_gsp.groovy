@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1643219351 in (keywordsIn) ) {
-changeItVariable(_it1643219351)
+for( _it1489870911 in (keywordsIn) ) {
+changeItVariable(_it1489870911)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -71,9 +71,9 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(24)
 expressionOut.print(createLink(controller: 'dashboard'))
 printHtmlPart(25)
-expressionOut.print(createLink(controller: 'tips'))
+expressionOut.print(createLink(controller: 'Blog'))
 printHtmlPart(26)
-expressionOut.print(createLink(controller: 'help'))
+expressionOut.print(createLink(controller: 'dashboard', action: 'help'))
 printHtmlPart(27)
 expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(28)
@@ -162,8 +162,8 @@ if(true && (groupCount > 0 || offset > 0)) {
 printHtmlPart(20)
 if(true && (history != 'NONE')) {
 printHtmlPart(14)
-for( _it1430554384 in (history) ) {
-changeItVariable(_it1430554384)
+for( _it2002232191 in (history) ) {
+changeItVariable(_it2002232191)
 printHtmlPart(68)
 if(true && (it.type == 'Coupon Code')) {
 printHtmlPart(69)
@@ -232,8 +232,8 @@ expressionOut.print(currentPage)
 printHtmlPart(89)
 if(true && (addToGroup)) {
 printHtmlPart(90)
-for( _it958663331 in (history) ) {
-changeItVariable(_it958663331)
+for( _it240259175 in (history) ) {
+changeItVariable(_it240259175)
 printHtmlPart(91)
 expressionOut.print(it.groupID)
 printHtmlPart(92)
@@ -265,7 +265,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1478476080503L
+public static final long LAST_MODIFIED = 1479950305159L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

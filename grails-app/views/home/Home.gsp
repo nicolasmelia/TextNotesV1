@@ -139,9 +139,9 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 					<div class="row 150%">
 						<section class="4u 12u$(medium) 12u$(small)">
 							<div class="box style1">
-								<span class="image full"><img src="images/pic01.jpg" alt="" /></span>
+								<span class="image full"><img src="${resource(dir: 'images', file: 'home/blog/blog4Thumbnail.jpg')}" alt="" /></span>
 								<h3>Using Keywords</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque esse quas dolores, unde!</p>
+								<p>The possibilities when it comes to keyword text messaging are limitless. Learn how to use this to your advantage.</p>
 								<ul class="actions">
 									<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}" class="button alt">More</a></li>
 								</ul>
@@ -149,21 +149,21 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 						</section>
 						<section class="4u 6u(medium) 12u$(small)">
 							<div class="box style2">
-								<span class="image full"><img src="images/pic02.jpg" alt="" /></span>
+								<span class="image full"><img src="${resource(dir: 'images', file: 'home/blog/blog3Thumbnail.jpg')}" alt="" /></span>
 								<h3>Growing with TxtWolf</h3>
-								<p>Tempora, dignissimos maxime quis reprehenderit, quos quia, blanditiis facilis totam iure dolor vel unde.</p>
+								<p>Using a web-based program, you can send mass texts to subscribing customers, set up campaigns and... </p>
 								<ul class="actions">
-									<li><a href="#" class="button alt">More</a></li>
+									<li><a href="${createLink(controller: 'blog', params: [blogID: '2'])}" class="button alt">More</a></li>
 								</ul>
 							</div>
 						</section>
 						<section class="4u$ 6u$(medium) 12u$(small)">
 							<div class="box style4">
-								<span class="image full"><img src="images/pic03.jpg" alt="" /></span>
+								<span class="image full"><img src="${resource(dir: 'images', file: 'home/blog/blog5Thumbnail.jpg')}"alt="" /></span>
 								<h3>Engagement 101</h3>
 								<p>Porro, cupiditate soluta quam maxime reiciendis ut, molestias itaque eum assumenda veritatis?</p>
 								<ul class="actions">
-									<li><a href="#" class="button alt">More</a></li>
+									<li><a href="${createLink(controller: 'blog', params: [blogID: '3'])}" class="button alt">More</a></li>
 								</ul>
 							</div>
 						</section>

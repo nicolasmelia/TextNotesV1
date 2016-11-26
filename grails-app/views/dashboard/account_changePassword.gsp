@@ -98,9 +98,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<li class="user-body">
 									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'dashboard')}">Home</a>
 									</div>
-									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'tips')}">Tips</a>
+									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'Blog')}">Tips</a>
 									</div>
-									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'help')}">Help</a>
+									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'dashboard', action: 'help')}">Help</a>
 									</div>
 								</li>
 								<!-- Menu Footer-->
@@ -170,7 +170,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<a href="${createLink(controller: 'Dashboard', action: 'Dashboard')}"> <i class="fa fa-home"></i>  <span>Home</span>
 						</a>
 					</li>
-					<li class="active"> <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="treeview" > <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a class="" href="${createLink(controller: 'Dashboard', action: 'newContact')}"><b>New Contact</b></a>
 							</li>
@@ -226,7 +226,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</li>
 						</ul>
 					</li>
-					<li class="treeview"> <a href="#"><i class="fa fa-paw"></i> <span>Account</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="active"> <a href="#"><i class="fa fa-paw"></i> <span>Account</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a href="${createLink(controller: 'Dashboard', action: 'balance')}">My Balance</a>
 							</li>
@@ -272,7 +272,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</div>
 							
 							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-3 control-label">Old Password</label>
+								<label for="inputEmail3" class="col-sm-3 control-label">Current Password</label>
 								<div class="col-sm-5">
 									<input name="passwordold" value="" id="passwordold" type="text" class="form-control" placeholder="Required">
 								</div>

@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it464345779 in (keywordsIn) ) {
-changeItVariable(_it464345779)
+for( _it506046490 in (keywordsIn) ) {
+changeItVariable(_it506046490)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -71,9 +71,9 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(24)
 expressionOut.print(createLink(controller: 'dashboard'))
 printHtmlPart(25)
-expressionOut.print(createLink(controller: 'tips'))
+expressionOut.print(createLink(controller: 'Blog'))
 printHtmlPart(26)
-expressionOut.print(createLink(controller: 'help'))
+expressionOut.print(createLink(controller: 'dashboard', action: 'help'))
 printHtmlPart(27)
 expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(28)
@@ -159,8 +159,8 @@ if(true && (keywordCount > 0 || offset > 0)) {
 printHtmlPart(20)
 if(true && (keywords != 'NONE')) {
 printHtmlPart(14)
-for( _it1754164558 in (keywords) ) {
-changeItVariable(_it1754164558)
+for( _it2068545945 in (keywords) ) {
+changeItVariable(_it2068545945)
 printHtmlPart(67)
 if(true && (type == 'All')) {
 printHtmlPart(68)
@@ -310,7 +310,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1478476080352L
+public static final long LAST_MODIFIED = 1479950304257L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

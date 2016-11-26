@@ -71,8 +71,8 @@
 			<section id="main" class="wrapper style1">
 				<div class="container box big bordered">
 					<header class="major special">
-						<h2>Left Sidebar</h2>
-						<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+						<h2>Using Keywords</h2>
+						<p>Offering keyword promotions will build traction and customers!</p>
 					</header>
 					<div class="row 200%">
 						<div class="4u 12u$(medium)">
@@ -80,22 +80,23 @@
 							<!-- Sidebar -->
 								<section id="sidebar">
 									<section>
-										<h3>Magna Feugiat</h3>
+									
+										<h3>Engagement 101</h3>
 										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit..</p>
 										<footer>
 											<ul class="actions">
-												<li><a href="#" class="button small alt">Learn More</a></li>
+												<li><a href="${createLink(controller: 'blog', params: [blogID: '3'])}" class="button small alt">Learn More</a></li>
 											</ul>
 										</footer>
 									</section>
 									<hr />
 									<section>
-										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-										<h3>Amet Lorem Tempus</h3>
-										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+										<a href="#" class="image fit"><img src="${resource(dir: 'images', file: 'blog/keywords/blog3Thumbnail.jpg')}"  alt="" /></a>
+										<h3>Growing with TxtWolf</h3>
+										<p>Using a web-based program, you can send mass texts to subscribing customers, set up campaigns and...</p>
 										<footer>
 											<ul class="actions">
-												<li><a href="#" class="button small alt">Learn More</a></li>
+												<li><a href="${createLink(controller: 'blog', params: [blogID: '2'])}" class="button small alt">Learn More</a></li>
 											</ul>
 										</footer>
 									</section>
@@ -106,18 +107,34 @@
 
 							<!-- Content -->
 								<section id="content">
-									<a href="#" class="image main"><img src="images/pic04.jpg" alt="" /></a>
-									<h3>Dolore Amet Consequat</h3>
-									<p>Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam quam, mollis at magna consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam.</p>
-									<p>Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum porta cursus justo. Quisque ultricies lorem in ligula condimentum, et egestas turpis sagittis. Cras ac nunc urna. Nullam eget lobortis purus. Phasellus vitae tortor non est placerat tristique.</p>
-									<h3>Sed Magna Ornare</h3>
-									<p>In vestibulum massa quis arcu lobortis tempus. Nam pretium arcu in odio vulputate luctus. Suspendisse euismod lorem eget lacinia fringilla. Sed sed felis justo. Nunc sodales elit in laoreet aliquam. Nam gravida, nisl sit amet iaculis porttitor, risus nisi rutrum metus.</p>
-									<ul>
-										<li>Faucibus orci lobortis ac adipiscing integer.</li>
-										<li>Col accumsan arcu mi aliquet placerat.</li>
-										<li>Lobortis vestibulum ut magna tempor massa nascetur.</li>
-										<li>Blandit massa non blandit tempor interdum.</li>
-										<li>Lacinia mattis arcu nascetur lobortis.</li>
+									<div class="image main"><img src="${resource(dir: 'images', file: 'blog/keywords/keyword4.jpg')}" alt="" /></div>
+									<h3>What are keywords?</h3>
+									<p>
+									Keywords are words that are texted to an SMS number. These SMS keywords tell a phone number what mobile messaging campaign you're trying to interact with.
+									In SMS marketing, an SMS keyword is what a consumer uses to initially interact with an SMS phone number on their mobile phone. The SMS keyword is sent in a text message to a specific SMS phone number, which will return a text message response based on what SMS campaign that keyword is associated with.
+									In the example SMS marketing campaign below, the SMS keyword is "Burger", where the SMS short code is "83733". There are no restrictions on SMS keywords, as they can be any length of characters, and be made up of any types of characters, including numbers, letters and symbols.
+									</p>
+									
+									<div style = "width: 80%; margin: 15px auto 20px auto;" class="image main">
+									<img src="${resource(dir: 'images', file: 'blog/keywords/blog1Thumbnail.jpg')}" alt="" />
+									</div>
+									
+									<p>
+										Keyword actions could include opting the customer into a mobile marketing program, responding with a text message confirmation, or even storing the information the customer text messaged to you, including their phone number for later use. The possibilities when it comes to keyword text messaging are limitless.
+									</p>									
+									
+									
+									<h3>Keyword Uses</h3>
+									<p>SMS short codes can be used for a variety of different purposes, including the following.</p>
+									<ul>																	
+										<li>SMS Contests/Giveaways</li>
+										<li>Text Message Offers</li>
+										<li>SMS Shipping Notifications</li>
+										<li>SMS Pickup Notifications and Reminders</li>
+										<li>SMS Appointment Reminders</li>
+										<li>SMS Voting/Polling</li>
+										<li>Employee Text Messaging Communications</li>		
+										<li>Many More!</li>				
 									</ul>
 								</section>
 

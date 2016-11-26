@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_textNotesV1_dashboardview_groups_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/dashboard/view_groups.gsp" }
+class gsp_textNotesV1_dashboardview_Groups_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/dashboard/view_Groups.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()
@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1090718753 in (keywordsIn) ) {
-changeItVariable(_it1090718753)
+for( _it1895322165 in (keywordsIn) ) {
+changeItVariable(_it1895322165)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -71,9 +71,9 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(24)
 expressionOut.print(createLink(controller: 'dashboard'))
 printHtmlPart(25)
-expressionOut.print(createLink(controller: 'tips'))
+expressionOut.print(createLink(controller: 'Blog'))
 printHtmlPart(26)
-expressionOut.print(createLink(controller: 'help'))
+expressionOut.print(createLink(controller: 'dashboard', action: 'help'))
 printHtmlPart(27)
 expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(28)
@@ -154,8 +154,8 @@ if(true && (groupCount > 0 || offset > 0)) {
 printHtmlPart(20)
 if(true && (groups != 'NONE')) {
 printHtmlPart(14)
-for( _it1012373446 in (groups) ) {
-changeItVariable(_it1012373446)
+for( _it1030191317 in (groups) ) {
+changeItVariable(_it1030191317)
 printHtmlPart(65)
 if(true && (addToGroup)) {
 printHtmlPart(66)
@@ -221,8 +221,8 @@ if(true && (groups != 'NONE')) {
 printHtmlPart(89)
 if(true && (addToGroup)) {
 printHtmlPart(90)
-for( _it623343194 in (groups) ) {
-changeItVariable(_it623343194)
+for( _it176436106 in (groups) ) {
+changeItVariable(_it176436106)
 printHtmlPart(91)
 expressionOut.print(it.groupID)
 printHtmlPart(92)
@@ -256,7 +256,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1478476080598L
+public static final long LAST_MODIFIED = 1479950304326L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

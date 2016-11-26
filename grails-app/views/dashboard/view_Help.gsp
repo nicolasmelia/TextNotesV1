@@ -68,9 +68,9 @@
 								<li class="user-body">
 									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'dashboard')}">Home</a>
 									</div>
-									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'tips')}">Tips</a>
+									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'Blog')}">Tips</a>
 									</div>
-									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'help')}">Help</a>
+									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'dashboard', action: 'help')}">Help</a>
 									</div>
 								</li>
 								<!-- Menu Footer-->
@@ -124,11 +124,9 @@
             <li><a href="#advice"><i class="fa fa-circle-o"></i> Advice</a></li>
             <li><a href="#layout"><i class="fa fa-circle-o"></i> Layout</a></li>
             
-			
             <li class="header">Menu</li>
 			<li><a href="${createLink(controller: 'Dashboard', action: 'Dashboard')}"> <i class="fa fa-home"></i><span>Home</span> </a> </li>
-			<li><a href="${createLink(controller: 'Dashboard', action: 'Dashboard')}"> <i class="fa fa-info-circle"></i><span>More Tips</span> </a> </li>
-			
+			<li><a href="${createLink(controller: 'blog')}"> <i class="fa fa-info-circle"></i><span>Tips</span> </a> </li>			
             
           </ul>
         </div>

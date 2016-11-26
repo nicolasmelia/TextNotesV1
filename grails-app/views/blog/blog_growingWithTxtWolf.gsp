@@ -65,14 +65,13 @@
 					</ul>
 				</nav>
 			</header>
-
-
+			
 		<!-- Main -->
 			<section id="main" class="wrapper style1">
 				<div class="container box big bordered">
 					<header class="major special">
-						<h2>Left Sidebar</h2>
-						<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+						<h2>Growing with TxtWolf</h2>
+						<p>Reach customers in less time, collect important data, and promote your company</p>
 					</header>
 					<div class="row 200%">
 						<div class="4u 12u$(medium)">
@@ -80,22 +79,23 @@
 							<!-- Sidebar -->
 								<section id="sidebar">
 									<section>
-										<h3>Magna Feugiat</h3>
+									
+										<h3>Engagement 101</h3>
 										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit..</p>
 										<footer>
 											<ul class="actions">
-												<li><a href="#" class="button small alt">Learn More</a></li>
+												<li><a href="${createLink(controller: 'blog', params: [blogID: '3'])}" class="button small alt">Learn More</a></li>
 											</ul>
 										</footer>
 									</section>
 									<hr />
 									<section>
-										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-										<h3>Amet Lorem Tempus</h3>
-										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+										<a href="#" class="image fit"><img src="${resource(dir: 'images', file: 'blog/keywords/blog1Thumbnail.jpg')}"  alt="" /></a>
+										<h3>Understanding Keywords</h3>
+										<p>The possibilities when it comes to keyword text messaging are limitless. Learn how to use this to your advantage.</p>
 										<footer>
 											<ul class="actions">
-												<li><a href="#" class="button small alt">Learn More</a></li>
+												<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}" class="button small alt">Learn More</a></li>
 											</ul>
 										</footer>
 									</section>
@@ -106,19 +106,23 @@
 
 							<!-- Content -->
 								<section id="content">
-									<a href="#" class="image main"><img src="images/pic04.jpg" alt="" /></a>
-									<h3>Dolore Amet Consequat</h3>
-									<p>Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam quam, mollis at magna consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam.</p>
-									<p>Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum porta cursus justo. Quisque ultricies lorem in ligula condimentum, et egestas turpis sagittis. Cras ac nunc urna. Nullam eget lobortis purus. Phasellus vitae tortor non est placerat tristique.</p>
-									<h3>Sed Magna Ornare</h3>
-									<p>In vestibulum massa quis arcu lobortis tempus. Nam pretium arcu in odio vulputate luctus. Suspendisse euismod lorem eget lacinia fringilla. Sed sed felis justo. Nunc sodales elit in laoreet aliquam. Nam gravida, nisl sit amet iaculis porttitor, risus nisi rutrum metus.</p>
-									<ul>
-										<li>Faucibus orci lobortis ac adipiscing integer.</li>
-										<li>Col accumsan arcu mi aliquet placerat.</li>
-										<li>Lobortis vestibulum ut magna tempor massa nascetur.</li>
-										<li>Blandit massa non blandit tempor interdum.</li>
-										<li>Lacinia mattis arcu nascetur lobortis.</li>
-									</ul>
+									<div class="image main"><img src="${resource(dir: 'images', file: 'blog/growing1.jpg')}" alt="" /></div>
+									<h3>Reaching Your Customers</h3>
+									
+									<p>SMS marketing is a way of reaching customers through text messaging. Using a web-based program, you can send mass texts to 
+									subscribing customers, set up campaigns where coupons are sent automatically over time, engage customers in polls and questionnaires, or even run a sweepstakes contest.
+									By running an SMS campaign TxtWolf will instantly collect important data from your customers for you, including their phone numbers for future campaigns and contacting.
+									</p>
+		
+									<p>
+									 From the online dashboard you can mass-send messages and setup your automated campaigns. You can create more keywords. Also from the online menu, you can view a list of customers and generate reports on their activity, such as when users are signing up and by what sources, who has responded to which messages and even track reasons for opting out to figure out which campaigns didn’t work.
+									 </p>									
+															
+									<h3>Why SMS Promotion?</h3>								
+									<p>
+									Texting has by far the best engagement rate of any marketing medium. Whereas emails can sit unread, phone calls can go can go unanswered and leaflets can be thrown out before given a second glance, text messages are almost always read, and read quickly. As studies have shown,
+									95 out of 100 of your customers who have opted into your text messaging program <b>OPEN</b> and <b>READ</b> your mobile messages within 3 minutes.					
+									</p>
 								</section>
 
 						</div>

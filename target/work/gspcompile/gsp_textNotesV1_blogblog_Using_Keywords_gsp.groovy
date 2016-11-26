@@ -65,32 +65,42 @@ expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
 printHtmlPart(18)
 }
 printHtmlPart(19)
-invokeTag('javascript','g',191,['src':("jquery.min.js")],-1)
+expressionOut.print(createLink(controller: 'blog', params: [blogID: '3']))
 printHtmlPart(20)
-invokeTag('javascript','g',192,['src':("jquery.dropotron.min.js")],-1)
+expressionOut.print(resource(dir: 'images', file: 'blog/keywords/blog3Thumbnail.jpg'))
 printHtmlPart(21)
-invokeTag('javascript','g',193,['src':("jquery.scrollgress.min.js")],-1)
-printHtmlPart(20)
-invokeTag('javascript','g',194,['src':("skel.min.js")],-1)
-printHtmlPart(20)
-invokeTag('javascript','g',195,['src':("util.js")],-1)
+expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
 printHtmlPart(22)
-invokeTag('javascript','g',196,['src':("main.js")],-1)
-printHtmlPart(22)
-invokeTag('javascript','g',197,['src':("jquery.scrolly.min.js")],-1)
+expressionOut.print(resource(dir: 'images', file: 'blog/keywords/keyword4.jpg'))
 printHtmlPart(23)
-invokeTag('javascript','g',198,['src':("ie/respond.min.js")],-1)
+expressionOut.print(resource(dir: 'images', file: 'blog/keywords/blog1Thumbnail.jpg'))
 printHtmlPart(24)
-})
-invokeTag('captureBody','sitemesh',200,[:],1)
+invokeTag('javascript','g',208,['src':("jquery.min.js")],-1)
 printHtmlPart(25)
+invokeTag('javascript','g',209,['src':("jquery.dropotron.min.js")],-1)
+printHtmlPart(26)
+invokeTag('javascript','g',210,['src':("jquery.scrollgress.min.js")],-1)
+printHtmlPart(25)
+invokeTag('javascript','g',211,['src':("skel.min.js")],-1)
+printHtmlPart(25)
+invokeTag('javascript','g',212,['src':("util.js")],-1)
+printHtmlPart(27)
+invokeTag('javascript','g',213,['src':("main.js")],-1)
+printHtmlPart(27)
+invokeTag('javascript','g',214,['src':("jquery.scrolly.min.js")],-1)
+printHtmlPart(28)
+invokeTag('javascript','g',215,['src':("ie/respond.min.js")],-1)
+printHtmlPart(29)
+})
+invokeTag('captureBody','sitemesh',217,[:],1)
+printHtmlPart(30)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1479670472637L
+public static final long LAST_MODIFIED = 1480123148501L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

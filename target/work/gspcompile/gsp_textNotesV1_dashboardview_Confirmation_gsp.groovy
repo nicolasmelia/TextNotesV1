@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1676552337 in (keywordsIn) ) {
-changeItVariable(_it1676552337)
+for( _it2013205710 in (keywordsIn) ) {
+changeItVariable(_it2013205710)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -71,9 +71,9 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(24)
 expressionOut.print(createLink(controller: 'dashboard'))
 printHtmlPart(25)
-expressionOut.print(createLink(controller: 'tips'))
+expressionOut.print(createLink(controller: 'Blog'))
 printHtmlPart(26)
-expressionOut.print(createLink(controller: 'help'))
+expressionOut.print(createLink(controller: 'dashboard', action: 'help'))
 printHtmlPart(27)
 expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(28)
@@ -189,7 +189,7 @@ printHtmlPart(75)
 }
 else if(true && (conType == 'FAILEDAddContact')) {
 printHtmlPart(79)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
+expressionOut.print(createLink(controller: 'Dashboard', action: 'contacts'))
 printHtmlPart(80)
 }
 else if(true && (conType == 'FAILEDtext')) {
@@ -298,23 +298,45 @@ printHtmlPart(109)
 expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(110)
 }
+else if(true && (conType == 'suspendKeyword')) {
+printHtmlPart(111)
+expressionOut.print(params.keyword)
+printHtmlPart(112)
+createClosureForHtmlPart(108, 3)
+invokeTag('link','g',531,['action':("details"),'params':([conType:'keyword', promotionID:params.promotionID]),'class':("btn btn-default")],3)
+printHtmlPart(109)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'keywords'))
+printHtmlPart(110)
+}
+else if(true && (conType == 'passwordChangeSuccess')) {
 printHtmlPart(118)
-invokeTag('javascript','g',598,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
 printHtmlPart(119)
-invokeTag('javascript','g',600,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+}
+else if(true && (conType == 'passwordChangeFail')) {
 printHtmlPart(120)
-invokeTag('javascript','g',602,['src':("dashboard/app.min.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
 printHtmlPart(121)
-})
-invokeTag('captureBody','sitemesh',629,['class':("hold-transition skin-purple sidebar-mini")],1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'changePassword'))
 printHtmlPart(122)
+}
+printHtmlPart(123)
+invokeTag('javascript','g',659,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(124)
+invokeTag('javascript','g',661,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(125)
+invokeTag('javascript','g',663,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(126)
+})
+invokeTag('captureBody','sitemesh',690,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(127)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1478476080988L
+public static final long LAST_MODIFIED = 1479950304495L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

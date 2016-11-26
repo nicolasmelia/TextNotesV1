@@ -55,8 +55,8 @@ expressionOut.print(notiCount)
 printHtmlPart(15)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(16)
-for( _it159910421 in (keywordsIn) ) {
-changeItVariable(_it159910421)
+for( _it182698304 in (keywordsIn) ) {
+changeItVariable(_it182698304)
 printHtmlPart(17)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(18)
@@ -79,9 +79,9 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(26)
 expressionOut.print(createLink(controller: 'dashboard'))
 printHtmlPart(27)
-expressionOut.print(createLink(controller: 'tips'))
+expressionOut.print(createLink(controller: 'Blog'))
 printHtmlPart(28)
-expressionOut.print(createLink(controller: 'help'))
+expressionOut.print(createLink(controller: 'dashboard', action: 'help'))
 printHtmlPart(29)
 expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(30)
@@ -192,7 +192,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1479770601576L
+public static final long LAST_MODIFIED = 1479950305445L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

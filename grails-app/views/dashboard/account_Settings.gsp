@@ -170,7 +170,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<a href="${createLink(controller: 'Dashboard', action: 'Dashboard')}"> <i class="fa fa-home"></i>  <span>Home</span>
 						</a>
 					</li>
-					<li class="active"> <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="treeview" > <a href="#"><i class="fa fa-book"></i> <span>Address Book</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a class="" href="${createLink(controller: 'Dashboard', action: 'newContact')}"><b>New Contact</b></a>
 							</li>
@@ -226,7 +226,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</li>
 						</ul>
 					</li>
-					<li class="treeview"> <a href="#"><i class="fa fa-paw"></i> <span>Account</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<li class="active"> <a href="#"><i class="fa fa-paw"></i> <span>Account</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a href="${createLink(controller: 'Dashboard', action: 'balance')}">My Balance</a>
 							</li>

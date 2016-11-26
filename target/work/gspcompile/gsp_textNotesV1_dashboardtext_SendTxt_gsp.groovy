@@ -53,8 +53,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it471003380 in (keywordsIn) ) {
-changeItVariable(_it471003380)
+for( _it2084706642 in (keywordsIn) ) {
+changeItVariable(_it2084706642)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -77,9 +77,9 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(24)
 expressionOut.print(createLink(controller: 'dashboard'))
 printHtmlPart(25)
-expressionOut.print(createLink(controller: 'tips'))
+expressionOut.print(createLink(controller: 'Blog'))
 printHtmlPart(26)
-expressionOut.print(createLink(controller: 'help'))
+expressionOut.print(createLink(controller: 'dashboard', action: 'help'))
 printHtmlPart(27)
 expressionOut.print(resource(dir: 'images', file: 'dashboard/default_avatar.png'))
 printHtmlPart(28)
@@ -181,8 +181,8 @@ expressionOut.print(bal.monthlyBalance)
 printHtmlPart(73)
 if(true && (groups != 'NONE')) {
 printHtmlPart(74)
-for( _it345758542 in (groups) ) {
-changeItVariable(_it345758542)
+for( _it890054387 in (groups) ) {
+changeItVariable(_it890054387)
 printHtmlPart(75)
 if(true && (addToGroup)) {
 printHtmlPart(76)
@@ -258,7 +258,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1478476079976L
+public static final long LAST_MODIFIED = 1479950304658L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

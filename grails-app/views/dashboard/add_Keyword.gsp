@@ -106,9 +106,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<li class="user-body">
 									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'dashboard')}">Home</a>
 									</div>
-									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'tips')}">Tips</a>
+									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'Blog')}">Tips</a>
 									</div>
-									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'help')}">Help</a>
+									<div class="col-xs-4 text-center"> <a href="${createLink(controller: 'dashboard', action: 'help')}">Help</a>
 									</div>
 								</li>
 								<!-- Menu Footer-->
