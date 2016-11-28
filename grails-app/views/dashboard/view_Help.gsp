@@ -97,7 +97,7 @@
 									<div class="pull-left">
 										<!--  <a href="#" class="btn btn-default btn-flat">Profile</a> -->
 									</div>
-									<div class="pull-left"> <a href="${createLink(controller: 'login', action: 'accountSettings')}" class="btn btn-default btn-flat">Settings</a>
+									<div class="pull-left"> <a href="${createLink(controller: 'dashboard', action: 'accountSettings')}" class="btn btn-default btn-flat">Settings</a>
 									</div>
 									<div class="pull-right"> <a href="${createLink(controller: 'login', action: 'logout')}" class="btn btn-default btn-flat">Sign out</a>
 									</div>
@@ -119,10 +119,11 @@
             <li class="header">TABLE OF CONTENTS</li>
             
             <li class="active"><a href="#introduction"><i class="fa fa-circle-o"></i> Introduction</a></li>
-            <li><a href="#download"><i class="fa fa-circle-o"></i> Download</a></li>
-            <li><a href="#dependencies"><i class="fa fa-circle-o"></i> Dependencies</a></li>
-            <li><a href="#advice"><i class="fa fa-circle-o"></i> Advice</a></li>
-            <li><a href="#layout"><i class="fa fa-circle-o"></i> Layout</a></li>
+            <li><a href="#AddressBook"><i class="fa fa-circle-o"></i> Address Book</a></li>
+            <li><a href="#SendingText"><i class="fa fa-circle-o"></i> Sending Text</a></li>
+            <li><a href="#UsingKeywords"><i class="fa fa-circle-o"></i> Using Keywords</a></li>
+            
+            
             
             <li class="header">Menu</li>
 			<li><a href="${createLink(controller: 'Dashboard', action: 'Dashboard')}"> <i class="fa fa-home"></i><span>Home</span> </a> </li>
@@ -138,12 +139,12 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
           <h1>
-            AdminLTE Documentation
-            <small>Current version 2.3.0</small>
+            TxtWolf Documentation
+            <small>Current version 2.1.0</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Documentation</li>
+            <li class="active">Help</li>
           </ol>
         </div>
 
@@ -153,197 +154,122 @@
 <section id="introduction">
   <h2 class="page-header"><a href="#introduction">Introduction</a></h2>
   <p class="lead">
-    <b>AdminLTE</b> is a popular open source WebApp template for admin dashboards and control panels.
-    It is a responsive HTML template that is based on the CSS framework Bootstrap 3.
-    It utilizes all of the Bootstrap components in its design and re-styles many
-    commonly used plugins to create a consistent design that can be used as a user
-    interface for backend applications. AdminLTE is based on a modular design, which
-    allows it to be easily customized and built upon. This documentation will guide you through
-    installing the template and exploring the various components that are bundled with the template.
+		<b>TxtWolf</b> is a refreshingly simple web-based text messaging service. We've been very focused on building and refining the intuitive user interface that our 
+		clients use every day. Creating groups of contacts for sending out text messages is increadibly simple: just select one of your groups, type your message, and hit 
+		send. Of course we also have a full set of advanced SMS marketing features for those who need them.
   </p>
 </section><!-- /#introduction -->
 
 
 <!-- ============================================================= -->
 
-<section id="download">
-  <h2 class="page-header"><a href="#download">Download</a></h2>
+<section id="AddressBook">
+  <h2 class="page-header"><a href="#AddressBook">Address Book</a></h2>
+  
+    <h3>Adding Contacts</h3>
+  
   <p class="lead">
-    AdminLTE can be downloaded in two different versions, each appealing to different skill levels and use case.
+    Contacts can be added to your address book through either opted-in customers by <i>keyword</i> or manually entering their contact information. 
+	To navigate to the “New Contact” page, click on “Address Book” in the left side bar and click “New Contact”. You can now begin to enter your 
+	contacts information. You are only requred to enter their phone number, first name and last name. Location information is not required.
   </p>
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title">Ready</h3>
-          <span class="label label-primary pull-right"><i class="fa fa-html5"></i></span>
-        </div><!-- /.box-header -->
-        <div class="box-body">
-          <p>Compiled and ready to use in production. Download this version if you don't want to customize AdminLTE's LESS files.</p>
-          <a href="http://almsaeedstudio.com/download/AdminLTE-dist" class="btn btn-primary"><i class="fa fa-download"></i> Download</a>
-        </div><!-- /.box-body -->
-      </div><!-- /.box -->
-    </div><!-- /.col -->
-    <div class="col-sm-6">
-      <div class="box box-danger">
-        <div class="box-header with-border">
-          <h3 class="box-title">Source Code</h3>
-          <span class="label label-danger pull-right"><i class="fa fa-database"></i></span>
-        </div><!-- /.box-header -->
-        <div class="box-body">
-          <p>All files including the compiled CSS. Download this version if you plan on customizing the template. <b>Requires a LESS compiler.</b></p>
-          <a href="http://almsaeedstudio.com/download/AdminLTE" class="btn btn-danger"><i class="fa fa-download"></i> Download</a>
-        </div><!-- /.box-body -->
-      </div><!-- /.box -->
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-  <pre class="hierarchy bring-up"><code class="language-bash" data-lang="bash">File Hierarchy of the Source Code Package
-
-AdminLTE/
-├── dist/
-│   ├── CSS/
-│   ├── JS
-│   ├── img
-├── build/
-│   ├── less/
-│   │   ├── AdminLTE's Less files
-│   └── Bootstrap-less/ (Only for reference. No modifications have been made)
-│       ├── mixins/
-│       ├── variables.less
-│       ├── mixins.less
-└── plugins/
-    ├── All the customized plugins CSS and JS files</code></pre>
-</section>
-
-
-<!-- ============================================================= -->
-
-<section id="dependencies">
-  <h2 class="page-header"><a href="#dependencies">Dependencies</a></h2>
-  <p class="lead">AdminLTE depends on two main frameworks.
-    The downloadable package contains both of these libraries, so you don't have to manually download them.</p>
-  <ul class="bring-up">
-    <li><a href="http://getbootstrap.com" target="_blank">Bootstrap 3</a></li>
-    <li><a href="http://jquery.com/" target="_blank">jQuery 1.11+</a></li>
-    <li><a href="#plugins">All other plugins are listed below</a></li>
-  </ul>
-</section>
-
-<!-- ============================================================= -->
-
-<section id="advice">
-  <h2 class="page-header"><a href="#advice">A Word of Advice</a></h2>
+  
+    <h3>Editing Contacts</h3>
+  
   <p class="lead">
-    Before you go to see your new awesome theme, here are few tips on how to familiarize yourself with it:
+    Contacts can be edited by navigating to the "View Contacts" page located in the left side bar under "Address Book". You can now search for the contact 
+    you want to edit by either name or address. Once found, clicking on their name in the table will pop up an options menu that displays actions you can take
+    with the current contact. Click "Edit contact" to open the "Edit Contact" page, which allows you to edit all details of this contact.
   </p>
-
-  <ul>
-    <li><b>AdminLTE is based on <a href="http://getbootstrap.com/" target="_blank">Bootstrap 3</a>.</b> If you are unfamiliar with Bootstrap, visit their website and read through the documentation. All of Bootstrap components have been modified to fit the style of AdminLTE and provide a consistent look throughout the template. This way, we guarantee you will get the best of AdminLTE.</li>
-    <li><b>Go through the pages that are bundled with the theme.</b> Most of the template example pages contain quick tips on how to create or use a component which can be really helpful when you need to create something on the fly.</li>
-    <li><b>Documentation.</b> We are trying our best to make your experience with AdminLTE be smooth. One way to achieve that is to provide documentation and support. If you think that something is missing from the documentation, please do not hesitate to create an issue to tell us about it. Also, if you would like to contribute, email the support team at <a href="mailto:support@almsaeedstudio.com">support@almsaeedstudio.com</a>.</li>
-    <li><b>Built with <a href="http://lesscss.org/" target="_blank">LESS</a>.</b> This theme uses the LESS compiler to make it easier to customize and use. LESS is easy to learn if you know CSS or SASS. It is not necessary to learn LESS but it will benefit you a lot in the future.</li>
-    <li><b>Hosted on <a href="https://github.com/almasaeed2010/AdminLTE/" target="_blank">GitHub</a>.</b> Visit our GitHub repository to view issues, make requests, or contribute to the project.</li>
-  </ul>
-  <p>
-    <b>Note:</b> LESS files are better commented than the compiled CSS file.
+  
+   <h3>More Contact Actions</h3>
+  
+  <p class="lead">
+    When clicking on a specific contact this will pop up a sub menu with actions you can take towards your contact. This includes viewing your contacts 
+    details (Location, number, etc), editing your contact, adding your contact to a group, and texting your contact. 
   </p>
+  
+    <h3>Adding Groups</h3>
+  
+  <p class="lead">
+    Groups allow you to group together specific contacts, which makes mass texting as easy as one step. Groups can be added to your address book by navigating to the “New Group” page. Click on “Address Book” in the left side bar and click “New Group”. You can now begin to enter your 
+	groups information. You are only requred to enter a group name. Description and state is not required. 
+  </p>
+  
+  
 </section>
 
 
 <!-- ============================================================= -->
 
-<section id="layout">
-  <h2 class="page-header"><a href="#layout">Layout</a></h2>
-  <p class="lead">The layout consists of four major parts:</p>
-  <ul>
-    <li>Wrapper <code>.wrapper</code>. A div that wraps the whole site.</li>
-    <li>Main Header <code>.main-header</code>. Contains the logo and navbar.</li>
-    <li>Sidebar <code>.sidebar-wrapper</code>. Contains the user panel and sidebar menu.</li>
-    <li>Content <code>.content-wrapper</code>. Contains the page header and content.</li>
-  </ul>
-  <div class="callout callout-danger lead">
-    <h4>Tip!</h4>
-    <p>The <a href="../starter.html">starter page</a> is a good place to start building your app if you'd like to start from scratch.</p>
-  </div>
 
-  <h3>Layout Options</h3>
-  <p class="lead">AdminLTE 2.0 provides a set of options to apply to your main layout. Each on of these classes can be added
-    to the body tag to get the desired goal.</p>
-  <ul>
-    <li><b>Fixed:</b> use the class <code>.fixed</code> to get a fixed header and sidebar.</li>
-    <li><b>Collapsed Sidebar:</b> use the class <code>.sidebar-collapse</code> to have a collapsed sidebar upon loading.</li>
-    <li><b>Boxed Layout:</b> use the class <code>.layout-boxed</code> to get a boxed layout that stretches only to 1250px.</li>
-    <li><b>Top Navigation</b> use the class <code>.layout-top-nav</code> to remove the sidebar and have your links at the top navbar.</li>
-  </ul>
-  <p><b>Note:</b> you cannot use both layout-boxed and fixed at the same time. Anything else can be mixed together.</p>
+<section id="SendingText">
+  <h2 class="page-header"><a href="#SendingText">Sending Text</a></h2>
+  
+    <h3>Sending a Text</h3>
+  
+  <p class="lead">
+  You can send a text by navigating to the "Compose Text" page by clicking on "Compose Text" located in the 
+  left side bar under "Send Text". This message is limited to 260 characters. *Each recipients attached to this
+  text will use <b>1</b> of your available ballance. 
+   </p>
+  
+  
+    <h3>Adding Recipients</h3>
+  
+  <p class="lead">
+  	You can add recipients to your out going text by selecting one of the three options in the "Add Recipients" menu located on the "Compose Text" page while 
+  	you compose your text. Selecting an option will open a pop up menu based on the selection you choose. This will not open a new page so it is safe to add
+  	contacts while you compose your text. These options include:
+   </p>
+   
+   	<ul>
+	  <li><b>Add Contact:</b> This selection will allow you to add any contact in your adress book by searching, using their name or adress.</li>
+	  <li><b>Add Group:</b> This option will allow you to add an entire group by selecting a group in your list of gourps.</li>
+	  <li><b>Add Number:</b> You can add any phone number using this option. A contact or group containing this number is not needed.</li>
+	</ul>
+	  	
+   <h3>Composing Drafts</h3>
+  
+  <p class="lead">
+  You can compose a draft by navigating to the "Compose Draft" page by clicking on "Compose Text" located in the 
+  left side bar under "Send Text". Once there you can begin to compose a draft by entering a required draft name and 
+  text message. This message is limited to 260 characters and follows the constraints of composing a text message from scratch. 
+  </p>
+  
+   <h3>Selecting a Draft</h3>
+  
+  <p class="lead">
+  You can select a draft for use by navigating to the "View Drafts" page by clicking on "View Drafts" located in the 
+  left side bar under "Send Text". Once at the "View Drafts" simply click on a draft you wish to compose a text with. This will
+  open the "Compose Text" page with your draft text in the compose text box.
+  </p>
+  
 
-  <h3>Skins</h3>
-  <p class="lead">Skins can be found in the dist/css/skins folder.
-    Choose and the skin file that you want then add the appropriate
-    class to the body tag to change the template's appearance. Here is the list of available skins:</p>
-  <div class="box box-solid" style="max-width: 300px;">
-    <div class="box-body no-padding">
-      <table id="layout-skins-list" class="table table-striped bring-up nth-2-center">
-        <thead>
-          <tr>
-            <th style="width: 210px;">Skin Class</th>
-            <th>Preview</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>skin-blue</code></td>
-            <td><a href="#" data-skin="skin-blue" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a></td>
-          </tr>
-          <tr>
-            <td><code>skin-blue-light</code></td>
-            <td><a href="#" data-skin="skin-blue-light" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a></td>
-          </tr>
-          <tr>
-            <td><code>skin-yellow</code></td>
-            <td><a href="#" data-skin="skin-yellow" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i></a></td>
-          </tr>
-          <tr>
-            <td><code>skin-yellow-light</code></td>
-            <td><a href="#" data-skin="skin-yellow-light" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i></a></td>
-          </tr>
-          <tr>
-            <td><code>skin-green</code></td>
-            <td><a href="#" data-skin="skin-green" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></a></td>
-          </tr>
-          <tr>
-            <td><code>skin-green-light</code></td>
-            <td><a href="#" data-skin="skin-green-light" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></a></td>
-          </tr>
-          <tr>
-            <td><code>skin-purple</code></td>
-            <td><a href="#" data-skin="skin-purple" class="btn bg-purple btn-xs"><i class="fa fa-eye"></i></a></td>
-          </tr>
-          <tr>
-            <td><code>skin-purple-light</code></td>
-            <td><a href="#" data-skin="skin-purple-light" class="btn bg-purple btn-xs"><i class="fa fa-eye"></i></a></td>
-          </tr>
-          <tr>
-            <td><code>skin-red</code></td>
-            <td><a href="#" data-skin="skin-red" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></a></td>
-          </tr>
-          <tr>
-            <td><code>skin-red-light</code></td>
-            <td><a href="#" data-skin="skin-red-light" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></a></td>
-          </tr>
-          <tr>
-            <td><code>skin-black</code></td>
-            <td><a href="#" data-skin="skin-black" class="btn bg-black btn-xs"><i class="fa fa-eye"></i></a></td>
-          </tr>
-          <tr>
-            <td><code>skin-black-light</code></td>
-            <td><a href="#" data-skin="skin-black-light" class="btn bg-black btn-xs"><i class="fa fa-eye"></i></a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div><!-- /.box-body -->
-  </div><!-- /.box -->
+   
+  
 </section>
+
+
+<section id="UsingKeywords">
+  <h2 class="page-header"><a href="#UsingKeywords">Using Keywords</a></h2>
+  
+    <h3>Creating a Keyword</h3>
+  
+  <p class="lead">
+	  You can create a keyword by navigating to the "New Keyword" page by clicking on "New Keywords" located in the 
+	  left side bar under "Keywords". Once there, you are required to create a keyword name (The keyword your contacts will send in), and 
+	  a valid date range for which keyword will be active for, along with a compaain type, listed below.
+   </p>
+   
+   	<ul>
+   	<li><b>Custom:</b> This is not a contest or a coupon, but rather allows you to customize its use and need by responding with custom text.</li>
+	<li><b>Coupon:</b> When your customer sends in your keyword they will be sent a coupon code that you can validate in the 'Validate Code' page located in the keyword menu.</li>  
+	<li><b>Contest</b> When your customer sends in your keyword they will be entered into your contest. A contest allows you to randomly select winners from the recieved keywords.</li> 	
+	</ul>
+
+</section>
+
 
 
         </div><!-- /.content -->
@@ -351,9 +277,9 @@ AdminLTE/
 
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
+          <b>Version</b> 2.1.0
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2017 <a href="http://TxtWolf.com">TxtWolf LLC</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->

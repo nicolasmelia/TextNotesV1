@@ -63,7 +63,7 @@ expressionOut.print(session.lastName)
 printHtmlPart(20)
 invokeTag('formatDate','g',92,['format':("yyyy"),'date':(session.signUpDate)],-1)
 printHtmlPart(21)
-expressionOut.print(createLink(controller: 'login', action: 'accountSettings'))
+expressionOut.print(createLink(controller: 'dashboard', action: 'accountSettings'))
 printHtmlPart(22)
 expressionOut.print(createLink(controller: 'login', action: 'logout'))
 printHtmlPart(23)
@@ -71,16 +71,16 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'Dashboard'))
 printHtmlPart(24)
 expressionOut.print(createLink(controller: 'blog'))
 printHtmlPart(25)
-invokeTag('javascript','g',374,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+invokeTag('javascript','g',300,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(26)
-invokeTag('javascript','g',376,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+invokeTag('javascript','g',302,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(27)
-invokeTag('javascript','g',378,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',304,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(28)
-invokeTag('javascript','g',381,['src':("help/docs.js")],-1)
+invokeTag('javascript','g',307,['src':("help/docs.js")],-1)
 printHtmlPart(29)
 })
-invokeTag('captureBody','sitemesh',383,['class':("skin-purple fixed"),'data-spy':("scroll"),'data-target':("#scrollspy")],1)
+invokeTag('captureBody','sitemesh',309,['class':("skin-purple fixed"),'data-spy':("scroll"),'data-target':("#scrollspy")],1)
 printHtmlPart(30)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -88,7 +88,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1480095110587L
+public static final long LAST_MODIFIED = 1480297557949L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

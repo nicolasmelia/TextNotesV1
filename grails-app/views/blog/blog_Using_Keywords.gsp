@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>TxtWolf - Pricing</title>
+		<title>TxtWolf - Blog</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" href="${resource(dir: 'images', file: 'dashboard/default_avatar.png')}">
@@ -82,7 +82,9 @@
 									<section>
 									
 										<h3>Engagement 101</h3>
-										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit..</p>
+										<p> 
+											When a customer sees your advertisement they can send a text message to a keyword, obtaining promotional material from you and...
+										</p>
 										<footer>
 											<ul class="actions">
 												<li><a href="${createLink(controller: 'blog', params: [blogID: '3'])}" class="button small alt">Learn More</a></li>
@@ -93,7 +95,7 @@
 									<section>
 										<a href="#" class="image fit"><img src="${resource(dir: 'images', file: 'blog/keywords/blog3Thumbnail.jpg')}"  alt="" /></a>
 										<h3>Growing with TxtWolf</h3>
-										<p>Using a web-based program, you can send mass texts to subscribing customers, set up campaigns and...</p>
+										<p>Using a web-based program, you can send mass texts to subscribing customers, set up campaigns and collect customer data.</p>
 										<footer>
 											<ul class="actions">
 												<li><a href="${createLink(controller: 'blog', params: [blogID: '2'])}" class="button small alt">Learn More</a></li>
@@ -107,7 +109,7 @@
 
 							<!-- Content -->
 								<section id="content">
-									<div class="image main"><img src="${resource(dir: 'images', file: 'blog/keywords/keyword4.jpg')}" alt="" /></div>
+									<div class="image main"><img src="${resource(dir: 'images', file: 'blog/keywords/usingKeywordsBanner.jpg')}" alt="" /></div>
 									<h3>What are keywords?</h3>
 									<p>
 									Keywords are words that are texted to an SMS number. These SMS keywords tell a phone number what mobile messaging campaign you're trying to interact with.
@@ -148,26 +150,23 @@
 				<div class="container">
 					<div class="row 200% uniform">
 						<section class="4u 12u$(medium) 12u$(xsmall) footer-info">
-							<h2>Ipsum dolor sed consequat</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta molestiae eius dolorem quod deserunt esse libero, dolorum temporibus, aliquid nemo vitae sit enim quas ipsam dicta et veritatis excepturi suscipit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio incidunt, tempora quasi, impedit laudantium totam.</p>
+							<h2>Nonprofit</h2>
+							<p>Nonprofit Organizations are eligible for the "At Cost" subscription plan, up to 60,000 text. If you are a Nonprofit, please contact us today.
+							We are more than happy to accommodate your organization.</p>
 							<ul class="actions">
-								<li><a href="#" class="button alt">Learn more</a></li>
+								<li><a href="${createLink(controller: 'Home', action: 'pricing')}" class="button alt">Learn more</a></li>
 							</ul>
 						</section>
 						<section class="4u 6u(medium) 12u$(xsmall)">
-							<h3>Recent News</h3>
+							<h3>Recent Blogs</h3>
 							<ul class="updates">
 								<li>
-									<p><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum tenetur sequi eos porro minima laborum!</a></p>
-									<span class="timestamp">Posted 2 hours ago</span>
+									<p><a href="${createLink(controller: 'blog', params: [blogID: '1'])}" >The possibilities when it comes to keyword text messaging are limitless. Learn how to use this to your advantage.</a></p>
+									<span class="timestamp">- TxtWolf Blogs</span>
 								</li>
 								<li>
-									<p><a href="#">Perferendis deserunt, iure ipsum animi quidem molestiae esse quisquam rerum quas placeat.</a></p>
-									<span class="timestamp">Posted 6 hours ago</span>
-								</li>
-								<li>
-									<p><a href="#">Ex est veniam, ratione voluptas quidem eveniet accusantium impedit explicabo error, commodi.</a></p>
-									<span class="timestamp">Posted 8 hours ago</span>
+									<p><a href="${createLink(controller: 'blog', params: [blogID: '2'])}" >Using a web-based program, you can send mass texts to subscribing customers, set up campaigns and collect customer data.</a></p>
+									<span class="timestamp">- TxtWolf Blogs</span>
 								</li>
 							</ul>
 						</section>
@@ -176,34 +175,28 @@
 							<ul class="labeled-icons">
 								<li>
 									<h4 class="icon fa-home"><span class="label">Address</span></h4>
-									1234 Somewhere Road #5403<br />
-									Nashville, TN 00000
+									Cleveland, OH<br />
 								</li>
 								<li>
 									<h4 class="icon fa-phone"><span class="label">Phone</span></h4>
-									(000) 555-0000 x12345
+									(330) 540-8023
 								</li>
 								<li>
 									<h4 class="icon fa-envelope"><span class="label">Email</span></h4>
-									<a href="#">hello@untitled.tld</a>
+									<a href="mailto:Support@TxtWolf.com">Support@TxtWolf.com </a>
 								</li>
 								<li>
 									<h4 class="icon fa-facebook"><span class="label">Facebook</span></h4>
-									<a href="#">facebook.com/untitled-tld</a>
-								</li>
-								<li>
-									<h4 class="icon fa-twitter"><span class="label">Twitter</span></h4>
-									<a href="#">twitter.com/untitled-tld</a>
+									<a href="https://www.facebook.com/TxtWolf">www.facebook.com/TxtWolf</a>
 								</li>
 							</ul>
 						</section>
 					</div>
 				</div>
 				<div class="copyright">
-					&copy; Untitled. All rights reserved.
+					&copy; 2017, TxtWolf LLC.
 				</div>
 			</div>
-
 		<!-- Scripts -->
 		<g:javascript src="jquery.min.js" />  
 		<g:javascript src="jquery.dropotron.min.js" /> 	

@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1826807929 in (keywordsIn) ) {
-changeItVariable(_it1826807929)
+for( _it1097482869 in (keywordsIn) ) {
+changeItVariable(_it1097482869)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -85,7 +85,7 @@ expressionOut.print(session.lastName)
 printHtmlPart(31)
 invokeTag('formatDate','g',122,['format':("yyyy"),'date':(session.signUpDate)],-1)
 printHtmlPart(32)
-expressionOut.print(createLink(controller: 'login', action: 'accountSettings'))
+expressionOut.print(createLink(controller: 'dashboard', action: 'accountSettings'))
 printHtmlPart(33)
 expressionOut.print(createLink(controller: 'login', action: 'logout'))
 printHtmlPart(34)
@@ -136,8 +136,8 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'accountSettings
 printHtmlPart(56)
 if(true && (winnerCount > 0)) {
 printHtmlPart(20)
-for( _it1043980539 in (winners) ) {
-changeItVariable(_it1043980539)
+for( _it2079743503 in (winners) ) {
+changeItVariable(_it2079743503)
 printHtmlPart(57)
 expressionOut.print(it.phoneNumber)
 printHtmlPart(58)
@@ -167,7 +167,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1479950305044L
+public static final long LAST_MODIFIED = 1480296166685L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

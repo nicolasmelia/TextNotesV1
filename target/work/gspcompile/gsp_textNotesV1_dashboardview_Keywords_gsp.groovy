@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it506046490 in (keywordsIn) ) {
-changeItVariable(_it506046490)
+for( _it2006067420 in (keywordsIn) ) {
+changeItVariable(_it2006067420)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -85,7 +85,7 @@ expressionOut.print(session.lastName)
 printHtmlPart(31)
 invokeTag('formatDate','g',122,['format':("yyyy"),'date':(session.signUpDate)],-1)
 printHtmlPart(32)
-expressionOut.print(createLink(controller: 'login', action: 'accountSettings'))
+expressionOut.print(createLink(controller: 'dashboard', action: 'accountSettings'))
 printHtmlPart(33)
 expressionOut.print(createLink(controller: 'login', action: 'logout'))
 printHtmlPart(34)
@@ -159,8 +159,8 @@ if(true && (keywordCount > 0 || offset > 0)) {
 printHtmlPart(20)
 if(true && (keywords != 'NONE')) {
 printHtmlPart(14)
-for( _it2068545945 in (keywords) ) {
-changeItVariable(_it2068545945)
+for( _it527644338 in (keywords) ) {
+changeItVariable(_it527644338)
 printHtmlPart(67)
 if(true && (type == 'All')) {
 printHtmlPart(68)
@@ -310,7 +310,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1479950304257L
+public static final long LAST_MODIFIED = 1480296167276L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

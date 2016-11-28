@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>TxtWolf - Pricing</title>
+		<title>TxtWolf - Blog</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" href="${resource(dir: 'images', file: 'dashboard/default_avatar.png')}">
@@ -71,29 +71,28 @@
 			<section id="main" class="wrapper style1">
 				<div class="container box big bordered">
 					<header class="major special">
-						<h2>Using Keywords</h2>
-						<p>Offering keyword promotions will build traction and customers!</p>
+						<h2>Engagement 101</h2>
+						<p>Engage with customers like never before. Get Noticed. </p>
 					</header>
 					<div class="row 200%">
 						<div class="4u 12u$(medium)">
 
 							<!-- Sidebar -->
 								<section id="sidebar">
-									<section>
-									
-										<h3>Magna Feugiat</h3>
-										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit..</p>
+									<section>			
+										<h3>Growing With TxtWolf</h3>
+										<p>Using a web-based program, you can send mass texts to subscribing customers, set up campaigns and collect customer data.</p>
 										<footer>
 											<ul class="actions">
-												<li><a href="${createLink(controller: 'blog', params: [blogID: '3'])}" class="button small alt">Learn More</a></li>
+												<li><a href="${createLink(controller: 'blog', params: [blogID: '2'])}" class="button small alt">Learn More</a></li>
 											</ul>
 										</footer>
 									</section>
 									<hr />
 									<section>
-										<a href="#" class="image fit"><img src="${resource(dir: 'images', file: 'blog/keywords/blog3Thumbnail.jpg')}"  alt="" /></a>
-										<h3>Amet Lorem Tempus</h3>
-										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+										<a href="#" class="image fit"><img src="${resource(dir: 'images', file: 'blog/keywords/blog4Thumbnail.jpg')}"  alt="" /></a>
+										<h3>Using Keywords</h3>
+										<p>The possibilities when it comes to keyword text messaging are limitless. Learn how to use this to your advantage.</p>
 										<footer>
 											<ul class="actions">
 												<li><a href="${createLink(controller: 'blog', params: [blogID: '2'])}" class="button small alt">Learn More</a></li>
@@ -107,30 +106,25 @@
 
 							<!-- Content -->
 								<section id="content">
-									<div class="image main"><img src="${resource(dir: 'images', file: 'blog/keywords/keyword1.jpg')}" alt="" /></div>
-									<h3>What are keywords?</h3>
+									<div class="image main"><img src="${resource(dir: 'images', file: 'blog/customerEngagementBanner.jpg')}" alt="" /></div>
+									<h3>The Call To Action</h3>
 									<p>
-									Keywords are words that are texted to an SMS number. These SMS keywords tell a phone number what mobile messaging campaign you're trying to interact with.
-									In SMS marketing, an SMS keyword is what a consumer uses to initially interact with an SMS phone number on their mobile phone. The SMS keyword is sent in a text message to a specific SMS phone number, which will return a text message response based on what SMS campaign that keyword is associated with.
-									In the example SMS marketing campaign below, the SMS keyword is "Burger", where the SMS short code is "83733". There are no restrictions on SMS keywords, as they can be any length of characters, and be made up of any types of characters, including numbers, letters and symbols.
+										There are many different reasons for a company to use keywords as part of their SMS marketing campaigns. One of the largest applications of keywords is a simple call to action. For example, a phrase that encourages people to text a certain word or phrase to a number can be incorporated into advertising across platforms, including print advertising, online, social media campaigns, business cards, menus, television and radio, and any other marketing channel.
+										Incorporate SMS keywords in your text marketing campaign’s call to action.
 									</p>
 
 									<p>
-										Keyword actions could include opting the customer into a mobile marketing program, responding with a text message confirmation, or even storing the information the customer text messaged to you, including their phone number for later use. The possibilities when it comes to keyword text messaging are limitless.
+										When a potential customer sees the advertisement, he or she can take action by sending a text message to the keyword and obtaining additional information or promotional material from you.
 									</p>									
 									
 									
-									<h3>Keyword Uses</h3>
-									<p>SMS short codes can be used for a variety of different purposes, including the following.</p>
+									<h3>Multiple ways to engage</h3>
+
 									<ul>																	
-										<li>SMS Contests/Giveaways</li>
-										<li>Text Message Offers</li>
-										<li>SMS Shipping Notifications</li>
-										<li>SMS Pickup Notifications and Reminders</li>
-										<li>SMS Appointment Reminders</li>
-										<li>SMS Voting/Polling</li>
-										<li>Employee Text Messaging Communications</li>		
-										<li>Many More!</li>				
+										<li><b>Send Coupons:</b> Send customers exclusive deals. Uniquely-generated coupon codes prevents non-subscribers from taking advantage of your deal.</li>
+										<li><b>Create Groups:</b> Divide customers into groups depending on which keyword they responded to, how they voted in a poll, based on their area code and more. Segmenting your customers lets you send more targeted promotions and coupons.</li>
+										<li><b>Sweepstakes Contest:</b> Let customers sign themselves up for a sweepstakes by texting a particular keyword. From the dashboard you can view the list of phone numbers and choose one at random.</li>
+										<li><b>Sub Keywords:</b> customers can also respond to your messages with sub keywords. For example, sending the phrase “Hours” can trigger a text with business hours and “Stop” can remove them from the list. This gives customers a way to interact with your business and enables them to opt out of your campaign if they wish to stop receiving messages.</li>
 									</ul>
 								</section>
 
@@ -144,26 +138,23 @@
 				<div class="container">
 					<div class="row 200% uniform">
 						<section class="4u 12u$(medium) 12u$(xsmall) footer-info">
-							<h2>Ipsum dolor sed consequat</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta molestiae eius dolorem quod deserunt esse libero, dolorum temporibus, aliquid nemo vitae sit enim quas ipsam dicta et veritatis excepturi suscipit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio incidunt, tempora quasi, impedit laudantium totam.</p>
+							<h2>Nonprofit</h2>
+							<p>Nonprofit Organizations are eligible for the "At Cost" subscription plan, up to 60,000 text. If you are a Nonprofit, please contact us today.
+							We are more than happy to accommodate your organization.</p>
 							<ul class="actions">
-								<li><a href="#" class="button alt">Learn more</a></li>
+								<li><a href="${createLink(controller: 'Home', action: 'pricing')}" class="button alt">Learn more</a></li>
 							</ul>
 						</section>
 						<section class="4u 6u(medium) 12u$(xsmall)">
-							<h3>Recent News</h3>
+							<h3>Recent Blogs</h3>
 							<ul class="updates">
 								<li>
-									<p><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum tenetur sequi eos porro minima laborum!</a></p>
-									<span class="timestamp">Posted 2 hours ago</span>
+									<p><a href="${createLink(controller: 'blog', params: [blogID: '1'])}" >The possibilities when it comes to keyword text messaging are limitless. Learn how to use this to your advantage.</a></p>
+									<span class="timestamp">- TxtWolf Blogs</span>
 								</li>
 								<li>
-									<p><a href="#">Perferendis deserunt, iure ipsum animi quidem molestiae esse quisquam rerum quas placeat.</a></p>
-									<span class="timestamp">Posted 6 hours ago</span>
-								</li>
-								<li>
-									<p><a href="#">Ex est veniam, ratione voluptas quidem eveniet accusantium impedit explicabo error, commodi.</a></p>
-									<span class="timestamp">Posted 8 hours ago</span>
+									<p><a href="${createLink(controller: 'blog', params: [blogID: '2'])}" >Using a web-based program, you can send mass texts to subscribing customers, set up campaigns and collect customer data.</a></p>
+									<span class="timestamp">- TxtWolf Blogs</span>
 								</li>
 							</ul>
 						</section>
@@ -172,31 +163,26 @@
 							<ul class="labeled-icons">
 								<li>
 									<h4 class="icon fa-home"><span class="label">Address</span></h4>
-									1234 Somewhere Road #5403<br />
-									Nashville, TN 00000
+									Cleveland, OH<br />
 								</li>
 								<li>
 									<h4 class="icon fa-phone"><span class="label">Phone</span></h4>
-									(000) 555-0000 x12345
+									(330) 540-8023
 								</li>
 								<li>
 									<h4 class="icon fa-envelope"><span class="label">Email</span></h4>
-									<a href="#">hello@untitled.tld</a>
+									<a href="mailto:Support@TxtWolf.com">Support@TxtWolf.com </a>
 								</li>
 								<li>
 									<h4 class="icon fa-facebook"><span class="label">Facebook</span></h4>
-									<a href="#">facebook.com/untitled-tld</a>
-								</li>
-								<li>
-									<h4 class="icon fa-twitter"><span class="label">Twitter</span></h4>
-									<a href="#">twitter.com/untitled-tld</a>
+									<a href="https://www.facebook.com/TxtWolf">www.facebook.com/TxtWolf</a>
 								</li>
 							</ul>
 						</section>
 					</div>
 				</div>
 				<div class="copyright">
-					&copy; Untitled. All rights reserved.
+					&copy; 2017, TxtWolf LLC.
 				</div>
 			</div>
 

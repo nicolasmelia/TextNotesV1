@@ -151,7 +151,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 							<div class="box style2">
 								<span class="image full"><img src="${resource(dir: 'images', file: 'home/blog/blog3Thumbnail.jpg')}" alt="" /></span>
 								<h3>Growing with TxtWolf</h3>
-								<p>Using a web-based program, you can send mass texts to subscribing customers, set up campaigns and... </p>
+								<p>Using a web-based program, you can send mass texts to subscribing customers, set up campaigns and collect customer data.</p>
 								<ul class="actions">
 									<li><a href="${createLink(controller: 'blog', params: [blogID: '2'])}" class="button alt">More</a></li>
 								</ul>
@@ -161,7 +161,9 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 							<div class="box style4">
 								<span class="image full"><img src="${resource(dir: 'images', file: 'home/blog/blog5Thumbnail.jpg')}"alt="" /></span>
 								<h3>Engagement 101</h3>
-								<p>Porro, cupiditate soluta quam maxime reiciendis ut, molestias itaque eum assumenda veritatis?</p>
+								<p>
+									When a customer sees your advertisement they can send a text message to a keyword, obtaining promotional material from you and...		
+								</p>
 								<ul class="actions">
 									<li><a href="${createLink(controller: 'blog', params: [blogID: '3'])}" class="button alt">More</a></li>
 								</ul>
@@ -181,7 +183,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 					</header>
 					<ul class="actions uniform">
 						<li><a href="${createLink(controller: 'login', action: 'newAccount')}"class="button special">Sign Up</a></li>
-						<li><a href="#" class="button alt">Learn More</a></li>
+						<li><a href="${createLink(controller: 'Home', action: 'pricing')}" class="button alt">Pricing</a></li>
 					</ul>
 				</div>
 			</section>
@@ -195,18 +197,18 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 							<p>Nonprofit Organizations are eligible for the "At Cost" subscription plan, up to 60,000 text. If you are a Nonprofit, please contact us today.
 							We are more than happy to accommodate your organization.</p>
 							<ul class="actions">
-								<li><a href="#" class="button alt">Learn more</a></li>
+								<li><a href="${createLink(controller: 'Home', action: 'pricing')}" class="button alt">Learn more</a></li>
 							</ul>
 						</section>
 						<section class="4u 6u(medium) 12u$(xsmall)">
-							<h3>Recent News</h3>
+							<h3>Recent Blogs</h3>
 							<ul class="updates">
 								<li>
-									<p><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum tenetur sequi eos porro minima laborum!</a></p>
+									<p><a href="${createLink(controller: 'blog', params: [blogID: '1'])}" >The possibilities when it comes to keyword text messaging are limitless. Learn how to use this to your advantage.</a></p>
 									<span class="timestamp">- TxtWolf Blogs</span>
 								</li>
 								<li>
-									<p><a href="#">Perferendis deserunt, iure ipsum animi quidem molestiae esse quisquam rerum quas placeat.</a></p>
+									<p><a href="${createLink(controller: 'blog', params: [blogID: '2'])}" >Using a web-based program, you can send mass texts to subscribing customers, set up campaigns and collect customer data.</a></p>
 									<span class="timestamp">- TxtWolf Blogs</span>
 								</li>
 							</ul>
