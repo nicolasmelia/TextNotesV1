@@ -26,6 +26,7 @@
 				<h1 id="logo"><a href="${createLink(controller: 'Home')}">TxtWolf</a></h1>
 				<nav id="nav">
 					<ul>
+						<li><a href="${createLink(controller: 'Home')}">Home</a></li>
 						<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}">Blog</a></li>			
 						<li><a href="${createLink(controller: 'Home', action: 'pricing')}">Pricing</a></li>
 						
@@ -106,7 +107,14 @@
 					</div>
 					
 					   <span class="clear"></span>
-
+					    <br> <br>
+					   <div>
+						<h4>Full Support Plans</h4>
+						The above plans are for those do-it-yourselfers. But for those who want to save time and get to 
+						results fast, our team of experienced professionals is ready to help you build an audience and design 
+						text marketing messages that win. Plans start at $100. Contact us for information. <a href="mailto:Support@TxtWolf.com">Support@TxtWolf.com </a>
+						</div>	
+						
 				</div>
 
 				</div>

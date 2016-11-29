@@ -70,8 +70,7 @@ class SmsGateOutController {
 				success = (success == false) ? messageSuccess : true; 
 					
 			}
-			
-				
+						
 			if (success) {		
 				// Create a history record for thr sent message
 				String messageID = logMessage(tags, message, title)
@@ -96,7 +95,7 @@ class SmsGateOutController {
 		/* Find your sid and token at twilio.com/user/account */
 		String ACCOUNT_SID = "AC37b4c98359cd408db79405a07a46cb65";
 		String AUTH_TOKEN = "7d7d0d2d95fa8d535ab844ef1f081ec2"
-		String fromNumber = "3303675213"
+		String fromNumber = "8443255966"
 		
 		// Clean up the phone number
 		String toNumber = number.replaceAll("[^0-9]", "");

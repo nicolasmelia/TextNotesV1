@@ -46,6 +46,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 				<h1 id="logo"><a href="index.html">TxtWolf LLC</a></h1>
 				<nav id="nav">
 					<ul>
+						<li><a href="${createLink(controller: 'Home')}">Home</a></li>
 						<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}">Blog</a></li>			
 						<li><a href="${createLink(controller: 'Home', action: 'pricing')}">Pricing</a></li>
 						
@@ -71,8 +72,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 				<h2>TxtWolf <br/> Sms Solutions</h2>
 				<p>Reach more people in less time</p>
 				<ul class="actions">
-					<li><a href="#one" class="button special scrolly">Learn More</a></li>
-
+					<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}" class="button special scrolly">Learn More</a></li>
 				</ul>
 			</section>
 
@@ -88,7 +88,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 						<li>
 							<span class="icon major style4 fa-paw"></span>
 							<h3>Keywords</h3>
-							<p>Create a keyword and have people join your promotion by texting in your keyword. Build your <b>customer list</b> quickly with a small campaign. <a href = '#' >Learn More</a></p>
+							<p>Create a keyword and have people join your promotion by texting in your keyword. Build your <b>customer list</b> quickly with a small campaign. <a href="${createLink(controller: 'blog', params: [blogID: '1'])}" >Learn More</a></p>
 						</li>
 						<li>
 							<span class="icon major style3 fa-paper-plane"></span>

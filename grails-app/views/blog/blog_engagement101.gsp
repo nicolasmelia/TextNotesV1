@@ -46,6 +46,7 @@
 				<h1 id="logo"><a href="${createLink(controller: 'Home')}">TxtWolf</a></h1>
 				<nav id="nav">
 					<ul>
+						<li><a href="${createLink(controller: 'Home')}">Home</a></li>				
 						<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}">Blog</a></li>			
 						<li><a href="${createLink(controller: 'Home', action: 'pricing')}">Pricing</a></li>
 						
