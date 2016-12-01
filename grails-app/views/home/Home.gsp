@@ -70,9 +70,9 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 		<!-- Banner -->
 			<section id="banner">
 				<h2>TxtWolf <br/> Sms Solutions</h2>
-				<p>Reach more people in less time</p>
+				<p>Reach more people in less time for <i>free</i>.</p>
 				<ul class="actions">
-					<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}" class="button special scrolly">Learn More</a></li>
+					<li><a href="#one" class="button special scrolly">Learn More</a></li>
 				</ul>
 			</section>
 
@@ -82,7 +82,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 					<header class="major">
 						<h2>Quickly Drive sales</h2>
 						<p>Send out targeted sms promotions and notifications to your customers.<br />
-						<b>Drive sales</b> with simple, affordable, and effective sms text messages.</p>
+						<b>Drive sales</b> with simple, affordable <i>(Free)</i>, and effective sms text messages.</p>
 					</header>
 					<ul class="icons-grid">
 						<li>

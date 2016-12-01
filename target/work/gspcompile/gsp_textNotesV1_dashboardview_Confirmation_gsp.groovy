@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1192854820 in (keywordsIn) ) {
-changeItVariable(_it1192854820)
+for( _it560146610 in (keywordsIn) ) {
+changeItVariable(_it560146610)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -262,7 +262,7 @@ expressionOut.print(params.dateExp)
 printHtmlPart(105)
 }
 printHtmlPart(106)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'tips'))
+expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
 printHtmlPart(107)
 createClosureForHtmlPart(108, 3)
 invokeTag('link','g',472,['action':("details"),'params':([conType:'keyword', promotionID: params.promotionID]),'class':("btn btn-default")],3)
@@ -321,14 +321,14 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'changePassword'
 printHtmlPart(122)
 }
 printHtmlPart(123)
-invokeTag('javascript','g',659,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+invokeTag('javascript','g',595,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(124)
-invokeTag('javascript','g',661,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+invokeTag('javascript','g',597,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(125)
-invokeTag('javascript','g',663,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',599,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(126)
 })
-invokeTag('captureBody','sitemesh',690,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('captureBody','sitemesh',626,['class':("hold-transition skin-purple sidebar-mini")],1)
 printHtmlPart(127)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -336,7 +336,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1480296167044L
+public static final long LAST_MODIFIED = 1480388407292L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

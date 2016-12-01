@@ -39,74 +39,76 @@ createTagBody(1, {->
 printHtmlPart(9)
 expressionOut.print(createLink(controller: 'Home'))
 printHtmlPart(10)
-expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
+expressionOut.print(createLink(controller: 'Home'))
 printHtmlPart(11)
-expressionOut.print(createLink(controller: 'Home', action: 'pricing'))
+expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
 printHtmlPart(12)
+expressionOut.print(createLink(controller: 'Home', action: 'pricing'))
+printHtmlPart(13)
 if(true && (session.userID)) {
-printHtmlPart(13)
-expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(14)
-}
-else {
-printHtmlPart(13)
-expressionOut.print(createLink(controller: 'login'))
+expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(15)
 }
-printHtmlPart(16)
-if(true && (session.userID)) {
-printHtmlPart(13)
-expressionOut.print(createLink(controller: 'Login', action: 'logout'))
-printHtmlPart(17)
-}
 else {
-printHtmlPart(13)
-expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
+printHtmlPart(14)
+expressionOut.print(createLink(controller: 'login'))
+printHtmlPart(16)
+}
+printHtmlPart(17)
+if(true && (session.userID)) {
+printHtmlPart(14)
+expressionOut.print(createLink(controller: 'Login', action: 'logout'))
 printHtmlPart(18)
 }
+else {
+printHtmlPart(14)
+expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
 printHtmlPart(19)
-expressionOut.print(createLink(controller: 'blog', params: [blogID: '3']))
+}
 printHtmlPart(20)
-expressionOut.print(resource(dir: 'images', file: 'blog/keywords/blog3Thumbnail.jpg'))
+expressionOut.print(createLink(controller: 'blog', params: [blogID: '3']))
 printHtmlPart(21)
-expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
+expressionOut.print(resource(dir: 'images', file: 'blog/keywords/blog3Thumbnail.jpg'))
 printHtmlPart(22)
-expressionOut.print(resource(dir: 'images', file: 'blog/keywords/usingKeywordsBanner.jpg'))
-printHtmlPart(23)
-expressionOut.print(resource(dir: 'images', file: 'blog/keywords/blog1Thumbnail.jpg'))
-printHtmlPart(24)
-expressionOut.print(createLink(controller: 'Home', action: 'pricing'))
-printHtmlPart(25)
-expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
-printHtmlPart(26)
 expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
+printHtmlPart(23)
+expressionOut.print(resource(dir: 'images', file: 'blog/keywords/usingKeywordsBanner.jpg'))
+printHtmlPart(24)
+expressionOut.print(resource(dir: 'images', file: 'blog/keywords/blog1Thumbnail.jpg'))
+printHtmlPart(25)
+expressionOut.print(createLink(controller: 'Home', action: 'pricing'))
+printHtmlPart(26)
+expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
 printHtmlPart(27)
-invokeTag('javascript','g',201,['src':("jquery.min.js")],-1)
+expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
 printHtmlPart(28)
-invokeTag('javascript','g',202,['src':("jquery.dropotron.min.js")],-1)
+invokeTag('javascript','g',202,['src':("jquery.min.js")],-1)
 printHtmlPart(29)
-invokeTag('javascript','g',203,['src':("jquery.scrollgress.min.js")],-1)
-printHtmlPart(28)
-invokeTag('javascript','g',204,['src':("skel.min.js")],-1)
-printHtmlPart(28)
-invokeTag('javascript','g',205,['src':("util.js")],-1)
+invokeTag('javascript','g',203,['src':("jquery.dropotron.min.js")],-1)
 printHtmlPart(30)
-invokeTag('javascript','g',206,['src':("main.js")],-1)
-printHtmlPart(30)
-invokeTag('javascript','g',207,['src':("jquery.scrolly.min.js")],-1)
+invokeTag('javascript','g',204,['src':("jquery.scrollgress.min.js")],-1)
+printHtmlPart(29)
+invokeTag('javascript','g',205,['src':("skel.min.js")],-1)
+printHtmlPart(29)
+invokeTag('javascript','g',206,['src':("util.js")],-1)
 printHtmlPart(31)
-invokeTag('javascript','g',208,['src':("ie/respond.min.js")],-1)
+invokeTag('javascript','g',207,['src':("main.js")],-1)
+printHtmlPart(31)
+invokeTag('javascript','g',208,['src':("jquery.scrolly.min.js")],-1)
 printHtmlPart(32)
-})
-invokeTag('captureBody','sitemesh',210,[:],1)
+invokeTag('javascript','g',209,['src':("ie/respond.min.js")],-1)
 printHtmlPart(33)
+})
+invokeTag('captureBody','sitemesh',211,[:],1)
+printHtmlPart(34)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1480287768520L
+public static final long LAST_MODIFIED = 1480386343416L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

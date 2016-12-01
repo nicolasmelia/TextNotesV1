@@ -225,7 +225,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						href="${createLink(controller: 'Dashboard', action: 'Dashboard')}">
 							<i class="fa fa-home"></i> <span>Home</span>
 					</a></li>
-					<li><a href="#"><i class="fa fa-book"></i> <span>Address
+					<li><a href=""><i class="fa fa-book"></i> <span>Address
 								Book</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
 							<li><a class=""
@@ -330,7 +330,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<section class="content">
 				<div class="row">
 					<div class="col-md-3">
-						<a onclick="return false"
+						<a
 							href="${createLink(controller: 'Dashboard', action: 'contacts')}"
 							class="btn btn-primary btn-block margin-bottom">Address Book</a>
 						<div class="box box-solid">
