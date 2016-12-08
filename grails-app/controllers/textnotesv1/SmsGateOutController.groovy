@@ -118,10 +118,6 @@ class SmsGateOutController {
 		}		
 	}
 	
-	def testMessage() {
-		sendMessage("3305408023", "THIS IS A TEST")
-	}
-	
 	def logMessage(ArrayList<String> tags, String body, String title) {
 		
 		// Create a UUID and cut it in half

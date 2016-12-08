@@ -12,6 +12,8 @@ class Keyword {
 	String description
 	String campaignType
 	String responceText
+	String incomingGroup
+	
 	
 	// If contest winners will be delimted by a comma
 	String winners
@@ -41,7 +43,7 @@ class Keyword {
 		responceText(nullable:true)
 		winners(nullable:true)	
 		eligible(nullable:true)
-		
+		incomingGroup(nullable:true)
     }
 	
 	

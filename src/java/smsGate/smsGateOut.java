@@ -1,17 +1,7 @@
 package smsGate;
-
- 
-
-
-
 import com.twilio.sdk.resource.factory.MessageFactory;
 import com.twilio.sdk.resource.instance.Account;
 import com.twilio.sdk.TwilioRestClient;
-
-
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 

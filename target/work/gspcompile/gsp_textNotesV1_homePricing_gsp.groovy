@@ -78,11 +78,11 @@ else {
 printHtmlPart(23)
 }
 printHtmlPart(24)
-expressionOut.print(createLink(controller: 'login'))
+expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
 printHtmlPart(25)
-expressionOut.print(createLink(controller: 'login'))
+expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
 printHtmlPart(26)
-expressionOut.print(createLink(controller: 'login'))
+expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
 printHtmlPart(27)
 expressionOut.print(createLink(controller: 'Home', action: 'pricing'))
 printHtmlPart(28)
@@ -90,24 +90,24 @@ expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
 printHtmlPart(29)
 expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
 printHtmlPart(30)
-invokeTag('javascript','g',198,['src':("jquery.min.js")],-1)
+invokeTag('javascript','g',195,['src':("jquery.min.js")],-1)
 printHtmlPart(31)
-invokeTag('javascript','g',199,['src':("jquery.dropotron.min.js")],-1)
+invokeTag('javascript','g',196,['src':("jquery.dropotron.min.js")],-1)
 printHtmlPart(32)
-invokeTag('javascript','g',200,['src':("jquery.scrollgress.min.js")],-1)
+invokeTag('javascript','g',197,['src':("jquery.scrollgress.min.js")],-1)
 printHtmlPart(31)
-invokeTag('javascript','g',201,['src':("skel.min.js")],-1)
+invokeTag('javascript','g',198,['src':("skel.min.js")],-1)
 printHtmlPart(31)
-invokeTag('javascript','g',202,['src':("util.js")],-1)
+invokeTag('javascript','g',199,['src':("util.js")],-1)
 printHtmlPart(33)
-invokeTag('javascript','g',203,['src':("main.js")],-1)
+invokeTag('javascript','g',200,['src':("main.js")],-1)
 printHtmlPart(33)
-invokeTag('javascript','g',204,['src':("jquery.scrolly.min.js")],-1)
+invokeTag('javascript','g',201,['src':("jquery.scrolly.min.js")],-1)
 printHtmlPart(34)
-invokeTag('javascript','g',205,['src':("ie/respond.min.js")],-1)
+invokeTag('javascript','g',202,['src':("ie/respond.min.js")],-1)
 printHtmlPart(35)
 })
-invokeTag('captureBody','sitemesh',207,[:],1)
+invokeTag('captureBody','sitemesh',204,[:],1)
 printHtmlPart(36)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -115,7 +115,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1480563903748L
+public static final long LAST_MODIFIED = 1481144867698L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

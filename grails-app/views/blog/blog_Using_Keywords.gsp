@@ -129,15 +129,13 @@
 									
 									<h3>Keyword Uses</h3>
 									<p>SMS short codes can be used for a variety of different purposes, including the following.</p>
-									<ul>																	
-										<li>SMS Contests/Giveaways</li>
-										<li>Text Message Offers</li>
-										<li>SMS Shipping Notifications</li>
-										<li>SMS Pickup Notifications and Reminders</li>
-										<li>SMS Appointment Reminders</li>
-										<li>SMS Voting/Polling</li>
-										<li>Employee Text Messaging Communications</li>		
-										<li>Many More!</li>				
+									<ul>																		
+										<li><b>Bulk Messages</b> Send bulk text messages to all of your contacts at once, without the hassle. Send messages from any browser and ­your recipients will receive your message as quickly as a standard text message. </li>
+										<li><b>Custom Auto-Responses</b> Create custom replies that are sent automatically when someone texts in your keyword. Add links to coupons, your website, business info, or anything else you can think of to make the experience more valuable to your customer. </li>													
+										<li><b>Send Coupons:</b> Send customers exclusive deals. Uniquely-generated coupon codes prevents non-subscribers from taking advantage of your deal.</li>
+										<li><b>Create Groups:</b> Divide customers into groups depending on which keyword they responded to, how they voted in a poll, based on their area code and more. Segmenting your customers lets you send more targeted promotions and coupons.</li>
+										<li><b>Sweepstakes Contest:</b> Let customers sign themselves up for a sweepstakes by texting a particular keyword. From the dashboard you can view the list of entered phone numbers and choose one at random.</li>
+										<li><b>Sub Keywords:</b> customers can also respond to your messages with sub keywords. For example, sending the phrase “Hours” can trigger a text with business hours and “Stop” can remove them from the list. This gives customers a way to interact with your business and enables them to opt out of your campaign if they wish to stop receiving messages.</li>
 									</ul>
 								</section>
 

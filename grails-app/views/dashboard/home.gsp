@@ -3,7 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html style="min-width: 450px;">
+<html style="min-width: 345px;">
 
 <head>
 	<meta charset="utf-8">
@@ -263,58 +263,75 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<h4><i class="fa fa-paw"></i> Getting Started!</h4>
 						It looks like you dont have any contacts yet. Start reaching more people by adding clients below!</div>
 				</g:if>
-				<!-- Small boxes (Stat box) -->
-				<div class="row">
-					<div class="col-lg-3 col-xs-6">
-						<!-- small box -->
-						<div class="small-box bg-aqua">
-							<div class="inner" style="padding-bottom: 20px; min-height: 150px; max-height: 145px; ">
-								<h3 style="font-size: 30px;"><span  class="fa fa-envelope-o" > </span> Compose</h3>
-								<p style="">Compose and send text messages to your groups or single subscribers in two easy steps.</p>
-							</div>
-							<div class="icon"> <i class="fa fa-" style=" font-size: 0.8em;"></i>
-							</div> <a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="small-box-footer">Send Now <i class="fa fa-arrow-circle-right"> </i></a>
-						</div>
-					</div>
-					<!-- ./col -->
-					<div class="col-lg-3 col-xs-6">
-						<!-- small box -->
-						<div class="small-box bg-yellow">
-							<div class="inner" style="padding-bottom: 20px; min-height: 150px; max-height: 145px; ">
-								<h3 style="font-size: 30px;"><span  class="fa fa-users" > </span> Contacts</h3>
-								<p>Add, view and manage your lists of subscribers with just a few clicks.</p>
-							</div> <a href="${createLink(controller: 'Dashboard', action: 'contacts')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"> </i></a>
-						</div>
-					</div>
-					<!-- ./col -->
-					<div class="col-lg-3 col-xs-6">
-						<!-- small box -->
-						<div class="small-box bg-red">
-							<div class="inner" style="padding-bottom: 20px; min-height: 150px; max-height: 145px;">
-								<h3 style="font-size: 30px;"><span  class="fa fa-inbox" > </span> Inbox</h3>
-								<p>Check out which of your subscribers have sent in your Keywords.</p>
-							</div> <a href="${createLink(controller: 'Dashboard', action: 'keywords')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"> </i></a>
-						</div>
-					</div>
-					<!-- ./col -->
-					<div class="col-lg-3 col-xs-6">
-						<!-- small box -->
-						<div class="small-box bg-green">
-							<div class="inner" style="padding-bottom: 20px; min-height: 150px; max-height: 145px;">
-								<h3 style="font-size: 30px;"><span  class="fa fa-balance-scale" > </span> Balance</h3>
-								<p>View your ramining balance, your subscription or upgrade your plan.</p>
-							</div> <a href="${createLink(controller: 'Dashboard', action: 'balance')}" style="" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
-						</div>
-					</div>
-					<!-- ./col -->
-				</div>
+								
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3 style = "font-size: 30px;"  >Text</h3>
+                  <p>Compose Text</p>
+                </div>
+                <div style = "top: -35px;" class="icon">
+                  <i style = "font-size: 65px;" class="fa fa-envelope-o"></i>
+                </div>
+                <a href="${createLink(controller: 'Dashboard', action: 'sendTxt')}" class="small-box-footer">Compose <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h3 style = "font-size: 30px;" >Contacts</h3>
+                  <p>Add, View and Manage</p>
+                </div>
+                <div style = "top: -35px;" class="icon">
+                  <i style = "font-size: 60px;" class="fa fa-users"></i>
+                </div>
+                <a href="${createLink(controller: 'Dashboard', action: 'contacts')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            
+            <div class="col-lg-3 col-xs-6">      
+              <!-- small box -->
+              <div class="small-box bg-red">
+                <div class="inner">
+                  <h3 style = "font-size: 30px;" >Inbox</h3>
+                  <p>Keyword Messsages <b>(In)</b></p>
+                </div>
+                <div style = "top: -35px;" class="icon">
+                  <i style = "font-size: 65px;" class="fa fa-inbox"></i>
+                </div>
+                <a href="${createLink(controller: 'Dashboard', action: 'keywordInbox')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            
+            <div class="col-lg-3 col-xs-6">      
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h3 style = "font-size: 30px;" >Balance</h3>
+                  <p>Balance and Subscription</p>
+                </div>
+                <div style = "top: -35px;" class="icon">
+                  <i style = "font-size: 60px;" class="fa fa-balance-scale"></i>
+                </div>
+                <a href="${createLink(controller: 'Dashboard', action: 'balance')}" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+          </div><!-- /.row -->	
+					
 				<!-- /.row -->
 				<!-- Main row -->
+				
 				<div class="callout callout-info" style="display:none">
 					<h4 style="font-size: 23px; margin: 0px;"> <span class = "fa fa-phone-square"></span> Your Keyword Number </h4> 
 					<p style="font-size: 20px; margin: 0px;"> <a href="#">(330) 540-8023 </a>
 					</p>
 				</div>
+				
 				<input id='searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
 				<input id='offset' type="hidden" value="${offset}">
 				<input id='clientCount' type="hidden" value="${clientCount}">
@@ -340,8 +357,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<g:if test="${contacts != 'NONE'}">
 												<g:each in="${contacts}">
 													<tr data-toggle="modal" data-target="#myModal${it.contactID}" class="pointer">
-														<td><a href="#"><b>${it.firstName} ${it.lastName}</b></a>
-														</td>
+														<g:if test="${it.firstName == 'Unknown'}">
+															<td><a href="#"><b>${it.firstName}</b></a></td>	
+														</g:if>
+														<g:else>
+															<td><a href="#"><b>${it.firstName} ${it.lastName}</b></a></td>
+														</g:else>
 														<td>${it.phoneNumber}</td>
 														<g:if test="${it.city}">
 															<td>${it.city,}, ${it.state}</td>
@@ -349,13 +370,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 														<g:else>
 															<td>None</td>
 														</g:else>
-														<g:if test="${it.subbed =! 'false'}">
+														<g:if test="${it.subbed.toBoolean()}">
 															<td><span style="color: green;"><b>Yes</b></span>
 															</td>
 														</g:if>
 														<g:else>
-															<td><span style="color: purple;">No</span>
-															</td>
+															<td><span style="color: purple;">No</span></td>
 														</g:else>
 													</tr>
 												</g:each>
@@ -449,7 +469,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
 							</button>
-							<h4 id="modalHeading" class="modal-title">Select an option: <b>${it.firstName} ${it.lastName}</b></h4>
+							<h4 id="modalHeading" class="modal-title">Select an option:
+							 <b>
+							<g:if test="${it.firstName == 'Unknown'}">
+								${it.firstName}
+							</g:if>
+							<g:else>
+							${it.firstName} ${it.lastName}
+							</g:else>							 							 				 
+							 </b>
+							 </h4>
 						</div>
 						<div class="modal-body" style="padding-top: 0px;">
 							<g:link style="margin-bottom:0px; margin-top: 15px; " action="sendTxt" params="[contactID: it.contactID]" type="button" class="btn btn-app">	<i class="fa fa-envelope-o"></i>Send Text</g:link>

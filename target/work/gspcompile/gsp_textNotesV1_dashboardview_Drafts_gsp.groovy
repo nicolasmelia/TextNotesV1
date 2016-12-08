@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1793335880 in (keywordsIn) ) {
-changeItVariable(_it1793335880)
+for( _it38305312 in (keywordsIn) ) {
+changeItVariable(_it38305312)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -150,8 +150,8 @@ if(true && (clientCount > 0 || offset > 0)) {
 printHtmlPart(20)
 if(true && (draftList != 'NONE')) {
 printHtmlPart(14)
-for( _it1086491405 in (draftList) ) {
-changeItVariable(_it1086491405)
+for( _it1017070454 in (draftList) ) {
+changeItVariable(_it1017070454)
 printHtmlPart(63)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'sendTxt', params: [draftID:it.draftID]))
 printHtmlPart(64)
@@ -194,7 +194,7 @@ printHtmlPart(74)
 if(true && (offset > 0)) {
 printHtmlPart(75)
 createClosureForHtmlPart(76, 3)
-invokeTag('link','g',345,['action':("view_Drafts"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+invokeTag('link','g',345,['action':("drafts"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(77)
 }
 else {
@@ -204,7 +204,7 @@ printHtmlPart(77)
 if(true && (offset <= clientCount)) {
 printHtmlPart(75)
 createClosureForHtmlPart(79, 3)
-invokeTag('link','g',351,['action':("view_Drafts"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+invokeTag('link','g',351,['action':("drafts"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(77)
 }
 else {
@@ -228,7 +228,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1480394167337L
+public static final long LAST_MODIFIED = 1480895368698L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

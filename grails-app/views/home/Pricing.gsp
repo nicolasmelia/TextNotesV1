@@ -75,7 +75,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 					
 						<h2>It's Free.</h2>
 						<br>
-						<p> TxtWolf offers its full feature set for free, up to 500 text a month.</p>
+						<p> TxtWolf offers its <b>full feature set</b> for free, up to <i>500</i> text a month.</p>
 							
 						<g:if test="${error}">
 							<div class="alert" id="errorList" style="margin: 10px auto 0px auto; display: block; max-width: 450px; ">${error}</div>
@@ -98,8 +98,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 					    <li>500 SMS</li>
 					    <li>Unlimited Keywords!</li>
 					    <li>Unlimited Contacts</li>
-					    <li>Unlimited Promotions</li>
-					    <li class="grey"><a href="${createLink(controller: 'login')}" style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
+					    <li class="grey"><a href="${createLink(controller: 'login', action: 'newAccount')}" style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
 					  </ul>
 					</div>
 					
@@ -110,8 +109,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 					    <li>3000 SMS</li>
 					    <li>Unlimited Keywords!</li>
 					    <li>Unlimited Contacts</li>
-					    <li>Unlimited Promotions</li>
-					    <li class="grey"><a href="${createLink(controller: 'login')}"  style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
+					    <li class="grey"><a href="${createLink(controller: 'login', action: 'newAccount')}"  style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
 					  </ul>
 					</div>
 					
@@ -122,8 +120,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 					    <li>*Unlimited SMS</li>				    
 					    <li>Unlimited Keywords!</li>
 					    <li>Unlimited Contacts</li>
-					    <li>Unlimited Promotions</li>
-					    <li class="grey"><a href="${createLink(controller: 'login')}" style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
+					    <li class="grey"><a href="${createLink(controller: 'login', action: 'newAccount')}" style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
 					  </ul>
 					</div>
 					
@@ -133,7 +130,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 						<h4>Full Support Plans</h4>
 						The above plans are for those do-it-yourselfers. But for those who want to save time and get to 
 						results fast, our team of experienced professionals is ready to help you build an audience and design 
-						text marketing messages that win. Plans start at $100. Contact us for information. <a href="mailto:Support@TxtWolf.com">Support@TxtWolf.com </a>
+						text marketing messages that win. <b>Plans start at $100</b>. Contact us for information. <a href="mailto:Support@TxtWolf.com">Support@TxtWolf.com </a>
 						</div>	
 						
 				</div>

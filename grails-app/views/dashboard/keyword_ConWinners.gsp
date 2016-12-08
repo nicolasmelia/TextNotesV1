@@ -260,7 +260,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
-							<div class="box-header"></div>
+							<div class="box-header">
+								<h3 style="margin: 10px 0px 0px 0px">Contest Winners - </h3> 
+							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
 								<table id="example1" class="table table-bordered table-hover">
@@ -299,7 +301,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</div>
 							<!-- /.box-body -->
 							<div class="btn-group" style="margin: 0px 0px 10px 10px; ">
-								<button disabled type="button" class="btn btn-default">Next</button>
+								The above contacts have been notified with your winning message.
 							</div>
 						</div>
 						<!-- /.box -->

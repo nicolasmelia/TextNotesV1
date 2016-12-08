@@ -279,7 +279,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</div>
 					<g:if test="${conType == 'Contact'}">
 						<div class="box-body">
-							<h4>${contact.fullName}</h4>
+							<h4>
+							<g:if test="${contact.firstName == 'Unknown'}">
+								${contact.firstName}
+							</g:if>
+							<g:else>
+								${contact.fullName}
+							</g:else>
+							</h4>
 							<table class="table table-bordered">
 								<tr>
 									<td>Phone Number</td>

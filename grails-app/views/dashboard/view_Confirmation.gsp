@@ -343,7 +343,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="box-body">
 							<div class="callout callout-warning" style="margin: 0px;">
 								<h4>Contact Already Exist</h4>
-								<p>It looks like this contact already exist in your address book. Please go back or view your adress book for more information.</p>
+								<p>It looks like this contact already exist in your address book. Please go back or view your address book for more information.</p>
 							</div>
 							<div style="margin: 10px 0px 5px 0px;"> <a href="${createLink(controller: 'Dashboard', action: 'contacts')}" class="btn btn-default">Address Book</a>
 							</div>

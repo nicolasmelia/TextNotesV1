@@ -17,6 +17,10 @@ class HomeController {
 		render (view: "Pricing")
 	}
 	
+	def affiliateProgram() {
+		render (view: "affiliateProgram")
+	}
+	
 	def createSession(String userID) {
 		// Creates a session if one does not exist
 		if (!session["userID"]) {

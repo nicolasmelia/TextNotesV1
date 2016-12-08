@@ -283,21 +283,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<table id="example1" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th>Keyword</th>
+											<th>Name</th>											
 											<th>Phone Number</th>
+											<th>Keyword Sent</th>											
 											<th>Date Received</th>
 										</tr>
 									</thead>
 									<tbody>
 										<g:if test="${clientCount > 0 || offset > 0}">
 											<g:if test="${messages != 'NONE'}">
-												<g:each in="${messages}">
-													<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'keyword',  promotionID:it.promotionID])}';" class="pointer">
-														<td><a href="#"><b>${it.keyword}</b></a>
-														</td>
-														<td>${it.phoneNumber}</td>
+												<g:each in="${messages}"  var = "m" status="i">
+													<tr onclick="document.location = '${createLink(controller: 'Dashboard', action: 'details', params: [conType: 'Contact', contactID: contacts[i].contactID])}';" class="pointer">
+														
+														<g:if test="${contacts[i].firstName == 'Unknown'}">
+															<td><a href="#"><b>${contacts[i].firstName}</b></a></td>
+														</g:if>
+														<g:else>
+															<td><a href="#"><b>${contacts[i].fullName}</b></a></td>
+														</g:else>
+														
+														
+														<td>${m.phoneNumber}</td>
+														
+														<td>${m.keyword}</td>
+														
 														<td>
-															<g:formatDate format="MM-dd-yyyy" date="${it.date}" />
+															<g:formatDate format="MM-dd-yyyy" date="${m.date}" />
 														</td>
 													</tr>
 												</g:each>

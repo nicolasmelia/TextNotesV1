@@ -43,7 +43,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 	<body class="landing">
 		<!-- Header -->
 			<header id="header" class="alt">
-				<h1 id="logo"><a href="index.html">TxtWolf LLC</a></h1>
+				<h1 id="logo"><a href="${createLink(controller: 'Home')}">TxtWolf LLC</a></h1>
 				<nav id="nav">
 					<ul>
 						<li><a href="${createLink(controller: 'Home')}">Home</a></li>

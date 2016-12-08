@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat
 import java.util.Map;
 import java.util.HashMap;
  
+
 import com.twilio.sdk.resource.factory.MessageFactory
 import com.twilio.sdk.resource.instance.Account;
 import com.twilio.sdk.TwilioRestClient;
@@ -18,15 +19,16 @@ import com.twilio.sdk.TwilioRestException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Formatter.DateTime
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.http.NameValuePair
 import org.apache.http.message.BasicNameValuePair
 import org.joda.time.format.DateTimeFormatter
 
 import com.joestelmach.natty.*;
 
-
 import smsGate.smsGateOut
-
 class SmsGateInController {
 	
     def index() { 
@@ -42,16 +44,16 @@ class SmsGateInController {
 		// test if this is a keyword.
 		Keyword keyword = Keyword.findByKeyword(body)
 
-		if (keyword != null) {
-			
+		if (keyword != null) {		
 			// Create a UUID and cut it in half for MessageIn ID
 			String uniqueID = UUID.randomUUID().toString().replace("-", "");
 			int midpoint = uniqueID.length() / 2;
 			String halfUUID = uniqueID.substring(0, midpoint)
-			
+
 			// Log the incoming message
+			String MIPhoneNum = formateToPhoneNumber(from.substring(2, from.length()),"(XXX) XXX-XXXX",10);
 			MessageIn MI = new MessageIn()
-			MI.phoneNumber = from.substring(2, from.length()) // Remove first 2 characters from string
+			MI.phoneNumber = MIPhoneNum
 			MI.messageID = halfUUID
 			MI.messageType = "keyword"
 			MI.userID = keyword.userID
@@ -60,6 +62,56 @@ class SmsGateInController {
 			MI.deleted = false
 			MI.viewed = false
 			MI.date = new Date()
+						
+			// Check if this number belongs to a current contact of the USER
+			Contact contactCheck = Contact.findByPhoneNumberAndUserID(MI.phoneNumber, keyword.userID);	
+			Contact contact = new Contact()
+			
+			if (contactCheck == null) {
+				contact.firstName = "Unknown"
+				contact.lastName = "Unknown"
+				contact.fullName = "Unknown"
+				contact.phoneNumber = MI.phoneNumber
+				
+				// Try to get the senders location
+				contact.city = !params.FromCity.toString().empty ? params.FromCity : "Unknown"
+				contact.state = !params.FromState.toString().empty ? params.FromState : "Unknown"
+				contact.zip = !params.FromZip.toString().empty ? params.FromZip : "Unknown"	
+
+				contact.address = "Unknown"
+				contact.subbed = true				
+				contact.addDate = new Date()
+				
+				// Create a UUID and cut it in half
+				String uniqueIDCon = UUID.randomUUID().toString().replace("-", "");
+				int midpointCon = uniqueID.length() / 2;
+				String halfUUIDCon = uniqueID.substring(0, midpointCon)
+						
+				contact.contactID = halfUUIDCon
+				contact.userID = keyword.userID			
+				contact.save(flush:true)			
+			} else {
+				// Contact sent in a keyword, sub them
+				contactCheck.subbed = true;
+				contactCheck.save(flush:true)
+			}		
+					
+				// Add this contact to an incoming group is desired by user
+			if (keyword.incomingGroup.matches("None")) {
+				Groups group = Groups.findByGroupID(keyword.incomingGroup)
+				GroupMember groupMemberCheck = GroupMember.findByContactID(contact.contactID)			
+				if (groupMemberCheck == null && group != null) {
+					GroupMember groupMember = new GroupMember()
+					groupMember.groupID = group.groupID
+					groupMember.contactID = contact.contactID
+					groupMember.dateAdded =  new Date()
+					groupMember.userID =  session["userID"]
+					
+					group.memberCount = group.memberCount += 1
+					group.save(flush:true)						
+					groupMember.save(flush:true)
+				}							
+			}	
 			
 			// Decrement users balance by 1,
 			Balance balance = Balance.findByUserID(keyword.userID);
@@ -69,9 +121,7 @@ class SmsGateInController {
 
 			keyword.replys = new Integer(keyword.replys.intValue() + 1);
 			keyword.save(flush:true)
-			
-
-			
+						
 			if (balance.currentBalance <= balance.monthlyBalance) {				
 				Date todaysDate = new Date()
 				if ((todaysDate >= keyword.dateEff) && ((keyword.dateExp >= todaysDate) && keyword.suspened == false || keyword.endless == true)) {				
@@ -106,8 +156,9 @@ class SmsGateInController {
 							MessageIn MITest = MessageIn.findByPromotionIDAndPhoneNumber(MI.promotionID, MI.phoneNumber)
 							if (MITest == null) {
 								sendMessage(from, keyword.responceText)
-								SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");					
-								sendMessage(from, "You have been entered in a contest for keyword " + keyword.keyword + ". This contest ends on " + dateFormatter.format(keyword.dateExp) + ". You will recieve a text if you win! Good Luck!")
+								SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+								String timeFrame = (keyword.endless) ? "" : ". This contest ends on " + dateFormatter.format(keyword.dateExp)			
+								sendMessage(from, "You have been entered in a contest for keyword " + keyword.keyword + timeFrame + ". You will recieve a text if you win! Good Luck!")
 								MI.save(flush:true);
 								
 								// Increment the counter
@@ -135,15 +186,17 @@ class SmsGateInController {
 				}
 	
 				} else {
+					// Keyword is expired or suspended!
 					messageSuccess = sendMessage(from, "It look likes this keyword (" + keyword.keyword + ") is currently not active. This service is powered by TxtWolf.com!")	
 				}
 			} else {
-					messageSuccess = sendMessage(from, "It look likes this keyword (" + params.Body.toString().toLowerCase().trim() + ") does not exist. Please try again! This service is powered by TxtWolf.com!")
+				// TODO: Users monthly balance is in overage, notify them!!!
+				messageSuccess = false
 			}
 		
 		} else {
-			// TODO: Users monthly balance is in overage, notify them!!!
-			//messageSuccess = sendMessage(from, "It look likes this keyword (" + params.Body.toString().toLowerCase().trim() + ") does not exist. Please try again! This service is powered by TxtWolf.com!")
+			// Keyword is null, it does not exist in our system.
+			messageSuccess = sendMessage(from, "It look likes this keyword (" + params.Body.toString().toLowerCase().trim() + ") does not exist. Please try again! This service is powered by TxtWolf.com!")
 		}
 
 		if (messageSuccess){
@@ -160,7 +213,7 @@ class SmsGateInController {
 		/* Find your sid and token at twilio.com/user/account */
 		String ACCOUNT_SID = "AC37b4c98359cd408db79405a07a46cb65";
 		String AUTH_TOKEN = "7d7d0d2d95fa8d535ab844ef1f081ec2"
-		String FromNumber = "3303675213"
+		String FromNumber = "8443255966"
 	
 		TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
  
@@ -185,6 +238,37 @@ class SmsGateInController {
 			noti.incrementCount = noti.incrementCount + 1
 			noti.lastIncrementDate = new Date()
 			noti.save(flush:true)	
+	}
+	
+	public String formateToPhoneNumber(String number, String format,int maxLength){
+		String onlyDidgits = number.replaceAll("\\D+","");
+		if(onlyDidgits.length()>maxLength){
+			//now we have only digit that is max 10 length
+			onlyDidgits=onlyDidgits.substring(0,maxLength);
+		}
+		
+		char[] arr = new char[format.length()];
+		int i = 0;
+		for (int j = 0; j < format.length(); j++) {
+			if(i>=onlyDidgits.length())
+				break;
+			if (format.charAt(j) == 'X')
+				arr[j] = onlyDidgits.charAt(i++);
+			else
+				arr[j] = format.charAt(j);
+		}
+		
+		String formatedNo=  new String(arr);
+		Pattern p = Pattern.compile("[0-9]");
+		Matcher m = p.matcher(""+(formatedNo.charAt(formatedNo.length()-1)));
+		
+		//remove non digit char from last if length is <10
+		if(!m.matches()){
+			//trim last char
+		   formatedNo= new StringBuilder(formatedNo).deleteCharAt(formatedNo.length()-1).toString();
+		}
+	  
+		return formatedNo;
 	}
 
 

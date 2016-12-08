@@ -294,8 +294,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<g:if test="${contacts != 'NONE'}">
 												<g:each in="${contacts}">
 													<tr data-toggle="modal" data-target="#myModal${it.contactID}" class="pointer">
-														<td><a href="#"><b>${it.firstName} ${it.lastName}</b></a>
-														</td>
+													<g:if test="${it.firstName == 'Unknown'}">
+															<td><a href="#"><b>${it.firstName}</b></a></td>	
+														</g:if>
+														<g:else>
+															<td><a href="#"><b>${it.firstName} ${it.lastName}</b></a></td>
+														</g:else>
 														<td>${it.phoneNumber}</td>
 														<g:if test="${it.city}">
 															<td>${it.city,}, ${it.state}</td>
@@ -303,7 +307,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 														<g:else>
 															<td>None</td>
 														</g:else>
-														<g:if test="${it.subbed =! 'false'}">
+														<g:if test="${!it.subbed.toBoolean()}">
 															<td><span style="color: green;"><b>Yes</b></span>
 															</td>
 														</g:if>
@@ -362,13 +366,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<!-- /.box-body -->
 							<div class="btn-group" style="margin: 0px 0px 10px 10px; ">
 								<g:if test="${offset > 0}">
-									<g:link action="view_Contacts" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Back</g:link>
+									<g:link action="contacts" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Back</g:link>
 								</g:if>
 								<g:else>
 									<button disabled type="button" class="btn btn-default">Back</button>
 								</g:else>
 								<g:if test="${offset <= clientCount}">
-									<g:link action="view_Contacts" params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Next</g:link>
+									<g:link action="contacts" params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Next</g:link>
 								</g:if>
 								<g:else>
 									<button disabled type="button" class="btn btn-default">Next</button>
@@ -402,7 +406,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
 							</button>
-							<h4 id="modalHeading" class="modal-title">Select an option: <b>${it.firstName} ${it.lastName}</b></h4>
+							<h4 id="modalHeading" class="modal-title">Select an option:
+							 <b>
+							<g:if test="${it.firstName == 'Unknown'}">
+								${it.firstName}
+							</g:if>
+							<g:else>
+							${it.firstName} ${it.lastName}
+							</g:else>							 							 				 
+							 </b>
+							 </h4>
 						</div>
 						<div class="modal-body" style="padding-top: 0px;">
 							<g:link style="margin-bottom:0px; margin-top: 15px; " action="sendTxt" params="[contactID: it.contactID]" type="button" class="btn btn-app">	<i class="fa fa-envelope-o"></i>Send Text</g:link>

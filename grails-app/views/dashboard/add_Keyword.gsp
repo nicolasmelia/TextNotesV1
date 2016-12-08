@@ -294,7 +294,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<!-- Date range -->
 							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-2 control-label">Date Range</label>
-								<div class="input-group" style="width:50%;">
+								<div class="input-group" style="width:60%;">
 									<div class="col-sm-10" style="width:100%;">
 										<input placeholder="Click to select range" name="dateRange" style="width:100%;" type="text" class="form-control" id="reservation">
 									</div>
@@ -313,7 +313,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									</div>
 								</div>
 								<!-- /.input group -->
-							</div>
+							</div>					
+							
 							<!-- /.form group -->
 							<hr>
 							<div class="form-group">
@@ -339,16 +340,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								</div>
 							</div>
 							<div class="form-group" id="couponChkBox" style="display:none;">
-								<label for="inputEmail3" class="col-sm-2 control-label">Multiple Use</label>
+								<label for="inputEmail3" class="col-sm-2 control-label">Multi-Use</label>
 								<div class="input-group">
 									<div class="col-sm-10" style="width:100%;">
 										<label>
 											<input name="couponChkBox" id="endlessChkBox" type="checkbox" class="minimal">
-										</label> <i>(Allows for multiple uses of this coupon) </i>
+										</label> <i> (Allows for unlimited uses of this coupon) </i>
 									</div>
 								</div>
 								<!-- /.input group -->
 							</div>
+						
+							<hr>
+							
+							<div class="callout callout-default" style="margin-bottom: 10px!important;">
+								<h4><i class="fa fa-users"></i><span id = "campaignType" > Add <b>incomming</b> numbers to a group</span></h4>
+								<span id="campaignDesc">  Manage contacts who reply to this keyword easier by automatically adding them to one of your groups. </span>
+							</div>
+													
+							<div class="form-group">
+								<label for="inputEmail3" class="col-sm-2 control-label">Group</label>
+								<div class="col-sm-10">
+									<select name="incomingGroup" id="campaignSelected" class="form-control">
+										<option value="None">None</option>
+										<g:each in="${groups}">
+											<option value="${it.groupID}">${it.groupName}</option>
+										</g:each>
+									</select>
+								</div>
+							</div>	
+							
 							<!-- /.form group -->
 							<!--************* Camp type *************-->
 							<hr>Keyword Phone Number: <b>${number.number}</b> 
@@ -409,7 +430,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<h4 id="modalHeading" class="modal-title">Validation Check</h4>
 				</div>
 				<div class="modal-body">
-					<div style="width: 100%; margin-top: 15px; text-align: center;">	<i style="font-size: 55px; color: #605ca8;" class="fa fa-spinner fa-pulse"></i>
+					<div style="width: 100%; margin-top: 15px; text-align: center;"> <i style="font-size: 55px; color: #605ca8;" class="fa fa-spinner fa-pulse"></i>
 					</div>
 					<p style=" margin-top: 20px; width: 100%; font-size: 16px; text-align: center; ">Checking keyword availability...</p>
 				</div>
