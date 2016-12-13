@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1541912393 in (keywordsIn) ) {
-changeItVariable(_it1541912393)
+for( _it488654523 in (keywordsIn) ) {
+changeItVariable(_it488654523)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -157,8 +157,8 @@ if(true && (clientCount > 0 || offset > 0)) {
 printHtmlPart(20)
 if(true && (contacts != 'NONE')) {
 printHtmlPart(14)
-for( _it784714772 in (contacts) ) {
-changeItVariable(_it784714772)
+for( _it265845794 in (contacts) ) {
+changeItVariable(_it265845794)
 printHtmlPart(66)
 expressionOut.print(it.contactID)
 printHtmlPart(67)
@@ -251,8 +251,8 @@ expressionOut.print(currentPage)
 printHtmlPart(95)
 if(true && (contacts && contacts != 'NONE')) {
 printHtmlPart(96)
-for( _it647170252 in (contacts) ) {
-changeItVariable(_it647170252)
+for( _it536110011 in (contacts) ) {
+changeItVariable(_it536110011)
 printHtmlPart(97)
 expressionOut.print(it.contactID)
 printHtmlPart(98)
@@ -300,7 +300,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1480895429257L
+public static final long LAST_MODIFIED = 1481346914849L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

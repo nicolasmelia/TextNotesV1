@@ -117,9 +117,14 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 										<option value="America/Atka, US/Aleutian">(GMT-11:00) Midway Island</option>
 										<option value="America/New_York">Other (Not Listed)</option>									
 			                      </select>
+			                      
+								<label class = 'inputLabel' >Affiliate ID <a href = "${createLink(controller: 'Home', action: 'affiliateProgram')}" target="_blank"><span class = "fa fa-question-circle"></span></a></label>	
+								<input type="text" name="companyname" id="companyname" value="" placeholder="Not Required" /> 
+
 								
-		
 								<hr>
+								
+								
 		
 								<label class = 'inputLabel' >Your Email (Login with email)</label>	
 								<input type="email" name="email" id="email" value="" placeholder="Required" /> 
@@ -131,6 +136,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 								<label class = 'inputLabel' >Re-enter Password</label>
 								<input type="password" name="passwordone" id="passwordtwo" value="" placeholder="Required" />		
 
+								
 									<div class="6u 12u$(small)" style = "margin-top: 15px;" >
 										<input type="checkbox" id="rememberme" name="rememberme">
 										<label for="rememberme">Remember Me</label>

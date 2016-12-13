@@ -290,6 +290,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<td><b>Add Admins</b></td>
 							<td><a href = "${createLink(controller: 'Dashboard', action: 'addAdmins')}" ><b>Add</b></a></td>
 						</tr>	
+						
+						<tr>
+							<td><b>Affiliate Account</b></td>
+							<td><a href = "${createLink(controller: 'Dashboard', action: 'AffiliateDash')}" ><b>Dashboard</b></a></td>
+						</tr>	
 	
 					</table>
 					

@@ -73,7 +73,7 @@ expressionOut.print(resource(dir: 'images', file: 'blog/keywords/blog4Thumbnail.
 printHtmlPart(22)
 expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
 printHtmlPart(23)
-expressionOut.print(resource(dir: 'images', file: 'blog/customerEngagementBanner.jpg'))
+expressionOut.print(resource(dir: 'images', file: 'moneyImgBanner.jpg'))
 printHtmlPart(24)
 expressionOut.print(createLink(controller: 'Home', action: 'pricing'))
 printHtmlPart(25)
@@ -81,24 +81,24 @@ expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
 printHtmlPart(26)
 expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
 printHtmlPart(27)
-invokeTag('javascript','g',191,['src':("jquery.min.js")],-1)
+invokeTag('javascript','g',199,['src':("jquery.min.js")],-1)
 printHtmlPart(28)
-invokeTag('javascript','g',192,['src':("jquery.dropotron.min.js")],-1)
+invokeTag('javascript','g',200,['src':("jquery.dropotron.min.js")],-1)
 printHtmlPart(29)
-invokeTag('javascript','g',193,['src':("jquery.scrollgress.min.js")],-1)
+invokeTag('javascript','g',201,['src':("jquery.scrollgress.min.js")],-1)
 printHtmlPart(28)
-invokeTag('javascript','g',194,['src':("skel.min.js")],-1)
+invokeTag('javascript','g',202,['src':("skel.min.js")],-1)
 printHtmlPart(28)
-invokeTag('javascript','g',195,['src':("util.js")],-1)
+invokeTag('javascript','g',203,['src':("util.js")],-1)
 printHtmlPart(30)
-invokeTag('javascript','g',196,['src':("main.js")],-1)
+invokeTag('javascript','g',204,['src':("main.js")],-1)
 printHtmlPart(30)
-invokeTag('javascript','g',197,['src':("jquery.scrolly.min.js")],-1)
+invokeTag('javascript','g',205,['src':("jquery.scrolly.min.js")],-1)
 printHtmlPart(31)
-invokeTag('javascript','g',198,['src':("ie/respond.min.js")],-1)
+invokeTag('javascript','g',206,['src':("ie/respond.min.js")],-1)
 printHtmlPart(32)
 })
-invokeTag('captureBody','sitemesh',200,[:],1)
+invokeTag('captureBody','sitemesh',208,[:],1)
 printHtmlPart(33)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -106,7 +106,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1481146612452L
+public static final long LAST_MODIFIED = 1481151312341L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -461,12 +461,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="box-body">
 							<div class="callout callout-info" style="margin: 0px;">
 								<h4>Keyword Created</h4>
-								<p>	<b>${params.keyword}</b> has successfully been regestered! You can now have people text	<b>"${params.keyword}"</b> to <b>${number.number}</b> to participate in your campaign.
+									<p>	
+									<b>${params.keyword}</b> has successfully been regestered! You can now have people text	<b>"${params.keyword}"</b> to <b>${number.number}</b> to participate in your campaign.
 									<g:if test="${params.endless == 'true'}">Your campaign is effective <b>${params.dateEff}</b> and will not end untill you expire it. </g:if>
-									<g:else>Your campaign is effective <b>${params.dateEff}</b> to <b>${params.dateExp}</b>.</g:else>Click "Detailed View" to view more information on your new keyword.</p>
-								<h4>Keyword Tips!</h4>
-								<p>Learn how to effectively use your keyword to engage and build a list of customers by visiting the <a href="${createLink(controller: 'blog', params: [blogID: '1'])}">Keyword Tips Page.</a>
-								</p>
+									<g:else>Your campaign is effective <b>${params.dateEff}</b> to <b>${params.dateExp}</b>.</g:else> Click "Detailed View" to view more information on your new keyword.
+									</p>
 							</div>
 							<div style="margin: 10px 0px 5px 0px;">
 								<g:link action="details" params="[conType:'keyword', promotionID: params.promotionID]" class="btn btn-default">Detailed View</g:link>	<a href="${createLink(controller: 'Dashboard', action: 'keywords')}" class="btn btn-default">All Keywords</a>
@@ -505,8 +504,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<div class="callout callout-info" style="margin: 0px;">
 								<h4>Keyword Reactivated</h4>
 								<p>	<b>${params.keyword}</b> has successfully been reactivated! You can now have people text	<b>${params.keyword}</b> to <b>${params.phoneNumber}</b> to participate in your campaign. Your campaign is effective on <b>${params.dateEff}</b>. Click "Detailed View" to view more information on your new keyword.</p>
-								<h4>Keyword Tips!</h4>
-								<p>Learn how to use your kwey erojwelfkjasd fdskf idsafjisdfj i;sadl ${params.promotionID}</p>
 							</div>
 							<div style="margin: 10px 0px 5px 0px;">
 								<g:link action="details" params="[conType:'keyword', promotionID: params.promotionID]" class="btn btn-default">Detailed View</g:link>	<a href="${createLink(controller: 'Dashboard')}" class="btn btn-default">All Keywords</a>

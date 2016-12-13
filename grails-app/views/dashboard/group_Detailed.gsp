@@ -260,7 +260,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<g:if test="${groupMemberCount == 0}">
 					<div class="callout callout-info" style="margin-bottom: 10px!important;">
 						<h4><i class="fa fa-paw"></i> Add some contacts!</h4>
-						It looks like this group dosnt have any contacts yet. Get started by adding contacts below!</div>
+						It looks like this group doesn't have any contacts yet. Get started by adding contacts below!</div>
 				</g:if>
 				<input id='searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
 				<input id='offset' type="hidden" value="${offset}">

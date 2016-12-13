@@ -97,7 +97,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 					    <li class="grey">$ 0 / year</li>
 					    <li>500 SMS</li>
 					    <li>Unlimited Keywords!</li>
-					    <li>Unlimited Contacts</li>
+					    <li>Support Not Included</li>
 					    <li class="grey"><a href="${createLink(controller: 'login', action: 'newAccount')}" style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
 					  </ul>
 					</div>
@@ -108,7 +108,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 					    <li class="grey">$ 39.99 / month</li>
 					    <li>3000 SMS</li>
 					    <li>Unlimited Keywords!</li>
-					    <li>Unlimited Contacts</li>
+					    <li><b>Full Support Plan</b></li>
 					    <li class="grey"><a href="${createLink(controller: 'login', action: 'newAccount')}"  style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
 					  </ul>
 					</div>
@@ -119,7 +119,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 					    <li class="grey">Contact Us</li>
 					    <li>*Unlimited SMS</li>				    
 					    <li>Unlimited Keywords!</li>
-					    <li>Unlimited Contacts</li>
+					    <li><b>Full Support Plan</b></li>
 					    <li class="grey"><a href="${createLink(controller: 'login', action: 'newAccount')}" style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
 					  </ul>
 					</div>
@@ -127,12 +127,9 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 					   <span class="clear"></span>
 					    <br> <br>
 					   <div style = "margin-bottom: 15px;">
-						<h4>Full Support Plans</h4>
-						The above plans are for those do-it-yourselfers. But for those who want to save time and get to 
-						results fast, our team of experienced professionals is ready to help you build an audience and design 
-						text marketing messages that win. <b>Plans start at $100</b>. Contact us for information. <a href="mailto:Support@TxtWolf.com">Support@TxtWolf.com </a>
-						</div>	
-						
+						<h4>The Full Support Plan</h4>
+							The above paid plans also offer full support for marketing, business and technical information. For those who want to save time and get to results fast, our team of experienced professionals are ready to help you build an audience and design text marketing messages that win. Please email <a href="mailto:Support@TxtWolf.com">Support@TxtWolf.com </a> using your TxtWolf's account email address to get started!				
+						</div>				
 				</div>
 
 				</div>
