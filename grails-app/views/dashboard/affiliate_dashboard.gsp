@@ -246,30 +246,144 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-            Settings
-            <small>View</small>
+            Affiliate
+            <small>Dashboard</small>
           </h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Account </a>
+					<li><a href="#"><i class="fa fa-dashboard"></i> Affiliate </a>
 					</li>
-					<li class="active">Settings</li>
+					<li class="active">Program</li>
 				</ol>
 			</section>
+						
 			<!-- Main content -->
 			<section class="content">
+			
+				<g:if test="${memberCount == 0}">
+					<div class="callout callout-info" style="margin-bottom: 10px!important;">
+						<h4><i class="fa fa-paw"></i> Getting started!</h4>
+						It looks like you dont have any groups yet. Get started by adding a group below! You can use groups to reach certain employees, particular customers and more people in less time.
+						</div>
+				</g:if>
+						
 				<!-- Horizontal Form -->
-				<div class="box box-info" style="max-width: 600px;">
+				<div class="box" style="">
 					<div class="box-header with-border">
-						<h3 class="box-title">Account Settings</h3>
+							<h4 class="box-title" style = "margin-bottom: 3px;">Affiliate Info</h4>					
+								<table id="" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>Account Holder</th>
+											<th>Your Affiliate ID</th>
+											<th>Available Earnings</th>
+											<th>Total Earned</th>
+										</tr>
+									</thead>
+									<tbody>
+									
+									<tr>								
+										<td>
+											${session.firstName} ${session.lastName}
+										</td>
+										<td>
+											<b>${AAI.affiliateID}</b>
+										</td>
+										<td>
+											${AAI.avalEarnings} USD
+										</td>
+										<td>
+											${AAI.totalEarned} USD
+										</td>									
+									</tr>
+									
+									</tbody>
+									
+									</table>
+									
+					<a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" style = "margin-top: -7px;" class="btn btn-default">Withdraw Earnings</a>
+					<a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" style = "margin-top: -7px; margin-left: 5px;" class="btn btn-default">Recent Payouts</a>
+		
+									
+									
 					</div>
-					<!-- /.box-header -->
-					<!-- form start -->
 					
+					
+					<!-- /.box-header -->	
+							<div class="box-body">
+								<h4 class="box-title" style = "margin-bottom: 6px;">Your Members: <b>${memberCount}</b></h4>				
+								<table id="" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>Email</th>
+											<th>Date</th>
+											<th>Paid</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+								<g:each in="${members}">								
+									<tr>									
+										<td>
+											${it.memberEmail}
+										</td>
+										<td>
+											${it.joinDate}
+										</td>
+										<td>
+										<g:if test="${it.paid.toBoolean()}">
+										 	<span style="color: green;"><b>Yes</b></span>
+										</g:if>
+										<g:else>
+											<span style="color: purple;"><b>No</b></span>
+										</g:else>	
+										</td>
+										<td>
+											${it.status}
+										</td>									
+									</tr>
+									</g:each>
+									
+									<g:if test="${memberCount == 0}">
+										<td> - </td>
+										<td> - </td>
+										<td> - </td>
+										<td> - </td>
+									</g:if>
+									
+									</tbody>
+									
+									</table>
+									
+
 					
 
+
+				
+				</div>
+																				
+							<div class="btn-group" style="margin: 0px 0px 10px 10px; ">
+								<g:if test="${true}">
+									<g:link action="contacts" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Back</g:link>
+								</g:if>
+								<g:else>
+									<button disabled type="button" class="btn btn-default">Back</button>
+								</g:else>
+								<g:if test="${false}">
+									<g:link action="contacts" params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Next</g:link>
+								</g:if>
+								<g:else>
+									<button disabled type="button" class="btn btn-default">Next</button>
+								</g:else>
+							</div>
+							<p style="float: right; text-align: right; margin: 15px; display: inline-block;"> <span id="pageInfo">10 of 0</span>
+							</p>
+						</div>
+				
+				
 				</div>
 				<!-- /.box -->
-			</section>
+				
+				</section>
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->

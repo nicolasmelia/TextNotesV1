@@ -272,6 +272,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						</tr>
 						
 						<tr>
+							<td><b>Account Email</b></td>
+							<td>${user.email}</td>
+						</tr>
+						
+						<tr>
 							<td><b>Subscription</b></td>
 							<td><a href = "${createLink(controller: 'Dashboard', action: 'upgradeSub')}" ><b>Upgrade</b></a></td>
 						</tr>
@@ -293,9 +298,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						
 						<tr>
 							<td><b>Affiliate Account</b></td>
-							<td><a href = "${createLink(controller: 'Dashboard', action: 'AffiliateDash')}" ><b>Dashboard</b></a></td>
+							<td>						
+							<g:if test="${user.affiliateMember}">
+								<a href = "${createLink(controller: 'Dashboard', action: 'AffiliateDash')}" ><b>My Dashboard</b></a>
+							</g:if>
+							<g:else>
+								<a data-toggle="modal" data-target="#enableAffModal"  href = "#" ><b>Enable</b></a>
+							</g:else>
 						</tr>	
-	
+
 					</table>
 					
 				</div>
@@ -310,6 +321,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<div class="pull-right hidden-xs">Powered by TxtWolf</div>
 			<!-- Default to the left --> <strong>Copyright &copy; 2017 <a href="http://www.TxtWolf.com">TxtWolf LLC</a>.</strong>
 		</footer>
+		
+						<!-- enable aff modal -->
+						<div class="modal" id="enableAffModal" role="dialog" data-backdrop="static">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+										</button>
+										<h4 id="modalHeading" class="modal-title">Enable Affilate Program</h4>
+									</div>
+									<div class="modal-body">
+										<!-- phone mask -->							
+										<p>Are you sure you want to join the TxtWolf affilate program? Joining is free. <br><br>
+										Convince your employer or employers you know to use TxtWolf's useful SMS services and you will be paid $40 for each business that joins our "Pro" plan.					
+										 <a  href = "${createLink(controller: 'affiliateProgram')}" ><b>Learn More!</b></a>
+										</p>
+									</div>
+									<div class="modal-footer">
+										<g:link action="affiliateDash" params="[join:'YES']" type="button" class="btn btn-default pull-left">Yes</g:link>
+										<button  type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+						<!-- /.modal -->
+		
+		
 
 	</div>
 	<!-- ./wrapper -->

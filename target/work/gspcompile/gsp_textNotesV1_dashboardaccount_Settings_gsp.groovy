@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it939871489 in (keywordsIn) ) {
-changeItVariable(_it939871489)
+for( _it1961537655 in (keywordsIn) ) {
+changeItVariable(_it1961537655)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -146,46 +146,58 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'toggleIncomingT
 printHtmlPart(60)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'addAdmins'))
 printHtmlPart(61)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'AffiliateDash'))
+if(true && (user.affiliateMember)) {
 printHtmlPart(62)
-invokeTag('javascript','g',318,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'AffiliateDash'))
 printHtmlPart(63)
-invokeTag('javascript','g',320,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+}
+else {
 printHtmlPart(64)
-invokeTag('javascript','g',322,['src':("dashboard/app.min.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',323,['src':("dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',324,['src':("dashboard/plugins/select2/select2.full.min.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',325,['src':("tagsinput/dist/bootstrap-tagsinput.min.js")],-1)
+}
 printHtmlPart(65)
-invokeTag('javascript','g',327,['src':("dashboard/plugins/input-mask/jquery.inputmask.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',328,['src':("dashboard/plugins/input-mask/jquery.inputmask.date.extensions.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',329,['src':("dashboard/plugins/input-mask/jquery.inputmask.extensions.js")],-1)
+expressionOut.print(createLink(controller: 'affiliateProgram'))
 printHtmlPart(66)
-invokeTag('javascript','g',332,['src':("dashboard/plugins/daterangepicker/daterangepicker.js")],-1)
-printHtmlPart(67)
-invokeTag('javascript','g',334,['src':("dashboard/plugins/colorpicker/bootstrap-colorpicker.min.js")],-1)
+createClosureForHtmlPart(67, 2)
+invokeTag('link','g',337,['action':("affiliateDash"),'params':([join:'YES']),'type':("button"),'class':("btn btn-default pull-left")],2)
 printHtmlPart(68)
-invokeTag('javascript','g',336,['src':("dashboard/plugins/timepicker/bootstrap-timepicker.min.js")],-1)
+invokeTag('javascript','g',353,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(69)
-invokeTag('javascript','g',338,['src':("dashboard/plugins/iCheck/icheck.min.js")],-1)
+invokeTag('javascript','g',355,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(70)
-invokeTag('javascript','g',340,['src':("dashboard/plugins/fastclick/fastclick.min.js")],-1)
+invokeTag('javascript','g',357,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',358,['src':("dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',359,['src':("dashboard/plugins/select2/select2.full.min.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',360,['src':("tagsinput/dist/bootstrap-tagsinput.min.js")],-1)
 printHtmlPart(71)
-})
-invokeTag('captureBody','sitemesh',370,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('javascript','g',362,['src':("dashboard/plugins/input-mask/jquery.inputmask.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',363,['src':("dashboard/plugins/input-mask/jquery.inputmask.date.extensions.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',364,['src':("dashboard/plugins/input-mask/jquery.inputmask.extensions.js")],-1)
 printHtmlPart(72)
+invokeTag('javascript','g',367,['src':("dashboard/plugins/daterangepicker/daterangepicker.js")],-1)
+printHtmlPart(73)
+invokeTag('javascript','g',369,['src':("dashboard/plugins/colorpicker/bootstrap-colorpicker.min.js")],-1)
+printHtmlPart(74)
+invokeTag('javascript','g',371,['src':("dashboard/plugins/timepicker/bootstrap-timepicker.min.js")],-1)
+printHtmlPart(75)
+invokeTag('javascript','g',373,['src':("dashboard/plugins/iCheck/icheck.min.js")],-1)
+printHtmlPart(76)
+invokeTag('javascript','g',375,['src':("dashboard/plugins/fastclick/fastclick.min.js")],-1)
+printHtmlPart(77)
+})
+invokeTag('captureBody','sitemesh',405,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(78)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1481595509119L
+public static final long LAST_MODIFIED = 1482109252227L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

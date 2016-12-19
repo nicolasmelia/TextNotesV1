@@ -17,6 +17,7 @@ class User {
 	String businessName	
 	String affiliateID
 	String usedAffiliateID
+	boolean affiliateMember
 	String validationCode
 	boolean validated 
 	
@@ -38,7 +39,7 @@ class User {
 		
 		affiliateID(nullable:true)
 		usedAffiliateID(nullable:true)
-		
+		affiliateMember(nullable:true)		
 		banned(nullable:true)
     }
 }

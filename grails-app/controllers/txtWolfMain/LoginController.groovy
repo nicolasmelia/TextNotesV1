@@ -92,16 +92,39 @@ class LoginController {
 				
 				user.userID = halfUUID
 				user.timeZone = params.timeZone
-								
-				// Create a UUID and cut it in half
-				String uniqueAffiliateID = UUID.randomUUID().toString().replace("-", "");
-				int affiliateIDMidPoint = uniqueAffiliateID.length() / 2;
-				String halfUUIDAffiliateID = uniqueAffiliateID.substring(0, affiliateIDMidPoint)
-				
-				user.affiliateID = halfUUIDAffiliateID
-				
+										
+				Random rand = new Random();			
+				int affiliateID = rand.nextInt(19000) + 1000;				
+				User userAIDCheck = User.findByAffiliateID(affiliateID)
+				if (userAIDCheck == null) {
+					user.affiliateID = affiliateID
+				} else {
+					// ID was taken, try again
+					affiliateID = rand.nextInt(50000) + 20000;			
+					user.affiliateID = affiliateID
+				}
+					
+				user.affiliateMember = false
 				user.validated = true
 				user.save(flush:true)
+				
+				// If this user used an affiliateID to sign up, Reward the affiliate!
+				if (!params.affiliateID.toString().matches("")) {
+					AffiliateMember AM = new AffiliateMember()
+					AM.affiliateMemberUserID = user.userID
+					AM.usedAffiliateID = params.affiliateID.toString().trim()
+					AM.affiliateMemberPaid = false
+					AM.affiliateCashOut = false
+					AM.joinDate = new Date()
+					AM.memberEmail = user.email
+					AM.status = "Pending Upgrade"
+					AM.save(flush:true)
+					
+					AffiliateAccountInfo AAI = AffiliateAccountInfo.findByAffiliateID(params.affiliateID.toString().trim())
+					AAI.memberCount = AAI.memberCount + 1
+					AAI.save(flush:true)
+					
+				}
 				
 				// create account info and set 14 day free trial
 				UserAccountInfo account = new UserAccountInfo()

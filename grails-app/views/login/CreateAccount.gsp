@@ -119,7 +119,7 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 			                      </select>
 			                      
 								<label class = 'inputLabel' >Affiliate ID <a href = "${createLink(controller: 'Home', action: 'affiliateProgram')}" target="_blank"><span class = "fa fa-question-circle"></span></a></label>	
-								<input type="text" name="companyname" id="companyname" value="" placeholder="Not Required" /> 
+								<input type="text" name="affiliateID" id="affiliateID" value="" placeholder="Not Required" /> 
 
 								
 								<hr>
