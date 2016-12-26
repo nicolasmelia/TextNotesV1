@@ -354,7 +354,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<hr>
 							
 							<div class="callout callout-default" style="margin-bottom: 10px!important;">
-								<h4><i class="fa fa-users"></i><span id = "campaignType" > Add <b>incomming</b> numbers to a group</span></h4>
+								<h4><i class="fa fa-users"></i><span id = "campaignType" > Add <b>incoming</b> numbers to a group</span></h4>
 								<span id="campaignDesc">  Manage contacts who reply to this keyword easier by automatically adding them to one of your groups. </span>
 							</div>
 													
@@ -528,6 +528,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			var keyword = $('#keyword').val();
 			if (keyword != "") {
 				$('#keywordCheckModal').modal('show');	
+				$("#preButton").prop("disabled",true);						
 				keywordAvalCheck(url, keyword);
 			} else {
 				validateMainForm(true);
@@ -547,6 +548,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	
 		  	if (!keyCheck) {
 				error = true;
+				$("#preButton").prop("disabled",false);		
 				errors.push("This keyword has been taken. Try another keyword.");
 		  	}
 						
@@ -612,7 +614,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
 	      }
 	      );
-	
+		  	
 	      //iCheck for checkbox and radio inputs
 	      $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
 	        checkboxClass: 'icheckbox_minimal-blue',

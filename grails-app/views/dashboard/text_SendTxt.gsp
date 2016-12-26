@@ -410,10 +410,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									</div>
 									<div class="form-group">
 										<textarea placeholder="Message" id="compose-textarea"
-											name="body" class="form-control" style="height: 150px"><g:if
-												test="${draft}">
-												${draft.message}
-											</g:if></textarea>
+											name="body" class="form-control" style="height: 150px"><g:if test="${draft}">${draft.message}</g:if></textarea>
 									</div>
 									<div class="form-group">
 										<p style="margin: 0px;" id='charCount' class="help-block">0/260

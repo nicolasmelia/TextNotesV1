@@ -34,7 +34,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <![endif]-->
 </head>
 
-<body class="hold-transition skin-purple sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini" style = "min-width: 500px;">
 	<div class="wrapper">
 		<!-- Main Header -->
 		<header class="main-header">
@@ -257,19 +257,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			</section>
 						
 			<!-- Main content -->
-			<section class="content">
-			
+			<section class="content">			
 				<g:if test="${memberCount == 0}">
 					<div class="callout callout-info" style="margin-bottom: 10px!important;">
-						<h4><i class="fa fa-paw"></i> Getting started!</h4>
-						It looks like you dont have any groups yet. Get started by adding a group below! You can use groups to reach certain employees, particular customers and more people in less time.
+						<h4><i class="fa fa-paw"></i> Welcome ${session.firstName}! </h4>
+						It looks like you don't have any members signed up yet! Get started by reading the offical TxtWolf Affiliate 
+						start guide <a href="${createLink(controller: 'AffiliateProgram')}" ><b>here</b></a>. You can begin to withdraw earnings once you have joined members!
 						</div>
 				</g:if>
 						
 				<!-- Horizontal Form -->
 				<div class="box" style="">
 					<div class="box-header with-border">
-							<h4 class="box-title" style = "margin-bottom: 3px;">Affiliate Info</h4>					
+							<h4 class="box-title" style = "margin-bottom: 3px;">Affiliate Info: <a href="${createLink(controller: 'AffiliateProgram')}" ><b>Start Guide</b></a></h4>					
 								<table id="" class="table table-bordered table-hover">
 									<thead>
 										<tr>
@@ -300,10 +300,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									
 									</table>
 									
-					<a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" style = "margin-top: -7px;" class="btn btn-default">Withdraw Earnings</a>
-					<a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" style = "margin-top: -7px; margin-left: 5px;" class="btn btn-default">Recent Payouts</a>
-		
-									
+					<a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" style = "margin-top: -7px;" class="btn btn-default disabled">Withdraw Earnings</a>
+					<a href="${createLink(controller: 'Dashboard', action: 'dashboard')}" type="submit" style = "margin-top: -7px; margin-left: 5px;" class="btn btn-default disabled">Recent Payouts</a>
 									
 					</div>
 					
@@ -354,30 +352,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									
 									</table>
 									
-
-					
-
-
 				
 				</div>
 																				
 							<div class="btn-group" style="margin: 0px 0px 10px 10px; ">
 								<g:if test="${true}">
-									<g:link action="contacts" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Back</g:link>
+									<g:link disabled action="contacts" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Back</g:link>
 								</g:if>
 								<g:else>
 									<button disabled type="button" class="btn btn-default">Back</button>
 								</g:else>
 								<g:if test="${false}">
-									<g:link action="contacts" params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Next</g:link>
+									<g:link disabled action="contacts" params="[offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Next</g:link>
 								</g:if>
 								<g:else>
 									<button disabled type="button" class="btn btn-default">Next</button>
 								</g:else>
 							</div>
-							<p style="float: right; text-align: right; margin: 15px; display: inline-block;"> <span id="pageInfo">10 of 0</span>
+							<p style="float: right; text-align: right; margin: 15px; display: inline-block;"> <span id="pageInfo">10 of ${memberCount}</span>
 							</p>
+							
+						<hr>
+						
+							
+							
+							
 						</div>
+						
+						
+						
 				
 				
 				</div>

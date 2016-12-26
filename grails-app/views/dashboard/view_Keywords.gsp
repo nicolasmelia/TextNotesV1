@@ -364,6 +364,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 													</td>
 													<td>-</td>
 													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>	
+													<td>-</td>																																																		
 												</tr>
 											</g:else>
 										</g:if>
@@ -374,7 +379,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<td>-</td>
 												<td>-</td>
 												<td>-</td>
-											</tr>
+												<td>-</td>
+												<td>-</td>											
+												<td>-</td>											
+												</tr>
 										</g:else>
 									</tbody>
 									<tfoot></tfoot>

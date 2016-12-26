@@ -140,7 +140,7 @@
 			  setTimeout(function(){
 				  $('#keywordCheckModal').modal('hide');				  
 					if (result == "true") {
-						 if (validateMainForm(true)) {
+						 if (validateMainForm(true)) {					 
 							 $('#submitBtn').click();	
 						 }
 					} else if (result == "false") {

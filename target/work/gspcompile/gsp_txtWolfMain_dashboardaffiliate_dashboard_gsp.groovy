@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it344500321 in (keywordsIn) ) {
-changeItVariable(_it344500321)
+for( _it1274699449 in (keywordsIn) ) {
+changeItVariable(_it1274699449)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -134,76 +134,114 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'history'))
 printHtmlPart(55)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'accountSettings'))
 printHtmlPart(56)
-if(true && (true)) {
+if(true && (memberCount == 0)) {
 printHtmlPart(57)
-}
+expressionOut.print(session.firstName)
 printHtmlPart(58)
+expressionOut.print(createLink(controller: 'AffiliateProgram'))
+printHtmlPart(59)
+}
+printHtmlPart(60)
+expressionOut.print(createLink(controller: 'AffiliateProgram'))
+printHtmlPart(61)
 expressionOut.print(session.firstName)
 printHtmlPart(30)
 expressionOut.print(session.lastName)
-printHtmlPart(59)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
-printHtmlPart(60)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
-printHtmlPart(61)
-if(true && (true)) {
 printHtmlPart(62)
-createClosureForHtmlPart(63, 3)
-invokeTag('link','g',363,['action':("contacts"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+expressionOut.print(AAI.affiliateID)
+printHtmlPart(63)
+expressionOut.print(AAI.avalEarnings)
 printHtmlPart(64)
-}
-else {
+expressionOut.print(AAI.totalEarned)
 printHtmlPart(65)
-}
-printHtmlPart(64)
-if(true && (false)) {
-printHtmlPart(62)
-createClosureForHtmlPart(66, 3)
-invokeTag('link','g',369,['action':("contacts"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(64)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
+printHtmlPart(66)
+expressionOut.print(createLink(controller: 'Dashboard', action: 'dashboard'))
+printHtmlPart(67)
+expressionOut.print(memberCount)
+printHtmlPart(68)
+for( _it707492405 in (members) ) {
+changeItVariable(_it707492405)
+printHtmlPart(69)
+expressionOut.print(it.memberEmail)
+printHtmlPart(70)
+expressionOut.print(it.joinDate)
+printHtmlPart(71)
+if(true && (it.paid.toBoolean())) {
+printHtmlPart(72)
 }
 else {
-printHtmlPart(67)
-}
-printHtmlPart(68)
-invokeTag('javascript','g',398,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
-printHtmlPart(69)
-invokeTag('javascript','g',400,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
-printHtmlPart(70)
-invokeTag('javascript','g',402,['src':("dashboard/app.min.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',403,['src':("dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',404,['src':("dashboard/plugins/select2/select2.full.min.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',405,['src':("tagsinput/dist/bootstrap-tagsinput.min.js")],-1)
-printHtmlPart(71)
-invokeTag('javascript','g',407,['src':("dashboard/plugins/input-mask/jquery.inputmask.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',408,['src':("dashboard/plugins/input-mask/jquery.inputmask.date.extensions.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',409,['src':("dashboard/plugins/input-mask/jquery.inputmask.extensions.js")],-1)
-printHtmlPart(72)
-invokeTag('javascript','g',412,['src':("dashboard/plugins/daterangepicker/daterangepicker.js")],-1)
 printHtmlPart(73)
-invokeTag('javascript','g',414,['src':("dashboard/plugins/colorpicker/bootstrap-colorpicker.min.js")],-1)
+}
 printHtmlPart(74)
-invokeTag('javascript','g',416,['src':("dashboard/plugins/timepicker/bootstrap-timepicker.min.js")],-1)
+expressionOut.print(it.status)
 printHtmlPart(75)
-invokeTag('javascript','g',418,['src':("dashboard/plugins/iCheck/icheck.min.js")],-1)
+}
 printHtmlPart(76)
-invokeTag('javascript','g',420,['src':("dashboard/plugins/fastclick/fastclick.min.js")],-1)
+if(true && (memberCount == 0)) {
 printHtmlPart(77)
-})
-invokeTag('captureBody','sitemesh',450,['class':("hold-transition skin-purple sidebar-mini")],1)
+}
 printHtmlPart(78)
+if(true && (true)) {
+printHtmlPart(79)
+createClosureForHtmlPart(80, 3)
+invokeTag('link','g',360,['disabled action':("contacts"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+printHtmlPart(81)
+}
+else {
+printHtmlPart(82)
+}
+printHtmlPart(81)
+if(true && (false)) {
+printHtmlPart(79)
+createClosureForHtmlPart(83, 3)
+invokeTag('link','g',366,['disabled action':("contacts"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+printHtmlPart(81)
+}
+else {
+printHtmlPart(84)
+}
+printHtmlPart(85)
+expressionOut.print(memberCount)
+printHtmlPart(86)
+invokeTag('javascript','g',404,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+printHtmlPart(87)
+invokeTag('javascript','g',406,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+printHtmlPart(88)
+invokeTag('javascript','g',408,['src':("dashboard/app.min.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',409,['src':("dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',410,['src':("dashboard/plugins/select2/select2.full.min.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',411,['src':("tagsinput/dist/bootstrap-tagsinput.min.js")],-1)
+printHtmlPart(89)
+invokeTag('javascript','g',413,['src':("dashboard/plugins/input-mask/jquery.inputmask.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',414,['src':("dashboard/plugins/input-mask/jquery.inputmask.date.extensions.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',415,['src':("dashboard/plugins/input-mask/jquery.inputmask.extensions.js")],-1)
+printHtmlPart(90)
+invokeTag('javascript','g',418,['src':("dashboard/plugins/daterangepicker/daterangepicker.js")],-1)
+printHtmlPart(91)
+invokeTag('javascript','g',420,['src':("dashboard/plugins/colorpicker/bootstrap-colorpicker.min.js")],-1)
+printHtmlPart(92)
+invokeTag('javascript','g',422,['src':("dashboard/plugins/timepicker/bootstrap-timepicker.min.js")],-1)
+printHtmlPart(93)
+invokeTag('javascript','g',424,['src':("dashboard/plugins/iCheck/icheck.min.js")],-1)
+printHtmlPart(94)
+invokeTag('javascript','g',426,['src':("dashboard/plugins/fastclick/fastclick.min.js")],-1)
+printHtmlPart(95)
+})
+invokeTag('captureBody','sitemesh',456,['class':("hold-transition skin-purple sidebar-mini"),'style':("min-width: 500px;")],1)
+printHtmlPart(96)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1481942466854L
+public static final long LAST_MODIFIED = 1482204741299L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

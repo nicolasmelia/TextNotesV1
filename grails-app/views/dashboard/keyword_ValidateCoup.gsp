@@ -357,12 +357,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	$( document ).ready(function() {
 	
 			
-		});
-	
-	  // campaignSelected
-	
-	
-	
+	});
+
+	// When the form is submitted disable the resend button
+	$('form').submit(function() {			
+		$("#submitBtn").prop("disabled",true);	
+	});
 	
 	  function validateMainForm() {		  
 		  var error = false;

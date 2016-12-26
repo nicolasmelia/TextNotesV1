@@ -260,7 +260,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<g:if test="${clientCount == 0}">
 					<div class="callout callout-info" style="margin-bottom: 10px!important;">
 						<h4><i class="fa fa-paw"></i> Welcome to TxtWolf!</h4>
-						It looks like no one has sent in your keywords yet. Get started by adding a keyword below!</div>
+						It looks like you dont have any keywords yet.
+						You can use keywords to draw customers to your business by offering coupons or starting contest. You can also build a larger contact list each time a customer sends a text to your keyword!
+						<a href = '${createLink(controller: 'Dashboard', action: 'newKeyWord')}'>Create Keyword.</a>
+						</div>
 				</g:if>
 				<input id='searchQueryHiddenField' type="hidden" name="searchQueryHidden" value="${searchQueryHidden}">
 				<input id='offset' type="hidden" value="${offset}">

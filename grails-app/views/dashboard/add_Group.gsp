@@ -432,7 +432,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	  function test(number) {
 		  $("#modalHeading").text(number);
 		}
-	
+
+		// When the form is submitted disable the resend button
+		$('form').submit(function() {
+			$("#submitBtn").prop("disabled",true);		
+		});	
 	
 	  function validateMainForm() {		  
 		  var error = false;

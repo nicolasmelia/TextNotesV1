@@ -237,7 +237,7 @@ class DashboardController {
 				// Log this into history
 				createHistoryLog("Created draft " + MD.draftName, "Draft", null)
 
-				redirect(action: "view_Drafts", params: [added: true])
+				redirect(action: "Drafts", params: [added: true])
 
 			} else {
 				render(view:"Text_NewDraft", model: [UAI: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true, false)])
@@ -284,7 +284,6 @@ class DashboardController {
 		} else {
 			redirect(controller: "Home")
 		}
-
 	}
 
 	def getRecipCount () {
@@ -938,8 +937,8 @@ class DashboardController {
 		String searchString = params.searchString
 		ArrayList con = new ArrayList<Contact>()
 		if (params.searchString && !searchString.equals("") && !searchString.equals(" ") && searchString != "NONE") {
-			con.add(Contact.findAll("from Contact as c where c.fullName like ?" +
-					"or c.firstName like ? or c.lastName like ? order by c.firstName", ["%" + searchString + "%", "%" + searchString + "%", "%" + searchString + "%"], [max: 10]))
+			con.add(Contact.findAll("from Contact as c where (c.fullName like ?" +
+					"or c.firstName like ? or c.lastName like ?) and c.userID = ? order by c.firstName", ["%" + searchString + "%", "%" + searchString + "%", "%" + searchString + "%", session["userID"]], [max: 10]))
 		}
 
 		if (con.size == 0) {
@@ -952,8 +951,8 @@ class DashboardController {
 	def searchContact(searchString, offset) {
 		def contacts
 		if (!searchString.equals("") && !searchString.equals(" ") && searchString != "NONE") {
-			contacts = Contact.findAll("from Contact as c where c.fullName like ?" +
-					"or c.firstName like ? or c.lastName like ? order by c.firstName", ["%" + searchString + "%", "%" + searchString + "%", "%" + searchString + "%"], [max: 10, offset: offset])
+			contacts = Contact.findAll("from Contact as c where (c.fullName like ?" +
+					"or c.firstName like ? or c.lastName like ?) and c.userID = ? order by c.firstName", ["%" + searchString + "%", "%" + searchString + "%", "%" + searchString + "%", session["userID"]], [max: 10, offset: offset])
 		} else {
 
 		}
@@ -1050,7 +1049,6 @@ class DashboardController {
 		if (session["userID"]) {
 			if (!params.keyword) {
 				def groups = Groups.findAllByUserID(session["userID"])
-				println groups.size()
 				render(view:"add_Keyword",  model: [accountInfo: getUserAccountInfo(), groups: groups,  notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true, false), number:getUserKeywordNum()])
 			} else {
 				if (!Keyword.findByKeywordAndUserID(params.keyword.toString().trim(),session["userID"])) {

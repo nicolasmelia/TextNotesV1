@@ -348,12 +348,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script>
 
-	$( document ).ready(function() {
-		
-	});
-	
-
-		
+		$( document ).ready(function() {
+			
+		});
+			
 		$('#searchInput').on('input', function() {
 	    	$( "#searchContactBtn" ).trigger( "click" );
 		});
@@ -363,7 +361,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$("#submitBtn").prop("disabled",true);	
 		});
 	
-
 		function validateForm(){
 			return true;
 		}
