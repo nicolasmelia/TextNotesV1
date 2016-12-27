@@ -72,8 +72,18 @@ class LoginController {
 
 	def createAccount() {
 		User testUser = User.findByEmail(params.email.toString().toLowerCase().trim())
-		def error = ""
-		if (testUser == null && params.email != null) {
+		def error = ""	
+		// If this user used an affiliateID to sign up, Reward the affiliate!
+		AffiliateAccountInfo AAI = null
+		boolean CleanAAI = true
+		if (!params.affiliateID.toString().matches("")) {			
+			 AAI = AffiliateAccountInfo.findByAffiliateID(params.affiliateID.toString().trim())		
+			 if (AAI == null) {
+				 CleanAAI = false
+			 }	
+		}
+		
+		if (testUser == null && params.email != null && CleanAAI) {
 				User user = new User()
 				user.password = params.passwordone.toString().trim()
 				user.username = ""
@@ -106,26 +116,31 @@ class LoginController {
 					
 				user.affiliateMember = false
 				user.validated = true
-				user.save(flush:true)
 				
 				// If this user used an affiliateID to sign up, Reward the affiliate!
-				if (!params.affiliateID.toString().matches("")) {
-					AffiliateMember AM = new AffiliateMember()
-					AM.affiliateMemberUserID = user.userID
-					AM.usedAffiliateID = params.affiliateID.toString().trim()
-					AM.affiliateMemberPaid = false
-					AM.affiliateCashOut = false
-					AM.joinDate = new Date()
-					AM.memberEmail = user.email
-					AM.status = "Pending Upgrade"
-					AM.save(flush:true)
-					
-					AffiliateAccountInfo AAI = AffiliateAccountInfo.findByAffiliateID(params.affiliateID.toString().trim())
-					AAI.memberCount = AAI.memberCount + 1
-					AAI.save(flush:true)
-					
+				if (!params.affiliateID.toString().matches("")) {					
+					if (AAI != null) {
+						AffiliateMember AM = new AffiliateMember()
+						AM.affiliateMemberUserID = user.userID
+						AM.usedAffiliateID = params.affiliateID.toString().trim()
+						AM.affiliateMemberPaid = false
+						AM.affiliateCashOut = false
+						AM.joinDate = new Date()
+						AM.memberEmail = user.email
+						AM.status = "Pending Upgrade"
+						AM.save(flush:true)
+						
+						// The user signing up used an AffiliateID
+						user.usedAffiliateID = AM.usedAffiliateID
+						
+						// Update AAI						
+						AAI.memberCount = AAI.memberCount + 1
+						AAI.save(flush:true)
+					} 					
 				}
 				
+				user.save(flush:true)
+	
 				// create account info and set 14 day free trial
 				UserAccountInfo account = new UserAccountInfo()
 				account.userID = user.userID
@@ -158,7 +173,6 @@ class LoginController {
 				noti.userID = user.userID
 				noti.save(flush:true)
 				
- 
 				if (params.rememberme) {
 					// Create a cookie for the user
 					response.setCookie('user', user.userID.toString(), 604800) // 1 week
@@ -167,6 +181,10 @@ class LoginController {
 				createSession(user.userID) // Create the session
 				redirect(controller: "Dashboard", action: "dashboard")
 					
+		}  else if (CleanAAI == false) {
+			// user exist, display an error that the account did not create
+			error = "*The Affiliate ID you entered (" + params.affiliateID.toString().trim() + ") does not exist. Please try again."
+			render(view:"CreateAccount", model:["error":error])
 		} else if (testUser != null) {
 			// user exist, display an error that the account did not create 
 			error = "*That email already exist in our system. Go to our login page to login."

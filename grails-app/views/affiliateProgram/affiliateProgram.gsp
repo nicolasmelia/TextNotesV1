@@ -108,19 +108,30 @@
 							<!-- Content -->
 								<section id="content">
 									<div class="image main"><img src="${resource(dir: 'images', file: 'moneyImgBanner.jpg')}" alt="" /></div>
-									<a href = ""><h3>Click to create an affiliate account!</h3></a>
+									<h3>The Affiliate Benefit</h3>
 									<p>
-										Do you think your employer or other businesses you interact with would benefit from using TxtWolf? If so, you should consider becoming a <b>TxtWolf affiliate</b>! By convincing your 
-										employer or employers you know to use TxtWolf's useful SMS services you will be paid <b>$40</b> for each business that joins our "Pro" plan. Remember a 15 day free trial is available!
+										Do you think your employer or other businesses you interact with would benefit from using TxtWolf? If so, you should consider becoming a TxtWolf affiliate! By convincing your 
+										employer or employers you know to use TxtWolf's useful SMS services you will be paid <b>$40</b> for each business that joins our "Pro" plan.
+									</p>	
+									
+									<h3>Signing Up</h3>
+									<p>
+									Signing up is free, easy and comes without any obligations. Simply create a normal TxtWolf account, then click on <b>My Settings</b> in the left menu bar. 
+									Now, click the <b>Enable</b> button under <i>Affiliate Account</i>. Once enabled, you can go to your Affiliate Dashboard anytime by going to <b>My Settings</b>. 
 									</p>
-
+									
+									<p> 
+									<i>*Go to the <a href = "${createLink(controller: 'login', action: 'newAccount')}" >sign up</a> page to create a free account. </i>
+									</p>	
+									
+									<h3>How do I make money?</h3>
 									<p>
-										*If you don't know what TxtWolf is or the advantages it can offer bunsinesses, read below before signing up. 
-									</p>									
-									
-									
+										Once you enable your free affiliate account you will see your <b>Affiliate ID</b> on your dashboard. For every business you convince to use TxtWolfs awesome
+										features you will need to give them your Affiliate ID <i>(write this down for them)</i> to enter when they signup at TxtWolf.com. Having them do this will save them <b>$5</b> a month, as well as
+										add them to your affiliate members under your dashboard. You can now begin to withdraw earnings once you have joined members!
+									</p>						
+																		
 									<h3>What does TxtWolf SMS offer?</h3>
-
 									<ul>														
 										<li><b>Bulk Messages</b> Send bulk text messages to all of your contacts at once, without the hassle. Send messages from any browser and ­your recipients will receive your message as quickly as a standard text message. </li>
 										<li><b>Custom Auto-Responses</b> Create custom replies that are sent automatically when someone texts in your keyword. Add links to coupons, your website, business info, or anything else you can think of to make the experience more valuable to your customer. </li>													
@@ -130,9 +141,8 @@
 										<li><b>Sub Keywords:</b> customers can also respond to your messages with sub keywords. For example, sending the phrase “Hours” can trigger a text with business hours and “Stop” can remove them from the list. This gives customers a way to interact with your business and enables them to opt out of your campaign if they wish to stop receiving messages.</li>
 									</ul>
 									
-
 									<p>
-										For more information on what TxtWolf is, read our blogs, or go home to <a href = "http://TxtWolf.com">TxtWolf.com</a>, to read more or create a free account.
+										For more information on what TxtWolf is, read our <a href = "http://TxtWolf.com/blog/index?blogID=2">blogs</a>, or go home to <a href = "http://TxtWolf.com">TxtWolf.com</a>, to learn more or create a free account.
 									</p>	
 									
 								</section>

@@ -47,8 +47,8 @@ expressionOut.print(notiCount)
 printHtmlPart(13)
 if(true && (keywordsIn != 'NONE')) {
 printHtmlPart(14)
-for( _it1040493509 in (keywordsIn) ) {
-changeItVariable(_it1040493509)
+for( _it1075390175 in (keywordsIn) ) {
+changeItVariable(_it1075390175)
 printHtmlPart(15)
 expressionOut.print(createLink(controller: 'Dashboard', action: 'keywordInbox'))
 printHtmlPart(16)
@@ -136,21 +136,23 @@ expressionOut.print(createLink(controller: 'Dashboard', action: 'accountSettings
 printHtmlPart(56)
 if(true && (clientCount == 0)) {
 printHtmlPart(57)
-}
+expressionOut.print(createLink(controller: 'Dashboard', action: 'newKeyWord'))
 printHtmlPart(58)
-expressionOut.print(searchQueryHidden)
+}
 printHtmlPart(59)
-expressionOut.print(offset)
+expressionOut.print(searchQueryHidden)
 printHtmlPart(60)
-expressionOut.print(clientCount)
+expressionOut.print(offset)
 printHtmlPart(61)
-createTagBody(2, {->
+expressionOut.print(clientCount)
 printHtmlPart(62)
-invokeTag('actionSubmit','g',275,['action':("keywordInbox"),'class':("btn btn-info btn-flat"),'type':("button"),'value':("Search")],-1)
+createTagBody(2, {->
 printHtmlPart(63)
-})
-invokeTag('form','g',279,['id':("searchForm"),'controller':("Dashboard"),'action':("dashboard"),'enctype':("multipart/form-data")],2)
+invokeTag('actionSubmit','g',278,['action':("keywordInbox"),'class':("btn btn-info btn-flat"),'type':("button"),'value':("Search")],-1)
 printHtmlPart(64)
+})
+invokeTag('form','g',282,['id':("searchForm"),'controller':("Dashboard"),'action':("dashboard"),'enctype':("multipart/form-data")],2)
+printHtmlPart(65)
 if(true && (clientCount > 0 || offset > 0)) {
 printHtmlPart(20)
 if(true && (messages != 'NONE')) {
@@ -158,26 +160,26 @@ printHtmlPart(14)
 loop:{
 int i = 0
 for( m in (messages) ) {
-printHtmlPart(65)
-expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'Contact', contactID: contacts[i].contactID]))
 printHtmlPart(66)
-if(true && (contacts[i].firstName == 'Unknown')) {
+expressionOut.print(createLink(controller: 'Dashboard', action: 'details', params: [conType: 'Contact', contactID: contacts[i].contactID]))
 printHtmlPart(67)
-expressionOut.print(contacts[i].firstName)
+if(true && (contacts[i].firstName == 'Unknown')) {
 printHtmlPart(68)
+expressionOut.print(contacts[i].firstName)
+printHtmlPart(69)
 }
 else {
-printHtmlPart(67)
-expressionOut.print(contacts[i].fullName)
 printHtmlPart(68)
-}
+expressionOut.print(contacts[i].fullName)
 printHtmlPart(69)
-expressionOut.print(m.phoneNumber)
+}
 printHtmlPart(70)
-expressionOut.print(m.keyword)
+expressionOut.print(m.phoneNumber)
 printHtmlPart(71)
-invokeTag('formatDate','g',311,['format':("MM-dd-yyyy"),'date':(m.date)],-1)
+expressionOut.print(m.keyword)
 printHtmlPart(72)
+invokeTag('formatDate','g',314,['format':("MM-dd-yyyy"),'date':(m.date)],-1)
+printHtmlPart(73)
 i++
 }
 }
@@ -186,68 +188,68 @@ printHtmlPart(20)
 else {
 printHtmlPart(14)
 if(true && (isSearch)) {
-printHtmlPart(65)
+printHtmlPart(66)
 expressionOut.print(createLink(controller: 'Dashboard'))
-printHtmlPart(73)
+printHtmlPart(74)
 }
 else {
-printHtmlPart(74)
+printHtmlPart(75)
 }
 printHtmlPart(20)
 }
-printHtmlPart(75)
+printHtmlPart(76)
 }
 else {
 printHtmlPart(20)
 if(true && (isSearch)) {
-printHtmlPart(76)
-expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(77)
-}
-else {
+expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(78)
 }
-printHtmlPart(75)
-}
-printHtmlPart(79)
-if(true && (offset > 0)) {
-printHtmlPart(80)
-createClosureForHtmlPart(81, 3)
-invokeTag('link','g',363,['action':("keywordInbox"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(82)
-}
 else {
+printHtmlPart(79)
+}
+printHtmlPart(76)
+}
+printHtmlPart(80)
+if(true && (offset > 0)) {
+printHtmlPart(81)
+createClosureForHtmlPart(82, 3)
+invokeTag('link','g',366,['action':("keywordInbox"),'params':([offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
 printHtmlPart(83)
 }
-printHtmlPart(82)
+else {
+printHtmlPart(84)
+}
+printHtmlPart(83)
 if(true && (offset <= clientCount)) {
-printHtmlPart(80)
-createClosureForHtmlPart(84, 3)
-invokeTag('link','g',369,['action':("keywordInbox"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
-printHtmlPart(82)
+printHtmlPart(81)
+createClosureForHtmlPart(85, 3)
+invokeTag('link','g',372,['action':("keywordInbox"),'params':([offset: offset, up: 'true', searchQueryHidden: searchQueryHidden]),'type':("button"),'class':("btn btn-default")],3)
+printHtmlPart(83)
 }
 else {
-printHtmlPart(85)
-}
 printHtmlPart(86)
-expressionOut.print(currentPage)
+}
 printHtmlPart(87)
-invokeTag('javascript','g',397,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
+expressionOut.print(currentPage)
 printHtmlPart(88)
-invokeTag('javascript','g',399,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
+invokeTag('javascript','g',400,['src':("dashboard/plugins/jQuery/jQuery-2.1.4.min.js")],-1)
 printHtmlPart(89)
-invokeTag('javascript','g',401,['src':("dashboard/app.min.js")],-1)
+invokeTag('javascript','g',402,['src':("dashboard/bootstrap/js/bootstrap.min.js")],-1)
 printHtmlPart(90)
-})
-invokeTag('captureBody','sitemesh',406,['class':("hold-transition skin-purple sidebar-mini")],1)
+invokeTag('javascript','g',404,['src':("dashboard/app.min.js")],-1)
 printHtmlPart(91)
+})
+invokeTag('captureBody','sitemesh',409,['class':("hold-transition skin-purple sidebar-mini")],1)
+printHtmlPart(92)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1480827837358L
+public static final long LAST_MODIFIED = 1482719364064L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

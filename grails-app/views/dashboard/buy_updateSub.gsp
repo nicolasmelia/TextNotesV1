@@ -259,26 +259,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<section class="content">
 				<!-- Contact added SUCCESS -->
 				<div class="box box-default">
-					<div class="box-header with-border"> <i class="fa fa-book"></i>
+					<div class="box-header with-border"> <i class="fa fa-shopping-cart"></i>
 						<h3 class="box-title">Subscription Upgrade</h3>
 					</div>
 					<div class="box-body">
-					
-
-					
+										
 				<h3 style = "margin-top: 5px;" >Professional Plan</h3>
+				
+					<g:if test="${user.usedAffiliateID != '' && user.usedAffiliateID != null}">					
+						<p>
+							*You have signed up using an affiliate ID! This means you are eligible to save <b>$5</b> a month! This will be
+							reflected on your PayPal subscription plan below.
+						</p>
+					</g:if>		
+									
 					<p> 
 					Upgrading your subscription to the <b>professional</b> plan will increase your allowed <u>incoming</u> and <u>sent</u> text balance by month to <b>3000 sms</b>.		
 					</p>
-				
-				<hr>	
-				
-				
-				<h3 style = "margin-top: 5px; margin-bottom: 20px;" >What's Included?</h3>
-
 					
-				<h4 style = "" ><span class ="fa fa-paw"></span> Full Support Plan</h4>
-				
+				<hr>	
+					
+				<h4 style = "" ><span class ="fa fa-paw"></span> Full Support Plan</h4>				
 				
 				<p>	
 				The above plan also offers full support for marketing, business and technical information. For those who want to save time and get to results fast, our team of experienced professionals are ready to help 
@@ -298,19 +299,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<p>	
 					TxtWolf uses <a href="https://www.paypal.com/">PayPal&trade;</a> for its easy, safe and secure transactions! If you don't already have a PayPal account
 					this is a great time to make one! You can pay using any of the major credit cards apporved by PayPal.
-					Click the <b>"Subscribe"</b> button below to get started! Learn more about 
+					Click the <b>"Pay Now"</b> button below to get started! Learn more about 
 					<a href="https://www.paypal.com/en/webapps/mpp/paypal-popup">PayPal</a>. 
 					</p>
 										
 					<hr>
-
-					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-					<input type="hidden" name="cmd" value="_s-xclick">
-					<input type="hidden" name="hosted_button_id" value="RCMSA8G634JZ4">
-					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-					</form>
+						
+					<g:if test="${user.usedAffiliateID != '' && user.usedAffiliateID != null}">									
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+						<input type="hidden" name="cmd" value="_s-xclick">
+						<input type="hidden" name="hosted_button_id" value="QWMBUPEMD8MBN">
+						<button type="image"  class="btn btn-info" border="0" name="submit" alt=""><span class = "fa fa-shopping-cart"></span> Pay Now (Pro Plan)</button>
+						<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+						</form>	
+					
+					</g:if>
+					<g:else>				
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+						<input type="hidden" name="cmd" value="_s-xclick">
+						<input type="hidden" name="hosted_button_id" value="RCMSA8G634JZ4">
+						<button type="image"  class="btn btn-info" border="0" name="submit" alt=""><span class = "fa fa-shopping-cart"></span> Pay Now (Pro Plan)</button>
+						<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+						</form>							
+					</g:else>
+	
 					<br>
+					
 					<p> 
 					<i>*After your first payment your account will automatically upgrade to the <b>Professional Plan</b>. Please allow up to <b>24 hours</b> for this to take effect in your dashboard.</i>	
 					</p>
@@ -318,29 +332,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</div>
 					<!-- /.box-body -->
 					<!-- addNumberModal -->
-					<div class="modal" id="suspendModal" role="dialog" data-backdrop="static">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-									</button>
-									<h4 id="modalHeading" class="modal-title">Change keyword Status</h4>
-								</div>
-								<div class="modal-body">
-									<!-- phone mask -->
-									<p>Are you sure you want to suspend this keyword? People will no longer be able to send this keyword into your promotion. You can re-enable this keyword anytime.</p>
-								</div>
-								<div class="modal-footer">
-									<g:link action="suspendKeyword" params="[promotionID:params.promotionID]" type="button" class="btn btn-warning pull-left">Suspend</g:link>
-									<button onClick="clearWarnings()" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								</div>
-							</div>
-							<!-- /.modal-content -->
-						</div>
-						<!-- /.modal-dialog -->
-					</div>
-					<!-- /.modal -->
-				</div>
+
 				<!-- /.box -->
 				<!-- Contact added SUCCESS -->
 			</section>

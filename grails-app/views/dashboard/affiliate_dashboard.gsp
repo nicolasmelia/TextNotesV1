@@ -357,7 +357,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 																				
 							<div class="btn-group" style="margin: 0px 0px 10px 10px; ">
 								<g:if test="${true}">
-									<g:link disabled action="contacts" params="[offset: offset, up: 'false', searchQueryHidden: searchQueryHidden]" type="button" class="btn btn-default">Back</g:link>
+									<button disabled type="button" class="btn btn-default">Back</button>
 								</g:if>
 								<g:else>
 									<button disabled type="button" class="btn btn-default">Back</button>
@@ -369,7 +369,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<button disabled type="button" class="btn btn-default">Next</button>
 								</g:else>
 							</div>
-							<p style="float: right; text-align: right; margin: 15px; display: inline-block;"> <span id="pageInfo">10 of ${memberCount}</span>
+							<p style="float: right; text-align: right; margin: 15px; display: inline-block;"> <span id="pageInfo">0 - 10 of ${memberCount}</span>
 							</p>
 							
 						<hr>

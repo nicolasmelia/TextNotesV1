@@ -136,11 +136,13 @@
 				<div class="container">
 					<div class="row 200% uniform">
 						<section class="4u 12u$(medium) 12u$(xsmall) footer-info">
-							<h2>Nonprofit</h2>
-							<p>Nonprofit Organizations are eligible for the "At Cost" subscription plan, up to 60,000 text. If you are a Nonprofit, please contact us today.
-							We are more than happy to accommodate your organization.</p>
+							<h2>Affiliate Program</h2>
+							<p>
+								Do you think your employer or other businesses you interact with would benefit from using TxtWolf? If so, you should consider becoming a TxtWolf affiliate! 
+								Earn money for each business that joins our "Pro" plan.
+							</p>
 							<ul class="actions">
-								<li><a href="${createLink(controller: 'Home', action: 'pricing')}" class="button alt">Learn more</a></li>
+								<li><a href="${createLink(controller: 'affiliateProgram')}" class="button alt">Learn more</a></li>
 							</ul>
 						</section>
 						<section class="4u 6u(medium) 12u$(xsmall)">

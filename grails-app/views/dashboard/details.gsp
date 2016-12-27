@@ -327,8 +327,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<td>Zip</td>
 										<td>-</td>
 									</tr>
-								</g:else>
-								<g:if test="${contact.subbed =! 'false'}">
+								</g:else>		
+								<g:if test="${contact.subbed.toBoolean()}">
 									<tr>
 										<td>Subbed</td>
 										<td><span style="color: green;"><b>Yes</b></span>

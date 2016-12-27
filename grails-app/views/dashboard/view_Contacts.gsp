@@ -307,13 +307,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 														<g:else>
 															<td>None</td>
 														</g:else>
-														<g:if test="${!it.subbed.toBoolean()}">
+														<g:if test="${it.subbed.toBoolean()}">
 															<td><span style="color: green;"><b>Yes</b></span>
 															</td>
 														</g:if>
 														<g:else>
-															<td><span style="color: purple;">No</span>
-															</td>
+															<td><span style="color: purple;">No</span></td>
 														</g:else>
 													</tr>
 												</g:each>

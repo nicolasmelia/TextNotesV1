@@ -143,7 +143,7 @@ class SmsGateInController {
 					switch (keyword.campaignType) {
 						case "coup": // Coupon
 						
-							sendMessage(from, keyword.responceText)
+							messageSuccess = sendMessage(from, keyword.responceText)
 						
 							CouponIn coupon = new CouponIn()
 							coupon.keywordID =  keyword.promotionID
@@ -158,7 +158,7 @@ class SmsGateInController {
 							coupon.couponCode = couponCode
 							coupon.save(flush:true)
 							
-							sendMessage(from, "Here is your coupon code for keyword " + keyword.keyword + ", " + coupon.couponCode + ". Use your code to redeem this offer.")
+							messageSuccess = sendMessage(from, "Here is your coupon code for keyword " + keyword.keyword + ", " + coupon.couponCode + ". Use your code to redeem this offer.")
 							MI.save(flush:true);
 							
 							// Increment the counter
@@ -173,7 +173,7 @@ class SmsGateInController {
 								sendMessage(from, keyword.responceText)
 								SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
 								String timeFrame = (keyword.endless) ? "" : ". This contest ends on " + dateFormatter.format(keyword.dateExp)			
-								sendMessage(from, "You have been entered in a contest for keyword " + keyword.keyword + timeFrame + ". You will recieve a text if you win! Good Luck!")
+								messageSuccess = sendMessage(from, "You have been entered in a contest for keyword " + keyword.keyword + timeFrame + ". You will recieve a text if you win! Good Luck!")
 								MI.save(flush:true);
 								
 								// Increment the counter
@@ -181,7 +181,7 @@ class SmsGateInController {
 								
 							} else {
 								SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
-								sendMessage(from, "You have already entered a submission for this contest. This contest ends on " + dateFormatter.format(keyword.dateExp) + ".")
+								messageSuccess = sendMessage(from, "You have already entered a submission for this contest. This contest ends on " + dateFormatter.format(keyword.dateExp) + ".")
 								// MI.save(flush:true); Multiple text by the same person, do not save
 							}						
 						break;

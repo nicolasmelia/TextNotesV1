@@ -213,7 +213,7 @@ class DashboardController {
 	}
 
 	def secheduledTxt() {
-		displayUserError("Coming Soon...","Secheduled text are coming soon! We are working hard to bring you this feature and will notifty you via TxtWolf when its ready!", "");
+		displayUserError("Coming Soon...","Secheduled text are coming soon! We are working hard to bring you this feature and will notifty you via TxtWolf when it's ready!", "");
 	}
 
 	def newDraft() {
@@ -333,19 +333,28 @@ class DashboardController {
 
 				Contact contact = Contact.findByContactID(params.contactID)
 
-				createHistoryLog("Edited " + contact.fullName, "Edit Contact", params.phoneNumber.toString().trim())
+				// Contact does not have a name, do not update history yet
+				if (!contact.fullName.equals("Unknown")) {
+					createHistoryLog("Edited " + contact.fullName, "Edit Contact", params.phoneNumber.toString().trim())
+				}
 
 				contact.firstName = params.firstName.toString().trim()
 				contact.lastName = params.lastName.toString().trim()
 				contact.fullName = contact.firstName + " " + contact.lastName
 				contact.phoneNumber = params.phoneNumber.toString().trim()
-
+				
 				contact.city = params.city.toString().trim()
 				contact.state = params.state.toString().trim()
 				contact.zip = params.zip.toString().trim()
 				contact.address = params.address.toString().trim()
 
 				contact.userID = session["userID"]
+				
+				// Contact NOW has a name, do not update history yet
+				if (contact.fullName.equals("Unknown")) {
+					createHistoryLog("Edited " + contact.fullName, "Edit Contact", params.phoneNumber.toString().trim())
+				}		
+				
 				contact.save(flush:true)
 				redirect(controller: "Dashboard", action: "confirmation", params: [conType: "editContact", name: contact.fullName.toString(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true, false), number: contact.phoneNumber.toString(), contactID: contact.contactID])
 			}
@@ -578,12 +587,8 @@ class DashboardController {
 	}
 
 	def upgradeSub() {
-
-		render(view:"buy_updateSub",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true, false)])
-
-
-		//	displayUserError("Coming Soon...","Account upgrades are coming soon. If you require a higher text balance" +
-		//		" please contact Support@TxtWolf.com to submit a request. As of now, TxtWolf is a free service.", "");
+		User user = User.findByUserID(session["userID"])
+		render(view:"buy_updateSub",  model: [accountInfo: getUserAccountInfo(), user: user, notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true, false)])
 	}
 
 	def toggleIncomingText() {

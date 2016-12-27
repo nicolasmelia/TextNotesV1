@@ -77,30 +77,30 @@ expressionOut.print(resource(dir: 'images', file: 'blog/keywords/usingKeywordsBa
 printHtmlPart(24)
 expressionOut.print(resource(dir: 'images', file: 'blog/keywords/blog1Thumbnail.jpg'))
 printHtmlPart(25)
-expressionOut.print(createLink(controller: 'Home', action: 'pricing'))
+expressionOut.print(createLink(controller: 'affiliateProgram'))
 printHtmlPart(26)
 expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
 printHtmlPart(27)
 expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
 printHtmlPart(28)
-invokeTag('javascript','g',200,['src':("jquery.min.js")],-1)
+invokeTag('javascript','g',202,['src':("jquery.min.js")],-1)
 printHtmlPart(29)
-invokeTag('javascript','g',201,['src':("jquery.dropotron.min.js")],-1)
+invokeTag('javascript','g',203,['src':("jquery.dropotron.min.js")],-1)
 printHtmlPart(30)
-invokeTag('javascript','g',202,['src':("jquery.scrollgress.min.js")],-1)
+invokeTag('javascript','g',204,['src':("jquery.scrollgress.min.js")],-1)
 printHtmlPart(29)
-invokeTag('javascript','g',203,['src':("skel.min.js")],-1)
+invokeTag('javascript','g',205,['src':("skel.min.js")],-1)
 printHtmlPart(29)
-invokeTag('javascript','g',204,['src':("util.js")],-1)
+invokeTag('javascript','g',206,['src':("util.js")],-1)
 printHtmlPart(31)
-invokeTag('javascript','g',205,['src':("main.js")],-1)
+invokeTag('javascript','g',207,['src':("main.js")],-1)
 printHtmlPart(31)
-invokeTag('javascript','g',206,['src':("jquery.scrolly.min.js")],-1)
+invokeTag('javascript','g',208,['src':("jquery.scrolly.min.js")],-1)
 printHtmlPart(32)
-invokeTag('javascript','g',207,['src':("ie/respond.min.js")],-1)
+invokeTag('javascript','g',209,['src':("ie/respond.min.js")],-1)
 printHtmlPart(33)
 })
-invokeTag('captureBody','sitemesh',209,[:],1)
+invokeTag('captureBody','sitemesh',211,[:],1)
 printHtmlPart(34)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -108,7 +108,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1481170994043L
+public static final long LAST_MODIFIED = 1482785057885L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

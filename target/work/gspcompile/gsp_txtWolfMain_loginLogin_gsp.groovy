@@ -41,78 +41,80 @@ expressionOut.print(createLink(controller: 'Home'))
 printHtmlPart(10)
 expressionOut.print(createLink(controller: 'Home'))
 printHtmlPart(11)
-expressionOut.print(createLink(controller: 'Home', action: 'pricing'))
+expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
 printHtmlPart(12)
+expressionOut.print(createLink(controller: 'Home', action: 'pricing'))
+printHtmlPart(13)
 if(true && (session.userID)) {
-printHtmlPart(13)
-expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(14)
-}
-else {
-printHtmlPart(13)
-expressionOut.print(createLink(controller: 'login'))
+expressionOut.print(createLink(controller: 'Dashboard'))
 printHtmlPart(15)
 }
-printHtmlPart(16)
-if(true && (session.userID)) {
-printHtmlPart(13)
-expressionOut.print(createLink(controller: 'Login', action: 'logout'))
-printHtmlPart(17)
-}
 else {
-printHtmlPart(13)
-expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
+printHtmlPart(14)
+expressionOut.print(createLink(controller: 'login'))
+printHtmlPart(16)
+}
+printHtmlPart(17)
+if(true && (session.userID)) {
+printHtmlPart(14)
+expressionOut.print(createLink(controller: 'Login', action: 'logout'))
 printHtmlPart(18)
 }
-printHtmlPart(19)
-if(true && (error)) {
-printHtmlPart(20)
-expressionOut.print(error)
-printHtmlPart(21)
-}
 else {
+printHtmlPart(14)
+expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
+printHtmlPart(19)
+}
+printHtmlPart(20)
+if(true && (error)) {
+printHtmlPart(21)
+expressionOut.print(error)
 printHtmlPart(22)
 }
+else {
 printHtmlPart(23)
-createTagBody(2, {->
+}
 printHtmlPart(24)
-invokeTag('actionSubmit','g',104,['class':("special"),'id':("submitBtn"),'onclick':("return validateForm()"),'value':("Login"),'action':("attemptLogin"),'style':("width: 100%")],-1)
+createTagBody(2, {->
 printHtmlPart(25)
+invokeTag('actionSubmit','g',104,['class':("special"),'id':("submitBtn"),'onclick':("return validateForm()"),'value':("Login"),'action':("attemptLogin"),'style':("width: 100%")],-1)
+printHtmlPart(26)
 })
 invokeTag('form','g',113,['class':("form-signin"),'controller':("Login"),'action':("attemptLogin"),'enctype':("multipart/form-data")],2)
-printHtmlPart(26)
-expressionOut.print(createLink(controller: 'Home', action: 'pricing'))
 printHtmlPart(27)
-expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
+expressionOut.print(createLink(controller: 'affiliateProgram'))
 printHtmlPart(28)
-expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
+expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
 printHtmlPart(29)
-invokeTag('javascript','g',174,['src':("jquery.min.js")],-1)
+expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
 printHtmlPart(30)
-invokeTag('javascript','g',175,['src':("jquery.dropotron.min.js")],-1)
+invokeTag('javascript','g',176,['src':("jquery.min.js")],-1)
 printHtmlPart(31)
-invokeTag('javascript','g',176,['src':("jquery.scrollgress.min.js")],-1)
-printHtmlPart(30)
-invokeTag('javascript','g',177,['src':("skel.min.js")],-1)
-printHtmlPart(30)
-invokeTag('javascript','g',178,['src':("util.js")],-1)
+invokeTag('javascript','g',177,['src':("jquery.dropotron.min.js")],-1)
 printHtmlPart(32)
-invokeTag('javascript','g',179,['src':("main.js")],-1)
-printHtmlPart(32)
-invokeTag('javascript','g',180,['src':("jquery.scrolly.min.js")],-1)
+invokeTag('javascript','g',178,['src':("jquery.scrollgress.min.js")],-1)
+printHtmlPart(31)
+invokeTag('javascript','g',179,['src':("skel.min.js")],-1)
+printHtmlPart(31)
+invokeTag('javascript','g',180,['src':("util.js")],-1)
 printHtmlPart(33)
-invokeTag('javascript','g',181,['src':("ie/respond.min.js")],-1)
+invokeTag('javascript','g',181,['src':("main.js")],-1)
+printHtmlPart(33)
+invokeTag('javascript','g',182,['src':("jquery.scrolly.min.js")],-1)
 printHtmlPart(34)
-})
-invokeTag('captureBody','sitemesh',243,[:],1)
+invokeTag('javascript','g',183,['src':("ie/respond.min.js")],-1)
 printHtmlPart(35)
+})
+invokeTag('captureBody','sitemesh',245,[:],1)
+printHtmlPart(36)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1480564217885L
+public static final long LAST_MODIFIED = 1482785231469L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
