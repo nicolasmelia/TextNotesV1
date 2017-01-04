@@ -15,33 +15,61 @@
 		
 		<!--[if lte IE 8]><g:javascript src="ie/html5shiv.js" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='ie8.css'/>"><![endif]-->
+		
+		<!--Start of Zendesk Chat Script-->
+		<script type="text/javascript">
+		window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+		d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+		_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+		$.src="https://v2.zopim.com/?4UBUexrzEbn1D1IOK7cXCttTMqRa1rB7";z.t=+new Date;$.
+		type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+		</script>
+		<!--End of Zendesk Chat Script-->
+		
+    <style>
+        /* code for animated blinking cursor */
+        .typed-cursor{
+            opacity: 1;
+            font-weight: 100;
+            -webkit-animation: blink 0.7s infinite;
+            -moz-animation: blink 0.7s infinite;
+            -ms-animation: blink 0.7s infinite;
+            -o-animation: blink 0.7s infinite;
+            animation: blink 0.7s infinite;
+        }
+        @-keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+        @-webkit-keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+        @-moz-keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+        @-ms-keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+        @-o-keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+    </style>
+				
 	</head>
-	
-<!-- begin olark code -->
-<script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
-f[z]=function(){
-(a.s=a.s||[]).push(arguments)};var a=f[z]._={
-},q=c.methods.length;while(q--){(function(n){f[z][n]=function(){
-f[z]("call",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={
-0:+new Date};a.P=function(u){
-a.p[u]=new Date-a.p[0]};function s(){
-a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent("on"+r,s);var ld=function(){function p(hd){
-hd="head";return["<",hd,"></",hd,"><",i,' onl' + 'oad="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='",l,"//",a.l,"'",'"',"></",i,">"].join("")}var i="body",m=d[i];if(!m){
-return setTimeout(ld,100)}a.P(1);var j="appendChild",h="createElement",k="src",n=d[h]("div"),v=n[j](d[h](z)),b=d[h]("iframe"),g="document",e="domain",o;n.style.display="none";m.insertBefore(n,m.firstChild).id=z;b.frameBorder="0";b.id=z+"-loader";if(/MSIE[ ]+6/.test(navigator.userAgent)){
-b.src="javascript:false"}b.allowTransparency="true";v[j](b);try{
-b.contentWindow[g].open()}catch(w){
-c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{
-var t=b.contentWindow[g];t.write(p());t.close()}catch(x){
-b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({
-loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
-/* custom configuration goes here (www.olark.com/documentation) */
-olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://www.olark.com/site/6667-512-10-8779/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
-<!-- end olark code -->
 		
 	<body class="landing">
 		<!-- Header -->
 			<header id="header" class="alt">
-				<h1 id="logo"><a href="${createLink(controller: 'Home')}">TxtWolf LLC</a></h1>
+				<h1 id="logo"><a href="${createLink(controller: 'Home')}">TxtWolf</a></h1>
 				<nav id="nav">
 					<ul>
 						<li><a href="${createLink(controller: 'Home')}">Home</a></li>
@@ -67,26 +95,64 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 
 		<!-- Banner -->
 			<section id="banner">
-				<h2>TxtWolf <br/> Sms Solutions</h2>
-				<p>Reach more people in less time for <i>free</i>.</p>
+				<h2> TxtWolf <br/> SMS Solutions </h2>
+				
+				<div id="typed-strings">
+					<p>retail stores</p>
+					<p>marketing agencies</p>
+					<p>ecommerce websites</p>
+					<p>schools/universities</p>
+					<p>gyms & health centers</p>
+					<p>businesses</p>
+					<p>salons & spas</p>
+					<p>bars & nightclubs</p>				
+					<p>cafe's & coffee shops</p>
+					<p>restaurants</p>
+					<p>food trucks</p>
+					<p>non profits</p>
+					<p>spas</p>					
+					<p>promotions</p>
+					<p>alerts</p>
+					<p>engagement</p>
+					<p>reminders</p>
+					<p>golf courses</p>
+					<p>businesses</p>
+					
+					
+				</div>
+				
+				
+				
+				<p id = "typedText">
+					Text message marketing for
+					<span  id="typed" style="white-space:pre;"></span>
+				</p>
+				
+
 				<ul class="actions">
 					<li><a href="#one" class="button special scrolly">Learn More</a></li>
 				</ul>
+				
+				
+
+				
 			</section>
 
 		<!-- One -->
 			<section id="one" class="wrapper style1 special">
 				<div class="container box alt bordered">
 					<header class="major">
-						<h2>Quickly Drive sales</h2>
+						<h2>Drive Traffic And Engage Customers</h2>
 						<p>Send out targeted sms promotions and notifications to your customers.<br />
-						<b>Drive sales</b> with simple, affordable <i>(Free)</i>, and effective sms text messages.</p>
+						<b>Drive sales</b> with simple, affordable, and effective sms text messages.</p>
 					</header>
 					<ul class="icons-grid">
 						<li>
 							<span class="icon major style4 fa-paw"></span>
-							<h3>Keywords</h3>
-							<p>Create a keyword and have people join your promotion by texting in your keyword. Build your <b>customer list</b> quickly with a small campaign. <a href="${createLink(controller: 'blog', params: [blogID: '1'])}" >Learn More</a></p>
+							<h3>Keywords</h3>						
+							<p>
+							Have people join your promotions by text and build your contact list, with minimal effort. Every paid plan includes <b>UNLIMITED</b> keywords. <a href="${createLink(controller: 'blog', params: [blogID: '1'])}" >Learn More</a>			
+							</p>	
 						</li>
 						<li>
 							<span class="icon major style3 fa-paper-plane"></span>
@@ -96,12 +162,12 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 						<li>
 							<span class="icon major style2 fa-credit-card-alt"></span>
 							<h3>Affordable</h3>
-							<p><b>TxtWolf is Free!</b> SMS marketing is not only the most effective form of communication, it’s also the most affordable.</p>
+							<p>TxtWolf is proud to be the most <b>affordable</b> text marketing solution available. SMS marketing is one of the most effective forms of communications by cost!</p>
 						</li>
 						<li>
 							<span class="icon major style1 fa-bar-chart"></span>
 							<h3>Grow Your Business</h3>
-							<p>More engagement, more leads, more business! TxtWolf offers text coupons, contest and custom campaigns!</p>
+							<p>More engagement, more leads, more loyalty! TxtWolf offers text coupons, contest and custom campaigns for all types of business!</p>
 						</li>
 					</ul>
 				</div>
@@ -249,7 +315,52 @@ olark.identify('6667-512-10-8779');/*]]>*/</script><noscript><a href="https://ww
 		<g:javascript src="util.js" /> 
 		<g:javascript src="main.js" /> 
 		<g:javascript src="jquery.scrolly.min.js" /> 
+		<g:javascript src="UI/typed.js" /> 
+		
 		<!--[if lte IE 8]><g:javascript src="ie/respond.min.js" /><![endif]-->
 
 	</body>
+	
+	<script>
+
+	$(window).on("resize", function(event){
+		if ($(this).width() < 460) {
+		  console.log( $(this).width());
+		  $("#typedText").text("Text Message Marketing");
+		}
+	});
+
+    $(function(){
+        
+        $("#typed").typed({
+            // strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
+            stringsElement: $('#typed-strings'),
+            typeSpeed: 50,
+            backDelay: 1400,
+            loop: false,
+            contentType: 'html', // or text
+            // defaults to false for infinite loop
+            loopCount: false,
+            callback: function(){ foo(); },
+            resetCallback: function() { newTyped(); }
+        });
+
+        $(".reset").click(function(){
+            $("#typed").typed('reset');
+        });
+
+
+		if ($(window).width() < 460) {
+			  console.log( $(this).width());
+			  $("#typedText").text("Text Message Marketing");
+		}
+
+    });
+
+    function newTyped(){ /* A new typed object */ }
+
+    function foo(){ console.log("Callback"); }
+
+    </script>
+	
 </html>

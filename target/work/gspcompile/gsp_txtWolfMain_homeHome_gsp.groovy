@@ -33,7 +33,7 @@ printHtmlPart(6)
 invokeTag('resource','g',17,['dir':("css"),'file':("ie8.css")],-1)
 printHtmlPart(7)
 })
-invokeTag('captureHead','sitemesh',18,[:],1)
+invokeTag('captureHead','sitemesh',67,[:],1)
 printHtmlPart(8)
 createTagBody(1, {->
 printHtmlPart(9)
@@ -91,24 +91,26 @@ expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
 printHtmlPart(31)
 expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
 printHtmlPart(32)
-invokeTag('javascript','g',245,['src':("jquery.min.js")],-1)
+invokeTag('javascript','g',311,['src':("jquery.min.js")],-1)
 printHtmlPart(33)
-invokeTag('javascript','g',246,['src':("jquery.dropotron.min.js")],-1)
+invokeTag('javascript','g',312,['src':("jquery.dropotron.min.js")],-1)
 printHtmlPart(34)
-invokeTag('javascript','g',247,['src':("jquery.scrollgress.min.js")],-1)
+invokeTag('javascript','g',313,['src':("jquery.scrollgress.min.js")],-1)
 printHtmlPart(33)
-invokeTag('javascript','g',248,['src':("skel.min.js")],-1)
+invokeTag('javascript','g',314,['src':("skel.min.js")],-1)
 printHtmlPart(33)
-invokeTag('javascript','g',249,['src':("util.js")],-1)
+invokeTag('javascript','g',315,['src':("util.js")],-1)
 printHtmlPart(35)
-invokeTag('javascript','g',250,['src':("main.js")],-1)
+invokeTag('javascript','g',316,['src':("main.js")],-1)
 printHtmlPart(35)
-invokeTag('javascript','g',251,['src':("jquery.scrolly.min.js")],-1)
+invokeTag('javascript','g',317,['src':("jquery.scrolly.min.js")],-1)
+printHtmlPart(35)
+invokeTag('javascript','g',318,['src':("UI/typed.js")],-1)
 printHtmlPart(36)
-invokeTag('javascript','g',252,['src':("ie/respond.min.js")],-1)
+invokeTag('javascript','g',320,['src':("ie/respond.min.js")],-1)
 printHtmlPart(37)
 })
-invokeTag('captureBody','sitemesh',254,['class':("landing")],1)
+invokeTag('captureBody','sitemesh',322,['class':("landing")],1)
 printHtmlPart(38)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -116,7 +118,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1482785231533L
+public static final long LAST_MODIFIED = 1483416623730L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
