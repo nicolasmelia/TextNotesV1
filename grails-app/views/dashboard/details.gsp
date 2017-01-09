@@ -32,6 +32,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-89949087-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+    
 </head>
 
 <body class="hold-transition skin-purple sidebar-mini">
@@ -447,6 +457,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						</div>
 						<!-- /.box-body -->
 					</g:if>
+					
 					<g:if test="${conType == 'Coupon Code Used'}">
 						<div class="box-body">
 							<div class="alert alert-warning alert-dismissable">
@@ -460,12 +471,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						</div>
 						<!-- /.box-body -->
 					</g:if>
+					
+					<g:if test="${conType == 'KeywordLimit'}">
+						<div class="box-body">
+							<div class="alert alert-warning alert-dismissable">
+								<h4><i class="icon fa fa-warning"></i>(Free Account) Free Keyword Used</h4>
+								You have already created your <b>single (1)</b> free keyword "${keyword.keyword}". You can continue to use TxtWolf to manage and text contacts (up to <b>250</b> text/mo), 
+								however you can no longer create keywords. Upgrade to the <b>Pro</b> plan to enable <b>UNLIMITED</b> keywords.
+								</div>
+							<div style="margin: 10px 0px 5px 0px;">
+								<g:link class="btn btn-default" action="upgradeSub" params="[]" type="button">Upgrade Account</g:link>
+								<g:link class="btn btn-default" action="dashboard" params="[]" type="button">Home</g:link>
+							</div>
+						</div>
+						<!-- /.box-body -->
+					</g:if>	
+					
+					
 					<g:if test="${conType == 'keyword'}">
 						<div class="box-body">
 							<h4>Keyword ${keyword.keyword}
-	              
-	              
-	              
 	             <g:if test="${keyword.winners != null}" >
 	              - <span style = "color: red;" ><b> Contest Has Ended</b></span>
 	             </g:if>

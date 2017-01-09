@@ -25,6 +25,15 @@
 		</script>
 		<!--End of Zendesk Chat Script-->
 		
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		  ga('create', 'UA-89949087-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+		
 	</head>
 
 	<body>
@@ -95,7 +104,7 @@
 
 							<!-- Content -->
 								<section id="content">
-									<div class="image main"><img src="${resource(dir: 'images', file: 'blog/growing1.jpg')}" alt="" /></div>
+									<div class="image main"><img src="${resource(dir: 'images', file: 'blog/keywords/growing1.jpg')}" alt="" /></div>
 									<h3>Reaching Your Customers</h3>
 									
 									<p>SMS marketing is a way of reaching customers through text messaging. Using a web-based program, you can send mass texts to 

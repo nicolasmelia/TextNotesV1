@@ -160,8 +160,8 @@ class LoginController {
 				balance.monthlyResetDate = nextMonth.toDate()
 				balance.lastUsedDate = new Date()
 				balance.unlimited = false
-				balance.currentBalance = 1000
-				balance.monthlyBalance = 1000
+				balance.currentBalance = 250
+				balance.monthlyBalance = 250
 				balance.totalBalanceSpent = 0
 				balance.MonthlyBalanceOverage = 0
 				balance.save(flush:true)

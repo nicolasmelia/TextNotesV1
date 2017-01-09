@@ -12,7 +12,10 @@ class BlogController {
 			case "3":
 				render (view: "blog_engagement101")		
 				break;
-				case "testBlog":
+			case "4":
+				render (view: "blog_success_1")
+				break;
+			case "testBlog":
 				render "Blog is currently Running: OK."
 				break;
 			default:

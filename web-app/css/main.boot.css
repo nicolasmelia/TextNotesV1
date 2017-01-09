@@ -2691,7 +2691,7 @@
 
 		.wrapper.style2 {
 			background-attachment: scroll, fixed;
-			background-image: url("images/overlay.png"), url("../images/banner.jpg");
+			background-image: url("images/overlay.png"), url("../images/banner2.jpg");
 			background-position: center center;
 			background-size: cover;
 			color: #ffffff;

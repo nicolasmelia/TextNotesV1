@@ -40,6 +40,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-89949087-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+    
 </head>
 
 <body class="hold-transition skin-purple sidebar-mini">
@@ -557,15 +567,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				errors.push("Please enter a valid keyword.");			
 			} 
 	
-		  	if (responceText.length < 4) {
+		  	if (responceText.length < 5) {
 				error = true;
-				errors.push("Please enter a valid responce.");			
+				errors.push("Please enter a valid responce more than 5 characters.");			
 			} else if (responceText.length > 200) {
 				error = true;
 				errors.push("Responce can only be up to 200 characters.");			
 			}
 	
 			if (error){
+				$("#preButton").prop("disabled",false);									
 				for (i = 0; i < errors.length; i++) { 
 					$("#ModalAlertText").append("*" + errors[i] + "<br/>");		
 				}			

@@ -25,6 +25,15 @@
 		</script>
 		<!--End of Zendesk Chat Script-->
 		
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		  ga('create', 'UA-89949087-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+		
 	</head>
 	
 	
@@ -96,7 +105,7 @@
 
 							<!-- Content -->
 								<section id="content">
-									<div class="image main"><img src="${resource(dir: 'images', file: 'blog/customerEngagementBanner.jpg')}" alt="" /></div>
+									<div class="image main"><img src="${resource(dir: 'images', file: 'blog/keywords/wolfBanner.jpg')}" alt="" /></div>
 									<h3>The Call To Action</h3>
 									<p>
 										There are many different reasons for a company to use keywords as part of their SMS marketing campaigns. One of the largest applications of keywords is a simple call to action. For example, a phrase that encourages people to text a certain word or phrase to a number can be incorporated into advertising across platforms, including print advertising, online, social media campaigns, business cards, menus, television and radio, and any other marketing channel.

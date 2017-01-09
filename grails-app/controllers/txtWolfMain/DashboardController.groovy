@@ -213,7 +213,47 @@ class DashboardController {
 	}
 
 	def secheduledTxt() {
-		displayUserError("Coming Soon...","Secheduled text are coming soon! We are working hard to bring you this feature and will notifty you via TxtWolf when it's ready!", "");
+		int offset = 0
+		if (params.offset != null) {
+			offset = Integer.parseInt(params.offset)
+			if (params.up.toString().equals("true")) {
+				offset = offset + 10
+			} else {
+				if (offset > 0) {
+					offset = offset - 10
+				}
+			}
+		}
+
+		// check to see if contacts exist
+		int groupCount = ScheduledText.countByUserID(session["userID"])
+
+		// Check if a user is being added to a group
+		boolean addToGroup = false
+		def contactGroupAdd = null
+		if (params.addToGroup.toString().equals("True")) {
+			contactGroupAdd = Contact.findByContactID(params.contactID)
+			addToGroup=true
+		}
+
+		// Get searchInfo if any
+		def searchQuery
+		if (!params.searchQuery && !params.searchQueryHidden) {
+			searchQuery = null
+		} else if (params.searchQueryHidden) {
+			searchQuery = params.searchQueryHidden
+		} else if (params.searchQuery) {
+			searchQuery = params.searchQuery
+		}
+
+		def groups = ScheduledText.findAllByUserID(session["userID"])
+		
+		if (session["userID"]) {
+			render(view:"view_Scheduled",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true, false), offset: offset, up: params.up, addToGroup: addToGroup, contactGroupAdd: contactGroupAdd, groupCount: groupCount, groups: groups])
+		} else {
+			redirect(controller: "Home")
+		}	
+		
 	}
 
 	def newDraft() {
@@ -1053,8 +1093,14 @@ class DashboardController {
 	def newKeyWord() {
 		if (session["userID"]) {
 			if (!params.keyword) {
-				def groups = Groups.findAllByUserID(session["userID"])
-				render(view:"add_Keyword",  model: [accountInfo: getUserAccountInfo(), groups: groups,  notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true, false), number:getUserKeywordNum()])
+				int keywordCount = Keyword.countByUserID(session["userID"])
+				UserAccountInfo account = UserAccountInfo.findByUserID(session["userID"])				
+				if (!account.accountType.equals("Free") || keywordCount < 1) {
+					def groups = Groups.findAllByUserID(session["userID"])
+					render(view:"add_Keyword",  model: [accountInfo: getUserAccountInfo(), groups: groups,  notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true, false), number:getUserKeywordNum()])			
+				} else {	
+					render(view:"details",  model: [accountInfo: getUserAccountInfo(), notiCount: getNotificationCount(session["userID"]), keywordsIn: getKeywordInboxList(0, 5, null, true, false), conType: "KeywordLimit", keyword:Keyword.findByUserID(session["userID"])])				
+				}			
 			} else {
 				if (!Keyword.findByKeywordAndUserID(params.keyword.toString().trim(),session["userID"])) {
 					Keyword keyword = new Keyword()
@@ -1180,6 +1226,10 @@ class DashboardController {
 	}
 
 	def help() {
+		render (view:"view_Help")
+	}
+	
+	def tips() {
 		render (view:"view_Help")
 	}
 

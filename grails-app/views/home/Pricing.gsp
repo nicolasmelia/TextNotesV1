@@ -27,6 +27,15 @@
 		</script>
 		<!--End of Zendesk Chat Script-->
 		
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		  ga('create', 'UA-89949087-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+		
 	</head>
 
 	<body>
@@ -64,7 +73,7 @@
 					
 						<h2>It's Free.</h2>
 						<br>
-						<p> TxtWolf offers its <b>full feature set</b> for free, up to <i>500</i> text a month.</p>
+						<p> TxtWolf offers its <b>full feature set</b> for free, up to <i>250</i> text a month.</p>
 							
 						<g:if test="${error}">
 							<div class="alert" id="errorList" style="margin: 10px auto 0px auto; display: block; max-width: 450px; ">${error}</div>
@@ -84,8 +93,8 @@
 					  <ul class="price">
 					    <li class="header" style="background-color:#56b6da" >Free</li>
 					    <li class="grey">$ 0 / year</li>
-					    <li>500 SMS</li>
-					    <li>Unlimited Keywords!</li>
+					    <li>250 SMS</li>
+					    <li>1 Keyword</li>
 					    <li>Support Not Included</li>
 					    <li class="grey"><a href="${createLink(controller: 'login', action: 'newAccount')}" style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
 					  </ul>
@@ -104,15 +113,15 @@
 					
 					<div class="columns">
 					  <ul class="price">
-					    <li class="header" style="background-color:#4998b6" >Premium</li>
+					    <li class="header" style="background-color:#4998b6" >Need More?</li>
 					    <li class="grey">Contact Us</li>
-					    <li>*Unlimited SMS</li>				    
+					    <li>You Decide!</li>				    
 					    <li>Unlimited Keywords!</li>
 					    <li><b>Full Support Plan</b></li>
 					    <li class="grey"><a href="${createLink(controller: 'login', action: 'newAccount')}" style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
 					  </ul>
 					</div>
-					
+													
 					   <span class="clear"></span>
 					    <br> <br>
 					   <div style = "margin-bottom: 15px;">

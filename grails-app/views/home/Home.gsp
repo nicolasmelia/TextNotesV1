@@ -26,6 +26,15 @@
 		</script>
 		<!--End of Zendesk Chat Script-->
 		
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		  ga('create', 'UA-89949087-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+		
     <style>
         /* code for animated blinking cursor */
         .typed-cursor{
@@ -97,7 +106,7 @@
 			<section id="banner">
 				<h2> TxtWolf <br/> SMS Solutions </h2>
 				
-				<div id="typed-strings">
+				<div id="typed-strings" style = "display:none;">
 					<p>retail stores</p>
 					<p>marketing agencies</p>
 					<p>ecommerce websites</p>
@@ -105,6 +114,7 @@
 					<p>gyms & health centers</p>
 					<p>businesses</p>
 					<p>salons & spas</p>
+					<p>mom & pop</p>				
 					<p>bars & nightclubs</p>				
 					<p>cafe's & coffee shops</p>
 					<p>restaurants</p>
@@ -151,7 +161,7 @@
 							<span class="icon major style4 fa-paw"></span>
 							<h3>Keywords</h3>						
 							<p>
-							Have people join your promotions by text and build your contact list, with minimal effort. Every paid plan includes <b>UNLIMITED</b> keywords. <a href="${createLink(controller: 'blog', params: [blogID: '1'])}" >Learn More</a>			
+							Have people join promotions by text message and build your contact list, with minimal effort. Every paid plan includes <b>UNLIMITED</b> keywords. <a href="${createLink(controller: 'blog', params: [blogID: '1'])}" >Learn More</a>			
 							</p>	
 						</li>
 						<li>
@@ -162,12 +172,12 @@
 						<li>
 							<span class="icon major style2 fa-credit-card-alt"></span>
 							<h3>Affordable</h3>
-							<p>TxtWolf is proud to be the most <b>affordable</b> text marketing solution available. SMS marketing is one of the most effective forms of communications by cost!</p>
+							<p>TxtWolf is proud to be the most <b>affordable</b> text marketing solution available. SMS marketing is one of the most effective forms of communication by value!</p>
 						</li>
 						<li>
 							<span class="icon major style1 fa-bar-chart"></span>
 							<h3>Grow Your Business</h3>
-							<p>More engagement, more leads, more loyalty! TxtWolf offers text coupons, contest and custom campaigns for all types of business!</p>
+							<p>More engagement, more leads, more loyalty! TxtWolf offers text coupons, contest and custom campaigns.</p>
 						</li>
 					</ul>
 				</div>
@@ -223,7 +233,7 @@
 						</section>
 						<section class="4u$ 6u$(medium) 12u$(small)">
 							<div class="box style4">
-								<span class="image full"><img src="${resource(dir: 'images', file: 'home/blog/blog5Thumbnail.jpg')}"alt="" /></span>
+								<span class="image full"><img src="${resource(dir: 'images', file: 'home/blog/blog1Thumbnail.jpg')}"alt="" /></span>
 								<h3>Engagement 101</h3>
 								<p>
 									When a customer sees your advertisement they can send a text message to a keyword, obtaining promotional material from you and...		
@@ -323,6 +333,9 @@
 	
 	<script>
 
+
+
+	
 	$(window).on("resize", function(event){
 		if ($(this).width() < 460) {
 		  console.log( $(this).width());
