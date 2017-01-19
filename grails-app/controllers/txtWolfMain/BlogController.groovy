@@ -15,6 +15,9 @@ class BlogController {
 			case "4":
 				render (view: "blog_success_1")
 				break;
+			case "5":
+				render (view: "blog_PRFirm_1")
+				break;				
 			case "testBlog":
 				render "Blog is currently Running: OK."
 				break;

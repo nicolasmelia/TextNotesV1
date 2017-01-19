@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_txtWolfMain_homeHome_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/home/Home.gsp" }
+class gsp_txtWolfMain_blogblog_PRFirm_1_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/blog/blog_PRFirm_1.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()
@@ -33,7 +33,7 @@ printHtmlPart(6)
 invokeTag('resource','g',17,['dir':("css"),'file':("ie8.css")],-1)
 printHtmlPart(7)
 })
-invokeTag('captureHead','sitemesh',76,[:],1)
+invokeTag('captureHead','sitemesh',28,[:],1)
 printHtmlPart(8)
 createTagBody(1, {->
 printHtmlPart(9)
@@ -67,58 +67,46 @@ expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
 printHtmlPart(19)
 }
 printHtmlPart(20)
-expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
+expressionOut.print(createLink(controller: 'blog', params: [blogID: '3']))
 printHtmlPart(21)
-expressionOut.print(resource(dir: 'images', file: 'home/blog/blog4Thumbnail.jpg'))
+expressionOut.print(resource(dir: 'images', file: 'blog/keywords/blog1Thumbnail.jpg'))
 printHtmlPart(22)
 expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
 printHtmlPart(23)
-expressionOut.print(resource(dir: 'images', file: 'home/blog/blog3Thumbnail.jpg'))
+expressionOut.print(resource(dir: 'images', file: 'blog/growing1.jpg'))
 printHtmlPart(24)
-expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
-printHtmlPart(25)
-expressionOut.print(resource(dir: 'images', file: 'home/blog/blog1Thumbnail.jpg'))
-printHtmlPart(26)
-expressionOut.print(createLink(controller: 'blog', params: [blogID: '3']))
-printHtmlPart(27)
-expressionOut.print(createLink(controller: 'login', action: 'newAccount'))
-printHtmlPart(28)
-expressionOut.print(createLink(controller: 'Home', action: 'pricing'))
-printHtmlPart(29)
 expressionOut.print(createLink(controller: 'affiliateProgram'))
-printHtmlPart(30)
+printHtmlPart(25)
 expressionOut.print(createLink(controller: 'blog', params: [blogID: '1']))
-printHtmlPart(31)
+printHtmlPart(26)
 expressionOut.print(createLink(controller: 'blog', params: [blogID: '2']))
+printHtmlPart(27)
+invokeTag('javascript','g',173,['src':("jquery.min.js")],-1)
+printHtmlPart(28)
+invokeTag('javascript','g',174,['src':("jquery.dropotron.min.js")],-1)
+printHtmlPart(29)
+invokeTag('javascript','g',175,['src':("jquery.scrollgress.min.js")],-1)
+printHtmlPart(28)
+invokeTag('javascript','g',176,['src':("skel.min.js")],-1)
+printHtmlPart(28)
+invokeTag('javascript','g',177,['src':("util.js")],-1)
+printHtmlPart(30)
+invokeTag('javascript','g',178,['src':("main.js")],-1)
+printHtmlPart(30)
+invokeTag('javascript','g',179,['src':("jquery.scrolly.min.js")],-1)
+printHtmlPart(31)
+invokeTag('javascript','g',180,['src':("ie/respond.min.js")],-1)
 printHtmlPart(32)
-invokeTag('javascript','g',306,['src':("jquery.min.js")],-1)
-printHtmlPart(33)
-invokeTag('javascript','g',307,['src':("jquery.dropotron.min.js")],-1)
-printHtmlPart(34)
-invokeTag('javascript','g',308,['src':("jquery.scrollgress.min.js")],-1)
-printHtmlPart(33)
-invokeTag('javascript','g',309,['src':("skel.min.js")],-1)
-printHtmlPart(33)
-invokeTag('javascript','g',310,['src':("util.js")],-1)
-printHtmlPart(35)
-invokeTag('javascript','g',311,['src':("main.js")],-1)
-printHtmlPart(35)
-invokeTag('javascript','g',312,['src':("jquery.scrolly.min.js")],-1)
-printHtmlPart(35)
-invokeTag('javascript','g',313,['src':("UI/typed.js")],-1)
-printHtmlPart(36)
-invokeTag('javascript','g',315,['src':("ie/respond.min.js")],-1)
-printHtmlPart(37)
 })
-invokeTag('captureBody','sitemesh',317,['class':("landing")],1)
-printHtmlPart(38)
+invokeTag('captureBody','sitemesh',182,[:],1)
+printHtmlPart(33)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1484011425817L
+public static final long LAST_MODIFIED = 1484784370894L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

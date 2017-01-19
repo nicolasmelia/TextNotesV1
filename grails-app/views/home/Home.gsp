@@ -104,37 +104,24 @@
 
 		<!-- Banner -->
 			<section id="banner">
-				<h2> TxtWolf <br/> SMS Solutions </h2>
+				<h2> Engagement. promotions. alerts. </h2>
 				
 				<div id="typed-strings" style = "display:none;">
-					<p>retail stores</p>
-					<p>marketing agencies</p>
-					<p>ecommerce websites</p>
-					<p>schools/universities</p>
-					<p>gyms & health centers</p>
-					<p>businesses</p>
-					<p>salons & spas</p>
-					<p>mom & pop</p>				
-					<p>bars & nightclubs</p>				
-					<p>cafe's & coffee shops</p>
-					<p>restaurants</p>
-					<p>food trucks</p>
-					<p>non profits</p>
-					<p>spas</p>					
-					<p>promotions</p>
-					<p>alerts</p>
-					<p>engagement</p>
-					<p>reminders</p>
-					<p>golf courses</p>
-					<p>businesses</p>
-					
-					
+					<p>business</p>
+					<p>retail store</p>
+					<p>restaurant</p>
+					<p>school</p>
+					<p>online shop</p>
+					<p>health center</p>
+					<p>nightclub</p>
+					<p>cafe</p>				
+					<p>nonprofit</p>				
+					<p>event</p>
+					<p>business</p>
 				</div>
-				
-				
-				
+						
 				<p id = "typedText">
-					Text message marketing for
+					Text message marketing for your
 					<span  id="typed" style="white-space:pre;"></span>
 				</p>
 				
@@ -142,9 +129,6 @@
 				<ul class="actions">
 					<li><a href="#one" class="button special scrolly">Learn More</a></li>
 				</ul>
-				
-				
-
 				
 			</section>
 
@@ -252,8 +236,9 @@
 				<div class="container">
 					<header class="major">
 						<h2>Join Us</h2>
-						<p>Tired of paying a monthly subscription 'per keyword'?  <br> Well you can officially cancel
-							your current subscription, as TxtWolf is completely free & it always will be.</p>
+						<p>Tired of paying a monthly subscription 'per keyword'?  <br> Well, you can officially
+						 cancel your overpriced subscription,
+						 as TxtWolf has it all, at an affordable price.</p>
 					</header>
 					<ul class="actions uniform">
 						<li><a href="${createLink(controller: 'login', action: 'newAccount')}"class="button special">Sign Up</a></li>

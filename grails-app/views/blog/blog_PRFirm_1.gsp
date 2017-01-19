@@ -6,13 +6,11 @@
 -->
 <html>
 	<head>
-		<title>TxtWolf - Pricing</title>
+		<title>TxtWolf - Blog</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" href="${resource(dir: 'images', file: 'dashboard/default_avatar.png')}">
 		<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='main.boot.css'/>">
-		<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='pricing/main.pricing.css'/>">
-		
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		
 		<!--[if lte IE 8]><g:javascript src="ie/html5shiv.js" /><![endif]-->
@@ -27,25 +25,16 @@
 		</script>
 		<!--End of Zendesk Chat Script-->
 		
-		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-		  ga('create', 'UA-89949087-1', 'auto');
-		  ga('send', 'pageview');
-		</script>
-		
 	</head>
 
 	<body>
 
 		<!-- Header -->
-			<header id="header">
+			<header id="header" class="">
 				<h1 id="logo"><a href="${createLink(controller: 'Home')}">TxtWolf</a></h1>
 				<nav id="nav">
 					<ul>
-						<li><a href="${createLink(controller: 'Home')}">Home</a></li>
+						<li><a href="${createLink(controller: 'Home')}">Home</a></li>				
 						<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}">Blog</a></li>			
 						<li><a href="${createLink(controller: 'Home', action: 'pricing')}">Pricing</a></li>
 						
@@ -65,77 +54,63 @@
 					</ul>
 				</nav>
 			</header>
-
+			
 		<!-- Main -->
 			<section id="main" class="wrapper style1">
 				<div class="container box big bordered">
-					<header class="major special" style = "padding: 0px;" >
-					
-						<h2>More For Less.</h2>
-						<br>
-						<p>Choose a plan that’s right for you.</p>
-							
-						<g:if test="${error}">
-							<div class="alert" id="errorList" style="margin: 10px auto 0px auto; display: block; max-width: 450px; ">${error}</div>
-						</g:if>
-						<g:else>
-							<div class="alert" id="errorList" style="margin: 10px auto 0px auto; display: none; max-width: 450px; "></div>						
-						</g:else>
-								
-								
+					<header class="major special">
+						<h2>PARTNER WITH TXTWOLF</h2>
+						<p>Seamlessly buy, cancel, and view the activity of multiple accounts.</p>
 					</header>
-					
-					<!-- Form -->
+					<div class="row 200%">
+						<div class="4u 12u$(medium)">
 
-			<div class="">
-								
-					<div class="columns">
-					  <ul class="price">
-					    <li class="header" style="background-color:#56b6da" >Free</li>
-					    <li class="grey">$ 0 / year</li>
-					    <li>250 SMS</li>
-					    <li>1 Keyword</li>
-					    <li>Unlimited Contacts</li>
-					    <li>SMS Only</li>
-					    <li>Support Not Included</li>
-					    <li class="grey"><a href="${createLink(controller: 'login', action: 'newAccount')}" style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
-					  </ul>
-					</div>
-					
-					<div class="columns">
-					  <ul class="price">
-					    <li class="header" style="background-color:#605ca8">Pro</li>
-					    <li class="grey">$ 59.99 / month</li>
-					    <li>3000 SMS</li>
-					    <li>Unlimited Keywords</li>
-					    <li>Unlimited Contacts</li>
-					    <li>SMS and MMS Pictures</li>
-					    <li><b>Full Support Plan</b></li>
-					    <li class="grey"><a href="${createLink(controller: 'login', action: 'newAccount')}"  style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
-					  </ul>
-					</div>
-					
-					<div class="columns">
-					  <ul class="price">
-					    <li class="header" style="background-color:#4998b6" >Need More?</li>
-					    <li class="grey">Contact Us</li>
-					    <li>You Decide!</li>				    
-					    <li>Unlimited Keywords</li>
-					    <li>Unlimited Contacts</li>
-					    <li>SMS and MMS Pictures</li>
-					    <li><b>Full Support Plan</b></li>
-					    <li class="grey"><a href="${createLink(controller: 'login', action: 'newAccount')}" style="background-color:#7773c8" class="columnBtn">Sign Up</a></li>
-					  </ul>
-					</div>
-													
-					   <span class="clear"></span>
-					    <br> <br>
-					   <div style = "margin-bottom: 15px;">
-						<h4>The Full Support Plan</h4>
-							The above paid plans also offer full support for marketing, business and technical information. For those who want to save time and get to results fast, our team of experienced professionals are ready to help you build an audience and design text marketing messages that win. Please email <a href="mailto:Support@TxtWolf.com">Support@TxtWolf.com </a> using your TxtWolf's account email address to get started!				
-						</div>				
-				</div>
+							<!-- Sidebar -->
+								<section id="sidebar">
+									<section>
+									
+										<h3>Engagement 101</h3>
+										<p>When a customer sees your advertisement they can send a text message to a keyword, obtaining promotional material from you and...</p>
+										<footer>
+											<ul class="actions">
+												<li><a href="${createLink(controller: 'blog', params: [blogID: '3'])}" class="button small alt">Learn More</a></li>
+											</ul>
+										</footer>
+									</section>
+									<hr />
+									<section>
+										<a href="#" class="image fit"><img src="${resource(dir: 'images', file: 'blog/keywords/blog1Thumbnail.jpg')}"  alt="" /></a>
+										<h3>Using Keywords</h3>
+										<p>The possibilities when it comes to keyword text messaging are limitless. Learn how to use this to your advantage.</p>
+										<footer>
+											<ul class="actions">
+												<li><a href="${createLink(controller: 'blog', params: [blogID: '1'])}" class="button small alt">Learn More</a></li>
+											</ul>
+										</footer>
+									</section>
+								</section>
 
+						</div>
+						<div class="8u$ 12u$(medium) important(medium)">
+
+							<!-- Content -->
+								<section id="content">
+									<div class="image main"><img src="${resource(dir: 'images', file: 'blog/keywords/Pr_Woman1.jpg')}" alt="" /></div>
+									<h3>Text Marketing for Public Relations Businesses</h3>
+									
+									<p>TxtWolf is proud to announce our new dashboard for marketing agencies. This dashboard will allow agencies to seamlessly buy, cancel, and view the activity of multiple accounts. Businesses can manage all of their accounts from one place, and quickly sign in and out of any account in order to send texts, add keywords, or change the size of the plan. 
+									</p>
+									
+															
+									<h3>Why partner with TxtWolf?</h3>								
+									<p>
+										Here at TxtWolf, we encourage potential partners in public relations to compare us to the competition. See first-hand how we provide better service, at a fraction of the cost. Our rate for marketing agencies is truly unmatched. Pro accounts are $39.99 per month, and the additional dashboard for managing multiple accounts is included for free. Our Pro plan includes 3000 SMS/MMS messages per month, unlimited keywords, unlimited contacts and full customer support. Larger custom plans are also available to suit every text messaging need for a public relations business.
+                                        Please contact adam@txtwolf.com to further discuss this offer, and how TxtWolf can be the text message marketing solution for your business!
+									</p>
+								</section>
+
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -193,16 +168,16 @@
 					&copy; 2017, TxtWolf LLC.
 				</div>
 			</div>
-			
-			<!-- Scripts -->
-			<g:javascript src="jquery.min.js" />  
-			<g:javascript src="jquery.dropotron.min.js" /> 	
-			<g:javascript src="jquery.scrollgress.min.js" />  
-			<g:javascript src="skel.min.js" />  
-			<g:javascript src="util.js" /> 
-			<g:javascript src="main.js" /> 
-			<g:javascript src="jquery.scrolly.min.js" /> 
-			<!--[if lte IE 8]><g:javascript src="ie/respond.min.js" /><![endif]-->
+
+		<!-- Scripts -->
+		<g:javascript src="jquery.min.js" />  
+		<g:javascript src="jquery.dropotron.min.js" /> 	
+		<g:javascript src="jquery.scrollgress.min.js" />  
+		<g:javascript src="skel.min.js" />  
+		<g:javascript src="util.js" /> 
+		<g:javascript src="main.js" /> 
+		<g:javascript src="jquery.scrolly.min.js" /> 
+		<!--[if lte IE 8]><g:javascript src="ie/respond.min.js" /><![endif]-->
 
 	</body>
 </html>
